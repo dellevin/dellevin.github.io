@@ -1,0 +1,948 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://dellevin.github.io</id>
+    <title>Del Levin‘s blog</title>
+    <updated>2022-12-24T10:53:17.787Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://dellevin.github.io"/>
+    <link rel="self" href="https://dellevin.github.io/atom.xml"/>
+    <subtitle>望山叹高，登愈艰。入世哀难，伤无泪。
+</subtitle>
+    <logo>https://dellevin.github.io/images/avatar.png</logo>
+    <icon>https://dellevin.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Del Levin‘s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[阅读的本质是知行合一]]></title>
+        <id>https://dellevin.github.io/post/yue-du-de-ben-zhi-shi-zhi-xing-he-yi/</id>
+        <link href="https://dellevin.github.io/post/yue-du-de-ben-zhi-shi-zhi-xing-he-yi/">
+        </link>
+        <updated>2022-12-24T10:47:44.000Z</updated>
+        <content type="html"><![CDATA[<p>阅读是为了改变，知道了很多乱七八糟的道理却都是用作和人交谈时故作炫耀的资本，从来没有深刻践行我阅读到的知识，身边的人都误以为我头脑清醒，行动力强，只有自己才清楚我只是思想的巨人，行动的矮子，做了一点都要拿出来说，再把大道理一摆，再无行动，只在别人的称赞中迷失自己，但结局不会陪自己演戏，没通过的考试，考证失败都会一下把自己打回原形，再灰溜溜地逃跑和以前炫耀过的朋友再无联系，这种恶性循环真的让人郁结颓废，梦想没开始做就是空想，知道再多没有刻意反复实践都是0。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[昆山京东云]]></title>
+        <id>https://dellevin.github.io/post/kun-shan-jing-dong-yun/</id>
+        <link href="https://dellevin.github.io/post/kun-shan-jing-dong-yun/">
+        </link>
+        <updated>2022-12-24T10:12:15.000Z</updated>
+        <content type="html"><![CDATA[<hr>
+<div class="gallery-page">
+        <div class="img-list" id="propotion">
+        <!-- 开始 -->
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/209431424-edecdf38-3363-45d1-8d9f-8d68e5618296.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/209431536-68c02262-1c2d-4d76-b6fb-20239156eaec.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/209431543-e2fc38e0-0730-4366-b52d-1d2fb41c2aa2.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/209431547-4d107678-541d-4bab-9a8a-bb1c915c8ab6.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/209431553-c507744f-9ce9-4917-a77e-7aa9472aad9a.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/209431559-57898948-ff67-45a4-8e41-08d7210ae177.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/209431561-77565989-7973-4e0d-ab39-36f088369ccb.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/209431563-9ddcc65b-0635-4ebe-98b8-823c7b3297b5.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/209431567-91e71710-47c5-470d-bfba-5f21c85a43fa.jpg"></div>
+        <!-- 结束 -->
+        </div>
+</div>
+<center>流年易逝，留下的只剩下了唏嘘。</center>
+<style>
+         #propotion{
+            border: 1.5px;
+            width: 50%;
+            padding: 10px;
+            margin: auto;
+        }
+        .propotion img {
+            width: 100%;
+        }
+        .gallery-page {
+            margin-top: -50px;
+        }
+<pre><code>    .img-list,
+    .gallery-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+
+    .img-column {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .img-column a,
+    .gallery-column a {
+        border-bottom: 0px;
+    }
+
+    .gallery-item {
+        margin-bottom: -50px
+    }
+
+    .posts-expand .post-body .gallery-column a img {
+        height: 250px;
+        width: 300px;
+        object-fit: cover;
+    }
+&lt;/style&gt;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[WinCC OA实现table另存为excel功能]]></title>
+        <id>https://dellevin.github.io/post/wincc-oa-shi-xian-table-ling-cun-wei-excel-gong-neng/</id>
+        <link href="https://dellevin.github.io/post/wincc-oa-shi-xian-table-ling-cun-wei-excel-gong-neng/">
+        </link>
+        <updated>2022-11-04T14:32:09.000Z</updated>
+        <content type="html"><![CDATA[<p>实现wincc oa的另存为文件功能，一开始我是想到的下载功能，用的netget这个方法，可是尝试之后，这个方法多数是获取url内部这些的，跟py的爬虫差不多，但是这个方法并不支持本地的路径虽然开发文档里面写过</p>
+<p>The URL (http, https, ftp and file - file only applies to local files).</p>
+<p>但是尝试几次之后，结果并不是这样的。</p>
+<p>只能另辟蹊径了，在老板提醒之后才发现有一个fileSelector的方法来解决这个方式，</p>
+<p><a href="https://www.winccoa.com/documentation/WinCCOA/3.18/en_US/ControlE_R/fileSelector.html?hl=fileselector">fileSelector() (winccoa.com)</a>，这个就是可以弹出一个选择文件路径的窗口出来。接下来就是之后的操作了</p>
+<pre><code class="language-C#">main(mapping event)
+{
+   //引入excle的接口
+  idispatch objXL = createComObject(&quot;Excel.Application&quot;);
+  //定义一个工作表对象
+  anytype objWorkbook;
+  //设置窗口不可见
+  objXL.Visible = false;
+   //用调用的接口里面的工作簿方法生成一个工作表对象赋值给上面的定义的对象
+  objWorkbook = objXL.Workbooks.Add();
+   //定义一个文件夹名字
+  string fileName;
+   //弹出选择的窗口
+//文件名，打开默认的文件路径，判断是否上传，文件类型，打开弹出对话框里面的文件，文件选择对话框存储信息
+  fileSelector(fileName, &quot;C:\\Users\\Administrator\\Desktop&quot;, false, &quot;*.xlsx&quot;, false, &quot;MyId&quot;);
+  //这里很重要，要转一下斜杆的方向，因为不知道因为什么这个竟然无法识别/只能识别路径的\\
+  strreplace(fileName, &quot;/&quot;, &quot;\\&quot;);
+  //工作表的saveAs方法，就是另存为
+  objWorkbook.SaveAs(fileName + &quot;.xlsx&quot;);
+ //往空白文件里面写入table表的内容
+  for (int i = 0 ; i &lt; TabelExcel.lineCount() ; i++) //遍历行
+  {
+    for (int j = 0 ; j &lt;  TabelExcel.columnCount()  ; j++)//遍历列
+    {
+      objXL.Range(&quot;A1&quot;).offset(i, j).Value2 = TabelExcel.cellValueRC(i, &quot;#&quot; + (j + 1));
+    }
+  }
+    //写入完毕之后进行保存
+  objWorkbook.Save();
+    //关闭这工作簿
+  objXL.Workbooks.close();
+    //释放程序，不释放的话，会在后台一直占用，很恶心。
+  releaseComObject(objXL);
+
+}
+
+</code></pre>
+<p>基本上就是这样，记得添加button按钮之后进行这些代码的动作。明白当前操作的是哪一个对象才可以。还有一个关键的方法就是fileSelector这个方法，至关重要。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[WinCC OA实现table控件导出excle报表的功能]]></title>
+        <id>https://dellevin.github.io/post/wincc-oa-shi-xian-table-kong-jian-dao-chu-excle-bao-biao-de-gong-neng/</id>
+        <link href="https://dellevin.github.io/post/wincc-oa-shi-xian-table-kong-jian-dao-chu-excle-bao-biao-de-gong-neng/">
+        </link>
+        <updated>2022-10-25T15:01:27.000Z</updated>
+        <content type="html"><![CDATA[<p>昨天还不错，来到济南正式生活的第一天，吃的饺子，做个开门红，算是图个吉利。<br>
+今天的话吃的炒土豆，都还可以，厨艺见长了。今天自己实现了wincc oa的excel数据的导出功能，成就感max。</p>
+<figure data-type="image" tabindex="1"><img src="https://user-images.githubusercontent.com/45512970/197811524-6307f875-d659-44b6-ab9c-909d0ebfdcf7.jpg" alt="吃的饺子" loading="lazy"></figure>
+<hr>
+<p>正题开始</p>
+<p>首先根据上次的往table控件写入的流程可以想到就是一个倒着走的路，我们往回走就可以了。为了好看我又重写调整了一界面。这里不得不吐槽一下这个OA的开发文档， 太下头了，之前我在做拖曳进入table的时候，写的不清不楚的。虽然说功能完成了吧，但是太磨人心态了，有时间单独出一篇。</p>
+<figure data-type="image" tabindex="2"><img src="https://user-images.githubusercontent.com/45512970/197815756-634fdc21-12ac-4895-8e7a-2ac1d0da669c.png" alt="微信截图_20221025231038" loading="lazy"></figure>
+<p>第一件事情就是设置一个button，基本上几行代码就搞定了。在动作控件那里面写上以下代码</p>
+<pre><code class="language-c#">main(mapping event)
+{
+  //弹出那个excel界面的,就免了打开了
+  objXL.Visible = -1;
+  //通过list控件,找到那个xls文件
+  objWorkbooks = objXL.Workbooks.Open(&quot;C:/TEMP/&quot; + SELECTION_LIST2.selectedText);
+
+  for (int i = 0 ; i &lt; objWorkbooks.ActiveSheet.UsedRange.Rows.Count ; i++) //遍历行
+  {
+    for (int j = 0 ; j &lt;  objWorkbooks.ActiveSheet.UsedRange.Columns.Count  ; j++)//遍历列
+    {
+      //DebugN(objXL.Cells.item(i,j).Value2);
+      //DebugN(TABLE1.cellValueRC(i, &quot;#&quot; + (j + 1) ));
+      //DebugN(objXL.Range(&quot;A1&quot;).offset(i, j).Value2);
+
+      //通过用range的方法,利用偏移量,和table表对齐,进行数据更改和填写
+      objXL.Range(&quot;A1&quot;).offset(i, j).Value2 = TABLE1.cellValueRC(i, &quot;#&quot; + (j + 1));
+    }
+  }
+}
+</code></pre>
+<p>基本上最关键的就是 <code>objXL.Range(&quot;A1&quot;).offset(i, j).Value2 = TABLE1.cellValueRC(i, &quot;#&quot; + (j + 1));</code>这一行代码。<br>
+之前我们了解到range这个关键的方法，其中他这里面的offset的功能就是偏移量，也就是说从A1这个单元格开始偏移，两层循环的嵌套就是偏移（0，0） ，（0，1） ， （0 ，2） ......（0，单元格最后一列）<br>
+也就是按照每行偏移的，一行偏移完之后偏移下一行。我也试过cell这种遍历的方式，之前输入到table的时候太慢了，我寻思可以按照表格修改，只修改固定行列进行保存，可是发现一直报错，忘了报啥错了，只记得是和值定义有关。</p>
+<p>TABLE1的话就是只想table1这个表格，然后利用里面的方法用进行单元格一个个赋值。</p>
+<p>基本上就是这么简单。</p>
+<p>PS：看着GO的兴起，并没有太大波动，我感觉未来嵌入式才是王道，那种底层的东西是很关键的，就像千百年来人们一直在追求1+1为什么等于2这个答案一样。软件催动硬件的进步，硬件的进步带来软件的迭代，循环往复，剩者为王。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[WinCC OA 实现Excel数据映射到Table表格]]></title>
+        <id>https://dellevin.github.io/post/wincc-oa-shi-xian-excel-shu-ju-ying-she-dao-table-biao-ge/</id>
+        <link href="https://dellevin.github.io/post/wincc-oa-shi-xian-excel-shu-ju-ying-she-dao-table-biao-ge/">
+        </link>
+        <updated>2022-10-21T13:07:31.000Z</updated>
+        <content type="html"><![CDATA[<p>今天刚上班老板就打钉钉电话说解决问题。到下午才解决，因为我对这个软件不是很熟悉，所以犯了很多白痴的事情，实属不应该。自己也不习惯别人看我屏幕以至于各种降智操作把老板气得够呛。不过虽说老板很容易发火，但是技术这块是真的厉害。严谨认真。初入社会的我甚是佩服。</p>
+<p>因为学的是信管专业，一下子转到PLC这方面了，别说是跨专业了，直接是跨行业了，这几天睡觉都没睡好，生怕自己拖后腿。加油吧！</p>
+<hr>
+<p><strong>接下来开始正题</strong></p>
+<h2 id="创建控件">创建控件</h2>
+<p>首先先是创建demo，采用一个list控件和table控件进行操作。</p>
+<figure data-type="image" tabindex="1"><img src="https://user-images.githubusercontent.com/45512970/197204789-d1ea42a9-a12d-42ee-92a7-d627dfa6486c.jpg" alt="创建控件" loading="lazy"></figure>
+<p>首先根据开发文档中的提示<a href="https://www.winccoa.com/documentation/WinCCOA/3.18/en_US/ControlA_D/createComObject.html?hl=createcomobject">createComObject()</a>这个方法,找到一个demo,为了方便我做了注释</p>
+<pre><code class="language-vb">main()
+{
+  //接口调用
+  idispatch objXL;
+  idispatch objXLchart;
+  idispatch objXLWorkbooks;//工作簿
+  idispatch objXLWorkbook;//工作表
+  int i;
+  //生成一个动态数组
+  dyn_int array;
+  //生成一个工作表对象
+  anytype workbook;
+  //给动态数组赋值
+  array = makeDynInt(1,2,3);
+  //调用接口,创建excel程序
+  ojXL = createComObject(&quot;Excel.Application&quot;);
+  //使用接口里面的可视化
+  objXL.Visible = -1;
+  //创建工作簿
+  objXLWorkbooks = objXL.Workbooks;
+    //创建工作表
+  objXLWorkbook = objXLWorkbooks.Add(workbook);
+    //用完释放,不然会一直占用
+  releaseComObject(objXLWorkbook);
+  releaseComObject(objXLWorkbooks);
+  //这个就是在excel里面填入值了
+  objXL.Range(&quot;A1:C1&quot;, workbook).Value2 = array;
+  //可以删除,目前不知道啥用,选择方法?
+  objXL.Range(&quot;A1:C1&quot;, workbook).Select();
+  //和chart图表一样的,应该就是将workbook里面的数据做成可视化图表
+  objXLchart = objXL.Charts.Add(workbook, workbook, workbook, workbook);
+  objXLchart.Visible = -1;
+  //这个是可视化图表的3D视图,给的默认值-4100,就是3D视图,删除的话就是平面视图了
+  objXLchart.Type = -4100;
+  
+  //xl3DColumn  
+  //xl3DColumn is an Excel-defined constant with value = -4100.
+  //动态旋转用的
+  for (i = 30; i&lt;=180; i = i + 10)
+  {
+    delay(0,800);
+    objXLchart.Rotation = i;
+  }
+ 
+  objXL.Visible = 0;
+  releaseComObject(objXLchart);
+  releaseComObject(objXL);
+  delay(20);
+}
+</code></pre>
+<p>看里面的描述说</p>
+<pre><code class="language-markdown">## Description
+
+Creates an arbitrary COM object. This function can be used many-sided. It can be used to control and fill databases as well as to control Excel and Word applications etc. The properties that can be controlled via the function can be detected via an external browser ( for example, Visual Basic). Since COM objects are Windows specific, the function is only available under Windows.
+
+The UI always connects to all event interfaces of a COM object, so if a COM object contains multiple interfaces with the same event, it can not be distinguished which event has taken place.
+</code></pre>
+<p>基本上可以看出关键来他是用的VB语言来对excel的工作表进行操作,那么这些方法就是通用的了。</p>
+<h2 id="预加载打开窗口引入接口">预加载打开窗口引入接口</h2>
+<figure data-type="image" tabindex="2"><img src="https://user-images.githubusercontent.com/45512970/197215471-85a59ec9-06cf-4413-aa09-a9d32fc4a97b.jpg" alt="预加载" loading="lazy"></figure>
+<p>点击ScopeLib之后写入以下代码</p>
+<pre><code class="language-vb">idispatch objXL = createComObject(&quot;Excel.Application&quot;);//接口，创建excel程序
+anytype objWorkbooks;//创建工作簿变量
+anytype objWorkbook;//创建工作表变量
+</code></pre>
+<p>然后在点击Terminate进行编辑，也就是说，在关闭这个窗口之后执行如下代码，目的就是使用完毕释放掉excel程序，不能一直占用呀！</p>
+<pre><code class="language-vb">main()
+{
+    releaseComObject(objXL);//s释放掉引入的这个Excel程序
+}
+</code></pre>
+<h2 id="对列表也就是list进行编辑">对列表也就是list进行编辑</h2>
+<figure data-type="image" tabindex="3"><img src="https://user-images.githubusercontent.com/45512970/197216826-5896b541-cee1-4d62-a21e-05e1fb2e5c0c.jpg" alt="编辑list" loading="lazy"></figure>
+<pre><code class="language-vb">main()
+{
+  //扫描对应文件夹下面的文件
+  this.deleteAllItems();
+    //动态类型 获取数据 扫描这个文件夹下面的所有.xlsx文件
+  dyn_string s = getFileNames(&quot;C:/TEMP&quot;, &quot;*.xlsx&quot;);
+  //dynlen输出这个字段元素多少数据
+  for (int i = 1 ; i &lt;= dynlen(s); i++)
+  {
+    DebugN(i, &quot;&quot;, s[i]);
+    //this.appendItem(s[i]);
+    //遍历列表在item中显示
+    setValue(&quot;&quot;, &quot;appendItem&quot;, s[i]); //&quot;&quot;代表当前对象，意思是这个文件夹下面又多少个xlsx文件都在列表之中显示出来
+  }
+}
+</code></pre>
+<h2 id="设置双击事件扫描excel数据映射到table之中">设置双击事件扫描excel数据映射到table之中</h2>
+<pre><code class="language-vb">main(mapping event)
+{
+  //点击事件开始的时候,不让鼠标点击其他的东西
+  this.enabled(false);
+
+  //打开对应目录下面的某个文件
+  objWorkbooks = objXL.Workbooks.Open(&quot;C:/TEMP/&quot; + SELECTION_LIST2.selectedText);
+
+  //释放工作表
+  //objWorkbook = objWorkbooks.Worksheets(1);
+
+  //DebugN(objWorkbooks.ActiveSheet.UsedRange.Rows.Count);//行总数
+  //DebugN(objWorkbooks.ActiveSheet.UsedRange.Columns.Count);//列总数
+  //全部扫描，显示全部数据
+  //DebugN(objXL.Range(&quot;1:1&quot;).Value2);
+    
+  //以下程序是根据excel表格对table的初始化
+  //防止再次点击后表覆盖前一个表,删除行
+  TABLE1.deleteAllLines();
+  //防止再次点击后表覆盖前一个表,删除列,倒着删是因为0列一直存在只能从最后面开始
+  for (int k = TABLE1.columnCount() - 1  ; k &gt;= 0 ; k--)
+  {
+    //从第k列开始删
+    TABLE1.deleteColumn(k);
+  }
+
+  //DebugN(TABLE1.lineCount(), TABLE1.columnCount());//测试行数和列数
+
+  //初始化列名
+  for (int j = 0 ; j &lt; objWorkbooks.ActiveSheet.UsedRange.Columns.Count ; j++) //遍历列
+  {
+    TABLE1.insertColumn(j);//初始化列
+  }
+
+
+  //通过excel的数据往table表里面填入数据
+  for (int i = 0 ; i &lt; objWorkbooks.ActiveSheet.UsedRange.Rows.Count ; i++) //遍历行
+  {
+    //插入行
+    TABLE1.insertLineN(i);
+    //遍历excel表格插入数据
+    for (int j = 0 ; j &lt; objWorkbooks.ActiveSheet.UsedRange.Columns.Count ; j++)//遍历列
+    {
+      string s = objXL.Range(&quot;A1&quot;).offset(i, j).Value2;
+      //判断插入数据长度
+      if (s.length() &lt;= 0 || s == &quot;0&quot;)
+      {
+        //如果长度小于等于0或者本身是0的话就置空
+        TABLE1.cellValueRC(i, &quot;#&quot; + (j + 1), &quot;&quot;);
+      }
+      else
+      {
+        TABLE1.cellValueRC(i, &quot;#&quot; + (j + 1), objXL.Range(&quot;A1&quot;).offset(i, j).Value2);
+      }
+
+    }
+
+  }
+
+//DebugN(objXL.Cells.item(1,1).Value2);
+        //扫描表中的所有行数据,太慢,一个一个的显示，所-以舍弃了这个办法
+//   for(int i = 1 ; i&lt;=objWorkbooks.ActiveSheet.UsedRange.Rows.Count ; i++ )
+//   {
+//      for(int j = 1 ; j&lt;=objWorkbooks.ActiveSheet.UsedRange.Columns.Count ; j++ )
+//      {
+//        DebugN(objXL.Cells.item(i,j).Value2);
+//      }
+//   }
+
+  //关闭工作簿
+  objXL.Workbooks.close();
+        //释放这个事件，因为执行完毕了，就可以点击别的了
+  this.enabled(true);
+}
+</code></pre>
+<p>其中SELECTION_LIST2.selectedText这个是SELECTION_LIST2也就是我这个列对象的名称，后面跟着的就是他的方法[selectedText](<a href="https://www.winccoa.com/documentation/WinCCOA/3.18/en_US/Control_Grafik/selectedText_select.html?hl=selectedtext">&quot;selectedText&quot; (winccoa.com)</a>)，这个的作用就是返回所选列表项的文本，可以理解为你的文件名。</p>
+<p><code>objWorkbooks.ActiveSheet.UsedRange.Rows.Count</code>总行数</p>
+<p><code>objWorkbooks.ActiveSheet.UsedRange.Columns.Count</code>总列数</p>
+<p>这两个很为关键，基本上都是vb里面的语言，意思是这个工作簿中，激活工作表，使用range返回行/列并计算总数</p>
+<p>因为你操作工作簿不可能只操作一个工作簿，所以接下来要清除之前创建的行和列。19~25行是清除之前的行列的。如果不清除的话会在之前的行列接着遍历，对数据进行操作，不断地增加，无法正确显示，所以要清除。</p>
+<p>填数据的时候是根据列名进行填数据的（用的是<code>cellValueRC</code>方法）。所以要初始化对应的列名（30~33行）。</p>
+<p>接下来就是通过遍历excel的数据往table表里面填入数据，外层循环行，里面循环列，一行初始化完，一列就遍历一次了。就是for循环外层一次，内层已经循环完一轮了。<code>TABLE1.insertLineN(i);</code>是插入行，这一行弄完之后在弄列，就形成了一个个cell。然后根据位置填入值。</p>
+<p><code>TABLE1.cellValueRC(i, &quot;#&quot; + (j + 1), objXL.Range(&quot;A1&quot;).offset(i, j).Value2);</code>这个的意思是，往cell里面填入，第i行第j+1列（为什么是j+1，因为做表的时候已经创建了1列了，j=0所以要在第1列后面添加列） <code>objXL.Range(&quot;A1&quot;).offset(i, j).Value2</code>这个就是填入的数据。至于为什么要判断0和他的长度，是因为我在测试的时候，删除了表里cell的数据，但是table里面却显示的是0，所以在这里判断一下他的长度。具体的可以看看以下这篇文章</p>
+<p><a href="https://blog.csdn.net/xuemanqianshan/article/details/111415364">EXCEL的各种“空”的区别：blank，““ ， 0 ，以及 VBA里的各种空值：empty，null，nothing 等_奔跑的犀牛先生的博客-CSDN博客_vba判断单元格是否为空</a></p>
+<p>弄完之后这个就是整体的效果了</p>
+<figure data-type="image" tabindex="4"><img src="https://user-images.githubusercontent.com/45512970/197223241-0e10e0ef-81f8-4d68-86d7-1502ca25224f.jpg" alt="整体效果" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[步入正轨的生活]]></title>
+        <id>https://dellevin.github.io/post/bu-ru-zheng-gui-de-sheng-huo/</id>
+        <link href="https://dellevin.github.io/post/bu-ru-zheng-gui-de-sheng-huo/">
+        </link>
+        <updated>2022-10-20T15:28:14.000Z</updated>
+        <content type="html"><![CDATA[<p>入职第三天了，感觉生活慢慢的步入了正轨。这种感觉给了我一种不一样的味道。如果用来比喻的话，初中就像是甘蔗，高中是糖果，大学是掺杂着糖分的苦咖啡。现在给我的感觉有一种油盐的气息。</p>
+<p>今天发现生活并没有那么枯燥，也许是老板夸我了，也许是老板说我了，我觉得自己有用了。其实我很怕自己没有用，这样代表着不被需要，没人在乎你了。这样的生活也挺好。</p>
+<p>这是学习wincc oa的第三天。我好怕自己掉队，自己在学习中发现自己的无知，发现老板真的好厉害，啥都会。今天和我讲的时候听得我一阵懵逼。明天还有任务，希望一切顺利。工作中没有那么多的时间去学习，只有边做边使用。这几天使用这wincc oa下来发现，开发文档远远比那些视频清楚多了。主要是教学视频也没多少，几乎没有，搞不懂为什么？还是感觉自己学的太慢了。慢慢来吧，继续加油努力！！！</p>
+<p>这周六就要搬家了，终于要有一个长久居住的住所了，真的是好开心！！！步入正轨的生活，让人有着莫名的期待。。。。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[人，是一种更高级的算法]]></title>
+        <id>https://dellevin.github.io/post/ren-shi-yi-chong-geng-gao-ji-de-suan-fa/</id>
+        <link href="https://dellevin.github.io/post/ren-shi-yi-chong-geng-gao-ji-de-suan-fa/">
+        </link>
+        <updated>2022-10-15T13:17:20.000Z</updated>
+        <content type="html"><![CDATA[<p>在互联网的发展过程中，算法所代表的机器智能起到了极大的作用。</p>
+<p>从语音识别到内容分发、从智能调度到视觉识别，算法无处不在、无孔不入。</p>
+<p>今天互联网不能没有算法，就像西方不能没有耶路撒冷。</p>
+<p>然而我想说——</p>
+<p>永远不要忽视了人的作用，人是另一种更高级的算法。</p>
+<h2 id="1">1</h2>
+<p>广告行业在经历悄然的变迁。</p>
+<p>互联网广告诞生以来，并不关注人的效果广告逐渐占据了主流。</p>
+<p>而今天，事情正在起变化。</p>
+<p>众多电商把预算倾斜到了以人为中心的直播间。</p>
+<p>被背后的逻辑除了在直播间直接带货之外，他们会将知名主播直播片段当成素材再反复投效果广告。</p>
+<p>带货KOL本质上成为了代言人。</p>
+<p>你以为商家付的是坑位费，其实他付的是代言费。</p>
+<p>人再次变成广告的核心，从品牌广告到效果广告。</p>
+<p>算法在广告中依然重要，但算法往往很难解释：为什么同样的广告语，换个人口播的素材点击率下降了10倍。</p>
+<p>人，在重新定义广告。</p>
+<h2 id="2">2</h2>
+<p>为什么几乎所有的公司今天都在做私域？</p>
+<p>因为私域连接的是活生生的人。</p>
+<p>而公域连接的是冷冰冰的内容。</p>
+<p>什么样的公司私域做的好？</p>
+<p>把私域真的当做一个有血有肉的人来运营的公司做的最好，而那些天天想着如何弄更多机器人群发广告的公司，私域是做不起来的。</p>
+<p>大家都不傻，人的温度是可以感知到的。</p>
+<p>做私域其实没有其他秘诀，就一条——“多一些真诚，少一些套路。”</p>
+<p>对于私域而言，人是手段，人也是目的；</p>
+<h2 id="3">3</h2>
+<p>那些崛起的国潮新消费品牌崛起到底有哪些绝招？</p>
+<p>其中一个绕不过去的策略就是——它们将足够的预算投放给了人，有价值的人。</p>
+<p>这些人可能甚至还算不上KOL，于是圈内给他们发明了一个新词——KOC。</p>
+<p>KOC没有大规模的粉丝，也产生不了太多的链接，但他们懂行、识货，他们对身边人的消费决策不可忽视。</p>
+<p>他们就是《引爆点》这本书中的专家。</p>
+<p>完美日记已经将KOC策略运用到了极致，在沿海高校，一位大二的女生说——</p>
+<p>“我们班的女生，几乎每个人都加了完美日记的群或导购“小完子”，也不知道大家到底是如何加上的，反正都有。“</p>
+<p>完美日记对人的理解，远超其他同时期创立的美妆品牌。</p>
+<h2 id="4">4</h2>
+<p>基于算法的搜索在没落。</p>
+<p>人们还会用搜索，但一个明显的趋势是网民的决策逐渐从搜索转向了人。</p>
+<p>跑步党选购跑鞋之前会去知乎看一看行业大V的意见。</p>
+<p>小仙女们下单化妆品之前会去小红书上看一看美妆KOL的看法；</p>
+<p>宅男们选择数码产品则会参考微博、B站上数码博主的测评。</p>
+<p>没错，搜索在价值链上已经逐渐让位于以人为中心的各类平台。</p>
+<p>有些人哪怕问一问万能的朋友圈，也不愿意点开那个冷冰冰的搜索框。</p>
+<p>百度如果不是依靠自动驾驶这张牌在支撑市梦率，股价一定比现在还要难看。</p>
+<h2 id="5">5</h2>
+<p>游戏行业也是，人越来越重要。</p>
+<p>过去了游戏界主流是主机游戏，今天的游戏主流变成了移动网络移动游戏。</p>
+<p>前者主要和机器玩，后者主要和人玩。</p>
+<p>2021年，全球移动游戏规模约为900亿美元，而主机游戏规模约600亿美元。</p>
+<p>必须承认，对于更多人而言，和人玩，比和机器玩要有意思的多。</p>
+<p>无论是王者荣耀中的激烈对战，还是挑一挑里简单的比拼分数，当游戏的对象变成人的时候，玩家的参与会有更丰富的层次。</p>
+<p>与人玩，其乐无穷。</p>
+<h2 id="6">6</h2>
+<p>互联网竞争的最末梢——社区团购，依靠的依然是人。</p>
+<p>团长是社区团购最重要的资产。</p>
+<p>作为用户与团购平台之间很重要的一个纽带，好的团长必须是一个复合型人才——他既要有调动成员下单的号召力，还得有值得成员信任的亲和力，同时得具备处理争议的协调力。</p>
+<p>没有对人的透彻理解，做不好团长。</p>
+<p>而不重视团长，做不好社区团购。</p>
+<p>中国互联网最下沉的竞争最后还是回到了人的层面。</p>
+<h2 id="7">7</h2>
+<p>新东方肯定有比董宇辉专业更强的老师，但为什么董宇辉火了？</p>
+<p>是因为他的英语发音最标准吗？是因为他介绍商品最敬业吗？</p>
+<p>当然不是。</p>
+<p>是因为他展示了作为一个人“腹有诗书气自华”的部分。</p>
+<p>董宇辉的火，是人的胜利，不是算法的胜利。</p>
+<p>算法不是万能的，算法如果真的如此强悍，那么它一定会在6个月前董宇辉开始播的时候就将他挑选出来。</p>
+<p>没错，是人选择了董宇辉，而不是算法。</p>
+<h2 id="8">8</h2>
+<p>拼多多为什么崛起？</p>
+<p>本质上在于它用“拼”这个动作将下沉市场的“人”连接到了一起。</p>
+<p>在拼多多的早期，那种1块钱拼一个塑料盆的引流品在下沉人群众的潮水般传播是中国互联网的一大奇观。</p>
+<p>彼时的淘宝重点在“货”，而拼多多看到了“人”。</p>
+<p>拼多多看到了特定的人背后没有被满足的特定需求，而这些需求正是中国电商在漫长岁月中最被忽视的部分。</p>
+<p>今天的拼多多，希望你不忘初心，人心如果伤了，就回不来了。</p>
+<h2 id="9">9</h2>
+<p>Keep在健身领域深耕了多年，但最近运动的风头和人气却扑向了刘畊宏。</p>
+<p>和Keep中标准的“您已跑步2公里，用时10分52秒，最近1公里用时5分37秒”语音播报相比。</p>
+<p>还是刘畊宏“腰间的赘肉咔咔掉，人鱼线、马甲线我想要”和《本草纲目》更有意思一些。</p>
+<p>为什么极其枯燥的刑法在罗翔老师的嘴里变得如此生动？</p>
+<p>因为罗翔老师讲的并不是刑法，而是人性。</p>
+<p>为什么简单的科技产品在何同学的视频里变得如此妙趣横生？</p>
+<p>因为他关注人的关注，懂得人的兴趣点，没有在参数和跑分中迷失自己。</p>
+<p>人，可以让枯燥变得生动。</p>
+<h2 id="10">10</h2>
+<p>微信支付如何逆袭的？</p>
+<p>支付宝专注在支付，微信支付却看到了人。</p>
+<p>一个小小的红包创新成为了中国互联网商战史上永远的经典。</p>
+<p>水滴保险如何做起来的？</p>
+<p>它关注到了保险之外的人，创造性地解决了特定人群的刚需。</p>
+<p>它没有先关注保险，而是先看到了人。</p>
+<p>网易云音乐如何崛起的？</p>
+<p>QQ音乐专注音乐，网易云音乐却看到了音乐背后的人。</p>
+<p>一条条直击人心的评论让音乐产品超越音乐本身。</p>
+<p>人，才是需求的出发点。</p>
+<h2 id="11">11</h2>
+<p>徐志斌老师写过一本书叫《小群效应》</p>
+<p>这本书中道出了一个重要的现象——“人人都想进大群，人人都活跃在小群”。</p>
+<p>没错，社群本身就是一个链接人和人的工具。</p>
+<p>为什么小群比大群反而表现出更高的效率呢？</p>
+<p>这背后的逻辑在于在于——</p>
+<p>相比小群，大群的媒体属性更强，大群的沟通更像是开大会，而小群更像是三五好友聚会。</p>
+<p>本质上，小群更重视作为个体的人。</p>
+<p>它能充分地调动人这个主体的积极性和参与度，也能给个体的人以更多的反馈。</p>
+<p>小群能量大。</p>
+<h2 id="12">12</h2>
+<p>和机器拼效率，人是拼不过的。</p>
+<p>2017年10月，耐克投资了了一家名为Grabit的机器人初创公司，今天，该公司机器人制鞋效率比人高20倍，8小时可以制造600双鞋。</p>
+<p>2020年，富士康在大陆工厂部署了4万台制造机器人，于是，富士康昆山工厂的6万名工人就此下岗。</p>
+<p>ETC的大规模应用，让不少高速公路的收费员下岗；</p>
+<p>摄像头的大规模应用，让不少保安走下了工作岗位；</p>
+<p>语音识别的大规模应用，让不少速记员失去了工作；</p>
+<p>在未来，自动驾驶会让司机失业，AI会让初级会计师失业，机器翻译会让人工翻译失业......</p>
+<p>在未来，只要决策时间不超过1分钟的工作，基本上都可能被机器替代。</p>
+<p>那么，人还剩下什么？</p>
+<p>一位美女通过最现代的人工智能设备找男朋友，输入条件是：1、要帅；2、有车。</p>
+<p>人工智能给出的结果是——象棋。</p>
+<p>这个段子中机器的缺陷，恰好就是我们作为“人”的最后优势。</p>
+<p>当算法不起作用的时候，心法可以。</p>
+<h2 id="13">13</h2>
+<p>2016年3月，微软在Twitter上开发了一个名为Tay的AI 聊天机器人，该机器人通过挖掘网民对话而构建。</p>
+<p>Tay的第一句话是“ hellooooooo world !!!”。</p>
+<p>起初它善解人意、活泼可爱，和Twitter上的网民聊得非常开心。</p>
+<p>然而，在短短的12小时之后，Tay从一位友好的机器人变成了一个满嘴脏话、充满种族主义的恶魔。</p>
+<p>说出了“女权主义者都应该死在地狱里烧死”。</p>
+<p>微软经历了一场公关噩梦，被迫迅速将Tay关闭，这离它上线还没有超过24小时。</p>
+<p>算法再先进，算不出人性的弱点。</p>
+<h2 id="14">14</h2>
+<p>当下的中国，人也在发生巨大的变化——</p>
+<p>第一大确定趋势是老龄化，日本年龄结构的今天就是我们的明天，如何面对未富先老？</p>
+<p>第二大确定趋势是家庭小型化，少子化即便在开放生育后依然很难扭转，如何面对普遍的孤独？</p>
+<p>第三大确定趋势是代际差异大，在经济和技术的冲击下，转型中国的一代人和另一代人差异超过了历史上任何一个时期，如何面对代际冲突？</p>
+<p>......</p>
+<p>人的变化趋势还有很多，人是动态的，也是复杂的。</p>
+<p>这些变化中，有挑战，也有机遇。</p>
+<p>无论是企业和个人，如果能真正洞察这些关于“人”的变化，则可以收获未来中国的“人心红利”。</p>
+<h2 id="15">15</h2>
+<p>为什么会有“困在系统里”？</p>
+<p>因为只关注算法，不关注人。</p>
+<p>为什么会有996、007？</p>
+<p>因为只关注效率，不关注人。</p>
+<p>为什么会出现”将黑人识别成黑猩猩“这样的Bug？</p>
+<p>因为只算图形，不算“人”。</p>
+<p>乔布斯说，要站在科技与人文的十字路口，今天的巨头们在科技这条单行线上一路狂奔，却逐渐与人文渐行渐远。</p>
+<h2 id="16">16</h2>
+<p>明白人的重要性，对于我们在数字时代生存非常重要——</p>
+<p>即便已经可以文字合成语音甚至视频了，但内容平台最受欢迎的依然还是人最生动、最性感、最沙雕的手机拍摄的短视频。</p>
+<p>即便电影中CG动画已经出神入化，但人们记住的，还是荧幕上那个活生生的有血有肉的脸庞。</p>
+<p>即便机器人可以运营微信群了，但你天天看的，依然是那些有情感、有脾气、有态度的人唠嗑的群。</p>
+<p>机器关注的是效率，人关注的是温度、情绪价值、意义资产。</p>
+<p>所以，无论是企业还是个人，不要忘了我们作为“人”的那一部分。</p>
+<p>关注人，关注人的感情、关注人的孤独、关注人的欲望、关注人性中的优缺点，关注人最细微的变化。</p>
+<p>人是一种更高级的“算法”。</p>
+<p>这种算法，法力无边。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[意义]]></title>
+        <id>https://dellevin.github.io/post/yi-yi/</id>
+        <link href="https://dellevin.github.io/post/yi-yi/">
+        </link>
+        <updated>2022-10-14T12:43:06.000Z</updated>
+        <content type="html"><![CDATA[<br>
+<br>
+<div style="text-align:center;">
+<iframe src="//player.bilibili.com/player.html?aid=552315351&bvid=BV1Ki4y1y7HC&cid=550103819&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"  height=398 width=610> </iframe>
+</div>
+<p>夜半回家，拖着疲惫的身体，在这2022年的末期，似乎一切都显得那么无奈。看着刚到的油盐酱醋，和同学出门买了三个土豆，一棵葱以及十个馒头。在微弱的交流中一锅炒土豆，草草的完成了。</p>
+<p>十月一来到的济南，半个月了，从这锅炒土豆丝开始，生活渐渐的有了烟火的气息。找工作，面试的疲惫让身心劳累不堪。今天面试，一切都很好，看着面试官，看着外面高楼层起，车如流水，有那么一瞬间自己好像明白了什么。我好像知道了这次面试的结局，我开始了自由发挥，侃侃而谈着自己的一切。也许他们需要的不是我。</p>
+<p>我自命清高，却难以摆脱世俗。父母一直告诉我诚以待人，可是我慢慢的发现，生活的回馈却不是真诚。我在水泥浇筑的世界里妄求人生的意义，到现在我才发现我找到的那些意义都是虚无。</p>
+<p>我焦急的准备着另一场面试，脑中不断复现我之前和面试官的提问的所有问题。我很庆幸他们没有选择我，因为他们让我认识到我又太多的不足。我在这一次次的打击中变得愈加的强大，我给自己披上了一套盔甲，任凭风吹雨打，岿然不动。面试很愉快，出乎意料的没有问道技术的问题，原因是技术去忙碌了。他们也愿意接受我。我心存感激的同时，也有些怅然若失的落寞。我怕达不到他们真正的需求。一切随缘，但愿一切安好。</p>
+<p>只有夜晚才是真正属于自己的。悲伤，喜悦在这时显得万分的珍贵。渴望夜晚的时间再长一些，渴望入眠的时间再快一些，渴望梦境再美一些。</p>
+<p>我再大学花了很长一段时间寻求人生的意义。现如今的我回首望去，可怜而又可笑。难怪听到老师，学长说“大学是你人生中最美的一段时间了。”现在，我又操着这种口吻对我的学弟去说。真的是好有意思。买入社会的那一刻起，我的坚持像漫头飞舞的纸片，被雨水打落，支离破碎。所以说人生的意义到底是什么呢？我没有过答案。</p>
+<p>我们常常否认很多人生的意义，但又不断追问它到底是什么。生活的本质是不甘心的，所以我们会虚构很多情调，让自己变得有趣开心。但是这样无非是让自己远离那个让你没人能够回答的问题。</p>
+<p>人生的意义对于个人来说是什么我不知道，但至少不是让你无休止的去思考它。</p>
+<figure data-type="image" tabindex="1"><img src="https://user-images.githubusercontent.com/45512970/195849900-a120c341-7e5a-4675-a8d1-c7e5be1e1650.jpg" alt="济南-烟火的气息" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[为404界面加上一言api]]></title>
+        <id>https://dellevin.github.io/post/wei-404-jie-mian-jia-shang-yi-yan-api/</id>
+        <link href="https://dellevin.github.io/post/wei-404-jie-mian-jia-shang-yi-yan-api/">
+        </link>
+        <updated>2022-10-12T11:54:40.000Z</updated>
+        <content type="html"><![CDATA[<p>忽然发现这个博客的404界面有些简单，但是很喜欢这种极简的风格但总感觉少了些什么，想了想之前搞得一言的api。索性加上他，锦上添花一点。</p>
+<p>首先先选一言的api，因为之前这种东西挺火的，有很多大佬开发出来，了，放到服务器上面供咱这种菜鸡使用了。因为我喜欢古诗词，所以选的古诗词的api</p>
+<p>这个是人家的官网  https://gushi.ci/<br>
+<img src="https://user-images.githubusercontent.com/45512970/195343500-a40e9ea8-a6d3-42c1-b3c8-8c8f4f06c568.jpg" alt="古诗词官网" loading="lazy"></p>
+<p>其实官网上有很多的教程，就是看自己会不会用了。但我是在基础上微调的，就没用。这个是json格式的api，这里用的浏览器json解析插件是<strong>json-viewer</strong></p>
+<p>https://v1.jinrishici.com/all<br>
+<img src="https://user-images.githubusercontent.com/45512970/195343384-6e81aee0-3d0a-4e9e-ad87-561747630d37.jpg" alt="一言api" loading="lazy"></p>
+<p>首先先对这个简单分析一下</p>
+<pre><code class="language-json">{
+  &quot;content&quot;: &quot;冲波突出人齐譀，跃浪争先鸟退飞。&quot;,
+  &quot;origin&quot;: &quot;竞渡诗 / 及第后江宁观竞渡寄袁州剌史成应元&quot;,
+  &quot;author&quot;: &quot;卢肇&quot;,
+  &quot;category&quot;: &quot;古诗文-节日-端午节&quot;
+}
+</code></pre>
+<p>首先这里面有content、origin、author、category这几个数据，我们用到的就是前三个，很容易理解，这三个分别是诗句，来源以及作者。然后就开始着手写了。<br>
+先引入jquery</p>
+<pre><code class="language-html">&lt;!-- 引入jQuery--&gt;
+  &lt;script src=&quot;https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>再然后就开始对json文件进行解析，这里用的是ajax</p>
+<pre><code class="language-html">  &lt;script&gt;
+    // 异步ajax  古诗词
+      $.ajax({
+          type: 'GET',
+          url: 'https://v1.jinrishici.com/all',
+          success: function(data){
+              $(&quot;.text&quot;).text(data.content);  // 获取古诗词内容
+              if (data.author || data.origin){  // 如果来源不为空 随便一个有就就进行显示
+                  $(&quot;.author&quot;).text(data.author);
+                  $(&quot;.lai&quot;).text(&quot;《&quot;+data.origin+&quot;》&quot;);
+              } else {
+                  $(&quot;.author&quot;).hide();// 隐藏来源
+              }
+              // 淡入显示
+              $(&quot;.show-sentence&quot;).fadeIn(4000)
+          },
+      });
+  &lt;/script&gt;
+</code></pre>
+<p>接下来是显示部分</p>
+<pre><code class="language-html">&lt;!-- 配合css设置淡入的显示和字体以及其他的属性 --&gt;
+&lt;div class=&quot;show-sentence&quot;&gt;
+    &lt;!-- 这里接受显示的古诗词 --&gt;
+      &lt;p class=&quot;text&quot;&gt;&lt;/p&gt;
+      &lt;!-- 这里若是判断作者名或者有的话就会显示 --&gt;
+      &lt;p class=&quot;source&quot;&gt;
+          ———— &lt;span class=&quot;lai&quot;&gt;&lt;/span&gt;  &lt;span class=&quot;author&quot;&gt;&lt;/span&gt; 
+      &lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p>然后的话，如果你想显示美观一下的话，采用哪个404的颜色，然后仿照一下</p>
+<pre><code class="language-css">/* 一言 */
+    .text {
+      color:#666;
+      font-size: 20px;
+      font-weight: bold;
+      font-family: STHeiti;
+    }
+    .source {
+      color:#666;
+      font-size: 15px;
+      font-weight: bold;
+      padding-left: 40%;
+      font-family: STHeiti;
+    }
+    .show-sentence {
+      margin-top : 130px;
+      display: none;    /* 开始隐藏div */
+      text-align: center;
+    }
+</code></pre>
+<p>基本上效果是这个样子的</p>
+<figure data-type="image" tabindex="1"><img src="https://user-images.githubusercontent.com/45512970/195336553-aaf0bd06-6134-45cd-b426-4cb9b0f0374f.png" alt="一言" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[鬼刀-wlop]]></title>
+        <id>https://dellevin.github.io/post/gui-dao-wlop/</id>
+        <link href="https://dellevin.github.io/post/gui-dao-wlop/">
+        </link>
+        <updated>2022-10-11T14:55:28.000Z</updated>
+        <content type="html"><![CDATA[<hr>
+<div class="gallery-page">
+        <div class="img-list" id="propotion">
+        <!-- 开始 -->
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195127039-19825657-de48-431d-960d-d750ac6a5129.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195127475-161fd2ec-82fc-455a-9c5d-64d49d6ff851.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195127527-e9b22b51-dba0-41af-b4b9-93d5bd941875.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195127565-1990406b-247e-4c80-8af5-c42cc89656c9.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195127671-52088fc7-12a7-4186-83b5-3da9cd313bc3.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195127745-fd0a5439-6890-4fc1-807a-5bb4b5e5da36.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195127787-67978d23-5485-4284-acb5-228152fd5206.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195127883-3efd4608-8cb6-4c30-85f4-5214d7674c88.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195127947-77d2e8f3-3f42-4e00-a9a3-e9454d2370f5.jpg"></div>
+        <!-- 结束 -->
+        </div>
+</div>
+<center>流年易逝，留下的只剩下了唏嘘。</center>
+<style>
+         #propotion{
+            border: 1.5px;
+            width: 50%;
+            padding: 10px;
+            margin: auto;
+        }
+        .propotion img {
+            width: 100%;
+        }
+        .gallery-page {
+            margin-top: -50px;
+        }
+<pre><code>    .img-list,
+    .gallery-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+
+    .img-column {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .img-column a,
+    .gallery-column a {
+        border-bottom: 0px;
+    }
+
+    .gallery-item {
+        margin-bottom: -50px
+    }
+
+    .posts-expand .post-body .gallery-column a img {
+        height: 250px;
+        width: 300px;
+        object-fit: cover;
+    }
+&lt;/style&gt;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[时光-我的小米兼职]]></title>
+        <id>https://dellevin.github.io/post/shi-guang-xiao-mi-jian-zhi/</id>
+        <link href="https://dellevin.github.io/post/shi-guang-xiao-mi-jian-zhi/">
+        </link>
+        <updated>2022-10-11T13:07:12.000Z</updated>
+        <content type="html"><![CDATA[<hr>
+<div class="gallery-page">
+        <div class="img-list" id="propotion">
+        <!-- 开始 -->
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195116293-5ca90b45-d0ee-49c4-80e3-932e1b25ffd8.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195116584-fc0d43e8-5083-40dd-bb9a-ff6ee738f1d3.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195116606-2ba618af-9399-4b21-98dc-fec3fa5394a3.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195116650-87d2dd02-210d-42cc-8a6d-5aa7a3ecac32.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195116669-fc6892d0-a264-4119-8e28-22de7c29154b.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195116688-4378482d-f19c-434d-a892-828feffd1d60.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195116704-014651e9-e112-46d6-af7c-0c8048310cba.jpg"></div><br>
+<div class="img-column"  ><img src="https://user-images.githubusercontent.com/45512970/195116716-205015a6-471d-4e3e-b43e-6c94d2f81175.jpg"></div>
+        <!-- 结束 -->
+        </div>
+</div>
+<center>流年易逝，留下的只剩下了唏嘘。</center>
+<style>
+         #propotion{
+            border: 1.5px;
+            width: 50%;
+            padding: 10px;
+            margin: auto;
+        }
+        .propotion img {
+            width: 100%;
+        }
+        .gallery-page {
+            margin-top: -50px;
+        }
+<pre><code>    .img-list,
+    .gallery-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+
+    .img-column {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .img-column a,
+    .gallery-column a {
+        border-bottom: 0px;
+    }
+
+    .gallery-item {
+        margin-bottom: -50px
+    }
+
+    .posts-expand .post-body .gallery-column a img {
+        height: 250px;
+        width: 300px;
+        object-fit: cover;
+    }
+&lt;/style&gt;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[NGINX-应用-误删nginx.pid]]></title>
+        <id>https://dellevin.github.io/post/nginx-ying-yong-wu-shan-nginxpid/</id>
+        <link href="https://dellevin.github.io/post/nginx-ying-yong-wu-shan-nginxpid/">
+        </link>
+        <updated>2022-07-05T11:07:28.000Z</updated>
+        <content type="html"><![CDATA[<p>2022年7月5日</p>
+<p>因为刚修改了nginx的配置文件,清理了一下logs的文件夹。一时手贱，使用了<br>
+<code>rm -rf *</code><br>
+在重启nginx的时候直接报错了</p>
+<pre><code class="language-bash">
+nginx: [error] open() &quot;/usr/local/nginx/logs/nginx.pid&quot; failed (2: No such file or directory)
+
+</code></pre>
+<p>提示打开失败，没有这个文件或者目录。简单分析来说就是没有nginx.pid这个文件。</p>
+<h5 id="修复方法">修复方法</h5>
+<p>1.我们可以杀死所有nginx进程，运行命令：</p>
+<pre><code class="language-bash">killall nginx 
+</code></pre>
+<p>2.如果报错：</p>
+<pre><code class="language-bash">-bash: killall: 未找到命令
+</code></pre>
+<p>运行命令：</p>
+<pre><code class="language-bash">yum install psmisc          
+</code></pre>
+<p>安装完毕后。然后重新运行命令</p>
+<pre><code class="language-bash">killall nginx 
+</code></pre>
+<p>3.这时在sbin目录下，重启nginx就可以正常运行了：</p>
+<pre><code class="language-bash">./nginx
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[人生没有一劳永逸]]></title>
+        <id>https://dellevin.github.io/post/ren-sheng-mei-you-yi-lao-yong-yi/</id>
+        <link href="https://dellevin.github.io/post/ren-sheng-mei-you-yi-lao-yong-yi/">
+        </link>
+        <updated>2022-06-28T14:03:43.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>文/雨令</strong></p>
+<p>上海近3个月的隔离，过得比我想象中的快。</p>
+<p>生活很忙，又好像什么也没有留下。</p>
+<p>唯一想做的，就是去旁边的公园里散散步，然后坐在长椅上吹一吹久违的夏天的风......</p>
+<p>然后，接着回归生活的忙碌，毕竟人生没有一劳永逸。</p>
+<p>有时候你现在的艰难，也许是在为过去的安逸买单。</p>
+<h1 id="1">1</h1>
+<p>看到朋友圈里一段有趣的对话。</p>
+<p>同学A：早知道挂科这么麻烦，当初就该好好学习的！</p>
+<p>同学B：这句话我也想说，早知道考研这么麻烦，当初就应该好好学习，不挂科我就能保研了！</p>
+<p>同学A：哇，这么厉害，不挂科就能保研。</p>
+<p>同学B：我们班保研的那个都直博了，当初就应该好好学习！那个同学说，不是我有多厉害，我只是保持了高中的状态，是你们堕落了而已。</p>
+<p>同学A：哎，真是惭愧啊……</p>
+<p>从大一大二的贪玩，到大三的懵懵懂懂，再到大四的心慌和焦虑，很多人一路走来，最后的艰辛，往往都源自过去的舒适和懒散。</p>
+<p>我想起自己刚毕业的时候，进了一家外企，非常舒适，每天干的都是重复的事儿，日复一日，年复一年。</p>
+<p>我一开始也是很喜欢这样的工作氛围，没有压力，非常惬意，身边的同事也都安于现状，平易近人。</p>
+<p>直到过了两三年，公司开始裁人，我才听说公司在中国的发展并不顺利。</p>
+<p>这时候，我终于意识到自己工作了几年，好像还没有能够拿得出手的专业技能，代码写得不怎么样，连系统的工作流程都没有掌握。</p>
+<p>我有点慌了，开始反省自己过去的种种得过且过。</p>
+<p>那是一段对我来说异常艰难的日子——</p>
+<p>每天完成日常工作之后，我就开始加班加点地给自己补课，怎么编写测试用例，怎么搭建测试框架，怎么完善工作流程，过去两三年该做的事情，该积累的东西，我紧急慢赶地想要在半年内完成。</p>
+<p>最后，在公司不再和我续约的时候，我拿到了一笔赔偿金，同时也跳到了一家更好的公司。</p>
+<p>看似一次完美的自我救赎，却给了我一个很大的教训——</p>
+<p><strong>所有你现在的艰辛，其实都是在为过去的安逸买单。</strong></p>
+<p>如果我从一开始就认真工作，循序渐进地积累能力，而不是临时抱佛脚地走捷径，那我现在取得的成绩肯定可以更好。</p>
+<p>所有当下的安逸和懒散，都潜伏着未来可能的艰难和痛苦。</p>
+<p>你现在在学习上偷懒，肯定不曾料到以后得为补考付出更大的心力；你现在在职场上得过且过，肯定不曾想过五年十年之后自己得为找一份温饱的工作而四处奔波。</p>
+<p>这就像你跟银行借了一大笔钱去逍遥自在，却要花很多很多年去把这笔债还清。</p>
+<p><strong>在面临选择的时候，人们往往总会选择最容易的路，直到一步步把自己逼到无路可走。</strong></p>
+<h1 id="2">2</h1>
+<p>为什么有的人可以在浮躁散漫的大学时光里保持高中努力拼搏的状态，而有的人却碌碌无为而不自知？</p>
+<p>为什么有的人可以在职场上独当一面不断精进，而有的人却一年工作经验用了十年？</p>
+<p>是什么在驱动着那些从容厉害的人不安于当前的享受，而愿意踏出舒适区，挑战自己的惰性呢？</p>
+<p>在一次和朋友的聊天里，我找到了一些蛛丝马迹。</p>
+<p>朋友最近回了一次老家，见了几个老同学，还特别去看望了高中时候的班主任。</p>
+<p>那位班主任是一个很有修养的知识分子，跟朋友说起她的女儿在香港大学刚读完了博士后，现在正准备进入一家全球性科研机构做自己喜欢的课题研究。</p>
+<p>朋友听到这个好消息之后很感慨，自己毕业之后就没有想过学习的事情了，而别人在二十来岁的年纪就已经读完了博士后，而现在依然热爱学习。</p>
+<p>后来在跟老师的交流中，她发现，<strong>人与人之间生活状态的差别，其实来自于各自不同的生活目标。</strong></p>
+<p>当一个小孩在中学努力奋斗的时候，他会问父母：“到底什么时候才能不那么努力了？”</p>
+<p>很多父母的答案是——“等你考上大学就好了。”</p>
+<p>我相信大部分人的父母给出的答案都是这种，所以我们从小就种下了一个简单而肤浅的目标——「考上大学」。</p>
+<p>考上大学之后的目标呢？没有了。</p>
+<p>这也是为什么我们考上大学之后就松懈了，整个人像是脱了缰的野马，逃出笼子放飞的小鸟，撒了欢地放纵，享受，因为大部分人已经没有了为之奋斗的目标。</p>
+<p>而那位老师和其他父母很不一样，她给她女儿的答案是——「终身学习」，也就是说，<strong>你的努力你的奋斗应该成为一种生活的常态，一种人生的习惯，而不是达到了一个目标之后你就可以一劳永逸，停止不前。</strong></p>
+<p>这就是朋友老师的女儿能够不断地取得优异成绩的秘密，她不仅仅拥有「考上大学」这一个目标，而是有着一个又一个新的目标，大学毕业之后去留学，留学之后读博，读博之后去做研究，这些目标为她持续的努力奋斗赋予了意义和理由，最终让她能够跨越很多人画地为牢的舒适区。</p>
+<p>给自己的人生持续地设立新的目标，这其实并不是一件太难的事情，可我们很多人却做不到。</p>
+<p>有的人太懒惰，不愿意思考自己的未来，有的人期待别人给自己目标，就像当年父母督促我们考上大学一样。</p>
+<p><strong>没有目标的人生，就容易随波逐流，得过且过，也容易让我们在本该努力的年纪安于舒适，不思进取。</strong></p>
+<p>而当你有了一个目标的时候，你就知道自己每天的生活到底是为了什么，你就有了去做一些有意义的事情的动力。</p>
+<p>所以你要不断地为自己的人生设置新的目标，你可以看看周围优秀的人，他们在追求什么，同时，也要扪心自问，自己想要什么，尽可能想得长远一点，三年，五年，十年，二十年之后，你期望自己成为什么样子，做什么样的事情，过什么样的生活？</p>
+<p>大多数人为了当下的舒适安逸逃避思考，却不料未来的艰辛总会给予他们沉重的回击。</p>
+<p>很多时候，每个人心底都要有一束光，持续地照亮前行的路。</p>
+<h1 id="3">3</h1>
+<p>有了目标，就是有了一个明确的方向，但这还不够，你还需要懂得延迟满足，抵制周围的各种诱惑，持续地去做那些契合你目标的小事。</p>
+<p>很多人会因为一时冲动而努力折腾那么一下，可一旦三分钟热情过去，往往就原形毕露，该吃吃，该喝喝，该睡睡。</p>
+<p>有同事一直跟我说，他不喜欢现在的工作，想要辞职去做独立设计师。</p>
+<p>结果今年都快过完了，他那独立设计师的目标却还没有半点进展。</p>
+<p>如果你细究下来，就会发现，他一直在做着和目标相反的选择。</p>
+<p>当可以钻研设计软件也可以看看娱乐节目的时候，他选择了刷剧；当可以积累设计技能也可以跟朋友约饭嗨皮的时候，他选择了玩乐；当可以熬夜赶图稿也可以熬夜刷朋友圈的时候，他显然选择了后者。</p>
+<p>生活中，我们总是在不断地做着选择，可大部分时候，我们的选择是及时行乐，舒适为要，也就是这些本能的选择，最后让我们的未来一事无成，艰难辛苦。</p>
+<p>我们总是喜欢感叹这个时代越来越难了，阶层固化了，做不做一些事情都改变不了什么。</p>
+<p>可是，现实并非如此，<strong>成功是越来越难了，但失败却越来越容易，你今天不尽力做好该做好的事情，那就等着明天心存悔意地收拾残局。</strong></p>
+<p>听过一个别人的故事，她有着让人惊叹的人生。</p>
+<p>刚到北京的时候，她不过是从外地辛苦考上来的万千学子中的一员。但大学四年下来，她考过了英语专八，兼修了国际关系专业，并利用所有的双休日，节假日走遍了北京，甚至全国有趣好玩的地儿。</p>
+<p>而之后，等她在一次国际派对上认识了心仪的人，旧时学过的英语，走过的大街小巷，就都派上了用场。她跟外交官身份的他，相谈甚欢，毫无障碍，她还带着他游遍中国。</p>
+<p>后来他被派去别的国家，因为尚未结婚，她并不能以伴侣身份同往，所以她立马申请了那个国家的大学研究生，并最终被成功录取，顺利解决了两人分开的问题。</p>
+<p>如果你看过优秀的人怎么做事情，就会明白，美好的未来是一步一步脚踏实地走出来的。</p>
+<p><strong>而一切你看得见的容易，都来自于一个人在背后持续地发力，把一件件并不容易的事情做好。</strong></p>
+<p>当你在朝着目标一步步迈进的时候，请停下来想一想，你现在做的事情，是那些暂时让你感受到安逸舒适的事情，还是那些并不容易但却能够给你带来成长的事情？</p>
+<h1 id="4">4</h1>
+<p>李诞曾在节目里说——“做废物是需要天赋的。”</p>
+<p>想做废物，想要舒适，想要一路躺赢，如果你没有天赋，那你至少得要有积累。</p>
+<p>就像李诞他自己，看起来无所事事，吊儿郎当，像是废物一个，可在成名之前他有多少积累，你去看看他的简历就知道了——南方人物周刊，奥美广告公司，今晚80后撰稿人，每天思考写作……任何一个拿出来看都不简单。</p>
+<p><strong>普通人的崛起，没有什么窍门，就是你要持续地为自己设置好一个个目标，然后把握当下，坚定不移地靠近它们。</strong></p>
+<p>如果你把时间放在吃饭，刷剧，逛淘宝，玩游戏这些事情上，也许你当时会很开心很满足，但它们却无法对你的人生产生更深远的影响，无法在未来生长出更多的成果，反而，它们会让你变得懒散，变得颓废，最终让你未来的生活变得艰辛而平庸。</p>
+<p>而如果你把时间放在读书，学习，锻炼，专注兴趣，去做一些长线对未来有价值的事情，也许你当下会很烦躁，会很难受，但这类事情的影响和效用却会在长期的积累之下显现出来。</p>
+<p>这些成长性的行动和思考会借由时间的加持，让你的目标和理想生根发芽，在某个时刻变幻成改变你人生走向的黑天鹅事件。</p>
+<p>人生并没有一劳永逸，有的只是一个人日复一日地持续前行。</p>
+<p>每个人最大的不一样也许只是习惯上的不同。</p>
+<p>那些不同的习惯塑造了每个人不一样的生活状态，进而构建了每个人不一样的人生。</p>
+<p>有时候，我们也会累，那就偶尔在公园的长椅上坐坐，小憩一会，然后继续前行。</p>
+<pre><code class="language-txt"> 指引你前行不是别人说什么，而是你想要到达的地方和你为它做了什么。
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[你是从什么时候开始放弃自由的呢?]]></title>
+        <id>https://dellevin.github.io/post/ni-shi-cong-shi-me-shi-hou-kai-shi-fang-qi-zi-you-de-ni/</id>
+        <link href="https://dellevin.github.io/post/ni-shi-cong-shi-me-shi-hou-kai-shi-fang-qi-zi-you-de-ni/">
+        </link>
+        <updated>2021-08-03T14:44:23.000Z</updated>
+        <content type="html"><![CDATA[<p>因为疫情缘故，层层的封锁下，也是封锁住了自己的内心，但是尽管把限制自己的全都封锁，唯一不能封锁住我们的只剩下思想了。一觉醒来，便对自己提出了这个问题。</p>
+<p>如果针对这个问题非要较真的话，我们从来到这个世界上就已经放弃了自由。把自己困于自己的世界之中开始了牙牙学语。从这里便说明，这里的自由指的是意志自由而并非行动自由。</p>
+<p>但是，为什么非要那么较真呢，我们的目的是在问题探索的过程中寻找真正的自己，在思考问题的过程中认识到自己。如果当真的浑浑噩噩的度过这一天，那完完全全是没有任何意义的。学会提出问题也是一个很重要的很重要的能力。</p>
+<p>晚上洗脸的时候，我真真切切的感受到了一点。因为我有个习惯是洗完澡之后才洗脸，甚至，这都已经成为了一种习惯。我想了想，我完完全全可以不用洗脸的。同理，把这个问题换成与之相对的问题，答案或许显而易见“我们是从什么时候开始被束缚住呢？”</p>
+<p>当我想到的时候，答案也随着问题在我的脑中浮现出来。</p>
+<p>“在我们开始学会明辨是非的时候。”</p>
+<p>因为学会了明辨是非，我们开始知道了事物的对错，知道了什么事情该做什么事情不该做。我们从那一刻起就开始了犹豫，开始了怯懦。做得好会被人夸家，但一旦选错了甚至不作为就被会厌恶，乃至恶语相向。从明辨是非开始，即使知道这个是错的，但奈何于对方的实力，我们还是选择了人多的那一边。那一刻起，自由，就已经离我们而去了。</p>
+<p>如果我所有的意志是时间的积累，完全是由传统、文化、经验、限制、家庭背景、种族以及信仰所形成的，只能在已知领域中起作用，那又有什么自由可言呢？</p>
+<p>在《自由论》中，弗里特约夫·博格曼概述了他所谓的我们“对自由的矛盾看法”。这种看法的一个方面是一种常见的观点，即自由是美好的。正是自由赋予了人类高贵的地位，并把我们从自然界中分离出来，并且，每一个社会中的每一个成员都把自由视作理所当然的目标，即便他们不理解这个词，或从未思考过自由的含义。追求自由的冲动是无可置疑的，自由的价值是绝对的，甚至比生命还重要。</p>
+<p>但这种看法本身就已经导致了一种两难的处境：一方面，我们生来是自由的；另一方面，我们还渴望自由。因此，我们应当区分“内在自由”和“外在自由”。也就是说本身的自由和追求的自由，说到底还是意志的自由和行动的自由。</p>
+<p>你见过大海吗？有时候，大海风平浪静，空气似乎屏住了呼吸，海面上倒映着满天的繁星，一切都显得那么静谧，世界一片太平。然而，平静的海面之下却是暗流涌动。实际上，海洋如此辽阔，永远都不可能平静的。</p>
+<p>海水永远在涌动，从不停止，稍有动静就会打破海面的安宁、静谧。我们的心灵也是如此，永远不可能彻底平静。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[随笔记—被时间改变的我们]]></title>
+        <id>https://dellevin.github.io/post/sui-bi-ji-bei-shi-jian-gai-bian-de-wo-men/</id>
+        <link href="https://dellevin.github.io/post/sui-bi-ji-bei-shi-jian-gai-bian-de-wo-men/">
+        </link>
+        <updated>2021-06-29T16:52:49.000Z</updated>
+        <content type="html"><![CDATA[<p>只记得那是个传奇的年份，我的高中三年，多如牛毛的软件从我们的视野中升起，像一颗冉冉升起的太阳，虽然不耀眼，但已经出具锋芒。</p>
+<p>这是2021年，大概在五年前，人们口中没有口口说的哔哩哔哩，也没有什么深夜网易云，那时候，知乎也是刚刚进入了我的视野。</p>
+<p>想必他们为了公关也费了很大的力气吧，精选留言，报纸宣传，几乎随处可以见到它的身影。我拿起一本《读者》，上面那些美言杂句有着知乎的身影。我看视频，上面有着人们说着的网易云。</p>
+<p>那些悲惋凄惨，烙印着许多文艺青年的过往。那些美妙绝伦的句子，也刺痛了许多人的内心。也罢，那个时候，多是高中的生活罢了，压力软绵而又无力，这些软件给了好多人一个心灵的寄托，也给了一个温柔的港湾。因为互不认识，可以吐露心声。因为互不认识，可以听歌掩面而泣他人不知。</p>
+<p>渐渐的，所有的一切都变了味道。广告，硬性植入，等等，把用户挤得没有了喘息的余地。那些真正热爱这个平台的用户们还在坚持着固有的阵地。</p>
+<p>人们肆意的谩骂，说什么变了味道，招了安。后来我渐渐的才发现，这几年来变得不止是那些所谓的软件，还有我们自己。我们变得越来越尖酸刻薄，眼里容不得别人的意思错误。我们变得越来越懒，懒到自己的失败堆积如山而不动。</p>
+<p>我们是长大了，也渐渐地远离了当年的自己，随着这个社会的大齿轮渐渐的打磨自己的形状，软件也是，毕竟他们的背后也是人，为人父母，养一个家并不容易。不招商，他们很快就会消失在我们的视野。是非成败，总归是那无形齿轮的驱使。</p>
+<p>毕竟，网络上人们的忘性大，可是，我仍旧记得那个庆阳市那个跳楼的女孩，我仍旧记得楼下人们说着“怎么还不跳啊”的无耻嘴脸，三观的扭曲把他们扭曲成一个个嗜血的野兽，在人类社会中放肆横行。</p>
+<p>一切的悲哀，源于人们自己的不自知不自觉。更悲哀的是，人们对自己的自知自觉而骄傲。</p>
+<p>无奈，可悲。</p>
+<figure data-type="image" tabindex="1"><a href="https://imgse.com/i/xYw2ng"><img src="https://s1.ax1x.com/2022/10/10/xYw2ng.jpg" alt="时间会告诉一切" loading="lazy"></a></figure>
+]]></content>
+    </entry>
+</feed>

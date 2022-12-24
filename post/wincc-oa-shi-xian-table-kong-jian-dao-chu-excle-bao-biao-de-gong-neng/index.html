@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+ <head>
+     <meta charset="utf-8" />
+  <title>WinCC OA实现table控件导出excle报表的功能 | Del Levin‘s blog</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <link rel="stylesheet" href="https://dellevin.github.io/styles/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+   <script src="https://cdn.staticfile.org/highlight.js/9.15.9/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+ </head>
+ <body>
+     <div class="sidebar animated fadeInDown">
+   <div class="logo-title">
+    <div class="title">
+     <img src="https://dellevin.github.io/images/avatar.png?v=1671878907276" style="width:127px;" />
+
+     <h3 title=""><a href="/">Del Levin</a></h3>
+
+     <div class="description">
+      <p>望山叹高，登愈艰。入世哀难，伤无泪。
+</p>
+     </div>
+    </div>
+   </div>
+   <ul class="social-links">
+
+
+    
+
+    
+
+    
+
+    <li><a href="https://github.com/dellevin"><i class="fa fa-github"></i></a></li>
+ 
+    
+
+    
+
+    
+
+    
+
+    <li><a href="https://m.weibo.cn/u/6094785105"><i class="fa fa-weibo"></i></a></li>
+ 
+    
+
+    
+
+    <li><a href="https://t.me/levin092"><i class="fa fa-send"></i></a></li>
+ 
+    
+
+   </ul>
+   <div class="footer">
+    <div class="by_farbox">
+   Powered by <a href="https://dellevin.github.io" target="_blank">Del Levin</a>
+    </div>
+    
+
+    </div>
+   </div>
+  </div>
+  <div class="main">
+     <div class="page-top animated fadeInDown">
+    <div class="nav">
+    
+     <li><a  href="/">首页</a></li>
+
+     <li><a  href="/archives">归档</a></li>
+
+     <li><a  href="/tags">标签</a></li>
+
+     <li><a  href="https://dellevin.github.io/post/xiang-ce">相册</a></li>
+
+     <li><a  href="https://dellevin.github.io/post/guan-yu">关于</a></li>
+
+    </div>
+    <div class="information">
+     <div class="back_btn">
+      <li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li>
+     </div>
+    </div>
+   </div>
+   <div class="autopagerize_page_element">
+    <div class="content">
+     <div class="post-page">
+      <div class="post animated fadeInDown">
+       <div class="post-title">
+        <h3><a>WinCC OA实现table控件导出excle报表的功能</a></h3>
+       </div>
+       <div class="post-content">
+        <p>昨天还不错，来到济南正式生活的第一天，吃的饺子，做个开门红，算是图个吉利。<br>
+今天的话吃的炒土豆，都还可以，厨艺见长了。今天自己实现了wincc oa的excel数据的导出功能，成就感max。</p>
+<figure data-type="image" tabindex="1"><img src="https://user-images.githubusercontent.com/45512970/197811524-6307f875-d659-44b6-ab9c-909d0ebfdcf7.jpg" alt="吃的饺子" loading="lazy"></figure>
+<hr>
+<p>正题开始</p>
+<p>首先根据上次的往table控件写入的流程可以想到就是一个倒着走的路，我们往回走就可以了。为了好看我又重写调整了一界面。这里不得不吐槽一下这个OA的开发文档， 太下头了，之前我在做拖曳进入table的时候，写的不清不楚的。虽然说功能完成了吧，但是太磨人心态了，有时间单独出一篇。</p>
+<figure data-type="image" tabindex="2"><img src="https://user-images.githubusercontent.com/45512970/197815756-634fdc21-12ac-4895-8e7a-2ac1d0da669c.png" alt="微信截图_20221025231038" loading="lazy"></figure>
+<p>第一件事情就是设置一个button，基本上几行代码就搞定了。在动作控件那里面写上以下代码</p>
+<pre><code class="language-c#">main(mapping event)
+{
+  //弹出那个excel界面的,就免了打开了
+  objXL.Visible = -1;
+  //通过list控件,找到那个xls文件
+  objWorkbooks = objXL.Workbooks.Open(&quot;C:/TEMP/&quot; + SELECTION_LIST2.selectedText);
+
+  for (int i = 0 ; i &lt; objWorkbooks.ActiveSheet.UsedRange.Rows.Count ; i++) //遍历行
+  {
+    for (int j = 0 ; j &lt;  objWorkbooks.ActiveSheet.UsedRange.Columns.Count  ; j++)//遍历列
+    {
+      //DebugN(objXL.Cells.item(i,j).Value2);
+      //DebugN(TABLE1.cellValueRC(i, &quot;#&quot; + (j + 1) ));
+      //DebugN(objXL.Range(&quot;A1&quot;).offset(i, j).Value2);
+
+      //通过用range的方法,利用偏移量,和table表对齐,进行数据更改和填写
+      objXL.Range(&quot;A1&quot;).offset(i, j).Value2 = TABLE1.cellValueRC(i, &quot;#&quot; + (j + 1));
+    }
+  }
+}
+</code></pre>
+<p>基本上最关键的就是 <code>objXL.Range(&quot;A1&quot;).offset(i, j).Value2 = TABLE1.cellValueRC(i, &quot;#&quot; + (j + 1));</code>这一行代码。<br>
+之前我们了解到range这个关键的方法，其中他这里面的offset的功能就是偏移量，也就是说从A1这个单元格开始偏移，两层循环的嵌套就是偏移（0，0） ，（0，1） ， （0 ，2） ......（0，单元格最后一列）<br>
+也就是按照每行偏移的，一行偏移完之后偏移下一行。我也试过cell这种遍历的方式，之前输入到table的时候太慢了，我寻思可以按照表格修改，只修改固定行列进行保存，可是发现一直报错，忘了报啥错了，只记得是和值定义有关。</p>
+<p>TABLE1的话就是只想table1这个表格，然后利用里面的方法用进行单元格一个个赋值。</p>
+<p>基本上就是这么简单。</p>
+<p>PS：看着GO的兴起，并没有太大波动，我感觉未来嵌入式才是王道，那种底层的东西是很关键的，就像千百年来人们一直在追求1+1为什么等于2这个答案一样。软件催动硬件的进步，硬件的进步带来软件的迭代，循环往复，剩者为王。</p>
+
+       </div>
+       <div class="post-footer">
+        <div class="meta">
+         <div class="info">
+          <i class="fa fa-sun-o"></i>
+          <span class="date">2022-10-25</span>
+          <i class="fa fa-tag"></i>
+          
+          <a class="tag" href="https://dellevin.github.io/tag/wincc-oa/" title="WinCC OA">WinCC OA </a>
+          
+          <a class="tag" href="https://dellevin.github.io/tag/kai-fa/" title="开发">开发 </a>
+          
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="share">
+       <div class="evernote">
+        <a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a>
+       </div>
+       <div class="weibo">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a>
+       </div>
+       <div class="twitter">
+        <a class="fa fa-twitter" href="http://twitter.com/home?status=,https://dellevin.github.io/post/wincc-oa-shi-xian-table-kong-jian-dao-chu-excle-bao-biao-de-gong-neng/,;"></a>
+       </div>
+      </div>
+      <div class="pagination">
+       <ul class="clearfix">
+
+        <li class="pre pagbuttons"><a class="btn" role="navigation" href="https://dellevin.github.io/post/wincc-oa-shi-xian-table-ling-cun-wei-excel-gong-neng/" title="WinCC OA实现table另存为excel功能">上一篇</a></li>
+         
+        
+        <li class="next pagbuttons"><a class="btn" role="navigation" href="https://dellevin.github.io/post/wincc-oa-shi-xian-excel-shu-ju-ying-she-dao-table-biao-ge/" title=" WinCC OA 实现Excel数据映射到Table表格">下一篇</a></li>
+        
+       </ul>
+      </div>
+        
+     </div>
+    </div>
+   </div>
+  </div>
+  <script src="https://dellevin.github.io/media/scripts/jquery.js"></script>
+  <script src="https://dellevin.github.io/media/scripts/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://dellevin.github.io/media/scripts/jquery.appear.js"></script>
+
+
+ </body>
+</html>

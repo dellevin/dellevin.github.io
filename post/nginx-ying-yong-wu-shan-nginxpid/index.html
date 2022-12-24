@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+ <head>
+     <meta charset="utf-8" />
+  <title>NGINX-应用-误删nginx.pid | Del Levin‘s blog</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <link rel="stylesheet" href="https://dellevin.github.io/styles/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+   <script src="https://cdn.staticfile.org/highlight.js/9.15.9/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+ </head>
+ <body>
+     <div class="sidebar animated fadeInDown">
+   <div class="logo-title">
+    <div class="title">
+     <img src="https://dellevin.github.io/images/avatar.png?v=1671878907276" style="width:127px;" />
+
+     <h3 title=""><a href="/">Del Levin</a></h3>
+
+     <div class="description">
+      <p>望山叹高，登愈艰。入世哀难，伤无泪。
+</p>
+     </div>
+    </div>
+   </div>
+   <ul class="social-links">
+
+
+    
+
+    
+
+    
+
+    <li><a href="https://github.com/dellevin"><i class="fa fa-github"></i></a></li>
+ 
+    
+
+    
+
+    
+
+    
+
+    <li><a href="https://m.weibo.cn/u/6094785105"><i class="fa fa-weibo"></i></a></li>
+ 
+    
+
+    
+
+    <li><a href="https://t.me/levin092"><i class="fa fa-send"></i></a></li>
+ 
+    
+
+   </ul>
+   <div class="footer">
+    <div class="by_farbox">
+   Powered by <a href="https://dellevin.github.io" target="_blank">Del Levin</a>
+    </div>
+    
+
+    </div>
+   </div>
+  </div>
+  <div class="main">
+     <div class="page-top animated fadeInDown">
+    <div class="nav">
+    
+     <li><a  href="/">首页</a></li>
+
+     <li><a  href="/archives">归档</a></li>
+
+     <li><a  href="/tags">标签</a></li>
+
+     <li><a  href="https://dellevin.github.io/post/xiang-ce">相册</a></li>
+
+     <li><a  href="https://dellevin.github.io/post/guan-yu">关于</a></li>
+
+    </div>
+    <div class="information">
+     <div class="back_btn">
+      <li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li>
+     </div>
+    </div>
+   </div>
+   <div class="autopagerize_page_element">
+    <div class="content">
+     <div class="post-page">
+      <div class="post animated fadeInDown">
+       <div class="post-title">
+        <h3><a>NGINX-应用-误删nginx.pid</a></h3>
+       </div>
+       <div class="post-content">
+        <p>2022年7月5日</p>
+<p>因为刚修改了nginx的配置文件,清理了一下logs的文件夹。一时手贱，使用了<br>
+<code>rm -rf *</code><br>
+在重启nginx的时候直接报错了</p>
+<pre><code class="language-bash">
+nginx: [error] open() &quot;/usr/local/nginx/logs/nginx.pid&quot; failed (2: No such file or directory)
+
+</code></pre>
+<p>提示打开失败，没有这个文件或者目录。简单分析来说就是没有nginx.pid这个文件。</p>
+<h5 id="修复方法">修复方法</h5>
+<p>1.我们可以杀死所有nginx进程，运行命令：</p>
+<pre><code class="language-bash">killall nginx 
+</code></pre>
+<p>2.如果报错：</p>
+<pre><code class="language-bash">-bash: killall: 未找到命令
+</code></pre>
+<p>运行命令：</p>
+<pre><code class="language-bash">yum install psmisc          
+</code></pre>
+<p>安装完毕后。然后重新运行命令</p>
+<pre><code class="language-bash">killall nginx 
+</code></pre>
+<p>3.这时在sbin目录下，重启nginx就可以正常运行了：</p>
+<pre><code class="language-bash">./nginx
+</code></pre>
+
+       </div>
+       <div class="post-footer">
+        <div class="meta">
+         <div class="info">
+          <i class="fa fa-sun-o"></i>
+          <span class="date">2022-07-05</span>
+          <i class="fa fa-tag"></i>
+          
+          <a class="tag" href="https://dellevin.github.io/tag/KfdVf3Dl_/" title="Linux">Linux </a>
+          
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="share">
+       <div class="evernote">
+        <a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a>
+       </div>
+       <div class="weibo">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a>
+       </div>
+       <div class="twitter">
+        <a class="fa fa-twitter" href="http://twitter.com/home?status=,https://dellevin.github.io/post/nginx-ying-yong-wu-shan-nginxpid/,;"></a>
+       </div>
+      </div>
+      <div class="pagination">
+       <ul class="clearfix">
+
+        <li class="pre pagbuttons"><a class="btn" role="navigation" href="https://dellevin.github.io/post/shi-guang-xiao-mi-jian-zhi/" title="时光-我的小米兼职">上一篇</a></li>
+         
+        
+        <li class="next pagbuttons"><a class="btn" role="navigation" href="https://dellevin.github.io/post/ren-sheng-mei-you-yi-lao-yong-yi/" title=" 人生没有一劳永逸">下一篇</a></li>
+        
+       </ul>
+      </div>
+        
+     </div>
+    </div>
+   </div>
+  </div>
+  <script src="https://dellevin.github.io/media/scripts/jquery.js"></script>
+  <script src="https://dellevin.github.io/media/scripts/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://dellevin.github.io/media/scripts/jquery.appear.js"></script>
+
+
+ </body>
+</html>

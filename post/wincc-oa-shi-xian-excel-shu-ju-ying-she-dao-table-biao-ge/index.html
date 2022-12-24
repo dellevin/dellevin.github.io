@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+ <head>
+     <meta charset="utf-8" />
+  <title>WinCC OA 实现Excel数据映射到Table表格 | Del Levin‘s blog</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <link rel="stylesheet" href="https://dellevin.github.io/styles/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+   <script src="https://cdn.staticfile.org/highlight.js/9.15.9/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+ </head>
+ <body>
+     <div class="sidebar animated fadeInDown">
+   <div class="logo-title">
+    <div class="title">
+     <img src="https://dellevin.github.io/images/avatar.png?v=1671878907276" style="width:127px;" />
+
+     <h3 title=""><a href="/">Del Levin</a></h3>
+
+     <div class="description">
+      <p>望山叹高，登愈艰。入世哀难，伤无泪。
+</p>
+     </div>
+    </div>
+   </div>
+   <ul class="social-links">
+
+
+    
+
+    
+
+    
+
+    <li><a href="https://github.com/dellevin"><i class="fa fa-github"></i></a></li>
+ 
+    
+
+    
+
+    
+
+    
+
+    <li><a href="https://m.weibo.cn/u/6094785105"><i class="fa fa-weibo"></i></a></li>
+ 
+    
+
+    
+
+    <li><a href="https://t.me/levin092"><i class="fa fa-send"></i></a></li>
+ 
+    
+
+   </ul>
+   <div class="footer">
+    <div class="by_farbox">
+   Powered by <a href="https://dellevin.github.io" target="_blank">Del Levin</a>
+    </div>
+    
+
+    </div>
+   </div>
+  </div>
+  <div class="main">
+     <div class="page-top animated fadeInDown">
+    <div class="nav">
+    
+     <li><a  href="/">首页</a></li>
+
+     <li><a  href="/archives">归档</a></li>
+
+     <li><a  href="/tags">标签</a></li>
+
+     <li><a  href="https://dellevin.github.io/post/xiang-ce">相册</a></li>
+
+     <li><a  href="https://dellevin.github.io/post/guan-yu">关于</a></li>
+
+    </div>
+    <div class="information">
+     <div class="back_btn">
+      <li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li>
+     </div>
+    </div>
+   </div>
+   <div class="autopagerize_page_element">
+    <div class="content">
+     <div class="post-page">
+      <div class="post animated fadeInDown">
+       <div class="post-title">
+        <h3><a>WinCC OA 实现Excel数据映射到Table表格</a></h3>
+       </div>
+       <div class="post-content">
+        <p>今天刚上班老板就打钉钉电话说解决问题。到下午才解决，因为我对这个软件不是很熟悉，所以犯了很多白痴的事情，实属不应该。自己也不习惯别人看我屏幕以至于各种降智操作把老板气得够呛。不过虽说老板很容易发火，但是技术这块是真的厉害。严谨认真。初入社会的我甚是佩服。</p>
+<p>因为学的是信管专业，一下子转到PLC这方面了，别说是跨专业了，直接是跨行业了，这几天睡觉都没睡好，生怕自己拖后腿。加油吧！</p>
+<hr>
+<p><strong>接下来开始正题</strong></p>
+<h2 id="创建控件">创建控件</h2>
+<p>首先先是创建demo，采用一个list控件和table控件进行操作。</p>
+<figure data-type="image" tabindex="1"><img src="https://user-images.githubusercontent.com/45512970/197204789-d1ea42a9-a12d-42ee-92a7-d627dfa6486c.jpg" alt="创建控件" loading="lazy"></figure>
+<p>首先根据开发文档中的提示<a href="https://www.winccoa.com/documentation/WinCCOA/3.18/en_US/ControlA_D/createComObject.html?hl=createcomobject">createComObject()</a>这个方法,找到一个demo,为了方便我做了注释</p>
+<pre><code class="language-vb">main()
+{
+  //接口调用
+  idispatch objXL;
+  idispatch objXLchart;
+  idispatch objXLWorkbooks;//工作簿
+  idispatch objXLWorkbook;//工作表
+  int i;
+  //生成一个动态数组
+  dyn_int array;
+  //生成一个工作表对象
+  anytype workbook;
+  //给动态数组赋值
+  array = makeDynInt(1,2,3);
+  //调用接口,创建excel程序
+  ojXL = createComObject(&quot;Excel.Application&quot;);
+  //使用接口里面的可视化
+  objXL.Visible = -1;
+  //创建工作簿
+  objXLWorkbooks = objXL.Workbooks;
+    //创建工作表
+  objXLWorkbook = objXLWorkbooks.Add(workbook);
+    //用完释放,不然会一直占用
+  releaseComObject(objXLWorkbook);
+  releaseComObject(objXLWorkbooks);
+  //这个就是在excel里面填入值了
+  objXL.Range(&quot;A1:C1&quot;, workbook).Value2 = array;
+  //可以删除,目前不知道啥用,选择方法?
+  objXL.Range(&quot;A1:C1&quot;, workbook).Select();
+  //和chart图表一样的,应该就是将workbook里面的数据做成可视化图表
+  objXLchart = objXL.Charts.Add(workbook, workbook, workbook, workbook);
+  objXLchart.Visible = -1;
+  //这个是可视化图表的3D视图,给的默认值-4100,就是3D视图,删除的话就是平面视图了
+  objXLchart.Type = -4100;
+  
+  //xl3DColumn  
+  //xl3DColumn is an Excel-defined constant with value = -4100.
+  //动态旋转用的
+  for (i = 30; i&lt;=180; i = i + 10)
+  {
+    delay(0,800);
+    objXLchart.Rotation = i;
+  }
+ 
+  objXL.Visible = 0;
+  releaseComObject(objXLchart);
+  releaseComObject(objXL);
+  delay(20);
+}
+</code></pre>
+<p>看里面的描述说</p>
+<pre><code class="language-markdown">## Description
+
+Creates an arbitrary COM object. This function can be used many-sided. It can be used to control and fill databases as well as to control Excel and Word applications etc. The properties that can be controlled via the function can be detected via an external browser ( for example, Visual Basic). Since COM objects are Windows specific, the function is only available under Windows.
+
+The UI always connects to all event interfaces of a COM object, so if a COM object contains multiple interfaces with the same event, it can not be distinguished which event has taken place.
+</code></pre>
+<p>基本上可以看出关键来他是用的VB语言来对excel的工作表进行操作,那么这些方法就是通用的了。</p>
+<h2 id="预加载打开窗口引入接口">预加载打开窗口引入接口</h2>
+<figure data-type="image" tabindex="2"><img src="https://user-images.githubusercontent.com/45512970/197215471-85a59ec9-06cf-4413-aa09-a9d32fc4a97b.jpg" alt="预加载" loading="lazy"></figure>
+<p>点击ScopeLib之后写入以下代码</p>
+<pre><code class="language-vb">idispatch objXL = createComObject(&quot;Excel.Application&quot;);//接口，创建excel程序
+anytype objWorkbooks;//创建工作簿变量
+anytype objWorkbook;//创建工作表变量
+</code></pre>
+<p>然后在点击Terminate进行编辑，也就是说，在关闭这个窗口之后执行如下代码，目的就是使用完毕释放掉excel程序，不能一直占用呀！</p>
+<pre><code class="language-vb">main()
+{
+    releaseComObject(objXL);//s释放掉引入的这个Excel程序
+}
+</code></pre>
+<h2 id="对列表也就是list进行编辑">对列表也就是list进行编辑</h2>
+<figure data-type="image" tabindex="3"><img src="https://user-images.githubusercontent.com/45512970/197216826-5896b541-cee1-4d62-a21e-05e1fb2e5c0c.jpg" alt="编辑list" loading="lazy"></figure>
+<pre><code class="language-vb">main()
+{
+  //扫描对应文件夹下面的文件
+  this.deleteAllItems();
+    //动态类型 获取数据 扫描这个文件夹下面的所有.xlsx文件
+  dyn_string s = getFileNames(&quot;C:/TEMP&quot;, &quot;*.xlsx&quot;);
+  //dynlen输出这个字段元素多少数据
+  for (int i = 1 ; i &lt;= dynlen(s); i++)
+  {
+    DebugN(i, &quot;&quot;, s[i]);
+    //this.appendItem(s[i]);
+    //遍历列表在item中显示
+    setValue(&quot;&quot;, &quot;appendItem&quot;, s[i]); //&quot;&quot;代表当前对象，意思是这个文件夹下面又多少个xlsx文件都在列表之中显示出来
+  }
+}
+</code></pre>
+<h2 id="设置双击事件扫描excel数据映射到table之中">设置双击事件扫描excel数据映射到table之中</h2>
+<pre><code class="language-vb">main(mapping event)
+{
+  //点击事件开始的时候,不让鼠标点击其他的东西
+  this.enabled(false);
+
+  //打开对应目录下面的某个文件
+  objWorkbooks = objXL.Workbooks.Open(&quot;C:/TEMP/&quot; + SELECTION_LIST2.selectedText);
+
+  //释放工作表
+  //objWorkbook = objWorkbooks.Worksheets(1);
+
+  //DebugN(objWorkbooks.ActiveSheet.UsedRange.Rows.Count);//行总数
+  //DebugN(objWorkbooks.ActiveSheet.UsedRange.Columns.Count);//列总数
+  //全部扫描，显示全部数据
+  //DebugN(objXL.Range(&quot;1:1&quot;).Value2);
+    
+  //以下程序是根据excel表格对table的初始化
+  //防止再次点击后表覆盖前一个表,删除行
+  TABLE1.deleteAllLines();
+  //防止再次点击后表覆盖前一个表,删除列,倒着删是因为0列一直存在只能从最后面开始
+  for (int k = TABLE1.columnCount() - 1  ; k &gt;= 0 ; k--)
+  {
+    //从第k列开始删
+    TABLE1.deleteColumn(k);
+  }
+
+  //DebugN(TABLE1.lineCount(), TABLE1.columnCount());//测试行数和列数
+
+  //初始化列名
+  for (int j = 0 ; j &lt; objWorkbooks.ActiveSheet.UsedRange.Columns.Count ; j++) //遍历列
+  {
+    TABLE1.insertColumn(j);//初始化列
+  }
+
+
+  //通过excel的数据往table表里面填入数据
+  for (int i = 0 ; i &lt; objWorkbooks.ActiveSheet.UsedRange.Rows.Count ; i++) //遍历行
+  {
+    //插入行
+    TABLE1.insertLineN(i);
+    //遍历excel表格插入数据
+    for (int j = 0 ; j &lt; objWorkbooks.ActiveSheet.UsedRange.Columns.Count ; j++)//遍历列
+    {
+      string s = objXL.Range(&quot;A1&quot;).offset(i, j).Value2;
+      //判断插入数据长度
+      if (s.length() &lt;= 0 || s == &quot;0&quot;)
+      {
+        //如果长度小于等于0或者本身是0的话就置空
+        TABLE1.cellValueRC(i, &quot;#&quot; + (j + 1), &quot;&quot;);
+      }
+      else
+      {
+        TABLE1.cellValueRC(i, &quot;#&quot; + (j + 1), objXL.Range(&quot;A1&quot;).offset(i, j).Value2);
+      }
+
+    }
+
+  }
+
+//DebugN(objXL.Cells.item(1,1).Value2);
+        //扫描表中的所有行数据,太慢,一个一个的显示，所-以舍弃了这个办法
+//   for(int i = 1 ; i&lt;=objWorkbooks.ActiveSheet.UsedRange.Rows.Count ; i++ )
+//   {
+//      for(int j = 1 ; j&lt;=objWorkbooks.ActiveSheet.UsedRange.Columns.Count ; j++ )
+//      {
+//        DebugN(objXL.Cells.item(i,j).Value2);
+//      }
+//   }
+
+  //关闭工作簿
+  objXL.Workbooks.close();
+        //释放这个事件，因为执行完毕了，就可以点击别的了
+  this.enabled(true);
+}
+</code></pre>
+<p>其中SELECTION_LIST2.selectedText这个是SELECTION_LIST2也就是我这个列对象的名称，后面跟着的就是他的方法[selectedText](<a href="https://www.winccoa.com/documentation/WinCCOA/3.18/en_US/Control_Grafik/selectedText_select.html?hl=selectedtext">&quot;selectedText&quot; (winccoa.com)</a>)，这个的作用就是返回所选列表项的文本，可以理解为你的文件名。</p>
+<p><code>objWorkbooks.ActiveSheet.UsedRange.Rows.Count</code>总行数</p>
+<p><code>objWorkbooks.ActiveSheet.UsedRange.Columns.Count</code>总列数</p>
+<p>这两个很为关键，基本上都是vb里面的语言，意思是这个工作簿中，激活工作表，使用range返回行/列并计算总数</p>
+<p>因为你操作工作簿不可能只操作一个工作簿，所以接下来要清除之前创建的行和列。19~25行是清除之前的行列的。如果不清除的话会在之前的行列接着遍历，对数据进行操作，不断地增加，无法正确显示，所以要清除。</p>
+<p>填数据的时候是根据列名进行填数据的（用的是<code>cellValueRC</code>方法）。所以要初始化对应的列名（30~33行）。</p>
+<p>接下来就是通过遍历excel的数据往table表里面填入数据，外层循环行，里面循环列，一行初始化完，一列就遍历一次了。就是for循环外层一次，内层已经循环完一轮了。<code>TABLE1.insertLineN(i);</code>是插入行，这一行弄完之后在弄列，就形成了一个个cell。然后根据位置填入值。</p>
+<p><code>TABLE1.cellValueRC(i, &quot;#&quot; + (j + 1), objXL.Range(&quot;A1&quot;).offset(i, j).Value2);</code>这个的意思是，往cell里面填入，第i行第j+1列（为什么是j+1，因为做表的时候已经创建了1列了，j=0所以要在第1列后面添加列） <code>objXL.Range(&quot;A1&quot;).offset(i, j).Value2</code>这个就是填入的数据。至于为什么要判断0和他的长度，是因为我在测试的时候，删除了表里cell的数据，但是table里面却显示的是0，所以在这里判断一下他的长度。具体的可以看看以下这篇文章</p>
+<p><a href="https://blog.csdn.net/xuemanqianshan/article/details/111415364">EXCEL的各种“空”的区别：blank，““ ， 0 ，以及 VBA里的各种空值：empty，null，nothing 等_奔跑的犀牛先生的博客-CSDN博客_vba判断单元格是否为空</a></p>
+<p>弄完之后这个就是整体的效果了</p>
+<figure data-type="image" tabindex="4"><img src="https://user-images.githubusercontent.com/45512970/197223241-0e10e0ef-81f8-4d68-86d7-1502ca25224f.jpg" alt="整体效果" loading="lazy"></figure>
+
+       </div>
+       <div class="post-footer">
+        <div class="meta">
+         <div class="info">
+          <i class="fa fa-sun-o"></i>
+          <span class="date">2022-10-21</span>
+          <i class="fa fa-tag"></i>
+          
+          <a class="tag" href="https://dellevin.github.io/tag/wincc-oa/" title="WinCC OA">WinCC OA </a>
+          
+          <a class="tag" href="https://dellevin.github.io/tag/kai-fa/" title="开发">开发 </a>
+          
+          <a class="tag" href="https://dellevin.github.io/tag/vba/" title="VBA">VBA </a>
+          
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="share">
+       <div class="evernote">
+        <a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a>
+       </div>
+       <div class="weibo">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a>
+       </div>
+       <div class="twitter">
+        <a class="fa fa-twitter" href="http://twitter.com/home?status=,https://dellevin.github.io/post/wincc-oa-shi-xian-excel-shu-ju-ying-she-dao-table-biao-ge/,;"></a>
+       </div>
+      </div>
+      <div class="pagination">
+       <ul class="clearfix">
+
+        <li class="pre pagbuttons"><a class="btn" role="navigation" href="https://dellevin.github.io/post/wincc-oa-shi-xian-table-kong-jian-dao-chu-excle-bao-biao-de-gong-neng/" title="WinCC OA实现table控件导出excle报表的功能">上一篇</a></li>
+         
+        
+        <li class="next pagbuttons"><a class="btn" role="navigation" href="https://dellevin.github.io/post/bu-ru-zheng-gui-de-sheng-huo/" title=" 步入正轨的生活">下一篇</a></li>
+        
+       </ul>
+      </div>
+        
+     </div>
+    </div>
+   </div>
+  </div>
+  <script src="https://dellevin.github.io/media/scripts/jquery.js"></script>
+  <script src="https://dellevin.github.io/media/scripts/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://dellevin.github.io/media/scripts/jquery.appear.js"></script>
+
+
+ </body>
+</html>

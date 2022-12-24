@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+ <head>
+     <meta charset="utf-8" />
+  <title>WinCC OA实现table另存为excel功能 | Del Levin‘s blog</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <link rel="stylesheet" href="https://dellevin.github.io/styles/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+   <script src="https://cdn.staticfile.org/highlight.js/9.15.9/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+ </head>
+ <body>
+     <div class="sidebar animated fadeInDown">
+   <div class="logo-title">
+    <div class="title">
+     <img src="https://dellevin.github.io/images/avatar.png?v=1671878907276" style="width:127px;" />
+
+     <h3 title=""><a href="/">Del Levin</a></h3>
+
+     <div class="description">
+      <p>望山叹高，登愈艰。入世哀难，伤无泪。
+</p>
+     </div>
+    </div>
+   </div>
+   <ul class="social-links">
+
+
+    
+
+    
+
+    
+
+    <li><a href="https://github.com/dellevin"><i class="fa fa-github"></i></a></li>
+ 
+    
+
+    
+
+    
+
+    
+
+    <li><a href="https://m.weibo.cn/u/6094785105"><i class="fa fa-weibo"></i></a></li>
+ 
+    
+
+    
+
+    <li><a href="https://t.me/levin092"><i class="fa fa-send"></i></a></li>
+ 
+    
+
+   </ul>
+   <div class="footer">
+    <div class="by_farbox">
+   Powered by <a href="https://dellevin.github.io" target="_blank">Del Levin</a>
+    </div>
+    
+
+    </div>
+   </div>
+  </div>
+  <div class="main">
+     <div class="page-top animated fadeInDown">
+    <div class="nav">
+    
+     <li><a  href="/">首页</a></li>
+
+     <li><a  href="/archives">归档</a></li>
+
+     <li><a  href="/tags">标签</a></li>
+
+     <li><a  href="https://dellevin.github.io/post/xiang-ce">相册</a></li>
+
+     <li><a  href="https://dellevin.github.io/post/guan-yu">关于</a></li>
+
+    </div>
+    <div class="information">
+     <div class="back_btn">
+      <li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li>
+     </div>
+    </div>
+   </div>
+   <div class="autopagerize_page_element">
+    <div class="content">
+     <div class="post-page">
+      <div class="post animated fadeInDown">
+       <div class="post-title">
+        <h3><a>WinCC OA实现table另存为excel功能</a></h3>
+       </div>
+       <div class="post-content">
+        <p>实现wincc oa的另存为文件功能，一开始我是想到的下载功能，用的netget这个方法，可是尝试之后，这个方法多数是获取url内部这些的，跟py的爬虫差不多，但是这个方法并不支持本地的路径虽然开发文档里面写过</p>
+<p>The URL (http, https, ftp and file - file only applies to local files).</p>
+<p>但是尝试几次之后，结果并不是这样的。</p>
+<p>只能另辟蹊径了，在老板提醒之后才发现有一个fileSelector的方法来解决这个方式，</p>
+<p><a href="https://www.winccoa.com/documentation/WinCCOA/3.18/en_US/ControlE_R/fileSelector.html?hl=fileselector">fileSelector() (winccoa.com)</a>，这个就是可以弹出一个选择文件路径的窗口出来。接下来就是之后的操作了</p>
+<pre><code class="language-C#">main(mapping event)
+{
+   //引入excle的接口
+  idispatch objXL = createComObject(&quot;Excel.Application&quot;);
+  //定义一个工作表对象
+  anytype objWorkbook;
+  //设置窗口不可见
+  objXL.Visible = false;
+   //用调用的接口里面的工作簿方法生成一个工作表对象赋值给上面的定义的对象
+  objWorkbook = objXL.Workbooks.Add();
+   //定义一个文件夹名字
+  string fileName;
+   //弹出选择的窗口
+//文件名，打开默认的文件路径，判断是否上传，文件类型，打开弹出对话框里面的文件，文件选择对话框存储信息
+  fileSelector(fileName, &quot;C:\\Users\\Administrator\\Desktop&quot;, false, &quot;*.xlsx&quot;, false, &quot;MyId&quot;);
+  //这里很重要，要转一下斜杆的方向，因为不知道因为什么这个竟然无法识别/只能识别路径的\\
+  strreplace(fileName, &quot;/&quot;, &quot;\\&quot;);
+  //工作表的saveAs方法，就是另存为
+  objWorkbook.SaveAs(fileName + &quot;.xlsx&quot;);
+ //往空白文件里面写入table表的内容
+  for (int i = 0 ; i &lt; TabelExcel.lineCount() ; i++) //遍历行
+  {
+    for (int j = 0 ; j &lt;  TabelExcel.columnCount()  ; j++)//遍历列
+    {
+      objXL.Range(&quot;A1&quot;).offset(i, j).Value2 = TabelExcel.cellValueRC(i, &quot;#&quot; + (j + 1));
+    }
+  }
+    //写入完毕之后进行保存
+  objWorkbook.Save();
+    //关闭这工作簿
+  objXL.Workbooks.close();
+    //释放程序，不释放的话，会在后台一直占用，很恶心。
+  releaseComObject(objXL);
+
+}
+
+</code></pre>
+<p>基本上就是这样，记得添加button按钮之后进行这些代码的动作。明白当前操作的是哪一个对象才可以。还有一个关键的方法就是fileSelector这个方法，至关重要。</p>
+
+       </div>
+       <div class="post-footer">
+        <div class="meta">
+         <div class="info">
+          <i class="fa fa-sun-o"></i>
+          <span class="date">2022-11-04</span>
+          <i class="fa fa-tag"></i>
+          
+          <a class="tag" href="https://dellevin.github.io/tag/wincc-oa/" title="WinCC OA">WinCC OA </a>
+          
+          <a class="tag" href="https://dellevin.github.io/tag/kai-fa/" title="开发">开发 </a>
+          
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="share">
+       <div class="evernote">
+        <a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a>
+       </div>
+       <div class="weibo">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a>
+       </div>
+       <div class="twitter">
+        <a class="fa fa-twitter" href="http://twitter.com/home?status=,https://dellevin.github.io/post/wincc-oa-shi-xian-table-ling-cun-wei-excel-gong-neng/,;"></a>
+       </div>
+      </div>
+      <div class="pagination">
+       <ul class="clearfix">
+
+        <li class="pre pagbuttons"><a class="btn" role="navigation" href="https://dellevin.github.io/post/kun-shan-jing-dong-yun/" title="昆山京东云">上一篇</a></li>
+         
+        
+        <li class="next pagbuttons"><a class="btn" role="navigation" href="https://dellevin.github.io/post/wincc-oa-shi-xian-table-kong-jian-dao-chu-excle-bao-biao-de-gong-neng/" title=" WinCC OA实现table控件导出excle报表的功能">下一篇</a></li>
+        
+       </ul>
+      </div>
+        
+     </div>
+    </div>
+   </div>
+  </div>
+  <script src="https://dellevin.github.io/media/scripts/jquery.js"></script>
+  <script src="https://dellevin.github.io/media/scripts/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://dellevin.github.io/media/scripts/jquery.appear.js"></script>
+
+
+ </body>
+</html>

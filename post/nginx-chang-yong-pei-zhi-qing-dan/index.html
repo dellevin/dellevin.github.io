@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+ <head>
+     <meta charset="utf-8" />
+  <title>Nginx 常用配置清单 | Del Levin‘s blog</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <link rel="stylesheet" href="https://dellevin.github.io/styles/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+   <script src="https://cdn.staticfile.org/highlight.js/9.15.9/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+ </head>
+ <body>
+     <div class="sidebar animated fadeInDown">
+   <div class="logo-title">
+    <div class="title">
+     <img src="https://dellevin.github.io/images/avatar.png?v=1671878907276" style="width:127px;" />
+
+     <h3 title=""><a href="/">Del Levin</a></h3>
+
+     <div class="description">
+      <p>望山叹高，登愈艰。入世哀难，伤无泪。
+</p>
+     </div>
+    </div>
+   </div>
+   <ul class="social-links">
+
+
+    
+
+    
+
+    
+
+    <li><a href="https://github.com/dellevin"><i class="fa fa-github"></i></a></li>
+ 
+    
+
+    
+
+    
+
+    
+
+    <li><a href="https://m.weibo.cn/u/6094785105"><i class="fa fa-weibo"></i></a></li>
+ 
+    
+
+    
+
+    <li><a href="https://t.me/levin092"><i class="fa fa-send"></i></a></li>
+ 
+    
+
+   </ul>
+   <div class="footer">
+    <div class="by_farbox">
+   Powered by <a href="https://dellevin.github.io" target="_blank">Del Levin</a>
+    </div>
+    
+
+    </div>
+   </div>
+  </div>
+  <div class="main">
+     <div class="page-top animated fadeInDown">
+    <div class="nav">
+    
+     <li><a  href="/">首页</a></li>
+
+     <li><a  href="/archives">归档</a></li>
+
+     <li><a  href="/tags">标签</a></li>
+
+     <li><a  href="https://dellevin.github.io/post/xiang-ce">相册</a></li>
+
+     <li><a  href="https://dellevin.github.io/post/guan-yu">关于</a></li>
+
+    </div>
+    <div class="information">
+     <div class="back_btn">
+      <li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li>
+     </div>
+    </div>
+   </div>
+   <div class="autopagerize_page_element">
+    <div class="content">
+     <div class="post-page">
+      <div class="post animated fadeInDown">
+       <div class="post-title">
+        <h3><a>Nginx 常用配置清单</a></h3>
+       </div>
+       <div class="post-content">
+        <hr>
+<p>title: Nginx 常用配置清单<br>
+updated: 2021-05-30 13:42:41Z<br>
+created: 2021-05-30 13:42:41Z</p>
+<hr>
+<p>Nginx 是一个高性能的 HTTP 和反向代理 web 服务器，同时也提供了 IMAP/POP3/SMTP 服务，其因丰富的功能集、稳定性、示例配置文件和低系统资源的消耗受到了开发者的欢迎。本文总结了一些常用的 Nginx 配置代码，希望对大家有所帮助。</p>
+<h4 id="侦听端口"><strong>侦听端口</strong></h4>
+<pre><code>server {
+  # Standard HTTP Protocol
+  listen 80;
+  # Standard HTTPS Protocol
+  listen 443 ssl;
+  # For http2
+  listen 443 ssl http2;
+  # Listen on 80 using IPv6
+  listen [::]:80;
+  # Listen only on using IPv6
+  listen [::]:80 ipv6only=on;
+}
+
+</code></pre>
+<h4 id="访问日志"><strong>访问日志</strong></h4>
+<pre><code>server {
+  # Relative or full path to log file
+  access_log /path/to/file.log;
+  # Turn 'on' or 'off'
+  access_log on;
+}
+
+</code></pre>
+<h4 id="域名"><strong>域名</strong></h4>
+<pre><code>server {
+  # Listen to yourdomain.com
+  server_name yourdomain.com;
+  # Listen to multiple domains server_name yourdomain.com www.yourdomain.com;
+  # Listen to all domains
+  server_name *.yourdomain.com;
+  # Listen to all top-level domains
+  server_name yourdomain.*;
+  # Listen to unspecified Hostnames (Listens to IP address itself)
+  server_name &quot;&quot;;
+}
+
+</code></pre>
+<h4 id="静态资源"><strong>静态资源</strong></h4>
+<pre><code>server {
+  listen 80;
+  server_name yourdomain.com;
+  location / {
+    root /path/to/website;
+  }
+}
+
+</code></pre>
+<h4 id="重定向"><strong>重定向</strong></h4>
+<pre><code>server {
+  listen 80;
+  server_name www.yourdomain.com;
+  return 301 http://yourdomain.com$request_uri;
+}
+server {
+  listen 80;
+  server_name www.yourdomain.com;
+  location /redirect-url {
+    return 301 http://otherdomain.com; 
+  }
+}
+
+</code></pre>
+<h4 id="反向代理"><strong>反向代理</strong></h4>
+<pre><code>server {
+  listen 80;
+  server_name yourdomain.com;
+  location / {
+    proxy_pass http://0.0.0.0:3000; 
+    # where 0.0.0.0:3000 is your application server (Ex: node.js) bound on 0.0.0.0 listening on port 3000
+  }
+}
+
+</code></pre>
+<h4 id="负载均衡"><strong>负载均衡</strong></h4>
+<pre><code>upstream node_js {
+  server 0.0.0.0:3000;
+  server 0.0.0.0:4000;
+  server 123.131.121.122;
+}
+server {
+  listen 80;
+  server_name yourdomain.com;
+  location / {
+    proxy_pass http://node_js; 
+  }
+}
+
+</code></pre>
+<h4 id="ssl-协议"><strong>SSL 协议</strong></h4>
+<pre><code>server {
+  listen 443 ssl;
+  server_name yourdomain.com;
+  ssl on;
+  ssl_certificate /path/to/cert.pem;
+  ssl_certificate_key /path/to/privatekey.pem;
+  ssl_stapling on;
+  ssl_stapling_verify on;
+  ssl_trusted_certificate /path/to/fullchain.pem;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_session_timeout 1h;
+  ssl_session_cache shared:SSL:50m;
+  add_header Strict-Transport-Security max-age=15768000;
+}
+# Permanent Redirect for HTTP to HTTPS
+server {
+  listen 80;
+  server_name yourdomain.com;
+  return 301 https://$host$request_uri;
+}
+
+</code></pre>
+
+       </div>
+       <div class="post-footer">
+        <div class="meta">
+         <div class="info">
+          <i class="fa fa-sun-o"></i>
+          <span class="date">2021-05-30</span>
+          <i class="fa fa-tag"></i>
+          
+          <a class="tag" href="https://dellevin.github.io/tag/KfdVf3Dl_/" title="Linux">Linux </a>
+          
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="share">
+       <div class="evernote">
+        <a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a>
+       </div>
+       <div class="weibo">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a>
+       </div>
+       <div class="twitter">
+        <a class="fa fa-twitter" href="http://twitter.com/home?status=,https://dellevin.github.io/post/nginx-chang-yong-pei-zhi-qing-dan/,;"></a>
+       </div>
+      </div>
+      <div class="pagination">
+       <ul class="clearfix">
+
+        <li class="pre pagbuttons"><a class="btn" role="navigation" href="https://dellevin.github.io/post/sui-bi-ji-bei-shi-jian-gai-bian-de-wo-men/" title="随笔记—被时间改变的我们">上一篇</a></li>
+         
+        
+        <li class="next pagbuttons"><a class="btn" role="navigation" href="https://dellevin.github.io/post/shuo-qi-jie-ya/" title=" 说起解压">下一篇</a></li>
+        
+       </ul>
+      </div>
+        
+     </div>
+    </div>
+   </div>
+  </div>
+  <script src="https://dellevin.github.io/media/scripts/jquery.js"></script>
+  <script src="https://dellevin.github.io/media/scripts/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://dellevin.github.io/media/scripts/jquery.appear.js"></script>
+
+
+ </body>
+</html>

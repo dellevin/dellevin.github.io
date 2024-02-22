@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://dellevin.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content="望山叹高，登愈艰。入世哀难，伤无泪。
+"><meta charset="UTF-8"><title>vue实现新闻列表的无限滚动 | Del Levin‘s blog</title>
+<link href="https://dellevin.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://dellevin.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
+	gtag('config', 'G-6Z5DFKZBTD');
+</script>
+
+<link rel="canonical" href="https://dellevin.github.io/post/mfGRXM9IB/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://dellevin.github.io"><img alt="logo" style="display:inline-block;" src="https://dellevin.github.io/images/avatar.png"/></a><h1 title="Del Levin‘s blog" class="weaklink"><a  href="/">Del Levin‘s blog</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-du" class="selected active current nav__item" >悦文</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang" class="selected active current nav__item" > 友链</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu" class="selected active current nav__item" >关于</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-du" class="selected active current nav__item" >悦文</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang" class="selected active current nav__item" > 友链</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu" class="selected active current nav__item" >关于</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1708581222421" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>vue实现新闻列表的无限滚动</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2023-05-12</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://dellevin.github.io/tag/mian-shi/" class="tag">面试</a> | 	<a href="https://dellevin.github.io/tag/vue/" class="tag">Vue</a> | 	<a href="https://dellevin.github.io/tag/ai-tou-ai-nao/" class="tag">呆头呆脑</a> | 	<a href="https://dellevin.github.io/tag/bug-ri-zhi/" class="tag">bug日志</a> | 	<a href="https://dellevin.github.io/tag/ji-zhu-bi-ji/" class="tag">技术笔记</a> | 	<a href="https://dellevin.github.io/tag/javascript/" class="tag">JavaScript</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">3141字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">15 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>这几天业务用到了这个，身为一个前端小白。。。垃圾的一批。百度的时候发现一个叫<code>vue-seamless-scroll</code>的组件，但是引入使用标签的适合前端会啥也不显示直接白花花的一大片。</p>
+<p>百度的时候发现一个大佬已经通过js模拟那个组件实现了效果，特此记录下来。因为应用场景的问题，对他的代码稍做了些更改。</p>
+<p>实现无限无缝滚动的链接：https://blog.csdn.net/weixin_41683949/article/details/125892840</p>
+<pre><code class="language-vue">&lt;template&gt;
+    &lt;!-- 平台成果  --&gt;
+    &lt;div class=&quot;platform-outcomes&quot;&gt;
+
+        &lt;div class=&quot;imgTitle&quot;&gt;
+            &lt;img src=&quot;../assets/img/news.png&quot; alt=&quot;新闻png&quot;&gt;
+            &lt;span&gt;政策要闻&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;!-- 新闻展示div --&gt;
+        &lt;div class=&quot;box&quot;&gt;
+
+            &lt;div class=&quot;scroll_parent_box&quot; @mouseenter=&quot;mEnter&quot; @mouseleave=&quot;mLeave&quot;&gt;
+                &lt;div class=&quot;scroll_list&quot; :style=&quot;{ transform: `translate(0px,-${scrollTop}px)` }&quot;&gt;
+
+                    &lt;div ref=&quot;scrollItemBox&quot;&gt;
+
+                        &lt;div class=&quot;scroll_item&quot; v-for=&quot;(item, index) in newsData&quot; :key=&quot;index&quot;&gt;
+
+                            &lt;div class=&quot;newsFont&quot;&gt;
+                                &lt;img src=&quot;../assets/img/little_news.png&quot; alt=&quot;新闻小图标&quot;&gt;
+                            &lt;/div&gt;
+
+                            &lt;div class=&quot;newsMessage&quot;&gt;
+                                &lt;a :href=&quot;item.sciUrl&quot; target=&quot;_blank&quot;&gt;
+                                    &lt;p v-bind:style=&quot;{ fontWeight: 'bold' }&quot;&gt;
+                                        {{ item.content }}
+                                    &lt;/p&gt;
+                                &lt;/a&gt;
+                            &lt;/div&gt;
+
+                        &lt;/div&gt;
+
+                    &lt;/div&gt;
+
+                    &lt;div v-html=&quot;copyHtml&quot;&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import axios from 'axios'
+
+
+export default {
+    data() {
+        return {
+            scrollTop: 0, //列表滚动高度
+            speed: 50, //滚动的速度
+            newsData: [
+            //     {
+            //     'content': '科创金融为科创企业注入金融“活水”',
+            //     'sciUrl': 'https://finance.sina.com.cn/jjxw/2023-04-15/doc-imyqknmc2885203.shtml',
+            // }, {
+            //     'content': '工商银行 坚定不移推进高质量发展 在服务中国式现代化进程中展现新担当',
+            //     'sciUrl': 'http://paper.people.com.cn/rmrb/html/2023-03/10/nw.D110000renmrb_20230310_1-12.htm',
+            // }, {
+            //     'content': '让科创企业股权“软实力”变融资“硬通货”',
+            //     'sciUrl': 'http://www.ccb.com/cn/ccbtoday/newsv3/20230414_1681445103.html',
+            // }, {
+            //     'content': '建设高质量科创板，更好促进科技、资本和产业良性循环',
+            //     'sciUrl': 'http://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20221122_5712368.shtml',
+            // }, {
+            //     'content': '国泰君安发布服务上海科创中心建设行动方案_中国经济网——国家经济门户',
+            //     'sciUrl': 'http://finance.ce.cn/stock/gsgdbd/202305/06/t20230506_38533924.shtml.',
+            // }, {
+            //     'content': '中国人民银行营业管理部召开2023年第二季度新闻发布会',
+            //     'sciUrl': 'https://finance.sina.com.cn/money/bank/bank_yhfg/2023-04-27/doc-imyrvnht4400317.shtml',
+            // }, {
+            //     'content': '中国农业银行联合多家机构成功举办2023科创金融论坛',
+            //     'sciUrl': 'http://finance.people.com.cn/n1/2023/0426/c1004-32674304.html',
+            // }, {
+            //     'content': '中国科协启动“科创中国”金融伙伴计划- 社会综合',
+            //     'sciUrl': 'https://www.chinanews.com.cn/sh/2023/02-20/9957121.shtml',
+            // }, {
+            //     'content': '2023济南科创金融论坛举行马建堂袁亚湘作主旨演讲袁炳忠刘强致辞',
+            //     'sciUrl': 'http://jntzcjj.jinan.gov.cn/art/2023/4/15/art_88379_4775055.html',
+            // }, {
+            //     'content': '济南市政府门户网站新闻刘强会见出席2023济南科创金融论坛嘉宾',
+            //     'sciUrl': 'http://www.jinan.gov.cn/art/2023/4/14/art_22405_4947838.html',
+            // }, {
+            //     'content': '全国关注济南！科创+金融，一场盛会激涌发展“活水” ',
+            //     'sciUrl': 'https://new.qq.com/rain/a/20230415A01HXN00',
+            // }
+            ], //表示有多少个列表项
+            copyHtml: '', //复制多一份防止滚动到后面出现空白
+            msg: '',
+            outcomes: {
+                companyNum: '',
+                financingNum: '',
+                financingTotalAmount: ''
+            },
+        }
+    },
+    //同步执行的，意味着在该函数内的代码将在组件创建完成前立即执行
+    //可以在该函数下完成一些初始化的工作
+    created() {
+        this.initData();
+    },
+    mounted() {
+        // 如果列表数据是异步获取的，记得初始化在获取数据后再调用
+        this.initScroll();
+    },
+    methods: {
+        //获取政务新闻条例
+        initData() {
+            axios.get('http://localhost:8080/renren-admin/index/sciindexnews/page?limit=14&amp;page=1').then((res) =&gt; {
+                this.newsData = res.data.data.list
+            }).catch((err) =&gt; {
+                console.log(err)
+                alert('请求出错！')
+            })
+        },
+        //以下是实现滚动的
+        initScroll() {
+            this.$nextTick(() =&gt; {
+                this.copyHtml = this.$refs.scrollItemBox.innerHTML
+                this.startScroll()
+            })
+        },
+        // 鼠标移入停止滚动
+        mEnter() {
+            clearInterval(this.timer);
+        },
+        // 鼠标移出继续滚动
+        mLeave() {
+            this.startScroll()
+        },
+        // 开始滚动
+        startScroll() {
+            //添加this指向，告诉他是自己的这个time，如果不加的话，没办法识别了
+            this.timer = setInterval(this.scroll, this.speed);
+        },
+        // 滚动处理方法
+        scroll() {
+            //用于复制上一次出现的所有数据，因为在使用axios之后滚动数据只会滚动一次，也就是说没有调用copyHtml所以退而求其次用这个
+            this.copyHtml = this.$refs.scrollItemBox.innerHTML
+
+            this.scrollTop++
+            // 获取需要滚动的盒子的高度
+            let scrollItemBox = this.$refs.scrollItemBox.offsetHeight;
+            // 当判断滚动的高度大于等于盒子高度时，从头开始滚动
+            if (this.scrollTop &gt;= scrollItemBox) {
+                this.scrollTop = 0
+            }
+        },
+
+
+    },
+
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+
+a {
+    color: #000;
+}
+
+.newsMessage {
+    padding-left: 7%;
+}
+
+.newsFont {
+    text-align: left;
+    padding-left: 2%;
+}
+
+.scroll_parent_box {
+    width: 90%;
+    height: 100%;
+    /*边框*/
+    /* border: 1px solid #ebeef5;  */
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.scroll_list {
+    transition: all 0ms ease-in 0s
+}
+
+.scroll_item {
+    height: 40px;
+    line-height: 40px;
+    /* text-align: center; */
+    font-size: 14px;
+}
+
+.platform-outcomes {
+    width: 1920px;
+    height: 600px;
+    background-image: url(&quot;../assets/img/chengguobg.jpg&quot;);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    /* background-position: center; */
+    padding-left: 300px;
+    padding-top: 80px;
+}
+
+.platform-outcomes .imgTitle {
+    padding-left: 10px;
+}
+
+.platform-outcomes .imgTitle span {
+    font-size: 25px;
+    font-weight: 700;
+    color: #313233;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+.platform-outcomes .box {
+    padding-left: 10%;
+    /* box内的滚动条向左偏移10% */
+    width: 1200px;
+    height: 380px;
+    /* background: skyblue; */
+    background: white;
+    float: left;
+    margin-top: 35px;
+    margin-right: 10px;
+    border-top: 8px solid #d6ba83;
+    border-bottom: 8px solid #d6ba83;
+}
+
+.platform-outcomes .box ul {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 25px;
+    /* background:  white; */
+}
+
+/* 背景图 3张 */
+.platform-outcomes .box .building {
+    background: url(&quot;../assets/img/chengguo1bg.png&quot;) no-repeat;
+    background-position: center center;
+}
+
+.platform-outcomes .box .book {
+    background: url(&quot;../assets/img/chengguo2bg.png&quot;) no-repeat;
+    background-position: center center;
+}
+
+.platform-outcomes .box .money {
+    background: url(&quot;../assets/img/chengguo3bg.png&quot;) no-repeat;
+    background-position: center center;
+}
+
+
+.platform-outcomes .box ul span {
+    font-size: 30px;
+    font-weight: 500;
+    color: #cc4f4f;
+}&lt;/style&gt;
+</code></pre>
+<p>再次分析一下以上代码：</p>
+<p>此处代码不做赘述，主要是用来实现页面展示的其中利用v-for实现不断地循环展示<code>@mouseenter</code>和<code>@mouseleave</code>作为监听鼠标的是否在此div上面滑入滑出</p>
+<pre><code class="language-vue">            &lt;div class=&quot;scroll_parent_box&quot; @mouseenter=&quot;mEnter&quot; @mouseleave=&quot;mLeave&quot;&gt;
+                &lt;div class=&quot;scroll_list&quot; :style=&quot;{ transform: `translate(0px,-${scrollTop}px)` }&quot;&gt;
+
+                    &lt;div ref=&quot;scrollItemBox&quot;&gt;
+                        &lt;div class=&quot;scroll_item&quot; v-for=&quot;(item, index) in newsData&quot; :key=&quot;index&quot;&gt;
+                            &lt;div class=&quot;newsFont&quot;&gt;
+                                &lt;img src=&quot;../assets/img/little_news.png&quot; alt=&quot;新闻小图标&quot;&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;newsMessage&quot;&gt;
+                                &lt;a :href=&quot;item.sciUrl&quot; target=&quot;_blank&quot;&gt;
+                                    &lt;p v-bind:style=&quot;{ fontWeight: 'bold' }&quot;&gt;
+                                        {{ item.content }}
+                                    &lt;/p&gt;
+                                &lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div v-html=&quot;copyHtml&quot;&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+</code></pre>
+<p>css部分在此不做解释：</p>
+<pre><code class="language-css">a {
+    color: #000;
+}
+
+.newsMessage {
+    padding-left: 7%;
+}
+
+.newsFont {
+    text-align: left;
+    padding-left: 2%;
+}
+
+.scroll_parent_box {
+    width: 90%;
+    height: 100%;
+    /*边框*/
+    /* border: 1px solid #ebeef5;  */
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.scroll_list {
+    transition: all 0ms ease-in 0s
+}
+
+.scroll_item {
+    height: 40px;
+    line-height: 40px;
+    /* text-align: center; */
+    font-size: 14px;
+}
+</code></pre>
+<p>javascript部分：</p>
+<pre><code class="language-javascript">
+import axios from 'axios'
+
+
+export default {
+    data() {
+        return {
+            scrollTop: 0, //列表滚动高度
+            speed: 50, //滚动的速度
+            newsData: [
+            //     {
+            //     'content': '科创金融为科创企业注入金融“活水”',
+            //     'sciUrl': 'https://finance.sina.com.cn/jjxw/2023-04-15/doc-imyqknmc2885203.shtml',
+            // }, {
+            //     'content': '工商银行 坚定不移推进高质量发展 在服务中国式现代化进程中展现新担当',
+            //     'sciUrl': 'http://paper.people.com.cn/rmrb/html/2023-03/10/nw.D110000renmrb_20230310_1-12.htm',
+            // }, {
+            //     'content': '让科创企业股权“软实力”变融资“硬通货”',
+            //     'sciUrl': 'http://www.ccb.com/cn/ccbtoday/newsv3/20230414_1681445103.html',
+            // }, {
+            //     'content': '建设高质量科创板，更好促进科技、资本和产业良性循环',
+            //     'sciUrl': 'http://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20221122_5712368.shtml',
+            // }, {
+            //     'content': '国泰君安发布服务上海科创中心建设行动方案_中国经济网——国家经济门户',
+            //     'sciUrl': 'http://finance.ce.cn/stock/gsgdbd/202305/06/t20230506_38533924.shtml.',
+            // }, {
+            //     'content': '中国人民银行营业管理部召开2023年第二季度新闻发布会',
+            //     'sciUrl': 'https://finance.sina.com.cn/money/bank/bank_yhfg/2023-04-27/doc-imyrvnht4400317.shtml',
+            // }, {
+            //     'content': '中国农业银行联合多家机构成功举办2023科创金融论坛',
+            //     'sciUrl': 'http://finance.people.com.cn/n1/2023/0426/c1004-32674304.html',
+            // }, {
+            //     'content': '中国科协启动“科创中国”金融伙伴计划- 社会综合',
+            //     'sciUrl': 'https://www.chinanews.com.cn/sh/2023/02-20/9957121.shtml',
+            // }, {
+            //     'content': '2023济南科创金融论坛举行马建堂袁亚湘作主旨演讲袁炳忠刘强致辞',
+            //     'sciUrl': 'http://jntzcjj.jinan.gov.cn/art/2023/4/15/art_88379_4775055.html',
+            // }, {
+            //     'content': '济南市政府门户网站新闻刘强会见出席2023济南科创金融论坛嘉宾',
+            //     'sciUrl': 'http://www.jinan.gov.cn/art/2023/4/14/art_22405_4947838.html',
+            // }, {
+            //     'content': '全国关注济南！科创+金融，一场盛会激涌发展“活水” ',
+            //     'sciUrl': 'https://new.qq.com/rain/a/20230415A01HXN00',
+            // }
+            ], //表示有多少个列表项
+            copyHtml: '', //复制多一份防止滚动到后面出现空白
+            msg: '',
+            outcomes: {
+                companyNum: '',
+                financingNum: '',
+                financingTotalAmount: ''
+            },
+        }
+    },
+    //同步执行的，意味着在该函数内的代码将在组件创建完成前立即执行
+    //可以在该函数下完成一些初始化的工作
+    created() {
+        
+    },
+    mounted() {
+        this.initData();
+        // 如果列表数据是异步获取的，记得初始化在获取数据后再调用
+        //this.initScroll();
+    },
+    methods: {
+        //获取政务新闻条例
+        initData() {
+            axios.get('http://localhost:8080/renren-admin/index/sciindexnews/page?limit=14&amp;page=1').then((res) =&gt; {
+                this.newsData = res.data.data.list
+                this.initScroll();
+            }).catch((err) =&gt; {
+                console.log(err)
+                alert('请求出错！')
+            })
+        },
+        //以下是实现滚动的
+        initScroll() {
+            this.$nextTick(() =&gt; {
+                this.copyHtml = this.$refs.scrollItemBox.innerHTML
+                this.startScroll()
+            })
+        },
+        // 鼠标移入停止滚动
+        mEnter() {
+            clearInterval(this.timer);
+        },
+        // 鼠标移出继续滚动
+        mLeave() {
+            this.startScroll()
+        },
+        // 开始滚动
+        startScroll() {
+            //添加this指向，告诉他是自己的这个time，如果不加的话，没办法识别了
+            this.timer = setInterval(this.scroll, this.speed);
+        },
+        // 滚动处理方法
+        scroll() {
+            //用于复制上一次出现的所有数据，因为在使用axios之后滚动数据只会滚动一次，也就是说没有调用copyHtml所以退而求其次用这个
+            this.copyHtml = this.$refs.scrollItemBox.innerHTML
+
+            this.scrollTop++
+            // 获取需要滚动的盒子的高度
+            let scrollItemBox = this.$refs.scrollItemBox.offsetHeight;
+            // 当判断滚动的高度大于等于盒子高度时，从头开始滚动
+            if (this.scrollTop &gt;= scrollItemBox) {
+                this.scrollTop = 0
+            }
+        },
+
+
+    },
+
+}
+&lt;/script&gt;
+</code></pre>
+<p>再次赘述一下以上的javascript代码，这段是最为关键的，其中data内的return不做叙述，主要功能是作为数据的初始化 <code>initData()</code>我们放在最后说。</p>
+<p><strong>initScroll()</strong>  这个方法的作用就是用户初始化滚动，其中调用了<code>startScroll()</code>方法，<code>this.copyHtml = this.$refs.scrollItemBox.innerHTML</code>的作用就是复制<code>ref=”scrollItemBox“</code>这个div内的所有代码来阻止出现当先数据显示完的情况之下出现空白的情形。</p>
+<p><strong>mEnter()</strong> 这个方法是在鼠标进来的时候停止移动的clearInterval()就是阻塞setInterval()的方法。参考链接：http://caibaojian.com/setinterval-times.html</p>
+<p><strong>mLeave()</strong> 这个不多说，就是调用下面的 startScroll()方法</p>
+<p><strong>startScroll()</strong> 在此处的作用是调用滚动方法和设置滚动速度（滚动速度其实就是显示的时间，具体可以查看setInterval()方法）</p>
+<p><strong>scroll()</strong> 可以说是真正滚动方法的实现。scrollItemBox就是div的高度，初始化一个scrollTop为0让它随时间不断增加，这时候当scrollTop大于scrollItemBox也就是说显示的数据都没有了，那就重新初始化scrollTop数据让他们重新显示</p>
+<p><strong>initData()</strong> 这里的作用是用于初始化数据的，当数据写死的时候我们可以不用介意。但是当数据是异步请求的时候，我们就需要把初始化滚动放在数据请求之后了。也就是说是这个情况</p>
+<pre><code class="language-javascript">        initData() {
+            axios.get('http://localhost:8080/renren-admin/index/sciindexnews/page?limit=14&amp;page=1').then((res) =&gt; {
+                this.newsData = res.data.data.list
+                //初始化在获取数据后再调用
+                this.initScroll();
+            }).catch((err) =&gt; {
+                console.log(err)
+                alert('请求出错！')
+            })
+        },
+</code></pre>
+<p>同时在mounted更改</p>
+<pre><code class="language-javascript">    mounted() {
+        this.initData();
+        // 如果列表数据是异步获取的，记得初始化在获取数据后再调用
+        //this.initScroll();
+    },
+</code></pre>
+<p>其实这个this.initData();是可以放在created()生命周期里面的，我个人比较偏向放在created()声明周期里。</p>
+<p>普及一下这俩生命周期的区别：</p>
+<p><strong>created:在模板渲染成html前调用，即通常初始化某些属性值，然后再渲染成视图。</strong></p>
+<p><strong>mounted:在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。</strong></p>
+<p>可以参考知乎这个帖子：https://zhuanlan.zhihu.com/p/479084392</p>
+<p><strong>憨憨的我：</strong></p>
+<p>其实我一开始没有理解他的”记得初始化在获取数据后再调用“是什么意思，我还以为是初始化数据在获取数据之后初始化，我还寻思前端还能有这操作？这么神器吗？经过吾爱的大佬提示才知道，原来是，在数据初始化之后对方法的调用。。。。笨死我了</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"></div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/dellevin"title="github"><i class="iconfont icon-github"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2020-2023 <a href="https://dellevin.github.io" style="margin:0;">Del Levin‘s blog</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>113</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://dellevin.github.io/media/js/prism.js"></script>
+</body>
+</html>

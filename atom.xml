@@ -1,0 +1,1484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://dellevin.github.io</id>
+    <title>Del Levin‘s blog</title>
+    <updated>2024-06-10T13:37:19.576Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://dellevin.github.io"/>
+    <link rel="self" href="https://dellevin.github.io/atom.xml"/>
+    <subtitle>望山叹高，登愈艰。入世哀难，伤无泪。
+</subtitle>
+    <logo>https://dellevin.github.io/images/avatar.png</logo>
+    <icon>https://dellevin.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2024, Del Levin‘s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[少年赠我红玫瑰]]></title>
+        <id>https://dellevin.github.io/post/shao-nian-zeng-wo-hong-mei-gui/</id>
+        <link href="https://dellevin.github.io/post/shao-nian-zeng-wo-hong-mei-gui/">
+        </link>
+        <updated>2024-06-10T13:36:20.000Z</updated>
+        <content type="html"><![CDATA[<p>人终将会被少年不可得之物困其一生。</p>
+<p>少年的我，喜欢电脑，奈何家里没有，便四处去有电脑的人家蹭，去同学家，去弟弟家，还好当时是小学，去网吧成了奢望。每次听着同班同学说玩了什么游戏，看了什么电视，我都装作毫不在意，其实竖耳倾听电脑世界的神奇。从那时起，便对电脑产生了浓厚的热情，可惜家境贫寒。这份热情甚至一度超过了父母，从那时起执念深深的埋在了小学。奈何家境贫寒。</p>
+<p>说起感情，我不知道自己为什么会对另一半的依恋很强。强到让人厌烦的地步。可是这个强依恋止步在了上一段感情之中。三番四次的背叛让我对感情彻底的失望。把自己困在一个只有纯真爱情的乌托邦。别人进不来，我也出不去。</p>
+<p>如今的我，有了三四台电脑，却没有当年的欢乐，没有人分享，我也不知道干什么。能激起我乐趣的，也就在网络上帮别人解决问题，发帖子带来的成就感让我提起兴趣。自己一个人单身了七八年，每时每刻都在告诉自己“喂！张昊洋！做一个拯救自己的英雄吧！”每当听到自己劝慰自己的话，我都想打了鸡血一样，从混乱中重生，从黎明中绽放。</p>
+<p>至于年少的我，早就死在了七年前六月十日的清晨。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[uni-app微信小程序属性为0]]></title>
+        <id>https://dellevin.github.io/post/uni-app-wei-xin-xiao-cheng-xu-shu-xing-wei-0/</id>
+        <link href="https://dellevin.github.io/post/uni-app-wei-xin-xiao-cheng-xu-shu-xing-wei-0/">
+        </link>
+        <updated>2024-06-04T11:36:18.000Z</updated>
+        <content type="html"><![CDATA[<p>前几日在封装一个组件的时候，接收数据的时候遇到一个属性等于0，但是，前端死活不显示</p>
+<figure data-type="image" tabindex="1"><img src="https://dellevin.github.io/post-images/1717501050718.png" alt="" loading="lazy"></figure>
+<p>这里是有值的，但</p>
+<figure data-type="image" tabindex="2"><img src="https://dellevin.github.io/post-images/1717501069743.png" alt="" loading="lazy"></figure>
+<p>到了前端就没有了，卧槽，太神奇了是不是。打印一下看看</p>
+<figure data-type="image" tabindex="3"><img src="https://dellevin.github.io/post-images/1717501074058.png" alt="" loading="lazy"></figure>
+<p>打印出来传入值竟然是undefined而不是0，一定是闹鬼了。。。</p>
+<p>最后再不断定位错误的时候，发现是这里的毛病</p>
+<pre><code class="language-vue">post: item.post || '', // 添加 post 属性，默认值为空字符串
+</code></pre>
+<p>原因是当数值为0的时候自己就默认是false</p>
+<p>0在布尔上下文中被认为是假值，因此 <code>item.post||‘’</code>  会在 <code>item.post </code> 为 0 时返回空字符串。所以说为了保留0，需要改成</p>
+<pre><code class="language-vue"> item.post !== undefined ? item.post : ''
+</code></pre>
+<p>来确保仅在 <code>item.post</code> 是 <code>undefined</code> 时返回空字符串。</p>
+<p>下面贴一下源代码</p>
+<pre><code class="language-vue">&lt;template&gt;
+	&lt;view&gt;
+		&lt;!-- 绑定个人信息 --&gt;
+		&lt;u-popup :show=&quot;localBindCompShow&quot; @close=&quot;onClickOverlayClose&quot; @open=&quot;localBindCompShow =true&quot; mode=&quot;center&quot;
+			round=&quot;20&quot; :closeOnClickOverlay=&quot;true&quot;&gt;
+			&lt;view class=&quot;bindCompCard&quot;&gt;
+
+				&lt;view class=&quot;header-container&quot;&gt;
+					&lt;view class='header-button'&gt;
+						&lt;u-button type=&quot;info&quot; size=&quot;5&quot; icon=&quot;close&quot; @click=&quot;onClickOverlayClose&quot; :plain=&quot;true&quot;
+							:hairline=&quot;true&quot;&gt;&lt;/u-button&gt;
+					&lt;/view&gt;
+
+					&lt;view class=&quot;header-text&quot;&gt;绑定企业信息&lt;/view&gt;
+					&lt;u-tabs :list=&quot;bindCompTabList&quot; @click=&quot;selectTab&quot; class=&quot;tabs&quot;&gt;&lt;/u-tabs&gt;
+				&lt;/view&gt;
+
+				&lt;view v-if=&quot;!bindCompNewShow&quot;&gt;
+					&lt;view class=&quot;supplier-container&quot;&gt;
+						&lt;view v-for=&quot;(item, index) in itemsToDisplay&quot; :key=&quot;index&quot; class=&quot;supplier-card&quot;&gt;
+							&lt;view class=&quot;supplier-details&quot;&gt;
+								&lt;view class=&quot;company-name&quot;&gt;{{ item.companyName }}&lt;/view&gt;
+								&lt;view class=&quot;supplier-name&quot;&gt;政采账号：{{ item.supplierAccessName }}&lt;/view&gt;
+							&lt;/view&gt;
+							&lt;view class=&quot;bind-button&quot;&gt;
+
+								&lt;view v-if=&quot;!item.isShow&quot;&gt;
+									&lt;view class=&quot;post-select&quot;&gt;
+										{{ getPostText(item.post) }}
+									&lt;/view&gt;
+									&lt;button size=&quot;default&quot; type=&quot;default&quot;
+										style=&quot;margin-top: 20rpx;color:#ffffff;background-color:#189f33;border-color:#ffffff;border-radius: 40rpx;height: 60rpx;display: flex;align-items: center;justify-content: center;&quot;&gt;已绑定&lt;/button&gt;
+								&lt;/view&gt;
+
+
+								&lt;view v-if=&quot;item.isShow&quot;&gt;
+									&lt;view class=&quot;post-select&quot; v-if=&quot;item.isShow&quot;&gt;
+										&lt;uni-data-select v-model=&quot;item.post&quot; :localdata=&quot;postList&quot;
+											placeholder=&quot;选择职位&quot;&gt;&lt;/uni-data-select&gt;
+									&lt;/view&gt;
+									&lt;button size=&quot;default&quot; type=&quot;default&quot; @click=&quot;submitBindCompCard(item)&quot;
+										style=&quot;margin-top: 20rpx;color:#ffffff;background-color:#4874cb;border-color:#ffffff;border-radius: 40rpx;height: 60rpx;display: flex;align-items: center;justify-content: center;&quot;&gt;提交绑定&lt;/button&gt;
+								&lt;/view&gt;
+							&lt;/view&gt;
+						&lt;/view&gt;
+					&lt;/view&gt;
+				&lt;/view&gt;
+
+				&lt;view v-if=&quot;bindCompNewShow&quot;&gt;
+					&lt;u--form labelPosition=&quot;left&quot; :model=&quot;formBindComp&quot;&gt;
+						&lt;u-form-item label=&quot;政采网账号&quot; prop=&quot;formBindComp.supplierAccessName&quot; borderBottom labelWidth='200'&gt;
+							&lt;u--input v-model=&quot;formBindComp.supplierAccessName&quot; border=&quot;none&quot;&gt;&lt;/u--input&gt;
+						&lt;/u-form-item&gt;
+						&lt;u-form-item label=&quot;职位&quot; prop=&quot;formBindComp.post&quot; borderBottom labelWidth='200'&gt;
+							&lt;uni-data-select v-model=&quot;formBindComp.post&quot; :localdata=&quot;postList&quot;
+								placeholder=&quot;选择职位&quot;&gt;&lt;/uni-data-select&gt;
+						&lt;/u-form-item&gt;
+					&lt;/u--form&gt;
+
+					&lt;!-- &lt;u-button type=&quot;success&quot;&gt;提交&lt;/u-button&gt; --&gt;
+					&lt;button size=&quot;default&quot; type=&quot;default&quot; @click=&quot;submitBindComp&quot;
+						style=&quot;margin-top: 40rpx;color:#ffffff;background-color:#4874cb;border-color:#ffffff;border-radius: 40rpx;height: 60rpx;display: flex;align-items: center;justify-content: center;&quot;&gt;提交绑定&lt;/button&gt;
+				&lt;/view&gt;
+
+			&lt;/view&gt;
+		&lt;/u-popup&gt;
+	&lt;/view&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	import {
+		getFieldList,
+		postBindEnterprise,
+		getUserBindComp,
+		getUserHaveBindComp,
+	} from &quot;@/api/user.js&quot;;
+	export default {
+		name: 'BindComp',
+		props: {
+			bindCompShow: {
+				type: Boolean,
+				default: true
+			},
+			userId: {
+				type: String,
+			},
+			itemList: {
+				type: Array,
+				default: () =&gt; []
+			}
+		},
+		computed: {
+			...mapState(&quot;user&quot;, [&quot;token&quot;, &quot;tokenExpire&quot;, &quot;userInfo&quot;]),
+			localBindCompShow: {
+				get() {
+					return this.bindCompShow;
+				},
+				set(val) {
+					this.$emit('update:bindCompShow', val)
+				}
+			},
+			itemsToDisplay() {
+				let list = this.itemList.length &gt; 0 ? this.itemList : this.supplierList;
+				// 处理 list，添加 post 和 isShow 属性
+				let processedList = list.map(item =&gt; ({
+				    ...item,
+				    post: item.post !== undefined ? item.post : '', // 添加 post 属性，保留原值或默认值为空字符串
+				    isShow: item.isShow !== undefined ? item.isShow : true // 添加 isShow 属性，默认值为 true
+				}));
+				return processedList;		
+			}
+		},
+		data() {
+			return {
+				supplierList: [],
+				bindCompNewShow: false,
+				bindCompTabList: [{
+						name: '政采企业信息绑定',
+					},
+					{
+						name: '绑定其他企业',
+					}
+				],
+				postList: [],
+				formBindComp: {
+					supplierAccessName: '',
+					post: '',
+					userId: '',
+				}
+			};
+		},
+		mounted() {
+			this.fieldListGet();
+			if (this.userInfo.id != undefined) {
+				this.userBindCompGet();
+			}
+		},
+		created() {
+			
+		},
+		methods: {
+			...mapMutations(&quot;user&quot;, [&quot;setUserInfo&quot;]),
+			async submitBindComp() {
+				this.formBindComp.userId = this.userId
+				if (!this.formBindComp.userId) {
+					this.formBindComp.userId = this.userInfo.id
+				}
+
+				if (this.formBindComp.userId == &quot;&quot;) {
+					uni.$u.toast('绑定失败，请尝试重新登陆后绑定！');
+					return;
+				}
+				if (this.formBindComp.supplierAccessName === &quot;&quot;) {
+					uni.$u.toast('政采网账号不能为空！');
+					return;
+				}
+				if (this.formBindComp.post === &quot;&quot;) {
+					uni.$u.toast('职位信息不能为空！');
+					return;
+				}
+				const {
+					code,
+					msg,
+					data
+				} = await postBindEnterprise(this.formBindComp);
+
+				if (code === 0) {
+					// console.log(data)
+					uni.$u.toast('绑定企业成功！');
+					setTimeout(() =&gt; {
+						this.$emit('close-popup');
+						uni.reLaunch({
+							url: '/pages/index/index'
+						});
+					}, 1000);
+				}
+
+			},
+			async submitBindCompCard(item) {
+				if (item.post === undefined || item.post === &quot;&quot;) {
+					uni.$u.toast('企业职位不能为空！');
+					return;
+				}
+				let userID = this.userId;
+				if (!userID) {
+					userID = this.userInfo.id
+				}
+
+				const params = {
+					supplierAccessName: item.supplierAccessName,
+					post: item.post,
+					userId: userID,
+				}
+				console.log(params)
+				const {
+					code,
+					msg,
+					data
+				} = await postBindEnterprise(params);
+				if (code === 0) {
+					// console.log(data)
+					// 更新 item 的 isShow 属性
+					this.$set(item, 'isShow', false);
+					uni.$u.toast('绑定' + item.companyName + '成功！');
+					// 更新绑定企业
+					this.userBindCompGet();
+
+				}
+			},
+			onClickOverlayClose() {
+				this.$emit('close-popup');
+			},
+			//获取用户下面的政采企业信息
+			async userBindCompGet() {
+				try {
+					// 如果resBindComp里面包含resHaveBind的数据,那么就设置该企业已经绑定好了
+					const resHaveBind = await getUserHaveBindComp();
+					const resBindComp = await getUserBindComp();
+					if (resHaveBind.code === 0 &amp;&amp; resBindComp.code === 0) {
+
+						const haveBindMap = new Map();
+						resHaveBind.data.forEach(item =&gt; {
+							haveBindMap.set(item.supplierId, item.post);
+						});
+
+						this.supplierList = resBindComp.data.map(item =&gt; {
+							if (haveBindMap.has(item.supplierId)) {
+								return {
+									...item,
+									post: haveBindMap.get(item.supplierId),
+									isShow: false
+								};
+							}
+							return item;
+						});
+
+						console.log(this.supplierList);
+					}
+				} catch (error) {
+					console.error('获取用户绑定企业信息失败', error);
+				}
+
+			},
+			//获取职位信息
+			async fieldListGet() {
+				const {
+					code,
+					msg,
+					data
+				} = await getFieldList({
+					fieldName: &quot;register_post&quot;
+				});
+				if (code === 0 &amp;&amp; data) {
+					// console.log(data)
+					this.postList = data.map(post =&gt; {
+						return {
+							value: post.dictCode,
+							text: post.dictName
+						}
+					});
+					// console.log(this.postList)
+				}
+			},
+			getPostText(postValue) {
+				const postItem = this.postList.find(post =&gt; post.value === postValue);
+				// console.log(postValue, postItem)
+				return postItem ? postItem.text : '未知职位';
+			},
+			selectTab(item) {
+				// console.log(item.name)
+				if (item.name == &quot;绑定其他企业&quot;) {
+					this.bindCompNewShow = true;
+				} else {
+					this.bindCompNewShow = false;
+				}
+			},
+		},
+	}
+&lt;/script&gt;
+
+&lt;style scoped lang=&quot;less&quot;&gt;
+	.bindCompCard {
+		width: 650rpx;
+		padding: 20rpx;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+
+	.header-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 20rpx;
+	}
+
+	.header-button {
+		position: absolute;
+		width: 80rpx;
+		top: 0;
+		right: 5px;
+		margin: 10rpx;
+	}
+
+	.header-text {
+		font-size: 36rpx;
+		margin-bottom: 10rpx;
+		text-align: center;
+		width: 100%;
+	}
+
+	.tabs {
+		width: 100%;
+	}
+
+	// ------------------------
+	.supplier-container {
+		display: flex;
+		flex-direction: column;
+		gap: 20rpx;
+		padding: 20rpx;
+		height: 600rpx;
+		overflow: auto;
+	}
+
+	.supplier-card {
+		background: #fff;
+		border-radius: 10rpx;
+		box-shadow: 0 2rpx 5rpx rgba(0, 0, 0, 0.1);
+		padding: 20rpx;
+		display: flex;
+		// flex-direction: column;
+		gap: 10rpx;
+	}
+
+	.supplier-details {
+		margin-top: 27rpx;
+		width: 360rpx;
+		display: flex;
+		flex-direction: column;
+		gap: 10rpx;
+	}
+
+	.company-name,
+	.supplier-name {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 100%;
+	}
+
+	.company-name {
+		font-size: 32rpx;
+		font-weight: bold;
+		color: #333;
+	}
+
+	.supplier-name {
+		font-size: 32rpx;
+		color: #666;
+	}
+
+	.post-select {
+		margin-top: 10rpx;
+		width: 222rpx;
+	}
+
+	.bind-button {
+		margin-left: 10rpx;
+	}
+&lt;/style&gt;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[青岛之行]]></title>
+        <id>https://dellevin.github.io/post/qing-dao-zhi-xing-xie-you/</id>
+        <link href="https://dellevin.github.io/post/qing-dao-zhi-xing-xie-you/">
+        </link>
+        <updated>2024-05-15T11:44:41.000Z</updated>
+        <content type="html"><![CDATA[<div class="gallery-page">
+        <div class="img-list" id="propotion">
+        <!-- 开始 -->
+          <div class="img-column"  ><img src="https://raw.githubusercontent.com/dellevin/BlogImgs/main/%E7%9B%B8%E5%86%8C/%E9%9D%92%E5%B2%9B%E4%B9%8B%E8%A1%8C/a30eda1535e26dd8f118931a226da87.jpg"></div><br>
+           <div class="img-column"  ><img src="https://raw.githubusercontent.com/dellevin/BlogImgs/main/%E7%9B%B8%E5%86%8C/%E9%9D%92%E5%B2%9B%E4%B9%8B%E8%A1%8C/9892492319ac7a846de6c84e4529b3c.jpg"></div><br>
+            <div class="img-column"  ><img src="https://raw.githubusercontent.com/dellevin/BlogImgs/main/%E7%9B%B8%E5%86%8C/%E9%9D%92%E5%B2%9B%E4%B9%8B%E8%A1%8C/8a638a74a6d33449519a67e9ff02a25.jpg"></div><br>
+             <div class="img-column"  ><img src="https://raw.githubusercontent.com/dellevin/BlogImgs/main/%E7%9B%B8%E5%86%8C/%E9%9D%92%E5%B2%9B%E4%B9%8B%E8%A1%8C/82a6e6666fa719d3955601defcb78c6.jpg"></div><br>
+         <div class="img-column"  ><img src="https://raw.githubusercontent.com/dellevin/BlogImgs/main/%E7%9B%B8%E5%86%8C/%E9%9D%92%E5%B2%9B%E4%B9%8B%E8%A1%8C/7e928683d6f1c0fdf1ec17a10913c5a.jpg"></div><br>
+        <div class="img-column"  ><img src="https://raw.githubusercontent.com/dellevin/BlogImgs/main/%E7%9B%B8%E5%86%8C/%E9%9D%92%E5%B2%9B%E4%B9%8B%E8%A1%8C/5a74df8fe84820a9a19c81ed9f0f27c.jpg"></div><br>
+        <div class="img-column"  ><video  controls>
+    <source src="https://github.com/dellevin/BlogImgs/raw/main/%E7%9B%B8%E5%86%8C/%E9%9D%92%E5%B2%9B%E4%B9%8B%E8%A1%8C/86a049729588c2267449fae826db55b3.mp4" type="video/mp4">
+    您的浏览器不支持 video 标签。
+</video></div><br>
+        <!-- 结束 -->
+        </div>
+</div>
+<center>流年易逝，留下的只剩唏嘘。</center>
+<style>
+         #propotion{
+            border: 1.5px;
+            width: 50%;
+            padding: 10px;
+            margin: auto;
+        }
+        .propotion img {
+            width: 100%;
+        }
+        .gallery-page {
+            margin-top: -50px;
+        }
+<pre><code>    .img-list,
+    .gallery-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+
+    .img-column {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .img-column a,
+    .gallery-column a {
+        border-bottom: 0px;
+    }
+
+    .gallery-item {
+        margin-bottom: -50px
+    }
+
+    .posts-expand .post-body .gallery-column a img {
+        height: 250px;
+        width: 300px;
+        object-fit: cover;
+    }
+&lt;/style&gt;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[mysql-explain的用法及返回字段的含义]]></title>
+        <id>https://dellevin.github.io/post/mysql-explain的用法及返回字段的含义/</id>
+        <link href="https://dellevin.github.io/post/mysql-explain的用法及返回字段的含义/">
+        </link>
+        <updated>2024-05-15T11:36:03.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="一-explain都用在哪">一 . explain都用在哪：</h4>
+<ol>
+<li>explain语句提供有关mysql如何执行语句的信息，可以处理select、delete、insert、replact和update语句。</li>
+<li>explain执行select语句中使用的每个表返回一行信息，是按照mysql在处理语句时读取他们顺序列输出中的表。</li>
+<li>对应select语句，explain会生成扩展信息，这些信息可以在explain之后通过“show warnings”查看。</li>
+</ol>
+<h4 id="二-explain返回参数详解">二 . explain返回参数详解：</h4>
+<h4 id="1-id-列数字">1. id : 列数字</h4>
+<p>越大越先执行，如果说数字一样大，那么就从上往下依次执行，id列为null的就表是这是一个结果集，不需要使用它来进行查询。</p>
+<h4 id="2-select_type列常见的有">2. select_type列,常见的有：</h4>
+<p><strong>1）simple</strong>：表示不需要union操作或者不包含子查询的简单select查询。有连接查询时，外层的查询为simple，且只有一个</p>
+<p><strong>2）primary</strong>：一个需要union操作或含有子查询的select，位于最外层的单位查询的select_type即为primary。且只有一个</p>
+<p><strong>3）union</strong>：union连接的两个select查询，第一个查询是dervied派生表，除了第一个表外，第二个以后的表select_type都是union</p>
+<p><strong>4）dependent union</strong>：与union一样，出现在union 或union all语句中，但是这个查询要受到外部查询的影响</p>
+<p><strong>5）union result</strong>：包含union的结果集，在union和union all语句中,因为它不需要参与查询，所以id字段为null</p>
+<p><strong>6）subquery</strong>：除了from句中包含的子查询外，其他地方出现的子查询都可能是subquery</p>
+<p><strong>7）dependent subquery</strong>：与dependent union类似，表示这个subquery的查询要受到外部表查询的影响</p>
+<p><strong>8）derived</strong>：from字句中出现的子查询，也叫做派生表，其他数据库中可能叫做内联视图或嵌套select</p>
+<h4 id="3-table-表名">3. table : 表名</h4>
+<p>显示的查询表名，如果查询使用了别名，那么这里显示的是别名，如果不涉及对数据表的操作，那么这显示为null，如果显示为尖括号括起来的就表示这个是临时表，后边的N就是执行计划中的id，表示结果来自于这个查询产生。如果是尖括号括起来的&lt;union M,N&gt;，与类似，也是一个临时表，表示这个结果来自于union查询的id为M,N的结果集。</p>
+<h4 id="4-type-访问类型">4 . type : 访问类型</h4>
+<p>依次从好到差：system，const，eq_ref，ref，fulltext，ref_or_null，unique_subquery，index_subquery，range，index_merge，index，ALL，除了all之外，其他的type都可以使用到索引，除了index_merge之外，其他的type只可以用到一个索引</p>
+<p><strong>1) system：</strong> 表中只有一行数据或者是空表，且只能用于myisam和memory表。如果是Innodb引擎表，type列在这个情况通常都是all或者index</p>
+<p><strong>2) const：</strong> 使用唯一索引或者主键，返回记录一定是1行记录的等值where条件时，通常type是const。其他数据库也叫做唯一索引扫描</p>
+<p><strong>3) eq_ref：</strong> 出现在要连接过个表的查询计划中，驱动表只返回一行数据，且这行数据是第二个表的主键或者唯一索引，且必须为not null，唯一索引和主键是多列时，只有所有的列都用作比较时才会出现eq_ref</p>
+<p><strong>4) ref：</strong> 不像eq_ref那样要求连接顺序，也没有主键和唯一索引的要求，只要使用相等条件检索时就可能出现，常见与辅助索引的等值查找。或者多列主键、唯一索引中，使用第一个列之外的列作为等值查找也会出现，总之，返回数据不唯一的等值查找就可能出现。</p>
+<p><strong>5) fulltext：</strong> 全文索引检索，要注意，全文索引的优先级很高，若全文索引和普通索引同时存在时，mysql不管代价，优先选择使用全文索引</p>
+<p><strong>6) ref_or_null：</strong> 与ref方法类似，只是增加了null值的比较。实际用的不多。</p>
+<p><strong>7) unique_subquery：</strong> 用于where中的in形式子查询，子查询返回不重复值唯一值</p>
+<p><strong>8) index_subquery：</strong> 用于in形式子查询使用到了辅助索引或者in常数列表，子查询可能返回重复值，可以使用索引将子查询去重。</p>
+<p><strong>9) range：</strong> 索引范围扫描，常见于使用&gt;,&lt;,is null,between ,in ,like等运算符的查询中。</p>
+<p><strong>10) index_merge：</strong> 表示查询使用了两个以上的索引，最后取交集或者并集，常见and ，or的条件使用了不同的索引，官方排序这个在ref_or_null之后，但是实际上由于要读取所个索引，性能可能大部分时间都不如range</p>
+<p><strong>11) index：</strong> 索引全表扫描，把索引从头到尾扫一遍。出现index是sql使用了索引但是没用通过索引进行过滤，一般是使用了覆盖索引或者是利用索引进行了排序分组。</p>
+<p><strong>12) all :</strong>  这个就是全表扫描数据文件，然后再在server层进行过滤返回符合要求的记录。（这一般比较糟糕，应该尽量避免）</p>
+<h4 id="5-possible_keys">5 . possible_keys:</h4>
+<p>查询可能使用到的索引都会在这里列出来,但不一 定被查询实际使用。</p>
+<h4 id="6-key">6 . key :</h4>
+<p>查询真正使用到的索引，select_type为index_merge时，这里可能出现两个以上的索引，其他的select_type这里只会出现一个。如果为NULL，则没有使用索引。</p>
+<h4 id="7-key_len">7 . key_len :</h4>
+<p>表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度。 key_len 字段能够帮你检查是否充分的 利用上了索引。ken_len 越长，说明索引使用的越充分。</p>
+<h4 id="8-ref">8 . ref :</h4>
+<p>如果是使用的常数等值查询，这里会显示const，如果是连接查询，被驱动表的执行计划这里会显示驱动表的关联字段，如果是条件使用了表达式或者函数，或者条件列发生了内部隐式转换，这里可能显示为func</p>
+<h4 id="9-rows">9 . rows :</h4>
+<p>这里是执行计划中估算的扫描行数，不是精确值</p>
+<h4 id="10-extra">10 . extra :</h4>
+<p>重点关注：using filesort和using temporary</p>
+<p><strong>1) distinct：</strong> 在select部分使用了distinc关键字</p>
+<p><strong>2) no tables used：</strong> 不带from字句的查询或者From dual查询</p>
+<p><strong>3) using filesort：</strong> 排序时无法使用到索引时，就会出现这个。常见于order by和group by语句中。（看到这个的时候，查询就需要优化了）</p>
+<p><strong>4) using index：</strong> 查询时不需要回表查询，直接通过索引就可以获取查询的数据。</p>
+<p><strong>5) using join buffer（block nested loop），using join buffer（batched key accss）：</strong> 5.6.x之后的版本优化关联查询的BNL，BKA特性。主要是减少内表的循环数量以及比较顺序地扫描查询。</p>
+<p><strong>6) using sort_union，using_union，using intersect，using sort_intersection：</strong></p>
+<p>​     <strong>A:</strong>  using intersect：表示使用and的各个索引的条件时，该信息表示是从处理结果获取交集</p>
+<p>​     <strong>B:</strong>  using union：表示使用or连接各个使用索引的条件时，该信息表示从处理结果获取并集</p>
+<p>​     <strong>C:</strong>  using sort_union和using sort_intersection：与前面两个对应的类似，只是他们是出现在用and和or查询信息量大时，先查询主键，然后进行排序合并后，才能读取记录并返回。</p>
+<p><strong>7) using temporary：</strong> 表示使用了临时表存储中间结果。临时表可以是内存临时表和磁盘临时表，执行计划中看不出来，需要查看status变量，used_tmp_table，used_tmp_disk_table才能看出来。这通常发生在对不同的列集进行ORDER BY上，而不是GROUP BY上。（看到这个的时候，查询需要优化了）</p>
+<p><strong>8) using where：</strong>  表示存储引擎返回的记录并不是所有的都满足查询条件，需要在server层进行过滤。查询条件中分为限制条件和检查条件，5.6之前，存储引擎只能根据限制条件扫描数据并返回，然后server层根据检查条件进行过滤再返回真正符合查询的数据。5.6.x之后支持ICP特性，可以把检查条件也下推到存储引擎层，不符合检查条件和限制条件的数据，直接不读取，这样就大大减少了存储引擎扫描的记录数量。extra列显示using index condition</p>
+<p><strong>9) firstmatch(tb_name)：</strong> 5.6.x开始引入的优化子查询的新特性之一，常见于where字句含有in()类型的子查询。如果内表的数据量比较大，就可能出现这个</p>
+<p><strong>10) loosescan(m…n)：</strong> 5.6.x之后引入的优化子查询的新特性之一，在in()类型的子查询中，子查询返回的可能有重复记录时，就可能出现这个</p>
+<p><strong>11）no exists :</strong> MYSQL优化了LEFT JOIN，一旦它找到了匹配LEFT JOIN标准的行，就不再搜索了</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[我，一条新时代的裹脚布]]></title>
+        <id>https://dellevin.github.io/post/我一条新时代的裹脚布/</id>
+        <link href="https://dellevin.github.io/post/我一条新时代的裹脚布/">
+        </link>
+        <updated>2024-05-15T10:56:54.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>我，一条新时代的裹脚布，在这个纵欲的社会坚守着自己的底线。在追求金钱的世界苟活着。</strong></p>
+<p>事情起因源自于前几天和学姐的聊天。偶然间谈到了渣男渣女，因为和她聊天让我有种奇怪的感觉。最后果然不出我所料，她和我说，自己和前男友在清明的时候上床了，而且不止一次，之前还有很多次。我的脑中宛如炸雷，想到这种靡乱就在我的身边时时刻刻的发生着，我就难免耳脸赤红。分手了，和前男友？如果这不算是炸裂的，和她继续聊天后，她和我说疼，我本以为是哪里磕到了，结果她和我说“下面觉撕裂了”我真的很愤怒，我想骂她“你要真寂寞了，可以拿根黄瓜”，可是我没这么说。不过我还是难以接受这种反差感，那一刻所有的美好幻想都在我的梦中破裂，一个清新青春的学姐和我说出这种话，很难接受。宛若天上的仙子堕入凡尘，多了些许的烟火气。这就是爱情给人带来的改变吗？真的太可怕了。我的思想还停留在择一人终一生的围成当中，可是我这些思想在她的眼中就像一个小孩认真说着未来的梦想，幼稚而又可笑。</p>
+<p>我承认我是有些清高了，但我还是继续这样。我对感情的不信任对感情的失望，源自于我本身的经历。被绿过好几次，被误会过，在那之后也骗过其他人，我一直认为自己不是个好人，但我会坚守我的底线绝不动摇，但是能坚持多久呢？能活多久呢？我明白我未来终会向现实低头的。我相信一个人能克制自己的欲望，那这个人是强大的。但是在物欲横流的社会，有几人能坚持呢？“乱花渐欲迷人眼”。进去了，再脱身就难了。我还是希望我能坚持自己的思想，卑微而又伟大，做一个拯救自己的英雄。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[简单优化-针对大数据查询的一些小思路]]></title>
+        <id>https://dellevin.github.io/post/简单优化-针对大数据查询的一些小思路/</id>
+        <link href="https://dellevin.github.io/post/简单优化-针对大数据查询的一些小思路/">
+        </link>
+        <updated>2024-04-10T00:35:14.000Z</updated>
+        <content type="html"><![CDATA[<p>我的member_user里面有352599条数据，gp_project里面有1211974条数据，请问该如何优化这个sql的查询效率</p>
+<pre><code class="language-mysql">SELECT gp.*, mu.linkmanName , mu.linkmanPhone, mu.legalPersonName, mu.legalPersonPhone, mu.address, mu.registerArea FROM gp_project gp LEFT JOIN member_user mu ON mu.supplierId = gp.supplier_id WHERE DATE(gp.publicity_time) &gt;= '2024-04-03' AND DATE(gp.publicity_time) &lt;= '2024-04-07' and mu.deleted = 0
+</code></pre>
+<p>针对这样的数据，我的数据表里面数据太多，导致了查询需要512秒的时间，而且这仅仅是两个表的关联，之后还需要关联四五个表组成一条查询语句，如果仅在mysql里面查，未免有些太为难服务器了。因为平常找数据用的sql里面的in语法比较多，所以尝试了一下用关联字段in数据的情况，突然发现，这样还挺快，主要是因为关联字段是索引，所以比较快，通过单表查出数据，然后将关键字段提取出来，in到另一个表里面快速查询，最后拼接字段，来实现数据的查询结果。</p>
+<p>另外因为涉及到多个循环，如果仅仅遵循  循环的外小内大原则，这样未免要写多个循环，降低了程序的运行效率多个O(n^2)的程序跑的，这样未免太致命了。改用map的key和value对照关系这样通过一个循环+map的方式降低时间复杂度为O(1)  ，这样就会快很多</p>
+<p>下面是操作案例</p>
+<p><strong>mybaits部分</strong>（单个案例）</p>
+<pre><code class="language-mybatis">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
+&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;  
+  
+&lt;mapper namespace=&quot;com.xyjq.mapper.db1.LoginMemberUserDao&quot;&gt;  
+  
+    &lt;!--根据供应商id判断是否为注册用户 --&gt;  
+    &lt;select id=&quot;isRegisterSupplier&quot; resultType=&quot;com.xyjq.entity.db1.LoginMemberUserEntity&quot;&gt;  
+        SELECT supplierId,createTime FROM `login_member_user` WHERE supplierId in  
+        &lt;foreach collection=&quot;supplierIdList&quot; item=&quot;supplierId&quot; open=&quot;(&quot; separator=&quot;,&quot; close=&quot;)&quot;&gt;  
+            #{supplierId}  
+        &lt;/foreach&gt;  
+    &lt;/select&gt;  
+  
+&lt;/mapper&gt;
+
+</code></pre>
+<p><strong>业务层部分</strong></p>
+<pre><code class="language-java">List&lt;GpProjectEntity&gt; list = baseDao.queryList(params);  
+  
+// 提取查询结果里面的supplierID的set集合  
+Set&lt;Integer&gt; supplierIdList =  list.stream()  
+                            .map(GpProjectEntity::getSupplierId)  
+                            .filter(Objects::nonNull)  
+                            .collect(Collectors.toSet());  
+SimpleDateFormat inputFormat = new SimpleDateFormat(&quot;yyyyMMddHHmmss&quot;);  
+SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);  
+// 以下遍历中防止嵌套for循环O(n^2)，使用map对象存储降低时间复杂度为O(1)  
+// 优化设置供应商信息  
+Map&lt;String, MemberUserEntity&gt; memberUserInfoMap = new HashMap&lt;&gt;();  
+memberUserDao.getMemberUserInfo(supplierIdList).forEach(memberUser -&gt; memberUserInfoMap.put(memberUser.getSupplierId().toString(), memberUser));  
+// 设置供应商的工商地址信息  
+Map&lt;String, SupplierBussinessInformationEntity&gt; supplierBusinessInfoMap = new HashMap&lt;&gt;();  
+supplierBussinessInformationDao.getSupplierBusinessInfo(supplierIdList).forEach(supplierBusinessInfo -&gt; supplierBusinessInfoMap.put(supplierBusinessInfo.getSupplierId().toString(), supplierBusinessInfo));  
+// 设置是否是注册用户  
+Map&lt;String, LoginMemberUserEntity&gt; loginMemberUserMap = new HashMap&lt;&gt;();  
+loginMemberUserDao.isRegisterSupplier(supplierIdList).forEach(loginMemberUser -&gt; loginMemberUserMap.put(loginMemberUser.getSupplierId().toString(), loginMemberUser));  
+// 设置是否有融资需求  
+Map&lt;String, String&gt; financingNeedsMap = new HashMap&lt;&gt;();  
+// 根据搜索结果，如果key一样就拼接value  
+financingNeedsDao.getCompFinancingNeeds(supplierIdList).forEach(financingNeeds -&gt; {  
+    String key = financingNeeds.getSupplierId();  
+    String value = FinancingStatus.getDescriptionByCode(financingNeeds.getFinancingProgress()) + &quot;(&quot; + financingNeeds.getCreateTime() + &quot;)&quot;;  
+    financingNeedsMap.merge(key, value, (oldValue, newValue) -&gt; oldValue + &quot;, &quot; + newValue);  
+});  
+  
+for (GpProjectEntity project : list) {  
+    // 设置项目名称  
+    if (project.getAgName() != null &amp;&amp; !project.getAgName().isEmpty()) {  
+        project.setProjectNameMergeAgBid(project.getAgName());  
+    } else if (project.getJatTpProName() != null &amp;&amp; !project.getJatTpProName().isEmpty()) {  
+        project.setProjectNameMergeAgBid(project.getJatTpProName());  
+    }  
+    // 设置项目金额  
+    if (project.getAgTotalMoney() != null) {  
+        project.setProjectMoneyMergeAgBid(project.getAgTotalMoney());  
+    } else {  
+        project.setProjectMoneyMergeAgBid(project.getWinPriceRevised());  
+    }  
+    // 设置项目的日期  
+    if (project.getAgSignDate() != null) {  
+        Date date = null;  
+        try {  
+            date = inputFormat.parse(project.getAgSignDate());  
+        } catch (ParseException e) {  
+            throw new RuntimeException(e);  
+        }  
+        project.setProjectDateMergeAgBid(dateFormat.format(date));  
+    } else {  
+        project.setProjectDateMergeAgBid( dateFormat.format(project.getJatWinTime()) );  
+    }  
+  
+    String supplierId = project.getSupplierId().toString();  
+    // 设置供应商信息  
+    MemberUserEntity memberUser = memberUserInfoMap.get(supplierId);  
+    if (memberUser != null) {  
+        project.setProjectLinkManName(memberUser.getLinkmanName());  
+        project.setProjectLinkManPhone(memberUser.getLinkmanPhone());  
+        project.setProjectLegalPersonName(memberUser.getLegalPersonName());  
+        project.setProjectLegalPersonPhone(memberUser.getLegaPersonPhone());  
+        project.setProjectAddress(memberUser.getAddress());  
+        project.setProjectRegisterArea(memberUser.getRegisterArea());  
+    }  
+    // 设置工商信息省市区  
+    SupplierBussinessInformationEntity supplierBussinessInformation = supplierBusinessInfoMap.get(supplierId);  
+    if (supplierBussinessInformation != null) {  
+        project.setProjectProvince(supplierBussinessInformation.getProvince());  
+        project.setProjectCity(supplierBussinessInformation.getCity());  
+        project.setProjectDistrict(supplierBussinessInformation.getDistrict());  
+    }  
+    // 设置是否是注册用户  
+    LoginMemberUserEntity loginMemberUser = loginMemberUserMap.get(supplierId);  
+    if (loginMemberUser != null) {  
+        project.setProjectIsRegisterSupplier(&quot;已注册（&quot; + dateFormat.format(loginMemberUser.getCreateTime()) + &quot;)&quot;);  
+    }  
+    // 设置融资历史记录  
+    String financingNeeds = financingNeedsMap.get(supplierId);  
+    if (financingNeeds != null) {  
+        project.setProjectFinancingNeeds(financingNeeds);  
+    }  
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[将同一层级下面的国标行业分类转换成父包含子的形式]]></title>
+        <id>https://dellevin.github.io/post/将同一层级下面的国标行业分类转换成父包含子的形式/</id>
+        <link href="https://dellevin.github.io/post/将同一层级下面的国标行业分类转换成父包含子的形式/">
+        </link>
+        <updated>2024-02-22T05:43:40.000Z</updated>
+        <content type="html"><![CDATA[<p>这是一开始的形式（部分）</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: &quot;A&quot;,
+    &quot;name&quot;: &quot;农、林、牧、渔业&quot;,
+    &quot;pid&quot;: null,
+    &quot;level&quot;: &quot;0&quot;,
+    &quot;desc&quot;: &quot;本门类包括 01～05 大类&quot;
+  },
+  {
+    &quot;id&quot;: &quot;A01&quot;,
+    &quot;name&quot;: &quot;农业&quot;,
+    &quot;pid&quot;: &quot;A&quot;,
+    &quot;level&quot;: &quot;1&quot;,
+    &quot;desc&quot;: &quot;指对各种农作物的种植&quot;
+  },
+  {
+    &quot;id&quot;: &quot;A011&quot;,
+    &quot;name&quot;: &quot;谷物种植&quot;,
+    &quot;pid&quot;: &quot;A01&quot;,
+    &quot;level&quot;: &quot;2&quot;,
+    &quot;desc&quot;: &quot;指以收获籽实为主的农作物的种植，包括稻 谷、小麦、玉米等农作物的种植和作为饲料和工业原料的谷物的种植&quot;
+  },
+  {
+    &quot;id&quot;: &quot;A0111&quot;,
+    &quot;name&quot;: &quot;稻谷种植&quot;,
+    &quot;pid&quot;: &quot;A011&quot;,
+    &quot;level&quot;: &quot;3&quot;,
+    &quot;desc&quot;: null
+  },
+  {
+    &quot;id&quot;: &quot;A0112&quot;,
+    &quot;name&quot;: &quot;小麦种植&quot;,
+    &quot;pid&quot;: &quot;A011&quot;,
+    &quot;level&quot;: &quot;3&quot;,
+    &quot;desc&quot;: null
+  },
+  {
+    &quot;id&quot;: &quot;A0113&quot;,
+    &quot;name&quot;: &quot;玉米种植&quot;,
+    &quot;pid&quot;: &quot;A011&quot;,
+    &quot;level&quot;: &quot;3&quot;,
+    &quot;desc&quot;: null
+  },
+  {
+    &quot;id&quot;: &quot;A0119&quot;,
+    &quot;name&quot;: &quot;其他谷物种植&quot;,
+    &quot;pid&quot;: &quot;A011&quot;,
+    &quot;level&quot;: &quot;3&quot;,
+    &quot;desc&quot;: null
+  },
+  {
+    &quot;id&quot;: &quot;A012&quot;,
+    &quot;name&quot;: &quot;豆类、油料和薯类种植&quot;,
+    &quot;pid&quot;: &quot;A01&quot;,
+    &quot;level&quot;: &quot;2&quot;,
+    &quot;desc&quot;: null
+  }
+]
+</code></pre>
+<p>然后将他们转换成这种形式</p>
+<pre><code class="language-json">[
+    {
+        &quot;id&quot;: &quot;A&quot;,
+        &quot;name&quot;: &quot;农、林、牧、渔业&quot;,
+        &quot;pid&quot;: null,
+        &quot;level&quot;: &quot;0&quot;,
+        &quot;desc&quot;: &quot;本门类包括 01～05 大类&quot;,
+        &quot;children&quot;: [
+            {
+                &quot;id&quot;: &quot;A01&quot;,
+                &quot;name&quot;: &quot;农业&quot;,
+                &quot;pid&quot;: &quot;A&quot;,
+                &quot;level&quot;: &quot;1&quot;,
+                &quot;desc&quot;: &quot;指对各种农作物的种植&quot;,
+                &quot;children&quot;: [
+                    {
+                        &quot;id&quot;: &quot;A011&quot;,
+                        &quot;name&quot;: &quot;谷物种植&quot;,
+                        &quot;pid&quot;: &quot;A01&quot;,
+                        &quot;level&quot;: &quot;2&quot;,
+                        &quot;desc&quot;: &quot;指以收获籽实为主的农作物的种植，包括稻 谷、小麦、玉米等农作物的种植和作为饲料和工业原料的谷物的种植&quot;,
+                        &quot;children&quot;: [
+                            {
+                                &quot;id&quot;: &quot;A0111&quot;,
+                                &quot;name&quot;: &quot;稻谷种植&quot;,
+                                &quot;pid&quot;: &quot;A011&quot;,
+                                &quot;level&quot;: &quot;3&quot;,
+                                &quot;desc&quot;: null
+                            },
+                            {
+                                &quot;id&quot;: &quot;A0112&quot;,
+                                &quot;name&quot;: &quot;小麦种植&quot;,
+                                &quot;pid&quot;: &quot;A011&quot;,
+                                &quot;level&quot;: &quot;3&quot;,
+                                &quot;desc&quot;: null
+                            }
+</code></pre>
+<p>下面是python代码</p>
+<pre><code class="language-python"># 划分同一个数据下面的各种类别
+import json
+
+# 读取文件并解析 JSON 数据
+def read_json_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+    return data
+
+# 写入到 JSON 文件
+def write_json_file(data, file_path):
+    with open(file_path, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+
+def build_hierarchy(categories):
+    # 创建一个空的字典列表，用于存储最终结果
+    result = []
+
+    # 创建字典，用于将分类按照 id 分组
+    category_map = {}
+    for category in categories:
+        category_map[category['id']] = category
+
+    # 遍历分类列表，构建分类树
+    for category in categories:
+        # 如果当前分类的 pid 为空，则将其视为一级分类
+        if category['pid'] is None:
+            result.append(category)
+        # 否则，将当前分类添加到其父分类的 children 列表中
+        else:
+            parent_id = category['pid']
+            parent_category = category_map.get(parent_id)
+            if parent_category is not None:
+                if 'children' not in parent_category:
+                    parent_category['children'] = []
+                parent_category['children'].append(category)
+
+    return result
+
+
+
+
+# 读取数据
+categories = read_json_file('D:\ALL_Proj\PyCharm_Proj\pythonProjectDemo01\无标题.json')
+# 构建分类树
+result = build_hierarchy(categories)
+# 写入数据
+write_json_file(result, 'D:\ALL_Proj\PyCharm_Proj\pythonProjectDemo01\Aresult.json')
+
+print(&quot;文件写入成功&quot;)
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[爱一个人真的好难]]></title>
+        <id>https://dellevin.github.io/post/爱一个人真的好难/</id>
+        <link href="https://dellevin.github.io/post/爱一个人真的好难/">
+        </link>
+        <updated>2024-02-19T09:08:44.000Z</updated>
+        <content type="html"><![CDATA[<p>当我经历了一份全身心都投入的失败感情后，突然间发现，我好像失去了爱一个人的能力。或许是哀莫大于心死，我生活的一切都伴随着我的心变得枯燥乏味。我像一个机器人一样的活着，每天执行着三点一线的指令。胖了，丑了，似乎活着的意义只剩下了让自己开心 。以前我是为她而活，昂扬向上，努力刻苦。现在为自己而活，我好像好像失去了动力一样。</p>
+<p>我不断的努力去尝试爱一个人，喜欢一个人，可是到头来却发现，我喜欢的只是她们的外表。从未触及她们的灵魂，我是卑鄙的，挺喜欢的名义坠入声色犬马的世界。</p>
+<p>好想爱一个人，去灵魂的触碰，去心与心的相拥，想去试试那种奋不顾身的感觉，粉身碎骨也无所谓了。。。可是，我又怎么该劝自己呢？</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[前端实现div的高度拖拽改变]]></title>
+        <id>https://dellevin.github.io/post/前端实现div的高度拖拽改变/</id>
+        <link href="https://dellevin.github.io/post/前端实现div的高度拖拽改变/">
+        </link>
+        <updated>2023-11-06T00:35:42.000Z</updated>
+        <content type="html"><![CDATA[<p>实现代码</p>
+<h2 id="html">html</h2>
+<pre><code class="language-vue">        &lt;div class=&quot;contactPerson_bottom_div&quot; id=&quot;fuDiv&quot;&gt;
+            &lt;div class=&quot;dragDiv&quot; @mousedown=&quot;dragEagle&quot; &gt;
+                    &lt;el-icon&gt;&lt;SemiSelect /&gt;&lt;/el-icon&gt;
+            &lt;/div&gt;
+         &lt;/div&gt;
+
+</code></pre>
+<h2 id="script">script</h2>
+<pre><code class="language-javascript">dragEagle(e) {
+            var targetDiv = document.getElementById('fuDiv');
+            //得到点击时该地图容器的宽高：
+            var targetDivHeight = targetDiv.offsetHeight;
+            var startX = e.clientX;
+            var startY = e.clientY;
+            document.onmousemove = function (e) {
+                e.preventDefault();
+                //得到鼠标拖动的宽高距离：取绝对值
+                var distY = Math.abs(e.clientY - startY);
+
+                //往上方拖动：
+                if (e.clientY &lt; startY) {
+                    targetDiv.style.height = (targetDivHeight + distY) + 'px';
+                }
+
+                //往下方拖动：
+                if (e.clientX &lt; startX &amp;&amp; e.clientY &gt; startY) {
+                    targetDiv.style.height = targetDivHeight - distY + 'px';
+                }
+
+                if (parseInt(targetDiv.style.height) &gt;= 800) {
+                    targetDiv.style.height = 800 + 'px';
+                }
+                if (parseInt(targetDiv.style.height) &lt;= 320) {
+                    targetDiv.style.height = 320 + 'px';
+                }
+            }
+            document.onmouseup = function () {
+                document.onmousemove = null;
+            }
+        },
+</code></pre>
+<h2 id="css">css</h2>
+<pre><code class="language-css">.contactPerson_bottom_div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top-style: solid;
+    border-color: black;
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    z-index: 99;
+    height: 320px;
+    overflow-y: auto;/* 允许垂直滚动 */
+}
+.dragDiv{
+ 	height:10px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;   
+}
+.dragDiv:hover {
+    /* background-color: #666; */
+    cursor: pointer;/* 在hover的时候，鼠标指针变成手 */
+}
+</code></pre>
+<p>首先针对需要设置的div添加一个id，再通过getElementById获取到目标div。</p>
+<p>然后在内部添加一个div，可以设置成自己想要的形式，做明显的标记使用。针对这个div设置操作活动@mousedown。也就是当鼠标按下去的时候调用此dragEagle方法，在此之前一定要传入对象参数e。</p>
+<p><code>var targetDivHeight = targetDiv.offsetHeight;</code>: 这行代码获取了目标 <code>div</code> 元素的当前高度，并将其存储在 <code>targetDivHeight</code> 变量中。</p>
+<p><code>var startX = e.clientX;</code> 和 <code>var startY = e.clientY;</code>: 这两行代码分别记录了鼠标点击位置的横坐标（X坐标）和纵坐标（Y坐标），用于后续计算鼠标拖动的距离。</p>
+<p><code>document.onmousemove = function (e) { ... }</code>: 这是一个鼠标移动事件处理程序，当用户按住鼠标左键并移动时，会触发这个事件处理程序。在这个处理程序中，计算了鼠标拖动的距离，并根据拖动的方向来改变目标 <code>div</code> 元素的高度。</p>
+<ul>
+<li><code>e.preventDefault();</code>: 这一行代码用于防止浏览器默认的拖拽行为，确保我们自己的逻辑生效。</li>
+<li>通过比较鼠标当前的 <code>e.clientY</code> 和初始点击时的 <code>startY</code> 来计算垂直方向上的拖动距离 <code>distY</code>。</li>
+<li>接下来的条件判断分别处理向上拖动和向下拖动的情况。如果鼠标向上拖动，就增加目标 <code>div</code> 的高度，如果鼠标向下拖动，就减小目标 <code>div</code> 的高度。这样可以实现调整高度的效果。</li>
+<li>最后的两个条件判断用于限制目标 <code>div</code> 的最小和最大高度，以避免高度超出一定范围</li>
+</ul>
+<p><code>document.onmouseup = function () { ... }</code>: 这是鼠标释放事件处理程序，在鼠标左键释放时触发。它用于清除鼠标移动事件处理程序，即当鼠标释放后停止拖动。</p>
+<p>在这之中</p>
+<pre><code class="language-js">                if (parseInt(targetDiv.style.height) &gt;= 800) {
+                    targetDiv.style.height = 800 + 'px';
+                }
+                if (parseInt(targetDiv.style.height) &lt;= 320) {
+                    targetDiv.style.height = 320 + 'px';
+                }
+</code></pre>
+<p>这一段是限制div拖动的最大高度和最小高度</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[mysql的连接函数]]></title>
+        <id>https://dellevin.github.io/post/mysql的连接函数/</id>
+        <link href="https://dellevin.github.io/post/mysql的连接函数/">
+        </link>
+        <updated>2023-11-03T14:08:33.000Z</updated>
+        <content type="html"><![CDATA[<p>今天遇到了一个简单的场景，需要sql连接两个字段显示。</p>
+<p>语法是这样的</p>
+<pre><code class="language-mysql">SELECT CONCAT_WS(' ',snh.userneeds, snh.beizhu) AS connect_info  ,snh.createTime, lmu.createTime as regTime
+FROM  `supplier_needs_history` as snh
+LEFT JOIN member_user as mu
+ON snh.userId = mu.id
+LEFT JOIN login_member_user as lmu
+on mu.companyCode  = lmu.companyCode
+WHERE mu.companyName ='诚润建工集团有限公司'
+ORDER BY snh.createTime DESC
+LIMIT 3;
+</code></pre>
+<p>一开始用的是CONCA函数，但是当时出现了以下的情况</p>
+<figure data-type="image" tabindex="1"><img src="https://dellevin.github.io/post-images/1699020545116.png" alt="" loading="lazy"></figure>
+<p>也就是说，当我连接的两个字段里面其中一个为null的时候，拼接后的结果也是null</p>
+<p>在查询之后使用了CONCAT_WS函数</p>
+<p>这是结果</p>
+<figure data-type="image" tabindex="2"><img src="https://dellevin.github.io/post-images/1699020551528.png" alt="" loading="lazy"></figure>
+<ol>
+<li>
+<p><code>CONCAT()</code>: <code>CONCAT()</code> 函数用于拼接两个或多个字符串。</p>
+<pre><code class="language-sql">SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM employees;
+</code></pre>
+</li>
+<li>
+<p><code>CONCAT_WS()</code>: <code>CONCAT_WS()</code> 函数用于拼接字符串，并在每个字符串之间插入指定的分隔符。</p>
+<pre><code class="language-sql">SELECT CONCAT_WS(', ', last_name, first_name) AS full_name FROM employees;
+</code></pre>
+</li>
+<li>
+<p><code>CONCAT_NULL_YIELDS_NULL</code>: 这是 MySQL 的系统变量，用于控制拼接操作的行为。如果设置为 <code>ON</code>（默认值），当任何一个操作数为 <code>NULL</code> 时，拼接结果将为 <code>NULL</code>。如果设置为 <code>OFF</code>，则不会将 <code>NULL</code> 视为 <code>NULL</code>。</p>
+</li>
+<li>
+<p>字符串运算符 (<code>||</code>): MySQL 支持标准 SQL 中的字符串拼接运算符 <code>||</code>。</p>
+<pre><code class="language-sql">SELECT first_name || ' ' || last_name AS full_name FROM employees;
+</code></pre>
+</li>
+</ol>
+<p>这些函数和运算符允许您在 SQL 查询中执行字符串拼接操作。您可以根据自己的需求选择适当的函数或运算符。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[WPS-excel向下选中指定行数并填充根据公式计算好的数据]]></title>
+        <id>https://dellevin.github.io/post/WPS-excel向下选中指定行数并填充根据公式计算好的数据/</id>
+        <link href="https://dellevin.github.io/post/WPS-excel向下选中指定行数并填充根据公式计算好的数据/">
+        </link>
+        <updated>2023-10-22T07:52:25.000Z</updated>
+        <content type="html"><![CDATA[<p>工作中用到了数据库和excel相结合的用法，来针对我这种mysql和excle都半斤八两的人。在mysql中针对数据字段的拼接，用的还不是很熟悉，所以结合了一下excel，但是数据量又很大，在网上找了好多办法，终于找到一个相对适应于自己的使用场景的。</p>
+<p>先从MySQL中搜索到对应的数据条目</p>
+<pre><code class="language-mysql">SELECT 
+snh.id,
+mu.companyName AS '企业名',mu.supplierId AS '供应商id'
+,snh.userneeds AS '用户需求' , snh.refuse AS '拒绝原因' ,snh.beizhu AS '备注', snh.createTime AS '创建时间'
+,au.`name` AS '创建者'
+FROM `表名` as snh 
+LEFT JOIN member_user AS mu ON snh.userId = mu.id
+LEFT JOIN admin_user AS au on snh.createUser = au.id
+ORDER BY snh.createTime DESC
+</code></pre>
+<p>然后用navicate导出excel表</p>
+<p>导出之后新建字段，拼入自己的excle的函数</p>
+<pre><code class="language-bash">=CONCAT(&quot;用户需求:&quot;, IF(D2&lt;&gt;&quot;&quot;, D2, &quot;无&quot;), &quot; - 拒绝原因:&quot;, IF(E2&lt;&gt;&quot;&quot;, E2, &quot;无&quot;), &quot; - 备注:&quot;, IF(F2&lt;&gt;&quot;&quot;, F2, &quot;无&quot;))
+</code></pre>
+<p><strong>在左上角选择自己需要到的行数</strong></p>
+<figure data-type="image" tabindex="1"><img src="https://dellevin.github.io/post-images/1697961221169.png" alt="" loading="lazy"></figure>
+<p><strong>选中之后，按住ctrl+enter（回车）</strong></p>
+<p><strong>按住ctrl+D 即可填充好计算的结果</strong></p>
+<p>然后就可以填充完毕了，当然在小数据量的时候直接下拉就行，这种方式适合数据量相对大一丢i都的。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[FRP内网穿透的使用]]></title>
+        <id>https://dellevin.github.io/post/FRP内网穿透的使用/</id>
+        <link href="https://dellevin.github.io/post/FRP内网穿透的使用/">
+        </link>
+        <updated>2023-07-30T12:57:00.000Z</updated>
+        <content type="html"><![CDATA[<p>今天还好，算是吧frp搞明白了些许，有些时候，一些知识搞不懂， 也许睡醒了就能搞明白了</p>
+<p>现在简单记录一下frp的简单使用</p>
+<h2 id="frp是什么">frp是什么</h2>
+<p>简单地说，frp就是一个反向代理软件，它体积轻量但功能很强大，可以<strong>使处于内网或防火墙后的设备对外界提供服务</strong>，它支持HTTP、TCP、UDP等众多协议。我们今天仅讨论TCP和UDP相关的内容。</p>
+<p>项目地址：https://github.com/fatedier/frp</p>
+<p>其中frps是服务端的配置，frpc是客户端的配置，每个都有三个文件，服务端只保留服务端的三个，客户端只保留客户端的三个即可。</p>
+<p><strong>Windows客户端启动方式</strong>，打开当前文件夹，输入以下命令</p>
+<pre><code class="language-bash">frpc -c ./frpc.ini
+</code></pre>
+<p><strong>Linux服务端启动方式</strong>，打开当前文件夹，输入以下命令</p>
+<pre><code class="language-bash">./frps -c ./frps.ini
+</code></pre>
+<h2 id="通过ip穿透">通过ip穿透</h2>
+<p>这种情况只需要拥有一台服务器就可以了。</p>
+<h3 id="服务端配置">服务端配置</h3>
+<pre><code class="language-bash">[common]
+bind_port = 6001
+dashboard_port = 6002
+token = 12345678
+dashboard_user = admin
+dashboard_pwd = admin
+vhost_http_port = 6003
+</code></pre>
+<p>现在解释一下服务端配置的一些</p>
+<ol>
+<li><code>bind_port</code>: FRP 服务端或客户端绑定的端口号。服务端用于接收来自客户端的请求，客户端用于连接服务端。（可自定义）</li>
+<li><code>dashboard_port</code>: FRP 的仪表盘（Dashboard）端口号。通过这个端口，您可以使用 Web 界面来查看 FRP 的状态和运行情况。（可自定义）</li>
+<li><code>token</code>: FRP 鉴权的 Token。Token 是客户端连接到服务端时进行验证的凭据，用于确保只有具有正确 Token 的客户端可以连接到服务端。（可自定义）</li>
+<li><code>dashboard_user</code>: FRP 仪表盘v的用户名。（可自定义）</li>
+<li><code>dashboard_pwd</code>: FRP 仪表盘的密码。（可自定义）</li>
+<li><code>vhost_http_port</code>: 虚拟主机 HTTP 端口。如果您启用了虚拟主机功能，这个端口将用于 HTTP 请求。（可自定义）</li>
+</ol>
+<p>当然这里我之打开了http端口，如果你还想的话可以打开https，socket，tcp等各种链接的端口，这些都是可以自定义的</p>
+<h3 id="客户端配置">客户端配置</h3>
+<pre><code class="language-bash">[common]
+server_addr = 101.42.5.22
+server_port = 6001
+token = 12345678
+
+[web] 
+type = http
+local_ip = 127.0.0.1
+local_port = 4000
+remote_port = 6003
+custom_domains = 101.42.5.22
+</code></pre>
+<ol>
+<li><code>[common]</code> 部分：
+<ul>
+<li><code>server_addr</code>: FRP 服务端的 IP 地址或域名。</li>
+<li><code>server_port</code>: FRP 服务端的端口号。</li>
+<li><code>token</code>: FRP 鉴权的 Token，与服务端配置中的 Token 要一致。</li>
+</ul>
+</li>
+<li><code>[web]</code> 部分：
+<ul>
+<li><code>type</code>: 代理类型，这里是 http 类型，用于配置 HTTP 代理。</li>
+<li><code>local_ip</code>: 要代理的本地 IP 地址，这里设置为 <code>127.0.0.1</code> 表示代理本地。</li>
+<li><code>local_port</code>: 要代理的本地端口号，这里设置为 <code>4000</code>。</li>
+<li><code>remote_port</code>: 服务端映射的端口号，客户端请求该端口时将被代理到本地的 <code>local_port</code> 上。</li>
+<li><code>custom_domains</code>: 自定义域名，这里设置为 <code>101.42.5.22</code>。</li>
+</ul>
+</li>
+</ol>
+<p>其中<code>[web]</code>可以自定义但是要注意名称不能重复</p>
+<h2 id="通过域名穿透">通过域名穿透</h2>
+<p>这种情况需要配置好域名，服务器的解析，做好解析后才能开始配置。一些服务器提供厂商的还需要再控制台释放对应端口（比如腾讯云，阿里云）。</p>
+<h3 id="服务端配置-2">服务端配置</h3>
+<pre><code class="language-bash">[common]
+bind_port = 6001
+dashboard_port = 6002
+token = 12345678
+dashboard_user = admin
+dashboard_pwd = admin
+vhost_http_port = 6003
+subdomain_host = twoitmen.club
+</code></pre>
+<p>相同配置不做赘述，这里多出来一个<code>subdomain_host</code>，在这里<code>subdomain_host</code>的作用是自定义子域名的主机名。比如我的服务器绑定的域名是twoitmen.club（我解析的时候喜欢用*做解析，一次配置，随便使用）。那我我在这里填写twoitmen.club就可以了。</p>
+<h3 id="客户端配置-2">客户端配置</h3>
+<pre><code class="language-bash">[common]
+server_addr = 101.42.5.22
+server_port = 6001
+token = 12345678
+
+[web] 
+type = http
+local_ip = 127.0.0.1
+local_port = 4000
+remote_port = 6003
+subdomain = frp
+</code></pre>
+<p>相同配置不做赘述，这里多出来一个<code>subdomain</code>，在这里<code>subdomain</code>的作用是子域名，用于标识代理服务。也就是说，我要访问frp.twoitmen.club:6003就是我穿透完毕后的域名地址。</p>
+<h3 id="nginx配置">nginx配置</h3>
+<p>在这里多出来一个nginx配置，它是用来反向代理的，就是省略后面端口号的书写</p>
+<h4 id="通过域名穿透的方式的nginx配置">通过域名穿透的方式的nginx配置</h4>
+<pre><code class="language-bat">
+#user  nobody;
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    include /home/conf/*.conf;
+    keepalive_timeout  65;
+    server {
+        listen       80;
+        server_name  localhost;
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+        
+	  location /memos {
+		proxy_pass  http://101.42.5.22:6060; # 转发规则
+	  }
+      
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+    server {
+        listen       80;
+        server_name  frp.twoitmen.club;
+        	location / {
+			proxy_pass http://frp.twoitmen.club:6003/;
+			proxy_set_header Host $host;
+			proxy_set_header X-Real-IP $remote_addr;
+		}
+     }
+}
+
+</code></pre>
+<p>在这里只是多出来一个server，这里简单讲述一下多出来的server配置</p>
+<ol>
+<li><code>listen 80;</code>: 监听来自端口 80 的 HTTP 请求。</li>
+<li><code>server_name frp.twoitmen.club;</code>: 指定该服务器块的域名为 <code>frp.twoitmen.club</code>。</li>
+<li><code>location / { ... }</code>: 这是一个代理规则，它会将来自 <code>/</code> 路径的请求转发到 <code>http://frp.twoitmen.club:6003/</code> 上。</li>
+<li><code>proxy_pass http://frp.twoitmen.club:6003/;</code>: 它指定了要转发到的目标地址为 <code>http://frp.twoitmen.club:6003/</code>。</li>
+<li><code>proxy_set_header Host $host;</code>: 在转发请求时，设置了 <code>Host</code> 请求头为原始请求的主机名。</li>
+<li><code>proxy_set_header X-Real-IP $remote_addr;</code>: 在转发请求时，设置了 <code>X-Real-IP</code> 请求头为原始请求的客户端 IP 地址。</li>
+</ol>
+<h2 id="将frps命令写入system">将frps命令写入system</h2>
+<p>输入命令</p>
+<pre><code class="language-bash">vim /lib/systemd/system/frps.service
+</code></pre>
+<p>写入配置</p>
+<pre><code class="language-bash">[Unit]
+Description=frps service
+After=network.target syslog.target
+Wants=network.target
+
+[Service]
+Type=simple
+# 启动服务的命令（此处写你的frps的实际安装目录）
+# ExecStart=/your/path/frps -c /your/path/frps.ini
+ExecStart=/home/zhang/frpServer/frps -c /home/zhang/frpServerfrps.ini
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[vue3无关系组件之间的方法调用]]></title>
+        <id>https://dellevin.github.io/post/vue3无关系组件之间的方法调用/</id>
+        <link href="https://dellevin.github.io/post/vue3无关系组件之间的方法调用/">
+        </link>
+        <updated>2023-07-30T12:08:32.000Z</updated>
+        <content type="html"><![CDATA[<p>要实现在第一个页面中的方法 <code>onClick</code> 调用第二个页面中的 <code>updateBankToUser</code> 方法，我们可以使用事件总线来实现跨组件通信。在Vue 3中，我们可以使用 <code>mitt</code> 库来创建事件总线。</p>
+<p>首先，安装 <code>mitt</code> 库：</p>
+<pre><code class="language-bash">npm install mitt
+</code></pre>
+<p>然后，我们可以创建一个全局的事件总线，并在第二个页面中将 <code>updateBankToUser</code> 方法注册为一个事件处理程序，然后在第一个页面的 <code>onClick</code> 方法中触发这个事件，从而调用第二个页面中的方法。</p>
+<p>以下是示例代码：</p>
+<p><strong>创建全局事件总线 bus.ts：</strong></p>
+<pre><code class="language-ts">// bus.ts
+import mitt from 'mitt';
+
+export const bus = mitt();
+</code></pre>
+<p><strong>第二个页面 user.vue：</strong></p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- ...其他代码... --&gt;
+    &lt;el-button @click=&quot;updateBankToUser&quot;&gt;更新银行的用户&lt;/el-button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { bus } from './bus';
+
+const updateBankToUser = async () =&gt; {
+  console.log('更新银行的用户');
+  // 在这里执行您的业务逻辑
+}
+bus.on('callUpdateBankToUser', updateBankToUser);
+&lt;/script&gt;
+</code></pre>
+<p><strong>第一个页面 parent.vue：</strong></p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;el-button @click=&quot;onClick&quot;&gt;点击调用第二个页面的方法&lt;/el-button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { bus } from './bus';
+
+const onClick = () =&gt; {
+  console.log('调用第二个页面的方法');
+  // 在这里执行您的业务逻辑
+  bus.emit('callUpdateBankToUser');
+}
+&lt;/script&gt;
+</code></pre>
+<p>在这个示例中，我们在 bus.ts 中创建了一个全局事件总线 <code>bus</code>。然后在第二个页面 user.vue 中，我们将 <code>updateBankToUser</code> 方法注册为名为 'callUpdateBankToUser' 的事件处理程序。在第一个页面 parent.vue 中的 <code>onClick</code> 方法中，我们使用 <code>bus.emit</code> 触发了 'callUpdateBankToUser' 事件，从而调用了第二个页面中的 <code>updateBankToUser</code> 方法。</p>
+<p>通过这种方式，您可以在不直接引用第二个页面的情况下，实现跨组件调用其中的方法。</p>
+<h2 id="什么是全局事件总线busts-import-mitt-from-mitt-export-const-bus-mitt-两行的作用是啥">什么是全局事件总线bus.ts import mitt from 'mitt'; export const bus = mitt(); 两行的作用是啥</h2>
+<p>在这里，<code>bus.ts</code> 文件中的两行代码用来创建全局事件总线。全局事件总线是一个简单的事件管理器，它可以用于在应用程序中实现组件之间的通信，特别是当组件之间没有直接父子关系时。</p>
+<p>具体来说，这两行代码的作用是：</p>
+<ol>
+<li>
+<p><code>import mitt from 'mitt';</code>: 这里我们导入了 <code>mitt</code> 库，它是一个简单、小巧的 JavaScript 事件库。<code>mitt</code> 库允许我们创建事件总线，以便在应用程序的任何地方都可以访问该事件总线。</p>
+</li>
+<li>
+<p><code>export const bus = mitt();</code>: 在这里，我们创建了一个全局的事件总线 <code>bus</code> 并将其导出。通过 <code>mitt()</code> 调用，我们创建了一个新的事件总线实例，可以用来管理事件的注册、触发和取消。</p>
+</li>
+</ol>
+<p>总结起来，<code>bus.ts</code> 文件中的这两行代码的目的是创建一个全局的事件总线，以便在应用程序的任何地方都可以使用它进行组件之间的通信。通过这个全局事件总线，我们可以在不直接引用其他组件的情况下，实现组件之间的方法调用和数据传递。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[负二进制数相加]]></title>
+        <id>https://dellevin.github.io/post/负二进制数相加/</id>
+        <link href="https://dellevin.github.io/post/负二进制数相加/">
+        </link>
+        <updated>2023-07-25T13:25:29.000Z</updated>
+        <content type="html"><![CDATA[<p>给出基数为 <strong>-2</strong> 的两个数 <code>arr1</code> 和 <code>arr2</code>，返回两数相加的结果。</p>
+<p>数字以 <em>数组形式</em> 给出：数组由若干 0 和 1 组成，按最高有效位到最低有效位的顺序排列。例如，<code>arr = [1,1,0,1]</code> 表示数字 <code>(-2)^3 + (-2)^2 + (-2)^0 = -3</code>。<em>数组形式</em> 中的数字 <code>arr</code> 也同样不含前导零：即 <code>arr == [0]</code> 或 <code>arr[0] == 1</code>。</p>
+<p>返回相同表示形式的 <code>arr1</code> 和 <code>arr2</code> 相加的结果。两数的表示形式为：不含前导零、由若干 0 和 1 组成的数组。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：arr1 = [1,1,1,1,1], arr2 = [1,0,1]
+输出：[1,0,0,0,0]
+解释：arr1 表示 11，arr2 表示 5，输出表示 16 。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：arr1 = [0], arr2 = [0]
+输出：[0]
+</code></pre>
+<p><strong>示例 3：</strong></p>
+<pre><code>输入：arr1 = [0], arr2 = [1]
+输出：[1]
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= arr1.length, arr2.length &lt;= 1000</code></li>
+<li><code>arr1[i]</code> 和 <code>arr2[i]</code> 都是 <code>0</code> 或 <code>1</code></li>
+<li><code>arr1</code> 和 <code>arr2</code> 都没有前导0</li>
+</ul>
+<h2 id="代码">代码：</h2>
+<pre><code class="language-java">class Solution {
+    public int[] addNegabinary(int[] arr1, int[] arr2) {
+        // 定义规则：0+1=1，进位向前边减一，够减则减，不够减则借位
+        int[] outCome = null;
+        if (arr1.length &gt; arr2.length) {
+            for (int i = 1; i &lt;= arr2.length; i++) {
+                arr1[arr1.length - i] += arr2[arr2.length - i];
+            }
+            outCome = arr1;
+        } else {
+            for (int i = 1; i &lt;= arr1.length; i++) {
+                arr2[arr2.length - i] += arr1[arr1.length - i];
+            }
+            outCome = arr2;
+        }
+        // System.out.println(Arrays.toString(outCome));
+        int add = 0;
+        for (int i = outCome.length - 1; i &gt; 0; i--) {
+            if (outCome[i] + add &gt;= 2) {
+                add = -1;
+                outCome[i] -= 2;
+            } else if (outCome[i] + add &lt; 0) {
+                outCome[i - 1] += 1;
+                outCome[i] = 1;
+                add = 0;
+            } else {
+                outCome[i] += add;
+                add = 0;
+            }
+        }
+        outCome[0] += add;
+        //System.out.println(Arrays.toString(outCome));
+        if (outCome[0] &gt;= 2) {
+            outCome[0] -= 2;
+            int[] newOutCome = new int[outCome.length + 2];
+            newOutCome[0] = 1;
+            newOutCome[1] = 1;
+            for (int i = 0; i &lt; outCome.length; i++) {
+                newOutCome[2 + i] = outCome[i];
+            }
+            outCome = newOutCome;
+        }
+        // System.out.println(Arrays.toString(outCome));
+        if (outCome[0] == 0) {
+            int zlength = 0;
+            while (zlength &lt; outCome.length &amp;&amp; outCome[zlength] == 0) {
+                zlength++;
+            }
+            System.out.println(zlength);
+            if (zlength == outCome.length) {
+                outCome = new int[1];
+                outCome[0] = 0;
+            } else {
+                int[] newOutCome = new int[outCome.length - zlength];
+                for (int i = 0; i &lt; newOutCome.length; i++) {
+                    newOutCome[i] = outCome[zlength + i];
+                }
+                outCome = newOutCome;
+            }
+        }
+
+        return outCome;
+    }
+}
+
+</code></pre>
+<h2 id="错误的办法">错误的办法：</h2>
+<p>这里主要错误的原因是因为忽略了数组之间的长度，因为长度是1000也就是最大的数是-2的1000次幂。远远的超出了bigint，int，以及long类型的计算长度。所以下面的办法是妥妥的不对的</p>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>所占位数</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>32</td>
+<td>−231−231 ~ 2 ^{31} - 1</td>
+</tr>
+<tr>
+<td>long</td>
+<td>64</td>
+<td>−263−263 ~ 2 ^{63} - 1</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-java">class Solution {
+    public int[] addNegabinary(int[] arr1, int[] arr2) {
+        int xx = lowBinaryToInt(arr1) + lowBinaryToInt(arr2);
+        String ss= intToLowBinaryString(xx);
+        String[] ssArr = ss.split(&quot;&quot;);
+        int[] res = new int[ss.length()];
+        for (int i = 0; i &lt;= ss.length()-1; i++) {
+            res[i] = Integer.parseInt(ssArr[i]);
+        }
+        return res;
+    }
+    public static int lowBinaryToInt(int[] arr) {
+        double res=0;
+        int xx = 0;
+        for (int i = arr.length - 1; i&gt;=0; i--) {
+            if (arr[i] == 1) {
+                res = res+Math.pow(-2, xx);
+                xx++;
+            }else{
+                xx++;
+            }
+        }
+        return (int)res;
+    }
+    public static String intToLowBinaryString(int N) {
+        StringBuilder sb = new StringBuilder();
+        while (N != 0) {
+            int r = N % -2;
+            N = N / -2;
+            if (r &lt; 0) {
+                r = r + 2;
+                N = N+1;
+            }
+            sb.append(r);
+        }
+        return sb.length() &gt; 0 ? sb.reverse().toString() : &quot;0&quot;;
+    }
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[利用windows定时器实现每天数据库的备份]]></title>
+        <id>https://dellevin.github.io/post/利用windows定时器实现每天数据库的备份/</id>
+        <link href="https://dellevin.github.io/post/利用windows定时器实现每天数据库的备份/">
+        </link>
+        <updated>2023-07-25T13:21:49.000Z</updated>
+        <content type="html"><![CDATA[<p>事情的起因是今早上我更改前端页面的时候忽然发现，前端数据显示全是一系列的乱码什么的，似乎是被人恶意注入了，简直太痛了。自己没有mysql定时备份的习惯，所以只能含泪偷哭，好在我同事有，多亏他救了一命，还好数据还在。但是他每天都手动备份，着实有些麻烦了。小小的偷懒一下，懒惰是人们进步的阶梯。</p>
+<p>因为windows有<strong>任务计划程序</strong>的原因，所以我们只需要写好bash脚本就可以。</p>
+<h2 id="bash">bash</h2>
+<pre><code class="language-bash">:: 配置数据库用户
+SET DB_USER=root
+
+:: 配置数据库密码
+SET DB_PASSWORD=root123
+
+:: 配置备份的数据库名称
+SET DB_NAME=security_enterprise
+
+:: 配置备份的文件路径
+SET SAVE_PATH=D:\MySqlBackup
+
+:: 配置mysqldump的路径,有空格的要加上双引号
+SET MYSQL_DUMP_PATH=D:\Environment\mysql-5.7.40\bin\mysqldump.exe
+
+:: 开始工作
+:: 跳转到工作目录下
+%SAVE_PATH:~0,2%
+cd %SAVE_PATH%
+:: 设置变量：备份文件名
+SET BAK_FILE=%SAVE_PATH%\security_enterprise_bak_%date:~0,4%_%date:~5,2%_%date:~8,2%.sql
+:: 开始做备份
+%MYSQL_DUMP_PATH% -u%DB_USER% -p%DB_PASSWORD% %DB_NAME%&gt;%BAK_FILE%
+</code></pre>
+<p>在里面很清楚了，在此不做赘述。</p>
+<h2 id="windows任务计划程序">windows任务计划程序</h2>
+<h4 id="设置名称描述以及安全选项">设置名称描述以及安全选项</h4>
+<figure data-type="image" tabindex="1"><img src="https://dellevin.github.io/post-images/1690291369063.png" alt="" loading="lazy"></figure>
+<h4 id="设置触发器">设置触发器</h4>
+<figure data-type="image" tabindex="2"><img src="https://dellevin.github.io/post-images/1690291385311.png" alt="" loading="lazy"></figure>
+<h4 id="设置操作">设置操作</h4>
+<figure data-type="image" tabindex="3"><img src="https://dellevin.github.io/post-images/1690291393632.png" alt="" loading="lazy"></figure>
+<h4 id="设置一下意外情况">设置一下意外情况</h4>
+<p>这里是防止备份失败进行的容错处理，可以做此步骤</p>
+<figure data-type="image" tabindex="4"><img src="https://dellevin.github.io/post-images/1690291399659.png" alt="" loading="lazy"></figure>
+<p>经过一系列的设置，就会每天在固定时间在我的D:\MySqlBackup目录下面生成一个备份文件，防止出错了。</p>
+<figure data-type="image" tabindex="5"><img src="https://dellevin.github.io/post-images/1690291408403.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+</feed>

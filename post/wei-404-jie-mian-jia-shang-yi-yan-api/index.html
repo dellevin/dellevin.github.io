@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://dellevin.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content="望山叹高，登愈艰。入世哀难，伤无泪。
+"><meta charset="UTF-8"><title>为404界面加上一言api | Del Levin‘s blog</title>
+<link href="https://dellevin.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://dellevin.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
+	gtag('config', 'G-6Z5DFKZBTD');
+</script>
+
+<link rel="canonical" href="https://dellevin.github.io/post/wei-404-jie-mian-jia-shang-yi-yan-api/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://dellevin.github.io"><img alt="logo" style="display:inline-block;" src="https://dellevin.github.io/images/avatar.png"/></a><h1 title="Del Levin‘s blog" class="weaklink"><a  href="/">Del Levin‘s blog</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-wen" class="selected active current nav__item" >悦文</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang" class="selected active current nav__item" > 友链</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu" class="selected active current nav__item" >关于</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-wen" class="selected active current nav__item" >悦文</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang" class="selected active current nav__item" > 友链</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu" class="selected active current nav__item" >关于</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1718026626824" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>为404界面加上一言api</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2022-10-12</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://dellevin.github.io/tag/html/" class="tag">Html</a> | 	<a href="https://dellevin.github.io/tag/css/" class="tag">CSS</a> | 	<a href="https://dellevin.github.io/tag/jquery/" class="tag">JQuery</a> | 	<a href="https://dellevin.github.io/tag/javascript/" class="tag">JavaScript</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">663字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">3 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>忽然发现这个博客的404界面有些简单，但是很喜欢这种极简的风格但总感觉少了些什么，想了想之前搞得一言的api。索性加上他，锦上添花一点。</p>
+<p>首先先选一言的api，因为之前这种东西挺火的，有很多大佬开发出来，了，放到服务器上面供咱这种菜鸡使用了。因为我喜欢古诗词，所以选的古诗词的api</p>
+<p>这个是人家的官网  https://gushi.ci/<br>
+<img src="https://dellevin.github.io/post-images/1680267491387.jpg" alt="" loading="lazy"><br>
+其实官网上有很多的教程，就是看自己会不会用了。但我是在基础上微调的，就没用。这个是json格式的api，这里用的浏览器json解析插件是<strong>json-viewer</strong></p>
+<p>https://v1.jinrishici.com/all</p>
+<figure data-type="image" tabindex="1"><img src="https://dellevin.github.io/post-images/1680267502553.jpg" alt="" loading="lazy"></figure>
+<p>首先先对这个简单分析一下</p>
+<pre><code class="language-json">{
+  &quot;content&quot;: &quot;冲波突出人齐譀，跃浪争先鸟退飞。&quot;,
+  &quot;origin&quot;: &quot;竞渡诗 / 及第后江宁观竞渡寄袁州剌史成应元&quot;,
+  &quot;author&quot;: &quot;卢肇&quot;,
+  &quot;category&quot;: &quot;古诗文-节日-端午节&quot;
+}
+</code></pre>
+<p>首先这里面有content、origin、author、category这几个数据，我们用到的就是前三个，很容易理解，这三个分别是诗句，来源以及作者。然后就开始着手写了。<br>
+先引入jquery</p>
+<pre><code class="language-html">&lt;!-- 引入jQuery--&gt;
+  &lt;script src=&quot;https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>再然后就开始对json文件进行解析，这里用的是ajax</p>
+<pre><code class="language-html">  &lt;script&gt;
+    // 异步ajax  古诗词
+      $.ajax({
+          type: 'GET',
+          url: 'https://v1.jinrishici.com/all',
+          success: function(data){
+              $(&quot;.text&quot;).text(data.content);  // 获取古诗词内容
+              if (data.author || data.origin){  // 如果来源不为空 随便一个有就就进行显示
+                  $(&quot;.author&quot;).text(data.author);
+                  $(&quot;.lai&quot;).text(&quot;《&quot;+data.origin+&quot;》&quot;);
+              } else {
+                  $(&quot;.author&quot;).hide();// 隐藏来源
+              }
+              // 淡入显示
+              $(&quot;.show-sentence&quot;).fadeIn(4000)
+          },
+      });
+  &lt;/script&gt;
+</code></pre>
+<p>接下来是显示部分</p>
+<pre><code class="language-html">&lt;!-- 配合css设置淡入的显示和字体以及其他的属性 --&gt;
+&lt;div class=&quot;show-sentence&quot;&gt;
+    &lt;!-- 这里接受显示的古诗词 --&gt;
+      &lt;p class=&quot;text&quot;&gt;&lt;/p&gt;
+      &lt;!-- 这里若是判断作者名或者有的话就会显示 --&gt;
+      &lt;p class=&quot;source&quot;&gt;
+          ———— &lt;span class=&quot;lai&quot;&gt;&lt;/span&gt;  &lt;span class=&quot;author&quot;&gt;&lt;/span&gt; 
+      &lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p>然后的话，如果你想显示美观一下的话，采用哪个404的颜色，然后仿照一下</p>
+<pre><code class="language-css">/* 一言 */
+    .text {
+      color:#666;
+      font-size: 20px;
+      font-weight: bold;
+      font-family: STHeiti;
+    }
+    .source {
+      color:#666;
+      font-size: 15px;
+      font-weight: bold;
+      padding-left: 40%;
+      font-family: STHeiti;
+    }
+    .show-sentence {
+      margin-top : 130px;
+      display: none;    /* 开始隐藏div */
+      text-align: center;
+    }
+</code></pre>
+<p>基本上效果是这个样子的</p>
+<figure data-type="image" tabindex="2"><img src="https://dellevin.github.io/post-images/1680267514062.png" alt="" loading="lazy"></figure>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"></div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/dellevin"title="github"><i class="iconfont icon-github"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2020-2023 <a href="https://dellevin.github.io" style="margin:0;">Del Levin‘s blog</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>119</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://dellevin.github.io/media/js/prism.js"></script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://dellevin.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content="望山叹高，登愈艰。入世哀难，伤无泪。
+"><meta charset="UTF-8"><title>debian的samba搭建 | Del Levin‘s blog</title>
+<link href="https://dellevin.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://dellevin.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
+	gtag('config', 'G-6Z5DFKZBTD');
+</script>
+
+<link rel="canonical" href="https://dellevin.github.io/post/debian的samba搭建/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://dellevin.github.io"><img alt="logo" style="display:inline-block;" src="https://dellevin.github.io/images/avatar.png"/></a><h1 title="Del Levin‘s blog" class="weaklink"><a  href="/">Del Levin‘s blog</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-wen" class="selected active current nav__item" >悦文</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang" class="selected active current nav__item" > 友链</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu" class="selected active current nav__item" >关于</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-wen" class="selected active current nav__item" >悦文</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang" class="selected active current nav__item" > 友链</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu" class="selected active current nav__item" >关于</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1718026626824" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>debian的samba搭建</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2023-04-01</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://dellevin.github.io/tag/linux/" class="tag">linux</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1549字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">7 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<hr>
+<h2 id="date-created-2022-11-29-1631">date created: 2022-11-29 16:31</h2>
+<p>心血来潮，任务是将debian搭建samba服务。虽然大学学过，但是已经忘得差不多了。。。</p>
+<p>最怕改配置文件了。。</p>
+<h2 id="下载samba">下载samba</h2>
+<p>这个很重要。但是这个步骤一直告诉我依赖库有问题，我很是好奇依赖库哪里有问题，已经换成国内的镜像源。还是有依赖库的问题。以致于总是安装不上。后来才明白，这种依赖的问题大多数是源有问题，可以尝试换个源试试的。</p>
+<p>再<code>/etc/apt</code>的<code>sources.list</code>文件，如果你不习惯使用linux的vim可以使用xshell的xftp进行文件更改。另外说一句，debian这系统和centos还不一样，需要有权限才能对文件进行操作我，我要更改系统文件的话必须加上sudo才可以。</p>
+<p>打开<code>sources.list</code>文件之后，进行更改，添加上源</p>
+<pre><code class="language-linux">#阿里云镜像源
+deb https://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+deb-src https://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+deb https://mirrors.aliyun.com/debian-security/ bullseye-security main
+deb-src https://mirrors.aliyun.com/debian-security/ bullseye-security main
+deb https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+deb-src https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+deb https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+</code></pre>
+<p>添加上之后，保存文件然后输入下面命令更新源</p>
+<p><code>sudo apt-get update</code></p>
+<p><code>sudo apt-get upgrade</code></p>
+<h4 id="tips">Tips：</h4>
+<p>sudo apt-get update<br>
+这个命令，会访问源列表里的每个网址，并读取软件列表，然后保存在本地电脑。我们在新立得软件包管理器里看到的软件列表，都是通过update命令更新的。</p>
+<p>update后，可能需要upgrade一下。</p>
+<p>sudo apt-get upgrade<br>
+这个命令，会把本地已安装的软件，与刚下载的软件列表里对应软件进行对比，如果发现已安装的软件版本太低，就会提示你更新。如果你的软件都是最新版本，会提示：</p>
+<p>升级了 0 个软件包，新安装了 0 个软件包，要卸载 0 个软件包，有 0 个软件包未被升级。</p>
+<h2 id="安装samba">安装samba</h2>
+<p>root用户下直接使用以下命令</p>
+<pre><code class="language-bash"> apt-get install samba
+</code></pre>
+<p>若是普通用户下使用以下命令</p>
+<pre><code class="language-bash"> sudo apt-get install samba
+</code></pre>
+<p>安装好samba之后然后就是更改配置文件<code>/etc/samba</code>下面的<code>smb.conf</code>文件</p>
+<h2 id="更改samba配置文件">更改samba配置文件</h2>
+<p>我主要更改了home文件下面的配置文件，appshare是我自己写的配置，可以照着写一下。</p>
+<pre><code class="language-bash">[global]
+workgroup = WORKGROUP
+   log file = /var/log/samba/log.%m
+   max log size = 1000
+   logging = file
+   panic action = /usr/share/samba/panic-action %d
+   server role = standalone server
+   obey pam restrictions = yes
+   unix password sync = yes
+   map to guest = bad user #设置是否可以匿名访问
+   usershare allow guests = yes
+[homes]
+   comment = Home Directories
+   browseable = yes
+   public = yes
+   guest ok = yes
+   read only = no
+   writable = yes
+   create mask = 0777
+   directory mask = 0777
+   valid users = %S
+[appshare]
+comment = WinccOA Share #描述
+path = /home/uarto/app   #路径
+browseable = yes   #是否可见
+writable = yes #可写
+available = yes
+public = yes #公共
+read only = no #只读，不能和上面的pulic =yes 冲突
+guest ok = yes
+browseable = yes
+create mask = 0777
+directory mask = 0777
+</code></pre>
+<p>再然后就是保存重启配置文件，重启samba服务就可以</p>
+<p><code>sudo systemctl  restart  smbd</code></p>
+<p><strong>如果出现文件夹无法访问的情况，有可能是没有给共享文件夹下赋予一定的权限，使用chmod更改文件夹权限就可以。</strong></p>
+<h2 id="samba服务程序中的参数以及作用">Samba服务程序中的参数以及作用</h2>
+<table>
+<thead>
+<tr>
+<th>[global]</th>
+<th></th>
+<th>全局参数。</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>workgroup = MYGROUP</td>
+<td>工作组名称</td>
+</tr>
+<tr>
+<td></td>
+<td>server string = Samba Server Version %v</td>
+<td>服务器介绍信息，参数%v为显示SMB版本号</td>
+</tr>
+<tr>
+<td></td>
+<td>log file = /var/log/samba/log.%m</td>
+<td>定义日志文件的存放位置与名称，参数%m为来访的主机名</td>
+</tr>
+<tr>
+<td></td>
+<td>max log size = 50</td>
+<td>定义日志文件的最大容量为50KB</td>
+</tr>
+<tr>
+<td></td>
+<td>security = user</td>
+<td>安全验证的方式，总共有4种</td>
+</tr>
+<tr>
+<td></td>
+<td>share：来访主机无需验证口令；比较方便，但安全性很差</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>user：需验证来访主机提供的口令后才可以访问；提升了安全性</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>server：使用独立的远程主机验证来访主机提供的口令（集中管理账户）</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>domain：使用域控制器进行身份验证</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>passdb backend = tdbsam</td>
+<td>定义用户后台的类型，共有3种</td>
+</tr>
+<tr>
+<td></td>
+<td>smbpasswd：使用smbpasswd命令为系统用户设置Samba服务程序的密码</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>tdbsam：创建数据库文件并使用pdbedit命令建立Samba服务程序的用户</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>ldapsam：基于LDAP服务进行账户验证</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>load printers = yes</td>
+<td>设置在Samba服务启动时是否共享打印机设备</td>
+</tr>
+<tr>
+<td></td>
+<td>cups options = raw</td>
+<td>打印机的选项</td>
+</tr>
+<tr>
+<td>[homes]</td>
+<td></td>
+<td>共享参数</td>
+</tr>
+<tr>
+<td></td>
+<td>comment = Home Directories</td>
+<td>描述信息</td>
+</tr>
+<tr>
+<td></td>
+<td>browseable = no</td>
+<td>指定共享信息是否在“网上邻居”中可见</td>
+</tr>
+<tr>
+<td></td>
+<td>writable = yes</td>
+<td>定义是否可以执行写入操作，与“read only”相反</td>
+</tr>
+<tr>
+<td>[printers]</td>
+<td></td>
+<td>打印机共享参数</td>
+</tr>
+<tr>
+<td></td>
+<td>comment = All Printers</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>path = /var/spool/samba</td>
+<td>共享文件的实际路径(重要)。</td>
+</tr>
+<tr>
+<td></td>
+<td>browseable = no</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>guest ok = no   等于 public = no</td>
+<td>是否所有人可见，等同于&quot;public&quot;参数。</td>
+</tr>
+<tr>
+<td></td>
+<td>writable = no    等于 read only = yes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>printable = yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>共享选项及说明，按照需求合理配置</p>
+<pre><code class="language-bash">
+
+[共享名称]: 共享中看到的共享目录名
+
+
+comment = 共享的描述. 
+
+path = 共享目录路径(可以用%u、%m这样的宏来代替路径如:/home/share/%u) 
+
+browseable = yes/no指定该共享是否在“网上邻居”中可见。
+
+writable = yes/no指定该共享路径是否可写。
+
+read only = yes/no设置共享目录为只读(注意设置不要与writable有冲突) 
+
+available = yes/no指定该共享资源是否可用。
+
+admin users = bobyuan，jane指定该共享的管理员,用户验证方式为“security=share”时，此项无效。 
+
+valid users = bobyuan，jane允许访问该共享的用户或组-“@+组名” 
+
+invalid users = 禁止访问该共享的用户与组(同上) 
+
+write list = 允许写入该共享的用户
+
+public = yes/no共享是否允许guest账户访问。 
+
+guest ok = yes/no意义同“public”。
+
+create mask = 0700指定用户通过Samba在该共享目录中创建文件的默认权限。0600代表创建文件的权限为rw-------
+
+directory mask = 0700指定用户通过Samba在该共享目录中创建目录的默认权限。0600代表创建目录的权限为rwx------ 
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#date-created-2022-11-29-1631">date created: 2022-11-29 16:31</a></li>
+<li><a href="#%E4%B8%8B%E8%BD%BDsamba">下载samba</a><br>
+*
+<ul>
+<li><a href="#tips">Tips：</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%89%E8%A3%85samba">安装samba</a></li>
+<li><a href="#%E6%9B%B4%E6%94%B9samba%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">更改samba配置文件</a></li>
+<li><a href="#samba%E6%9C%8D%E5%8A%A1%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0%E4%BB%A5%E5%8F%8A%E4%BD%9C%E7%94%A8">Samba服务程序中的参数以及作用</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/dellevin"title="github"><i class="iconfont icon-github"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2020-2023 <a href="https://dellevin.github.io" style="margin:0;">Del Levin‘s blog</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>119</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://dellevin.github.io/media/js/prism.js"></script>
+</body>
+</html>

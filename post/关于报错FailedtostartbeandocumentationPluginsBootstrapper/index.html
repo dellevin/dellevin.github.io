@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="shortcut icon" href="https://dellevin.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit">
+<meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。
+">
+<meta charset="UTF-8">
+<title>
+	Failed to start bean documentationPluginsBootstrapper | Del Levin‘s blog
+</title>
+<link href="https://dellevin.github.io/styles/main.css" type="text/css" rel="stylesheet" />
+<link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+<script src="https://dellevin.github.io/media/js/magnify.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script
+	type="text/javascript">function btn_toggle() { document.getElementById("hn").classList.contains("no-js") ? document.getElementById("hn").classList.remove("no-js") : document.getElementById("hn").classList.add("no-js") }</script>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// const urlWithParams = `http://127.0.0.1:8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			const urlWithParams = `https://47.121.199.144/8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			fetch(urlWithParams)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response.json(); // 如果返回的是 JSON 数据
+				})
+				.then(data => {
+					// console.log('Response data:', data);
+				})
+				.catch(error => {
+					console.error('There has been a problem with your fetch operation:', error);
+				});
+		});
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-6Z5DFKZBTD');
+	</script>
+	
+		<link rel="canonical" href="https://dellevin.github.io/post/关于报错FailedtostartbeandocumentationPluginsBootstrapper/" />
+</head>
+
+<body>
+	<div class="progress"></div>
+<style>
+    .progress {
+        background: linear-gradient(to right, #87ceeb var(--scroll), transparent 0);
+        background-repeat: no-repeat;
+        position: fixed;
+        width: 100%;
+        height: 4px;
+        z-index: 1
+    }
+</style>
+<div class="darkmode-background"></div>
+<div class="darkmode-layer"></div>
+<noscript>
+    <p class="warn">本页面需要浏览器支持（启用）JavaScript</p>
+</noscript>
+<div class="header">
+    <div class="logo_title">
+        <div class="title animated fadeInDown"><a href="https://dellevin.github.io"><img alt="logo"
+                    style="display:inline-block;" src="https://dellevin.github.io/images/avatar.png" /></a>
+            <h1 title="Del Levin‘s blog" class="weaklink"><a href="/">
+                    Del Levin‘s blog
+                </a></h1>
+            
+                    <div class="navbar weaklink">
+                        <div class="normal_nav">
+                            <div class="bitcron_nav_container">
+                                <div class="bitcron_nav">
+                                    <div class="bitcron_nav">
+                                        <div style="display:flex;justify-content:center;">
+                                            <nav class="mixed_site_nav_wrap site_nav_wrap">
+                                                <ul class="mixed_site_nav site_nav sm sm-base">
+                                                    
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/"
+                                                                class="selected active current nav__item">
+                                                                首页
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/archives"
+                                                                class="selected active current nav__item">
+                                                                归档
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/tags"
+                                                                class="selected active current nav__item">
+                                                                标签
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/image-list"
+                                                                class="selected active current nav__item">
+                                                                相册
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/yue-wen"
+                                                                class="selected active current nav__item">
+                                                                阅读
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/you-ren-zhang"
+                                                                class="selected active current nav__item">
+                                                                 友链
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/guan-yu"
+                                                                class="selected active current nav__item">
+                                                                关于
+                                                            </a></li>
+                                                        
+                                                </ul>
+                                            </nav>
+                                            <div style="float:right;margin-top:1em">
+                                                <form id="gridea-search-form" data-update="1578893743252"
+                                                    action="/search/index.html"><input class="search-input"
+                                                        autocomplete="off" spellcheck="false" name="q"
+                                                        placeholder="Search..."></form>
+                                            </div>
+                                            <div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default"
+                                                    onclick="mobileBtn()" type="checkbox" class="switch_default"><label
+                                                    for="switch_default" class="toggleBtn"></label></div>
+                                        </div>
+                                        <div class="clear clear_nav_inline_end"></div>
+                                    </div>
+                                </div>
+                                <div class="clear clear_nav_end"></div>
+                            </div>
+                        </div>
+                        <div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i
+                                class="iconfont icon-category"></i></div>
+                    </div>
+        </div>
+    </div>
+    <div id="hn" class="no-js hidden_nav animated fadeInDown">
+        <div class="bitcron_nav_container">
+            <div class="bitcron_nav">
+                <nav class="mixed_site_nav_wrap site_nav_wrap">
+                    <ul class="mixed_site_nav site_nav sm sm-base">
+                        
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/"
+                                    class="selected active current nav__item">
+                                    首页
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives"
+                                    class="selected active current nav__item">
+                                    归档
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags"
+                                    class="selected active current nav__item">
+                                    标签
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/image-list"
+                                    class="selected active current nav__item">
+                                    相册
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-wen"
+                                    class="selected active current nav__item">
+                                    阅读
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang"
+                                    class="selected active current nav__item">
+                                     友链
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu"
+                                    class="selected active current nav__item">
+                                    关于
+                                </a></li>
+                            
+                    </ul>
+                    <div class="clear clear_nav_inline_end"></div>
+                </nav>
+            </div>
+            <div class="clear clear_nav_end"></div>
+        </div>
+        <div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%">
+            <div>
+                <form id="gridea-search-form" data-update="1728576634403" action="/search/index.html"><input
+                        class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..." />
+                </form>
+            </div>
+            <div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox"
+                    class="switch_default"><label for="switch_default" class="toggleBtn"></label></div>
+        </div>
+    </div>
+</div>
+<script>function enableDarkmode() { document.body.classList.add("darkmode"), document.getElementById("switch_default").checked = 1, document.getElementById("switch_default_h").checked = 1 } function removeDarkmode() { document.body.classList.remove("darkmode"), document.getElementById("switch_default").checked = 0, document.getElementById("switch_default_h").checked = 0 } function getCookie(a) { var b, c = new RegExp("(^| )" + a + "=([^;]*)(;|$)"); return (b = document.cookie.match(c)) ? unescape(b[2]) : null } cookie = getCookie("darkmode"), "enable" == cookie && enableDarkmode(), window.matchMedia("(prefers-color-scheme: dark)").matches && "disable" !== cookie && (enableDarkmode(), document.cookie = "darkmode=enable; path=/"); var mobileBtn = function () { 1 == document.getElementById("switch_default").checked ? (enableDarkmode(), document.cookie = "darkmode=enable; path=/") : (removeDarkmode(), document.cookie = "darkmode=disable; path=/") };</script>
+
+		<div class="main">
+			<div class="main-inner">
+				<div class="content">
+					<article class="post">
+						<h2 class="post_title sm_margin"><a>
+								Failed to start bean documentationPluginsBootstrapper
+							</a></h2>
+						<script>function lan() { if (document.getElementById("lan").innerText == "繁") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "简" } else { if (document.getElementById("lan").innerText == "簡") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "繁" } } };</script>
+						<section class="post_details"><i class="iconfont icon-calendar"></i><span
+								style="margin-right:15px">
+								2023-04-03
+							</span>
+							<!-- <i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span
+									id="busuanzi_value_page_pv"></span> Views</span> -->
+									<i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">
+								 <a href="https://dellevin.github.io/tag/gu-zhang/" class="tag">
+										故障
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/java/" class="tag">
+										java
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/bug-ri-zhi/" class="tag">
+										bug日志
+									</a>
+									
+											
+							</span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">
+								1267字
+							</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">
+								7 min read
+							</span><a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体"
+								style="margin-right:15px;">繁</a>
+							
+						</section>
+						
+								<div style="display:flex">
+									<div class="md_block" id="md_block">
+										<div class="round-shape-one"></div>
+										<p>关于报错org.springframework.context.ApplicationContextException: Failed to start bean 'documentationPluginsBootstrapper'</p>
+<pre><code class="language-bash">
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-04-03 00:08:57.651 ERROR 15032 --- [           main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Failed to start bean 'documentationPluginsBootstrapper'; nested exception is java.lang.NullPointerException
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:181) ~[spring-context-5.3.22.jar:5.3.22]
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:54) ~[spring-context-5.3.22.jar:5.3.22]
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356) ~[spring-context-5.3.22.jar:5.3.22]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155) ~[spring-context-5.3.22.jar:5.3.22]
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123) ~[spring-context-5.3.22.jar:5.3.22]
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935) ~[spring-context-5.3.22.jar:5.3.22]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586) ~[spring-context-5.3.22.jar:5.3.22]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.6.10.jar:2.6.10]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:745) ~[spring-boot-2.6.10.jar:2.6.10]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:420) ~[spring-boot-2.6.10.jar:2.6.10]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307) ~[spring-boot-2.6.10.jar:2.6.10]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1317) ~[spring-boot-2.6.10.jar:2.6.10]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-2.6.10.jar:2.6.10]
+	at com.wonder.UselessToolsApplication.main(UselessToolsApplication.java:14) ~[classes/:na]
+Caused by: java.lang.NullPointerException: null
+	at springfox.documentation.spi.service.contexts.Orderings$8.compare(Orderings.java:112) ~[springfox-spi-2.9.2.jar:null]
+	at springfox.documentation.spi.service.contexts.Orderings$8.compare(Orderings.java:109) ~[springfox-spi-2.9.2.jar:null]
+	at com.google.common.collect.ComparatorOrdering.compare(ComparatorOrdering.java:37) ~[guava-20.0.jar:na]
+	at java.base/java.util.TimSort.countRunAndMakeAscending(TimSort.java:355) ~[na:na]
+	at java.base/java.util.TimSort.sort(TimSort.java:220) ~[na:na]
+	at java.base/java.util.Arrays.sort(Arrays.java:1441) ~[na:na]
+	at com.google.common.collect.Ordering.sortedCopy(Ordering.java:855) ~[guava-20.0.jar:na]
+	at springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider.requestHandlers(WebMvcRequestHandlerProvider.java:57) ~[springfox-spring-web-2.9.2.jar:null]
+	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper$2.apply(DocumentationPluginsBootstrapper.java:138) ~[springfox-spring-web-2.9.2.jar:null]
+	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper$2.apply(DocumentationPluginsBootstrapper.java:135) ~[springfox-spring-web-2.9.2.jar:null]
+	at com.google.common.collect.Iterators$7.transform(Iterators.java:750) ~[guava-20.0.jar:na]
+	at com.google.common.collect.TransformedIterator.next(TransformedIterator.java:47) ~[guava-20.0.jar:na]
+	at com.google.common.collect.TransformedIterator.next(TransformedIterator.java:47) ~[guava-20.0.jar:na]
+	at com.google.common.collect.MultitransformedIterator.hasNext(MultitransformedIterator.java:52) ~[guava-20.0.jar:na]
+	at com.google.common.collect.MultitransformedIterator.hasNext(MultitransformedIterator.java:50) ~[guava-20.0.jar:na]
+	at com.google.common.collect.ImmutableList.copyOf(ImmutableList.java:249) ~[guava-20.0.jar:na]
+	at com.google.common.collect.ImmutableList.copyOf(ImmutableList.java:209) ~[guava-20.0.jar:na]
+	at com.google.common.collect.FluentIterable.toList(FluentIterable.java:614) ~[guava-20.0.jar:na]
+	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.defaultContextBuilder(DocumentationPluginsBootstrapper.java:111) ~[springfox-spring-web-2.9.2.jar:null]
+	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.buildContext(DocumentationPluginsBootstrapper.java:96) ~[springfox-spring-web-2.9.2.jar:null]
+	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.start(DocumentationPluginsBootstrapper.java:167) ~[springfox-spring-web-2.9.2.jar:null]
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178) ~[spring-context-5.3.22.jar:5.3.22]
+	... 14 common frames omitted
+</code></pre>
+<h2 id="问题分析">问题分析</h2>
+<blockquote>
+<p>因为Springfox 使用的路径匹配是基于AntPathMatcher的，而Spring Boot 2.6.X使用的是PathPatternMatcher。</p>
+</blockquote>
+<h2 id="修复方案">修复方案</h2>
+<h3 id="修复方案一降低spring-boot-版本到26x以下版本">修复方案一：降低Spring Boot 版本到2.6.x以下版本</h3>
+<p>比如下面版本组合是兼容的</p>
+<table>
+<thead>
+<tr>
+<th>Spring Boot版本</th>
+<th>Swagger 版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.5.6</td>
+<td>2.9.2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="修复方案二-springboot版本不降级解决方案">修复方案二: SpringBoot版本不降级解决方案</h3>
+<p>比如下面版本组合是兼容的</p>
+<table>
+<thead>
+<tr>
+<th>Spring Boot版本</th>
+<th>Swagger 版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.6.5</td>
+<td>3.0.0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="修复方案三设置application配置文件">修复方案三：设置application配置文件</h3>
+<pre><code class="language-yaml">spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+</code></pre>
+<h3 id="修复方案四修改spring源文件">修复方案四，修改spring源文件</h3>
+<p>我没找到这个java文件。。。。没试过，估计应该可以。。</p>
+<p>参考地址：https://github.com/springfox/springfox/issues/3462</p>
+<ol>
+<li>
+<p>revert matching strategy <code>spring.mvc.pathmatch.matching-strategy</code> to <code>ant-path-matcher</code></p>
+</li>
+<li>
+<p>hack springfox <a href="https://github.com/springfox/springfox/blob/master/springfox-spring-webmvc/src/main/java/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.java#L63">WebMvcRequestHandlerProvider</a> to filter out actuator controllers which don't respect <code>spring.mvc.pathmatch.matching-strategy</code></p>
+<pre><code class="language-java">	public WebMvcRequestHandlerProvider(Optional&lt;ServletContext&gt; servletContext, HandlerMethodResolver methodResolver,
+			List&lt;RequestMappingInfoHandlerMapping&gt; handlerMappings) {
+		this.handlerMappings = handlerMappings.stream().filter(mapping -&gt; mapping.getPatternParser() == null)
+				.collect(Collectors.toList());
+</code></pre>
+</li>
+</ol>
+<h2 id="swagger配置类">swagger配置类</h2>
+<p>.apis(RequestHandlerSelectors.basePackage(&quot;com.wonder.controller&quot;))</p>
+<p>这里填写扫描包，对应类添加@API</p>
+<pre><code class="language-java">package com.wonder.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+
+import javax.servlet.ServletContext;
+import java.util.Optional;
+
+@Configuration // 标明是配置类
+@EnableSwagger2
+public class SwaggerConfig {
+    @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)  // DocumentationType.SWAGGER_2 固定的，代表swagger2
+//                .groupName(&quot;分布式任务系统&quot;) // 如果配置多个文档的时候，那么需要配置groupName来分组标识
+                .apiInfo(apiInfo()) // 用于生成API信息
+                .select() // select()函数返回一个ApiSelectorBuilder实例,用来控制接口被swagger做成文档
+                .apis(RequestHandlerSelectors.basePackage(&quot;com.wonder.controller&quot;)) // 用于指定扫描哪个包下的接口
+                .paths(PathSelectors.any())// 选择所有的API,如果你想只为部分API生成文档，可以配置这里
+                .build();
+    }
+
+    /**
+     * 用于定义API主界面的信息，比如可以声明所有的API的总标题、描述、版本
+     * @return
+     */
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                .title(&quot;项目API&quot;) //  可以用来自定义API的主标题
+                .description(&quot;项目SwaggerAPI管理&quot;) // 可以用来描述整体的API
+                //.termsOfServiceUrl(&quot;&quot;) // 用于定义服务的域名
+                .version(&quot;1.0&quot;) // 可以用来定义版本。
+                .build(); //
+    }
+
+}
+</code></pre>
+<p>访问地址：http://localhost:8080/swagger-ui.html</p>
+
+											<span id="footnote"></span>
+											<div id="warn"></div>
+									</div>
+									<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90">问题分析</a></li>
+<li><a href="#%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88">修复方案</a>
+<ul>
+<li><a href="#%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88%E4%B8%80%E9%99%8D%E4%BD%8Espring-boot-%E7%89%88%E6%9C%AC%E5%88%B026x%E4%BB%A5%E4%B8%8B%E7%89%88%E6%9C%AC">修复方案一：降低Spring Boot 版本到2.6.x以下版本</a></li>
+<li><a href="#%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88%E4%BA%8C-springboot%E7%89%88%E6%9C%AC%E4%B8%8D%E9%99%8D%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">修复方案二: SpringBoot版本不降级解决方案</a></li>
+<li><a href="#%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88%E4%B8%89%E8%AE%BE%E7%BD%AEapplication%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">修复方案三：设置application配置文件</a></li>
+<li><a href="#%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88%E5%9B%9B%E4%BF%AE%E6%94%B9spring%E6%BA%90%E6%96%87%E4%BB%B6">修复方案四，修改spring源文件</a></li>
+</ul>
+</li>
+<li><a href="#swagger%E9%85%8D%E7%BD%AE%E7%B1%BB">swagger配置类</a></li>
+</ul>
+</li>
+</ul>
+</div>
+								</div>
+								<div id="fullPage"><canvas id="canvas"></canvas></div>
+					</article>
+					<div id="eof"><span>EOF</span></div>
+					<div class="round-shape-one"></div>
+					<section>
+						<div class="doc_comments">
+							
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<script>
+			"use strict"; !function () { for (var n = document.getElementsByTagName("pre"), e = n.length, s = 0; s < e; s++) { n[s].innerHTML = '<span class="line-number"></span>' + n[s].innerHTML + '<span class="cl"></span>'; for (var a = n[s].innerHTML.split(/\n/).length, r = 0; r < a - 1; r++) { n[s].getElementsByTagName("span")[0].innerHTML += "<span>" + (r + 1) + "</span>" } } }();
+			let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a"); window.addEventListener("scroll", event => {
+				let fromTop = window.scrollY; mainNavLinks.forEach((link, index) => {
+					let section = document.getElementById(decodeURI(link.hash).substring(1)); let nextSection = null
+					if (mainNavLinks[index + 1]) { nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1)); }
+					if (section.offsetTop <= fromTop) { if (nextSection) { if (nextSection.offsetTop > fromTop) { link.classList.add("currentToc"); } else { link.classList.remove("currentToc"); } } else { link.classList.add("currentToc"); } } else { link.classList.remove("currentToc"); }
+				});
+			});
+			var h = document.documentElement, b = document.body, st = "scrollTop", sh = "scrollHeight", progress = document.querySelector(".progress"), scroll; document.addEventListener("scroll", function () { scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100; progress.style.setProperty("--scroll", scroll + "%") });
+			var wxScale = new WxScale({ fullPage: document.querySelector("#fullPage"), canvas: document.querySelector("#canvas") }); var imgBox = document.querySelectorAll("#md_block img"); for (var i = 0; i < imgBox.length; i++) { imgBox[i].onclick = function (e) { wxScale.start(this) } };
+		</script>
+		<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a>
+<div class="footer animated fadeInDown">
+    <div class="site_footer">
+        <div class="mysocials">
+            <div class="my_socials">
+                
+                    
+                            
+                    
+                            
+                    <a href="https://weibo.com/u/6094785105" title="weibo"><i
+                                class="iconfont icon-weibo"></i></a>
+                        
+                            
+                    <a href="https://github.com/dellevin" title="github"><i
+                                class="iconfont icon-github"></i></a>
+                        
+                            
+                    
+                            
+                    <a href="https://www.ittoolman.top/atom.xml" title="rss"><i
+                                class="iconfont icon-rss"></i></a>
+                        
+                            
+                    <a href="https://www.zhihu.com/people/bing-xue-chen-xi-59" title="zhihu"><i
+                                class="iconfont icon-zhihu"></i></a>
+                        
+                            
+            </div>
+        </div>
+        <div class="copyright" id="copyright">Copyright © 2020-2024 <a
+                    href="https://dellevin.github.io" style="margin:0;">
+                    Del Levin‘s blog
+                </a>.</div>
+        <!-- <span style="display: inline;margin-right:15px;">👁<strong><span
+                    id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv"
+            style="display: inline;"> -->
+            
+            <span>📚<strong>
+                    127
+                </strong> posts</span>
+    </div>
+</div>
+<script>
+    // console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;",);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+			<script type="text/javascript" async src="https://dellevin.github.io/media/js/prism.js"></script>
+</body>
+
+</html>

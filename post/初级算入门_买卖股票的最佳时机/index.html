@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="shortcut icon" href="https://dellevin.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit">
+<meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。
+">
+<meta charset="UTF-8">
+<title>
+	初级算入门_买卖股票的最佳时机 | Del Levin‘s blog
+</title>
+<link href="https://dellevin.github.io/styles/main.css" type="text/css" rel="stylesheet" />
+<link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+<script src="https://dellevin.github.io/media/js/magnify.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script
+	type="text/javascript">function btn_toggle() { document.getElementById("hn").classList.contains("no-js") ? document.getElementById("hn").classList.remove("no-js") : document.getElementById("hn").classList.add("no-js") }</script>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// const urlWithParams = `http://127.0.0.1:8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			const urlWithParams = `https://47.121.199.144/8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			fetch(urlWithParams)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response.json(); // 如果返回的是 JSON 数据
+				})
+				.then(data => {
+					// console.log('Response data:', data);
+				})
+				.catch(error => {
+					console.error('There has been a problem with your fetch operation:', error);
+				});
+		});
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-6Z5DFKZBTD');
+	</script>
+	
+		<link rel="canonical" href="https://dellevin.github.io/post/初级算入门_买卖股票的最佳时机/" />
+</head>
+
+<body>
+	<div class="progress"></div>
+<style>
+    .progress {
+        background: linear-gradient(to right, #87ceeb var(--scroll), transparent 0);
+        background-repeat: no-repeat;
+        position: fixed;
+        width: 100%;
+        height: 4px;
+        z-index: 1
+    }
+</style>
+<div class="darkmode-background"></div>
+<div class="darkmode-layer"></div>
+<noscript>
+    <p class="warn">本页面需要浏览器支持（启用）JavaScript</p>
+</noscript>
+<div class="header">
+    <div class="logo_title">
+        <div class="title animated fadeInDown"><a href="https://dellevin.github.io"><img alt="logo"
+                    style="display:inline-block;" src="https://dellevin.github.io/images/avatar.png" /></a>
+            <h1 title="Del Levin‘s blog" class="weaklink"><a href="/">
+                    Del Levin‘s blog
+                </a></h1>
+            
+                    <div class="navbar weaklink">
+                        <div class="normal_nav">
+                            <div class="bitcron_nav_container">
+                                <div class="bitcron_nav">
+                                    <div class="bitcron_nav">
+                                        <div style="display:flex;justify-content:center;">
+                                            <nav class="mixed_site_nav_wrap site_nav_wrap">
+                                                <ul class="mixed_site_nav site_nav sm sm-base">
+                                                    
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/"
+                                                                class="selected active current nav__item">
+                                                                首页
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/archives"
+                                                                class="selected active current nav__item">
+                                                                归档
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/tags"
+                                                                class="selected active current nav__item">
+                                                                标签
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/image-list"
+                                                                class="selected active current nav__item">
+                                                                相册
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/yue-wen"
+                                                                class="selected active current nav__item">
+                                                                阅读
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/you-ren-zhang"
+                                                                class="selected active current nav__item">
+                                                                 友链
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/guan-yu"
+                                                                class="selected active current nav__item">
+                                                                关于
+                                                            </a></li>
+                                                        
+                                                </ul>
+                                            </nav>
+                                            <div style="float:right;margin-top:1em">
+                                                <form id="gridea-search-form" data-update="1578893743252"
+                                                    action="/search/index.html"><input class="search-input"
+                                                        autocomplete="off" spellcheck="false" name="q"
+                                                        placeholder="Search..."></form>
+                                            </div>
+                                            <div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default"
+                                                    onclick="mobileBtn()" type="checkbox" class="switch_default"><label
+                                                    for="switch_default" class="toggleBtn"></label></div>
+                                        </div>
+                                        <div class="clear clear_nav_inline_end"></div>
+                                    </div>
+                                </div>
+                                <div class="clear clear_nav_end"></div>
+                            </div>
+                        </div>
+                        <div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i
+                                class="iconfont icon-category"></i></div>
+                    </div>
+        </div>
+    </div>
+    <div id="hn" class="no-js hidden_nav animated fadeInDown">
+        <div class="bitcron_nav_container">
+            <div class="bitcron_nav">
+                <nav class="mixed_site_nav_wrap site_nav_wrap">
+                    <ul class="mixed_site_nav site_nav sm sm-base">
+                        
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/"
+                                    class="selected active current nav__item">
+                                    首页
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives"
+                                    class="selected active current nav__item">
+                                    归档
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags"
+                                    class="selected active current nav__item">
+                                    标签
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/image-list"
+                                    class="selected active current nav__item">
+                                    相册
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-wen"
+                                    class="selected active current nav__item">
+                                    阅读
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang"
+                                    class="selected active current nav__item">
+                                     友链
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu"
+                                    class="selected active current nav__item">
+                                    关于
+                                </a></li>
+                            
+                    </ul>
+                    <div class="clear clear_nav_inline_end"></div>
+                </nav>
+            </div>
+            <div class="clear clear_nav_end"></div>
+        </div>
+        <div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%">
+            <div>
+                <form id="gridea-search-form" data-update="1728576634403" action="/search/index.html"><input
+                        class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..." />
+                </form>
+            </div>
+            <div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox"
+                    class="switch_default"><label for="switch_default" class="toggleBtn"></label></div>
+        </div>
+    </div>
+</div>
+<script>function enableDarkmode() { document.body.classList.add("darkmode"), document.getElementById("switch_default").checked = 1, document.getElementById("switch_default_h").checked = 1 } function removeDarkmode() { document.body.classList.remove("darkmode"), document.getElementById("switch_default").checked = 0, document.getElementById("switch_default_h").checked = 0 } function getCookie(a) { var b, c = new RegExp("(^| )" + a + "=([^;]*)(;|$)"); return (b = document.cookie.match(c)) ? unescape(b[2]) : null } cookie = getCookie("darkmode"), "enable" == cookie && enableDarkmode(), window.matchMedia("(prefers-color-scheme: dark)").matches && "disable" !== cookie && (enableDarkmode(), document.cookie = "darkmode=enable; path=/"); var mobileBtn = function () { 1 == document.getElementById("switch_default").checked ? (enableDarkmode(), document.cookie = "darkmode=enable; path=/") : (removeDarkmode(), document.cookie = "darkmode=disable; path=/") };</script>
+
+		<div class="main">
+			<div class="main-inner">
+				<div class="content">
+					<article class="post">
+						<h2 class="post_title sm_margin"><a>
+								初级算入门_买卖股票的最佳时机
+							</a></h2>
+						<script>function lan() { if (document.getElementById("lan").innerText == "繁") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "简" } else { if (document.getElementById("lan").innerText == "簡") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "繁" } } };</script>
+						<section class="post_details"><i class="iconfont icon-calendar"></i><span
+								style="margin-right:15px">
+								2023-02-15
+							</span>
+							<!-- <i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span
+									id="busuanzi_value_page_pv"></span> Views</span> -->
+									<i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">
+								 <a href="https://dellevin.github.io/tag/suan-fa/" class="tag">
+										算法
+									</a>
+									
+											
+							</span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">
+								454字
+							</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">
+								2 min read
+							</span><a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体"
+								style="margin-right:15px;">繁</a>
+							
+						</section>
+						
+								<div style="display:flex">
+									<div class="md_block" id="md_block">
+										<div class="round-shape-one"></div>
+										<p>给定一个数组 <code>prices</code> ，它的第 <code>i</code> 个元素 <code>prices[i]</code> 表示一支给定股票第 <code>i</code> 天的价格。</p>
+<p>你只能选择 <strong>某一天</strong> 买入这只股票，并选择在 <strong>未来的某一个不同的日子</strong> 卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
+<p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 <code>0</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code class="language-bash">输入：[7,1,5,3,6,4]
+输出：5
+解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code class="language-bash">输入：prices = [7,6,4,3,1]
+输出：0
+解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= prices.length &lt;= 105</code></li>
+<li><code>0 &lt;= prices[i] &lt;= 104</code></li>
+</ul>
+<h2 id="代码">代码:</h2>
+<pre><code class="language-java">class Solution {
+    public int maxProfit(int[] prices) {
+        /*
+        //超时了，tmd，注意 1 &lt;= prices.length &lt;= 105
+        int res = 0;
+        for(int i=0 ; i&lt;prices.length ;i++){
+            for(int j =i+1;j&lt;prices.length;j++){
+                if(prices[j]-prices[i]&gt;=0){
+                    res=Math.max(res,prices[j]-prices[i]);
+                }
+            }
+        }
+        return res;
+        */
+
+        //max（当前价格max-最低价格min）
+        int min = 10001;
+        int res = 0;
+        for(int i=0; i&lt;prices.length;i++){
+            min = Math.min(min,prices[i]);
+            res = Math.max(res,prices[i]-min);
+        }
+        return res;
+
+    }
+}
+</code></pre>
+<h2 id="思路">思路:</h2>
+<p>原本是准备使用双循环解决这个问题的,结果时间超时了,因为数组长度太长了<code>1 &lt;= prices.length &lt;= 105</code></p>
+<p>思考了一下不能这样解决问题。可以循环求最小值，用当前值减去最小值就是一个新的值，然后再用新值和下一次的新值作比较就能求出来了。</p>
+
+											<span id="footnote"></span>
+											<div id="warn"></div>
+									</div>
+									<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BB%A3%E7%A0%81">代码:</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+								</div>
+								<div id="fullPage"><canvas id="canvas"></canvas></div>
+					</article>
+					<div id="eof"><span>EOF</span></div>
+					<div class="round-shape-one"></div>
+					<section>
+						<div class="doc_comments">
+							
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<script>
+			"use strict"; !function () { for (var n = document.getElementsByTagName("pre"), e = n.length, s = 0; s < e; s++) { n[s].innerHTML = '<span class="line-number"></span>' + n[s].innerHTML + '<span class="cl"></span>'; for (var a = n[s].innerHTML.split(/\n/).length, r = 0; r < a - 1; r++) { n[s].getElementsByTagName("span")[0].innerHTML += "<span>" + (r + 1) + "</span>" } } }();
+			let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a"); window.addEventListener("scroll", event => {
+				let fromTop = window.scrollY; mainNavLinks.forEach((link, index) => {
+					let section = document.getElementById(decodeURI(link.hash).substring(1)); let nextSection = null
+					if (mainNavLinks[index + 1]) { nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1)); }
+					if (section.offsetTop <= fromTop) { if (nextSection) { if (nextSection.offsetTop > fromTop) { link.classList.add("currentToc"); } else { link.classList.remove("currentToc"); } } else { link.classList.add("currentToc"); } } else { link.classList.remove("currentToc"); }
+				});
+			});
+			var h = document.documentElement, b = document.body, st = "scrollTop", sh = "scrollHeight", progress = document.querySelector(".progress"), scroll; document.addEventListener("scroll", function () { scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100; progress.style.setProperty("--scroll", scroll + "%") });
+			var wxScale = new WxScale({ fullPage: document.querySelector("#fullPage"), canvas: document.querySelector("#canvas") }); var imgBox = document.querySelectorAll("#md_block img"); for (var i = 0; i < imgBox.length; i++) { imgBox[i].onclick = function (e) { wxScale.start(this) } };
+		</script>
+		<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a>
+<div class="footer animated fadeInDown">
+    <div class="site_footer">
+        <div class="mysocials">
+            <div class="my_socials">
+                
+                    
+                            
+                    
+                            
+                    <a href="https://weibo.com/u/6094785105" title="weibo"><i
+                                class="iconfont icon-weibo"></i></a>
+                        
+                            
+                    <a href="https://github.com/dellevin" title="github"><i
+                                class="iconfont icon-github"></i></a>
+                        
+                            
+                    
+                            
+                    <a href="https://www.ittoolman.top/atom.xml" title="rss"><i
+                                class="iconfont icon-rss"></i></a>
+                        
+                            
+                    <a href="https://www.zhihu.com/people/bing-xue-chen-xi-59" title="zhihu"><i
+                                class="iconfont icon-zhihu"></i></a>
+                        
+                            
+            </div>
+        </div>
+        <div class="copyright" id="copyright">Copyright © 2020-2024 <a
+                    href="https://dellevin.github.io" style="margin:0;">
+                    Del Levin‘s blog
+                </a>.</div>
+        <!-- <span style="display: inline;margin-right:15px;">👁<strong><span
+                    id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv"
+            style="display: inline;"> -->
+            
+            <span>📚<strong>
+                    127
+                </strong> posts</span>
+    </div>
+</div>
+<script>
+    // console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;",);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+			<script type="text/javascript" async src="https://dellevin.github.io/media/js/prism.js"></script>
+</body>
+
+</html>

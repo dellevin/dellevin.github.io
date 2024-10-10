@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="shortcut icon" href="https://dellevin.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit">
+<meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。
+">
+<meta charset="UTF-8">
+<title>
+	vue数据传递加载以及v-if判断不显示 | Del Levin‘s blog
+</title>
+<link href="https://dellevin.github.io/styles/main.css" type="text/css" rel="stylesheet" />
+<link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+<script src="https://dellevin.github.io/media/js/magnify.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script
+	type="text/javascript">function btn_toggle() { document.getElementById("hn").classList.contains("no-js") ? document.getElementById("hn").classList.remove("no-js") : document.getElementById("hn").classList.add("no-js") }</script>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// const urlWithParams = `http://127.0.0.1:8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			const urlWithParams = `https://47.121.199.144/8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			fetch(urlWithParams)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response.json(); // 如果返回的是 JSON 数据
+				})
+				.then(data => {
+					// console.log('Response data:', data);
+				})
+				.catch(error => {
+					console.error('There has been a problem with your fetch operation:', error);
+				});
+		});
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-6Z5DFKZBTD');
+	</script>
+	
+		<link rel="canonical" href="https://dellevin.github.io/post/vue数据传递加载以及v-if判断不显示/" />
+</head>
+
+<body>
+	<div class="progress"></div>
+<style>
+    .progress {
+        background: linear-gradient(to right, #87ceeb var(--scroll), transparent 0);
+        background-repeat: no-repeat;
+        position: fixed;
+        width: 100%;
+        height: 4px;
+        z-index: 1
+    }
+</style>
+<div class="darkmode-background"></div>
+<div class="darkmode-layer"></div>
+<noscript>
+    <p class="warn">本页面需要浏览器支持（启用）JavaScript</p>
+</noscript>
+<div class="header">
+    <div class="logo_title">
+        <div class="title animated fadeInDown"><a href="https://dellevin.github.io"><img alt="logo"
+                    style="display:inline-block;" src="https://dellevin.github.io/images/avatar.png" /></a>
+            <h1 title="Del Levin‘s blog" class="weaklink"><a href="/">
+                    Del Levin‘s blog
+                </a></h1>
+            
+                    <div class="navbar weaklink">
+                        <div class="normal_nav">
+                            <div class="bitcron_nav_container">
+                                <div class="bitcron_nav">
+                                    <div class="bitcron_nav">
+                                        <div style="display:flex;justify-content:center;">
+                                            <nav class="mixed_site_nav_wrap site_nav_wrap">
+                                                <ul class="mixed_site_nav site_nav sm sm-base">
+                                                    
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/"
+                                                                class="selected active current nav__item">
+                                                                首页
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/archives"
+                                                                class="selected active current nav__item">
+                                                                归档
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/tags"
+                                                                class="selected active current nav__item">
+                                                                标签
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/image-list"
+                                                                class="selected active current nav__item">
+                                                                相册
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/yue-wen"
+                                                                class="selected active current nav__item">
+                                                                阅读
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/you-ren-zhang"
+                                                                class="selected active current nav__item">
+                                                                 友链
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/guan-yu"
+                                                                class="selected active current nav__item">
+                                                                关于
+                                                            </a></li>
+                                                        
+                                                </ul>
+                                            </nav>
+                                            <div style="float:right;margin-top:1em">
+                                                <form id="gridea-search-form" data-update="1578893743252"
+                                                    action="/search/index.html"><input class="search-input"
+                                                        autocomplete="off" spellcheck="false" name="q"
+                                                        placeholder="Search..."></form>
+                                            </div>
+                                            <div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default"
+                                                    onclick="mobileBtn()" type="checkbox" class="switch_default"><label
+                                                    for="switch_default" class="toggleBtn"></label></div>
+                                        </div>
+                                        <div class="clear clear_nav_inline_end"></div>
+                                    </div>
+                                </div>
+                                <div class="clear clear_nav_end"></div>
+                            </div>
+                        </div>
+                        <div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i
+                                class="iconfont icon-category"></i></div>
+                    </div>
+        </div>
+    </div>
+    <div id="hn" class="no-js hidden_nav animated fadeInDown">
+        <div class="bitcron_nav_container">
+            <div class="bitcron_nav">
+                <nav class="mixed_site_nav_wrap site_nav_wrap">
+                    <ul class="mixed_site_nav site_nav sm sm-base">
+                        
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/"
+                                    class="selected active current nav__item">
+                                    首页
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives"
+                                    class="selected active current nav__item">
+                                    归档
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags"
+                                    class="selected active current nav__item">
+                                    标签
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/image-list"
+                                    class="selected active current nav__item">
+                                    相册
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-wen"
+                                    class="selected active current nav__item">
+                                    阅读
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang"
+                                    class="selected active current nav__item">
+                                     友链
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu"
+                                    class="selected active current nav__item">
+                                    关于
+                                </a></li>
+                            
+                    </ul>
+                    <div class="clear clear_nav_inline_end"></div>
+                </nav>
+            </div>
+            <div class="clear clear_nav_end"></div>
+        </div>
+        <div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%">
+            <div>
+                <form id="gridea-search-form" data-update="1728576634403" action="/search/index.html"><input
+                        class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..." />
+                </form>
+            </div>
+            <div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox"
+                    class="switch_default"><label for="switch_default" class="toggleBtn"></label></div>
+        </div>
+    </div>
+</div>
+<script>function enableDarkmode() { document.body.classList.add("darkmode"), document.getElementById("switch_default").checked = 1, document.getElementById("switch_default_h").checked = 1 } function removeDarkmode() { document.body.classList.remove("darkmode"), document.getElementById("switch_default").checked = 0, document.getElementById("switch_default_h").checked = 0 } function getCookie(a) { var b, c = new RegExp("(^| )" + a + "=([^;]*)(;|$)"); return (b = document.cookie.match(c)) ? unescape(b[2]) : null } cookie = getCookie("darkmode"), "enable" == cookie && enableDarkmode(), window.matchMedia("(prefers-color-scheme: dark)").matches && "disable" !== cookie && (enableDarkmode(), document.cookie = "darkmode=enable; path=/"); var mobileBtn = function () { 1 == document.getElementById("switch_default").checked ? (enableDarkmode(), document.cookie = "darkmode=enable; path=/") : (removeDarkmode(), document.cookie = "darkmode=disable; path=/") };</script>
+
+		<div class="main">
+			<div class="main-inner">
+				<div class="content">
+					<article class="post">
+						<h2 class="post_title sm_margin"><a>
+								vue数据传递加载以及v-if判断不显示
+							</a></h2>
+						<script>function lan() { if (document.getElementById("lan").innerText == "繁") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "简" } else { if (document.getElementById("lan").innerText == "簡") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "繁" } } };</script>
+						<section class="post_details"><i class="iconfont icon-calendar"></i><span
+								style="margin-right:15px">
+								2023-04-27
+							</span>
+							<!-- <i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span
+									id="busuanzi_value_page_pv"></span> Views</span> -->
+									<i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">
+								 <a href="https://dellevin.github.io/tag/vue/" class="tag">
+										Vue
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/ai-tou-ai-nao/" class="tag">
+										呆头呆脑
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/gu-zhang/" class="tag">
+										故障
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/bug-ri-zhi/" class="tag">
+										bug日志
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/ji-zhu-bi-ji/" class="tag">
+										技术笔记
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/html/" class="tag">
+										Html
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/css/" class="tag">
+										CSS
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/jquery/" class="tag">
+										JQuery
+									</a>
+									
+											
+							</span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">
+								1305字
+							</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">
+								7 min read
+							</span><a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体"
+								style="margin-right:15px;">繁</a>
+							
+						</section>
+						
+								<div style="display:flex">
+									<div class="md_block" id="md_block">
+										<div class="round-shape-one"></div>
+										<p>今天在尽心数据传递的时候，在点击的时候，发现数据第一次会为空，但是控制台get到的数据时正常的，也就是说，赋值的时候能赋值上去，当时到了v-if判断的时候出现了小问题。</p>
+<p>一开始时按照h5的逻辑来，我以为是script在标签后面，所以才后渲染，导致判断失误的。以为时vue渲染的时候先吧标签渲染，然后才开始渲染script，但是这样的情况时不合理的，如果后加载标签的话，那么显示的时候标签上的颜色标签应该是不上色的情况。所以这个思路时错误的。</p>
+<p>代码大致的结构是这样的，之前的代码删了，大致情况时这个样子。</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;el-dialog v-model=&quot;visible&quot; :title=&quot;$t('文件预览')&quot; :close-on-click-modal=&quot;false&quot; :close-on-press-escape=&quot;false&quot;&gt;
+    &lt;div v-if=&quot;fileType == 'jpg' ||
+      fileType == 'png' ||
+      fileType == 'ico' ||
+      fileType == 'gif' ||
+      fileType == 'webp' 
+      &quot;&gt;
+      &lt;el-image style=&quot;width: 100%&quot; :src=&quot;getFilePath&quot;&gt; &lt;/el-image&gt;
+    &lt;/div&gt;
+    &lt;div v-else-if=&quot;fileType == 'docx' || fileType == 'doc'&quot;&gt;文档
+      &lt;embed :src=&quot;getFilePath&quot; style=&quot;width: 100%; height: 600px&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div v-else-if=&quot;fileType == 'xlsx' || fileType == 'xls'&quot;&gt;表格
+      &lt;embed :src=&quot;getFilePath&quot; style=&quot;width: 100%; height: 600px&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div v-else-if=&quot;fileType == 'pdf'&quot;&gt;
+      &lt;embed :src=&quot;getFilePath&quot; style=&quot;width: 100%; height: 600px&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div v-else&gt;
+      &lt;h2 style=&quot;text-align: center;color: brown; &quot;&gt;暂不支持该文件格式！&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;template v-slot:footer&gt;
+      &lt;el-button @click=&quot;visible = false&quot;&gt;{{ $t(&quot;退出预览&quot;) }}&lt;/el-button&gt;
+    &lt;/template&gt;
+  &lt;/el-dialog&gt;
+&lt;/template&gt;
+
+&lt;script lang=&quot;ts&quot; setup&gt;
+import { reactive, ref } from &quot;vue&quot;;
+import baseService from &quot;@/service/baseService&quot;;
+import { ElMessage } from &quot;element-plus&quot;;
+
+const visible = ref(false);
+const dataFormRef = ref();
+var getFilePath = &quot;&quot;;
+var fileType = &quot;&quot;;
+
+const fileMessage = reactive({
+  getFilePath: &quot;&quot;,
+  fileType: &quot;&quot;
+});
+
+const dataForm = reactive({
+  uploadFileId: &quot;&quot;,
+  uploadCompanyName: &quot;&quot;,
+  uploadFileName: &quot;&quot;,
+  uploadFilePath: &quot;&quot;,
+  uploadUserName: &quot;&quot;,
+  uploadFileTime: &quot;&quot;,
+});
+
+const init = (uploadFileId?: number) =&gt; {
+  visible.value = true;
+  dataForm.uploadFileId = &quot;&quot;;
+
+  //重置表单数据
+  if (dataFormRef.value) {
+    dataFormRef.value.resetFields();
+  }
+
+  if (uploadFileId) {
+    getInfo(uploadFileId);
+  }
+};
+
+//var showType: string;
+// 获取信息
+const getInfo = (uploadFileId: number) =&gt; {
+  baseService.get(&quot;/uploadFile/xyjqfileupload/&quot; + uploadFileId).then((res) =&gt; {
+    Object.assign(dataForm, res.data);
+    if (dataForm.uploadFilePath != &quot;&quot;) {
+      getFilePath = dataForm.uploadFilePath; //获取到图片的路径，写在这里面才管用，写在外面，第一次请求时候没有数据
+      //获取文件的类型，取文件后缀名判断
+      fileType = getFilePath.substring(getFilePath.lastIndexOf(&quot;.&quot;) + 1, getFilePath.length);
+      console.log(&quot;文件类型：&quot; + fileType);
+      console.log(getFilePath);
+    } else {
+      ElMessage.error(&quot;链接地址为空，无法打开&quot;);
+    }
+  });
+};
+defineExpose({
+  init
+});
+&lt;/script&gt;
+
+</code></pre>
+<p>代码大致时这个情况，后来发现主要原因出现在这两个赋值传递值的阶段</p>
+<pre><code class="language-html">var filetype=&quot;&quot;;
+var getFilePath=&quot;&quot;;
+</code></pre>
+<p>不知道是不是vue的结构还是html的结构问题，主要脚本语言时时typescript，需要const定义一下属性进行赋值，才可以在第一次传递数据和判断数据的时候生效，也就是说要改成下面的这个情况。而且在ts中，var的作用区间并不是和js一样，我想大概是因为这个情况吧，才学没多久，希望有人能指出这个bug来。。。。</p>
+<pre><code class="language-html">const fileMessage = reactive({
+  getFilePath: &quot;&quot;,
+  fileType: &quot;&quot;
+});
+</code></pre>
+<p>这个是正确的结构：</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;el-dialog v-model=&quot;visible&quot; :title=&quot;$t('文件预览')&quot; :close-on-click-modal=&quot;false&quot; :close-on-press-escape=&quot;false&quot;&gt;
+    &lt;div v-if=&quot;fileMessage.fileType == 'jpg' ||
+      fileMessage.fileType == 'png' ||
+      fileMessage.fileType == 'ico' ||
+      fileMessage.fileType == 'gif' ||
+      fileMessage.fileType == 'webp' 
+      &quot;&gt;
+      &lt;el-image style=&quot;width: 100%&quot; :src=&quot;fileMessage.getFilePath&quot;&gt; &lt;/el-image&gt;
+    &lt;/div&gt;
+    &lt;div v-else-if=&quot;fileMessage.fileType == 'docx' || fileMessage.fileType == 'doc'&quot;&gt;文档
+      &lt;embed :src=&quot;fileMessage.getFilePath&quot; style=&quot;width: 100%; height: 600px&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div v-else-if=&quot;fileMessage.fileType == 'xlsx' || fileMessage.fileType == 'xls'&quot;&gt;表格
+      &lt;embed :src=&quot;fileMessage.getFilePath&quot; style=&quot;width: 100%; height: 600px&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div v-else-if=&quot;fileMessage.fileType == 'pdf'&quot;&gt;
+      &lt;embed :src=&quot;fileMessage.getFilePath&quot; style=&quot;width: 100%; height: 600px&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div v-else&gt;
+      &lt;h2 style=&quot;text-align: center;color: brown; &quot;&gt;暂不支持该文件格式！&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;template v-slot:footer&gt;
+      &lt;el-button @click=&quot;visible = false&quot;&gt;{{ $t(&quot;退出预览&quot;) }}&lt;/el-button&gt;
+    &lt;/template&gt;
+  &lt;/el-dialog&gt;
+&lt;/template&gt;
+
+&lt;script lang=&quot;ts&quot; setup&gt;
+import { reactive, ref } from &quot;vue&quot;;
+import baseService from &quot;@/service/baseService&quot;;
+import { ElMessage } from &quot;element-plus&quot;;
+
+const visible = ref(false);
+const dataFormRef = ref();
+
+const fileMessage = reactive({
+  getFilePath: &quot;&quot;,
+  fileType: &quot;&quot;
+});
+
+const dataForm = reactive({
+  uploadFileId: &quot;&quot;,
+  uploadCompanyName: &quot;&quot;,
+  uploadFileName: &quot;&quot;,
+  uploadFilePath: &quot;&quot;,
+  uploadUserName: &quot;&quot;,
+  uploadFileTime: &quot;&quot;,
+});
+
+const init = (uploadFileId?: number) =&gt; {
+  visible.value = true;
+  dataForm.uploadFileId = &quot;&quot;;
+
+  //重置表单数据
+  if (dataFormRef.value) {
+    dataFormRef.value.resetFields();
+  }
+
+  if (uploadFileId) {
+    getInfo(uploadFileId);
+  }
+};
+//var showType: string;
+// 获取信息
+const getInfo = (uploadFileId: number) =&gt; {
+  baseService.get(&quot;/uploadFile/xyjqfileupload/&quot; + uploadFileId).then((res) =&gt; {
+    Object.assign(dataForm, res.data);
+    if (dataForm.uploadFilePath != &quot;&quot;) {
+      fileMessage.getFilePath = dataForm.uploadFilePath; //获取到图片的路径，卸载这里面才管用，写在外面，第一次请求时候没有数据
+      //console.log(getFilePath.substring(getFilePath.lastIndexOf(&quot;.&quot;) + 1, getFilePath.length));
+      //console.log(getFilePath);
+      fileMessage.fileType = fileMessage.getFilePath.substring(fileMessage.getFilePath.lastIndexOf(&quot;.&quot;) + 1, fileMessage.getFilePath.length);
+      //showType = fileType;
+      console.log(&quot;文件类型：&quot; + fileMessage.fileType);
+      console.log(fileMessage.getFilePath);
+
+
+    } else {
+      ElMessage.error(&quot;链接地址为空，无法打开&quot;);
+    }
+  });
+};
+
+defineExpose({
+  init
+});
+&lt;/script&gt;
+
+</code></pre>
+
+											<span id="footnote"></span>
+											<div id="warn"></div>
+									</div>
+									<div class="toc-container"></div>
+								</div>
+								<div id="fullPage"><canvas id="canvas"></canvas></div>
+					</article>
+					<div id="eof"><span>EOF</span></div>
+					<div class="round-shape-one"></div>
+					<section>
+						<div class="doc_comments">
+							
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<script>
+			"use strict"; !function () { for (var n = document.getElementsByTagName("pre"), e = n.length, s = 0; s < e; s++) { n[s].innerHTML = '<span class="line-number"></span>' + n[s].innerHTML + '<span class="cl"></span>'; for (var a = n[s].innerHTML.split(/\n/).length, r = 0; r < a - 1; r++) { n[s].getElementsByTagName("span")[0].innerHTML += "<span>" + (r + 1) + "</span>" } } }();
+			let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a"); window.addEventListener("scroll", event => {
+				let fromTop = window.scrollY; mainNavLinks.forEach((link, index) => {
+					let section = document.getElementById(decodeURI(link.hash).substring(1)); let nextSection = null
+					if (mainNavLinks[index + 1]) { nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1)); }
+					if (section.offsetTop <= fromTop) { if (nextSection) { if (nextSection.offsetTop > fromTop) { link.classList.add("currentToc"); } else { link.classList.remove("currentToc"); } } else { link.classList.add("currentToc"); } } else { link.classList.remove("currentToc"); }
+				});
+			});
+			var h = document.documentElement, b = document.body, st = "scrollTop", sh = "scrollHeight", progress = document.querySelector(".progress"), scroll; document.addEventListener("scroll", function () { scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100; progress.style.setProperty("--scroll", scroll + "%") });
+			var wxScale = new WxScale({ fullPage: document.querySelector("#fullPage"), canvas: document.querySelector("#canvas") }); var imgBox = document.querySelectorAll("#md_block img"); for (var i = 0; i < imgBox.length; i++) { imgBox[i].onclick = function (e) { wxScale.start(this) } };
+		</script>
+		<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a>
+<div class="footer animated fadeInDown">
+    <div class="site_footer">
+        <div class="mysocials">
+            <div class="my_socials">
+                
+                    
+                            
+                    
+                            
+                    <a href="https://weibo.com/u/6094785105" title="weibo"><i
+                                class="iconfont icon-weibo"></i></a>
+                        
+                            
+                    <a href="https://github.com/dellevin" title="github"><i
+                                class="iconfont icon-github"></i></a>
+                        
+                            
+                    
+                            
+                    <a href="https://www.ittoolman.top/atom.xml" title="rss"><i
+                                class="iconfont icon-rss"></i></a>
+                        
+                            
+                    <a href="https://www.zhihu.com/people/bing-xue-chen-xi-59" title="zhihu"><i
+                                class="iconfont icon-zhihu"></i></a>
+                        
+                            
+            </div>
+        </div>
+        <div class="copyright" id="copyright">Copyright © 2020-2024 <a
+                    href="https://dellevin.github.io" style="margin:0;">
+                    Del Levin‘s blog
+                </a>.</div>
+        <!-- <span style="display: inline;margin-right:15px;">👁<strong><span
+                    id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv"
+            style="display: inline;"> -->
+            
+            <span>📚<strong>
+                    127
+                </strong> posts</span>
+    </div>
+</div>
+<script>
+    // console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;",);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+			<script type="text/javascript" async src="https://dellevin.github.io/media/js/prism.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="shortcut icon" href="https://dellevin.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit">
+<meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。">
+<meta charset="UTF-8">
+<title>
+	uni-app微信小程序属性为0 | Del Levin‘s blog
+</title>
+<link href="https://dellevin.github.io/styles/main.css" type="text/css" rel="stylesheet" />
+<link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+<script src="https://dellevin.github.io/media/js/magnify.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script
+	type="text/javascript">function btn_toggle() { document.getElementById("hn").classList.contains("no-js") ? document.getElementById("hn").classList.remove("no-js") : document.getElementById("hn").classList.add("no-js") }</script>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// const urlWithParams = `http://127.0.0.1:8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			const urlWithParams = `https://47.121.199.144/8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			fetch(urlWithParams)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response.json(); // 如果返回的是 JSON 数据
+				})
+				.then(data => {
+					// console.log('Response data:', data);
+				})
+				.catch(error => {
+					console.error('There has been a problem with your fetch operation:', error);
+				});
+		});
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-6Z5DFKZBTD');
+	</script>
+	
+		<link rel="canonical" href="https://dellevin.github.io/post/uni-app-wei-xin-xiao-cheng-xu-shu-xing-wei-0/" />
+</head>
+
+<body>
+	<div class="progress"></div>
+<style>
+    .progress {
+        background: linear-gradient(to right, #87ceeb var(--scroll), transparent 0);
+        background-repeat: no-repeat;
+        position: fixed;
+        width: 100%;
+        height: 4px;
+        z-index: 1
+    }
+</style>
+<div class="darkmode-background"></div>
+<div class="darkmode-layer"></div>
+<noscript>
+    <p class="warn">本页面需要浏览器支持（启用）JavaScript</p>
+</noscript>
+<div class="header">
+    <div class="logo_title">
+        <div class="title animated fadeInDown"><a href="https://dellevin.github.io"><img alt="logo"
+                    style="display:inline-block;" src="https://dellevin.github.io/images/avatar.png" /></a>
+            <h1 title="Del Levin‘s blog" class="weaklink"><a href="/">
+                    Del Levin‘s blog
+                </a></h1>
+            
+                    <div class="navbar weaklink">
+                        <div class="normal_nav">
+                            <div class="bitcron_nav_container">
+                                <div class="bitcron_nav">
+                                    <div class="bitcron_nav">
+                                        <div style="display:flex;justify-content:center;">
+                                            <nav class="mixed_site_nav_wrap site_nav_wrap">
+                                                <ul class="mixed_site_nav site_nav sm sm-base">
+                                                    
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/"
+                                                                class="selected active current nav__item">
+                                                                首页
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/archives"
+                                                                class="selected active current nav__item">
+                                                                归档
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/tags"
+                                                                class="selected active current nav__item">
+                                                                标签
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/image-list"
+                                                                class="selected active current nav__item">
+                                                                相册
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/yue-wen"
+                                                                class="selected active current nav__item">
+                                                                阅读
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/you-ren-zhang"
+                                                                class="selected active current nav__item">
+                                                                 友链
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/guan-yu"
+                                                                class="selected active current nav__item">
+                                                                关于
+                                                            </a></li>
+                                                        
+                                                </ul>
+                                            </nav>
+                                            <div style="float:right;margin-top:1em">
+                                                <form id="gridea-search-form" data-update="1578893743252"
+                                                    action="/search/index.html"><input class="search-input"
+                                                        autocomplete="off" spellcheck="false" name="q"
+                                                        placeholder="Search..."></form>
+                                            </div>
+                                            <div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default"
+                                                    onclick="mobileBtn()" type="checkbox" class="switch_default"><label
+                                                    for="switch_default" class="toggleBtn"></label></div>
+                                        </div>
+                                        <div class="clear clear_nav_inline_end"></div>
+                                    </div>
+                                </div>
+                                <div class="clear clear_nav_end"></div>
+                            </div>
+                        </div>
+                        <div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i
+                                class="iconfont icon-category"></i></div>
+                    </div>
+        </div>
+    </div>
+    <div id="hn" class="no-js hidden_nav animated fadeInDown">
+        <div class="bitcron_nav_container">
+            <div class="bitcron_nav">
+                <nav class="mixed_site_nav_wrap site_nav_wrap">
+                    <ul class="mixed_site_nav site_nav sm sm-base">
+                        
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/"
+                                    class="selected active current nav__item">
+                                    首页
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives"
+                                    class="selected active current nav__item">
+                                    归档
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags"
+                                    class="selected active current nav__item">
+                                    标签
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/image-list"
+                                    class="selected active current nav__item">
+                                    相册
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-wen"
+                                    class="selected active current nav__item">
+                                    阅读
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang"
+                                    class="selected active current nav__item">
+                                     友链
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu"
+                                    class="selected active current nav__item">
+                                    关于
+                                </a></li>
+                            
+                    </ul>
+                    <div class="clear clear_nav_inline_end"></div>
+                </nav>
+            </div>
+            <div class="clear clear_nav_end"></div>
+        </div>
+        <div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%">
+            <div>
+                <form id="gridea-search-form" data-update="1729061534579" action="/search/index.html"><input
+                        class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..." />
+                </form>
+            </div>
+            <div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox"
+                    class="switch_default"><label for="switch_default" class="toggleBtn"></label></div>
+        </div>
+    </div>
+</div>
+<script>function enableDarkmode() { document.body.classList.add("darkmode"), document.getElementById("switch_default").checked = 1, document.getElementById("switch_default_h").checked = 1 } function removeDarkmode() { document.body.classList.remove("darkmode"), document.getElementById("switch_default").checked = 0, document.getElementById("switch_default_h").checked = 0 } function getCookie(a) { var b, c = new RegExp("(^| )" + a + "=([^;]*)(;|$)"); return (b = document.cookie.match(c)) ? unescape(b[2]) : null } cookie = getCookie("darkmode"), "enable" == cookie && enableDarkmode(), window.matchMedia("(prefers-color-scheme: dark)").matches && "disable" !== cookie && (enableDarkmode(), document.cookie = "darkmode=enable; path=/"); var mobileBtn = function () { 1 == document.getElementById("switch_default").checked ? (enableDarkmode(), document.cookie = "darkmode=enable; path=/") : (removeDarkmode(), document.cookie = "darkmode=disable; path=/") };</script>
+
+		<div class="main">
+			<div class="main-inner">
+				<div class="content">
+					<article class="post">
+						<h2 class="post_title sm_margin"><a>
+								uni-app微信小程序属性为0
+							</a></h2>
+						<script>function lan() { if (document.getElementById("lan").innerText == "繁") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "简" } else { if (document.getElementById("lan").innerText == "簡") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "繁" } } };</script>
+						<section class="post_details"><i class="iconfont icon-calendar"></i><span
+								style="margin-right:15px">
+								2024-06-04
+							</span>
+							<!-- <i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span
+									id="busuanzi_value_page_pv"></span> Views</span> -->
+									<i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">
+								 <a href="https://dellevin.github.io/tag/vue/" class="tag">
+										Vue
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/ai-tou-ai-nao/" class="tag">
+										呆头呆脑
+									</a>
+									
+											
+							</span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">
+								1595字
+							</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">
+								9 min read
+							</span><a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体"
+								style="margin-right:15px;">繁</a>
+							
+						</section>
+						
+								<div style="display:flex">
+									<div class="md_block" id="md_block">
+										<div class="round-shape-one"></div>
+										<p>前几日在封装一个组件的时候，接收数据的时候遇到一个属性等于0，但是，前端死活不显示</p>
+<figure data-type="image" tabindex="1"><img src="https://dellevin.github.io/post-images/1717501050718.png" alt="" loading="lazy"></figure>
+<p>这里是有值的，但</p>
+<figure data-type="image" tabindex="2"><img src="https://dellevin.github.io/post-images/1717501069743.png" alt="" loading="lazy"></figure>
+<p>到了前端就没有了，卧槽，太神奇了是不是。打印一下看看</p>
+<figure data-type="image" tabindex="3"><img src="https://dellevin.github.io/post-images/1717501074058.png" alt="" loading="lazy"></figure>
+<p>打印出来传入值竟然是undefined而不是0，一定是闹鬼了。。。</p>
+<p>最后再不断定位错误的时候，发现是这里的毛病</p>
+<pre><code class="language-vue">post: item.post || '', // 添加 post 属性，默认值为空字符串
+</code></pre>
+<p>原因是当数值为0的时候自己就默认是false</p>
+<p>0在布尔上下文中被认为是假值，因此 <code>item.post||‘’</code>  会在 <code>item.post </code> 为 0 时返回空字符串。所以说为了保留0，需要改成</p>
+<pre><code class="language-vue"> item.post !== undefined ? item.post : ''
+</code></pre>
+<p>来确保仅在 <code>item.post</code> 是 <code>undefined</code> 时返回空字符串。</p>
+<p>下面贴一下源代码</p>
+<pre><code class="language-vue">&lt;template&gt;
+	&lt;view&gt;
+		&lt;!-- 绑定个人信息 --&gt;
+		&lt;u-popup :show=&quot;localBindCompShow&quot; @close=&quot;onClickOverlayClose&quot; @open=&quot;localBindCompShow =true&quot; mode=&quot;center&quot;
+			round=&quot;20&quot; :closeOnClickOverlay=&quot;true&quot;&gt;
+			&lt;view class=&quot;bindCompCard&quot;&gt;
+
+				&lt;view class=&quot;header-container&quot;&gt;
+					&lt;view class='header-button'&gt;
+						&lt;u-button type=&quot;info&quot; size=&quot;5&quot; icon=&quot;close&quot; @click=&quot;onClickOverlayClose&quot; :plain=&quot;true&quot;
+							:hairline=&quot;true&quot;&gt;&lt;/u-button&gt;
+					&lt;/view&gt;
+
+					&lt;view class=&quot;header-text&quot;&gt;绑定企业信息&lt;/view&gt;
+					&lt;u-tabs :list=&quot;bindCompTabList&quot; @click=&quot;selectTab&quot; class=&quot;tabs&quot;&gt;&lt;/u-tabs&gt;
+				&lt;/view&gt;
+
+				&lt;view v-if=&quot;!bindCompNewShow&quot;&gt;
+					&lt;view class=&quot;supplier-container&quot;&gt;
+						&lt;view v-for=&quot;(item, index) in itemsToDisplay&quot; :key=&quot;index&quot; class=&quot;supplier-card&quot;&gt;
+							&lt;view class=&quot;supplier-details&quot;&gt;
+								&lt;view class=&quot;company-name&quot;&gt;{{ item.companyName }}&lt;/view&gt;
+								&lt;view class=&quot;supplier-name&quot;&gt;政采账号：{{ item.supplierAccessName }}&lt;/view&gt;
+							&lt;/view&gt;
+							&lt;view class=&quot;bind-button&quot;&gt;
+
+								&lt;view v-if=&quot;!item.isShow&quot;&gt;
+									&lt;view class=&quot;post-select&quot;&gt;
+										{{ getPostText(item.post) }}
+									&lt;/view&gt;
+									&lt;button size=&quot;default&quot; type=&quot;default&quot;
+										style=&quot;margin-top: 20rpx;color:#ffffff;background-color:#189f33;border-color:#ffffff;border-radius: 40rpx;height: 60rpx;display: flex;align-items: center;justify-content: center;&quot;&gt;已绑定&lt;/button&gt;
+								&lt;/view&gt;
+
+
+								&lt;view v-if=&quot;item.isShow&quot;&gt;
+									&lt;view class=&quot;post-select&quot; v-if=&quot;item.isShow&quot;&gt;
+										&lt;uni-data-select v-model=&quot;item.post&quot; :localdata=&quot;postList&quot;
+											placeholder=&quot;选择职位&quot;&gt;&lt;/uni-data-select&gt;
+									&lt;/view&gt;
+									&lt;button size=&quot;default&quot; type=&quot;default&quot; @click=&quot;submitBindCompCard(item)&quot;
+										style=&quot;margin-top: 20rpx;color:#ffffff;background-color:#4874cb;border-color:#ffffff;border-radius: 40rpx;height: 60rpx;display: flex;align-items: center;justify-content: center;&quot;&gt;提交绑定&lt;/button&gt;
+								&lt;/view&gt;
+							&lt;/view&gt;
+						&lt;/view&gt;
+					&lt;/view&gt;
+				&lt;/view&gt;
+
+				&lt;view v-if=&quot;bindCompNewShow&quot;&gt;
+					&lt;u--form labelPosition=&quot;left&quot; :model=&quot;formBindComp&quot;&gt;
+						&lt;u-form-item label=&quot;政采网账号&quot; prop=&quot;formBindComp.supplierAccessName&quot; borderBottom labelWidth='200'&gt;
+							&lt;u--input v-model=&quot;formBindComp.supplierAccessName&quot; border=&quot;none&quot;&gt;&lt;/u--input&gt;
+						&lt;/u-form-item&gt;
+						&lt;u-form-item label=&quot;职位&quot; prop=&quot;formBindComp.post&quot; borderBottom labelWidth='200'&gt;
+							&lt;uni-data-select v-model=&quot;formBindComp.post&quot; :localdata=&quot;postList&quot;
+								placeholder=&quot;选择职位&quot;&gt;&lt;/uni-data-select&gt;
+						&lt;/u-form-item&gt;
+					&lt;/u--form&gt;
+
+					&lt;!-- &lt;u-button type=&quot;success&quot;&gt;提交&lt;/u-button&gt; --&gt;
+					&lt;button size=&quot;default&quot; type=&quot;default&quot; @click=&quot;submitBindComp&quot;
+						style=&quot;margin-top: 40rpx;color:#ffffff;background-color:#4874cb;border-color:#ffffff;border-radius: 40rpx;height: 60rpx;display: flex;align-items: center;justify-content: center;&quot;&gt;提交绑定&lt;/button&gt;
+				&lt;/view&gt;
+
+			&lt;/view&gt;
+		&lt;/u-popup&gt;
+	&lt;/view&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	import {
+		getFieldList,
+		postBindEnterprise,
+		getUserBindComp,
+		getUserHaveBindComp,
+	} from &quot;@/api/user.js&quot;;
+	export default {
+		name: 'BindComp',
+		props: {
+			bindCompShow: {
+				type: Boolean,
+				default: true
+			},
+			userId: {
+				type: String,
+			},
+			itemList: {
+				type: Array,
+				default: () =&gt; []
+			}
+		},
+		computed: {
+			...mapState(&quot;user&quot;, [&quot;token&quot;, &quot;tokenExpire&quot;, &quot;userInfo&quot;]),
+			localBindCompShow: {
+				get() {
+					return this.bindCompShow;
+				},
+				set(val) {
+					this.$emit('update:bindCompShow', val)
+				}
+			},
+			itemsToDisplay() {
+				let list = this.itemList.length &gt; 0 ? this.itemList : this.supplierList;
+				// 处理 list，添加 post 和 isShow 属性
+				let processedList = list.map(item =&gt; ({
+				    ...item,
+				    post: item.post !== undefined ? item.post : '', // 添加 post 属性，保留原值或默认值为空字符串
+				    isShow: item.isShow !== undefined ? item.isShow : true // 添加 isShow 属性，默认值为 true
+				}));
+				return processedList;		
+			}
+		},
+		data() {
+			return {
+				supplierList: [],
+				bindCompNewShow: false,
+				bindCompTabList: [{
+						name: '政采企业信息绑定',
+					},
+					{
+						name: '绑定其他企业',
+					}
+				],
+				postList: [],
+				formBindComp: {
+					supplierAccessName: '',
+					post: '',
+					userId: '',
+				}
+			};
+		},
+		mounted() {
+			this.fieldListGet();
+			if (this.userInfo.id != undefined) {
+				this.userBindCompGet();
+			}
+		},
+		created() {
+			
+		},
+		methods: {
+			...mapMutations(&quot;user&quot;, [&quot;setUserInfo&quot;]),
+			async submitBindComp() {
+				this.formBindComp.userId = this.userId
+				if (!this.formBindComp.userId) {
+					this.formBindComp.userId = this.userInfo.id
+				}
+
+				if (this.formBindComp.userId == &quot;&quot;) {
+					uni.$u.toast('绑定失败，请尝试重新登陆后绑定！');
+					return;
+				}
+				if (this.formBindComp.supplierAccessName === &quot;&quot;) {
+					uni.$u.toast('政采网账号不能为空！');
+					return;
+				}
+				if (this.formBindComp.post === &quot;&quot;) {
+					uni.$u.toast('职位信息不能为空！');
+					return;
+				}
+				const {
+					code,
+					msg,
+					data
+				} = await postBindEnterprise(this.formBindComp);
+
+				if (code === 0) {
+					// console.log(data)
+					uni.$u.toast('绑定企业成功！');
+					setTimeout(() =&gt; {
+						this.$emit('close-popup');
+						uni.reLaunch({
+							url: '/pages/index/index'
+						});
+					}, 1000);
+				}
+
+			},
+			async submitBindCompCard(item) {
+				if (item.post === undefined || item.post === &quot;&quot;) {
+					uni.$u.toast('企业职位不能为空！');
+					return;
+				}
+				let userID = this.userId;
+				if (!userID) {
+					userID = this.userInfo.id
+				}
+
+				const params = {
+					supplierAccessName: item.supplierAccessName,
+					post: item.post,
+					userId: userID,
+				}
+				console.log(params)
+				const {
+					code,
+					msg,
+					data
+				} = await postBindEnterprise(params);
+				if (code === 0) {
+					// console.log(data)
+					// 更新 item 的 isShow 属性
+					this.$set(item, 'isShow', false);
+					uni.$u.toast('绑定' + item.companyName + '成功！');
+					// 更新绑定企业
+					this.userBindCompGet();
+
+				}
+			},
+			onClickOverlayClose() {
+				this.$emit('close-popup');
+			},
+			//获取用户下面的政采企业信息
+			async userBindCompGet() {
+				try {
+					// 如果resBindComp里面包含resHaveBind的数据,那么就设置该企业已经绑定好了
+					const resHaveBind = await getUserHaveBindComp();
+					const resBindComp = await getUserBindComp();
+					if (resHaveBind.code === 0 &amp;&amp; resBindComp.code === 0) {
+
+						const haveBindMap = new Map();
+						resHaveBind.data.forEach(item =&gt; {
+							haveBindMap.set(item.supplierId, item.post);
+						});
+
+						this.supplierList = resBindComp.data.map(item =&gt; {
+							if (haveBindMap.has(item.supplierId)) {
+								return {
+									...item,
+									post: haveBindMap.get(item.supplierId),
+									isShow: false
+								};
+							}
+							return item;
+						});
+
+						console.log(this.supplierList);
+					}
+				} catch (error) {
+					console.error('获取用户绑定企业信息失败', error);
+				}
+
+			},
+			//获取职位信息
+			async fieldListGet() {
+				const {
+					code,
+					msg,
+					data
+				} = await getFieldList({
+					fieldName: &quot;register_post&quot;
+				});
+				if (code === 0 &amp;&amp; data) {
+					// console.log(data)
+					this.postList = data.map(post =&gt; {
+						return {
+							value: post.dictCode,
+							text: post.dictName
+						}
+					});
+					// console.log(this.postList)
+				}
+			},
+			getPostText(postValue) {
+				const postItem = this.postList.find(post =&gt; post.value === postValue);
+				// console.log(postValue, postItem)
+				return postItem ? postItem.text : '未知职位';
+			},
+			selectTab(item) {
+				// console.log(item.name)
+				if (item.name == &quot;绑定其他企业&quot;) {
+					this.bindCompNewShow = true;
+				} else {
+					this.bindCompNewShow = false;
+				}
+			},
+		},
+	}
+&lt;/script&gt;
+
+&lt;style scoped lang=&quot;less&quot;&gt;
+	.bindCompCard {
+		width: 650rpx;
+		padding: 20rpx;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+
+	.header-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 20rpx;
+	}
+
+	.header-button {
+		position: absolute;
+		width: 80rpx;
+		top: 0;
+		right: 5px;
+		margin: 10rpx;
+	}
+
+	.header-text {
+		font-size: 36rpx;
+		margin-bottom: 10rpx;
+		text-align: center;
+		width: 100%;
+	}
+
+	.tabs {
+		width: 100%;
+	}
+
+	// ------------------------
+	.supplier-container {
+		display: flex;
+		flex-direction: column;
+		gap: 20rpx;
+		padding: 20rpx;
+		height: 600rpx;
+		overflow: auto;
+	}
+
+	.supplier-card {
+		background: #fff;
+		border-radius: 10rpx;
+		box-shadow: 0 2rpx 5rpx rgba(0, 0, 0, 0.1);
+		padding: 20rpx;
+		display: flex;
+		// flex-direction: column;
+		gap: 10rpx;
+	}
+
+	.supplier-details {
+		margin-top: 27rpx;
+		width: 360rpx;
+		display: flex;
+		flex-direction: column;
+		gap: 10rpx;
+	}
+
+	.company-name,
+	.supplier-name {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 100%;
+	}
+
+	.company-name {
+		font-size: 32rpx;
+		font-weight: bold;
+		color: #333;
+	}
+
+	.supplier-name {
+		font-size: 32rpx;
+		color: #666;
+	}
+
+	.post-select {
+		margin-top: 10rpx;
+		width: 222rpx;
+	}
+
+	.bind-button {
+		margin-left: 10rpx;
+	}
+&lt;/style&gt;
+</code></pre>
+
+											<span id="footnote"></span>
+											<div id="warn"></div>
+									</div>
+									<div class="toc-container"></div>
+								</div>
+								<div id="fullPage"><canvas id="canvas"></canvas></div>
+					</article>
+					<div id="eof"><span>EOF</span></div>
+					<div class="round-shape-one"></div>
+					<section>
+						<div class="doc_comments">
+							
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<script>
+			"use strict"; !function () { for (var n = document.getElementsByTagName("pre"), e = n.length, s = 0; s < e; s++) { n[s].innerHTML = '<span class="line-number"></span>' + n[s].innerHTML + '<span class="cl"></span>'; for (var a = n[s].innerHTML.split(/\n/).length, r = 0; r < a - 1; r++) { n[s].getElementsByTagName("span")[0].innerHTML += "<span>" + (r + 1) + "</span>" } } }();
+			let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a"); window.addEventListener("scroll", event => {
+				let fromTop = window.scrollY; mainNavLinks.forEach((link, index) => {
+					let section = document.getElementById(decodeURI(link.hash).substring(1)); let nextSection = null
+					if (mainNavLinks[index + 1]) { nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1)); }
+					if (section.offsetTop <= fromTop) { if (nextSection) { if (nextSection.offsetTop > fromTop) { link.classList.add("currentToc"); } else { link.classList.remove("currentToc"); } } else { link.classList.add("currentToc"); } } else { link.classList.remove("currentToc"); }
+				});
+			});
+			var h = document.documentElement, b = document.body, st = "scrollTop", sh = "scrollHeight", progress = document.querySelector(".progress"), scroll; document.addEventListener("scroll", function () { scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100; progress.style.setProperty("--scroll", scroll + "%") });
+			var wxScale = new WxScale({ fullPage: document.querySelector("#fullPage"), canvas: document.querySelector("#canvas") }); var imgBox = document.querySelectorAll("#md_block img"); for (var i = 0; i < imgBox.length; i++) { imgBox[i].onclick = function (e) { wxScale.start(this) } };
+		</script>
+		<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a>
+<div class="footer animated fadeInDown">
+    <div class="site_footer">
+        <div class="mysocials">
+            <div class="my_socials">
+                
+                    
+                            
+                    
+                            
+                    <a href="https://weibo.com/u/6094785105" title="weibo"><i
+                                class="iconfont icon-weibo"></i></a>
+                        
+                            
+                    <a href="https://github.com/dellevin" title="github"><i
+                                class="iconfont icon-github"></i></a>
+                        
+                            
+                    
+                            
+                    <a href="https://www.ittoolman.top/atom.xml" title="rss"><i
+                                class="iconfont icon-rss"></i></a>
+                        
+                            
+                    <a href="https://www.zhihu.com/people/bing-xue-chen-xi-59" title="zhihu"><i
+                                class="iconfont icon-zhihu"></i></a>
+                        
+                            
+            </div>
+        </div>
+        <div class="copyright" id="copyright">Copyright © 2020-2024 <a
+                    href="https://dellevin.github.io" style="margin:0;">
+                    Del Levin‘s blog
+                </a>.</div>
+        <!-- <span style="display: inline;margin-right:15px;">👁<strong><span
+                    id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv"
+            style="display: inline;"> -->
+            
+            <span>📚<strong>
+                    127
+                </strong> posts</span>
+    </div>
+</div>
+<script>
+    // console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;",);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+			<script type="text/javascript" async src="https://dellevin.github.io/media/js/prism.js"></script>
+</body>
+
+</html>

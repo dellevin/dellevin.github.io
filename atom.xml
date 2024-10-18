@@ -1,0 +1,1625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://dellevin.github.io</id>
+    <title>Del Levin‘s blog</title>
+    <updated>2024-10-18T08:58:35.043Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://dellevin.github.io"/>
+    <link rel="self" href="https://dellevin.github.io/atom.xml"/>
+    <subtitle>望山叹高，登愈艰。入世哀难，伤无泪。</subtitle>
+    <logo>https://dellevin.github.io/images/avatar.png</logo>
+    <icon>https://dellevin.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2024, Del Levin‘s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[git、npm、yarn常用设置和命令（查阅）]]></title>
+        <id>https://dellevin.github.io/post/git-npmyarn-chang-yong-she-zhi-he-ming-ling/</id>
+        <link href="https://dellevin.github.io/post/git-npmyarn-chang-yong-she-zhi-he-ming-ling/">
+        </link>
+        <updated>2024-10-09T14:42:56.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="git">git</h2>
+<h3 id="创建仓库命令">创建仓库命令</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>git init</code></td>
+<td style="text-align:left">初始化仓库</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git clone</code></td>
+<td style="text-align:left">拷贝一份远程仓库，也就是下载一个项目。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="提交与修改">提交与修改</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>git add</code></td>
+<td style="text-align:left">添加文件到暂存区</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git status</code></td>
+<td style="text-align:left">查看仓库当前的状态，显示有变更的文件。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git diff</code></td>
+<td style="text-align:left">比较文件的不同，即暂存区和工作区的差异。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git difftool</code></td>
+<td style="text-align:left">使用外部差异工具查看和比较文件的更改。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git range-diff</code></td>
+<td style="text-align:left">比较两个提交范围之间的差异。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git commit</code></td>
+<td style="text-align:left">提交暂存区到本地仓库。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git reset</code></td>
+<td style="text-align:left">回退版本。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git rm</code></td>
+<td style="text-align:left">将文件从暂存区和工作区中删除。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git mv</code></td>
+<td style="text-align:left">移动或重命名工作区文件。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git notes</code></td>
+<td style="text-align:left">添加注释。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git checkout</code></td>
+<td style="text-align:left">分支切换。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git switch （Git 2.23 版本引入）</code></td>
+<td style="text-align:left">更清晰地切换分支。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git restore （Git 2.23 版本引入）</code></td>
+<td style="text-align:left">恢复或撤销文件的更改。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git show</code></td>
+<td style="text-align:left">显示 Git 对象的详细信息。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="远程操作">远程操作</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>git remote</code></td>
+<td style="text-align:left">远程仓库操作</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git fetch</code></td>
+<td style="text-align:left">从远程获取代码库</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git pull</code></td>
+<td style="text-align:left">下载远程代码并合并</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git push</code></td>
+<td style="text-align:left">上传远程代码并合并</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>git submodule</code></td>
+<td style="text-align:left">管理包含其他 Git 仓库的项目</td>
+</tr>
+</tbody>
+</table>
+<h3 id="git-代理设置">git 代理设置</h3>
+<p>设置</p>
+<pre><code class="language-cmd">git config --global https.proxy 代理地址
+git config --global http.proxy 代理地址
+</code></pre>
+<p>查看</p>
+<pre><code class="language-cmd">git config --global  --get https.proxy
+git config --global  --get https.proxy
+</code></pre>
+<blockquote>
+<p>查询的时候没有打印任何东西证明没有设置代理</p>
+</blockquote>
+<p>取消</p>
+<pre><code class="language-cmd">git config --global --unset http.proxy
+git config --global --unset https.proxy
+</code></pre>
+<h2 id="npm">NPM</h2>
+<h3 id="常用命令">常用命令</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>npm install</code></td>
+<td style="text-align:left">安装新的包(全局范围内安装一个包，可以使用<code>-g</code>或<code>--global</code>标志)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>npm uninstall</code></td>
+<td style="text-align:left">从项目中移除依赖包。它会从<code>package.json</code>文件中删除指定的包，并卸载它</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>npm update</code></td>
+<td style="text-align:left">用于更新项目中的依赖包。它可以更新所有依赖包，也可以指定更新某个特定的包</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>npm cache</code></td>
+<td style="text-align:left">管理npm的缓存（npm cache clean --force）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>npm config</code></td>
+<td style="text-align:left">设置或查看npm的配置选项（查看配置：npm config list）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="npm设置代理">NPM设置代理</h3>
+<pre><code class="language-cmd">npm config set proxy http://127.0.0.1:10808
+npm confit set https-proxy http://127.0.0.1:10809
+</code></pre>
+<p>取消代理</p>
+<pre><code class="language-cmd">npm config delete proxy
+npm config delete https-proxy
+</code></pre>
+<p>设置源（官方）</p>
+<pre><code class="language-cmd">npm config set registry https://registry.npmjs.org/
+</code></pre>
+<p>设置源（淘宝）</p>
+<pre><code class="language-cmd">npm config set registry https://registry.npmmirror.com/
+</code></pre>
+<p>查看源</p>
+<pre><code class="language-cmd">npm get registry 
+</code></pre>
+<p>删除源</p>
+<pre><code class="language-cmd">npm config delete registry
+</code></pre>
+<h2 id="yarn">yarn</h2>
+<h3 id="常用命令-2">常用命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>操作</th>
+<th>参数</th>
+<th>标签</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yarn add</td>
+<td>添加依赖包</td>
+<td>包名</td>
+<td>--dev/-D</td>
+</tr>
+<tr>
+<td>yarn bin</td>
+<td>显示yarn安装目录</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>yarn cache</td>
+<td>显示缓存</td>
+<td>列出缓存包：<code>ls</code>，打出缓存目录路径：<code>dir</code>，清除缓存：<code>clean</code></td>
+<td>无</td>
+</tr>
+<tr>
+<td>yarn check</td>
+<td>检查包</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn clean</td>
+<td>清理不需要的依赖文件</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn config</td>
+<td>配置</td>
+<td>设置：<code>set &lt;key&gt; &lt;value&gt;</code>， 删除：<code>delete</code>， 列出：<code>list</code></td>
+<td>[-g | --global]</td>
+</tr>
+<tr>
+<td>yarn generate-lock-entry</td>
+<td>生成锁定文件</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>yarn global</td>
+<td>全局安装依赖包</td>
+<td>yarn global &lt;add/bin/ls/remove/upgrade&gt; [--prefix]</td>
+<td>--prefix 包路径前缀</td>
+</tr>
+<tr>
+<td>yarn info</td>
+<td>显示依赖包的信息</td>
+<td>包名</td>
+<td>--json：json格式显示结果</td>
+</tr>
+<tr>
+<td>yarn init</td>
+<td>互动式创建/更新package.json文件</td>
+<td>无</td>
+<td>--yes/-y：以默认值生成package.json文件</td>
+</tr>
+<tr>
+<td>yarn install</td>
+<td>安装所有依赖包</td>
+<td></td>
+<td>--flat：只安装一个版本；--force：强制重新下载安装；--har：输出安装时网络性能日志；--no-lockfile：不生成yarn.lock文件；--production：生产模式安装（不安装devDependencies中的依赖）</td>
+</tr>
+<tr>
+<td>yarn list</td>
+<td>列出已安装依赖包</td>
+<td></td>
+<td>--depth=0：列表深度，从0开始</td>
+</tr>
+<tr>
+<td>yarn outdated</td>
+<td>检查过时的依赖包</td>
+<td>包名</td>
+<td></td>
+</tr>
+<tr>
+<td>yarn pack</td>
+<td>给包的依赖打包</td>
+<td>--filename</td>
+<td></td>
+</tr>
+<tr>
+<td>yarn publish</td>
+<td>将包发布到npm</td>
+<td></td>
+<td>--tag：版本标签；--access：公开（public）还是限制的（restricted）</td>
+</tr>
+<tr>
+<td>yarn remove</td>
+<td>卸载包，更新package.json和yarn.lock</td>
+<td>包名</td>
+<td></td>
+</tr>
+<tr>
+<td>yarn upgrade</td>
+<td>升级依赖包</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn version</td>
+<td>管理当前项目的版本号</td>
+<td>--new-version ：直接记录版本号；--no-git-tag-version：不生成git标签</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="yarn设置代理">yarn设置代理</h3>
+<p>设置源（淘宝）</p>
+<pre><code class="language-cmd">yarn config set registry https://registry.npmmirror.com/
+</code></pre>
+<p>设置源（官方）</p>
+<pre><code class="language-cmd">yarn config set registry https://registry.yarnpkg.com
+</code></pre>
+<p>删除源</p>
+<pre><code class="language-cmd">yarn config delete registry
+</code></pre>
+<p>查看代理</p>
+<pre><code class="language-cmd">yarn config list
+</code></pre>
+<p>设置</p>
+<pre><code class="language-cmd">yarn config set proxy  http://127.0.0.1:10809
+yarn config set https-proxy http://127.0.0.1:10808
+</code></pre>
+<p>取消</p>
+<pre><code class="language-cmd">yarn config delete proxy
+yarn config delete https-proxy
+</code></pre>
+<h2 id="rimraf快速删除node_modules文件夹">rimraf快速删除node_modules文件夹</h2>
+<p>全局安装：<code>npm install -g rimraf</code></p>
+<p>进行删除：<code>rimraf node_modules</code></p>
+<h2 id="eslint-自动修复">ESLint 自动修复</h2>
+<p><code>npm run lint -- --fix</code> 或者<code>yarn lint --fix</code></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[IP申请ssl证书]]></title>
+        <id>https://dellevin.github.io/post/ip-shen-qing-ssl-zheng-shu/</id>
+        <link href="https://dellevin.github.io/post/ip-shen-qing-ssl-zheng-shu/">
+        </link>
+        <updated>2024-09-26T15:07:02.000Z</updated>
+        <content type="html"><![CDATA[<p>实现方式是通过 https://zerossl.com 来申请免费的ssl证书的，有效期为90天，90天之后还需要自行申请</p>
+<p>进入到ZeroSSL官网，注册一个账号，然后点击免费 SSL 证书申请。<br>
+<img src="https://dellevin.github.io/post-images/003.png" alt="" loading="lazy"></p>
+<p>填写你的IP地址，然后选择免费SSL证书时长。<br>
+<img src="https://dellevin.github.io/post-images/004.png" alt="" loading="lazy"></p>
+<p>中间那个步骤三个都不选然后进行下一步，选择自动生成CSR<br>
+<img src="https://dellevin.github.io/post-images/005.png" alt="" loading="lazy"></p>
+<p>验证域名，ZeroSSL免费SSL证书提供了两种域名验证方式，最简单的就是Web验证，但是前提是你要让你的IP地址实现Web访问。如果没有，你可以选择使用域名DNS添加TXT记录验证。<br>
+<img src="https://dellevin.github.io/post-images/006.png" alt="" loading="lazy"></p>
+<p>选择网站Web访问的话，直接下载验证文件，然后上传到IP地址默认的Web目录下，用你的浏览器打开IP，保证可以访问到验证文件。</p>
+<figure data-type="image" tabindex="1"><img src="https://dellevin.github.io/post-images/007.png" alt="" loading="lazy"></figure>
+<p>最后，回到ZeroSSL验证页面，点击完成验证。</p>
+<figure data-type="image" tabindex="2"><img src="https://dellevin.github.io/post-images/008.png" alt="" loading="lazy"></figure>
+<p>下载证书文件，ZeroSSL证书验证成功后，就可以下载证书文件了。ZeroSSL SSL证书提供了多种形式，包括了Nginx、Apache等。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[windows搭建nginx服务并配置]]></title>
+        <id>https://dellevin.github.io/post/windows-da-jian-nginx-fu-wu-bing-pei-zhi/</id>
+        <link href="https://dellevin.github.io/post/windows-da-jian-nginx-fu-wu-bing-pei-zhi/">
+        </link>
+        <updated>2024-09-26T15:06:04.000Z</updated>
+        <content type="html"><![CDATA[<p>下载直接去官网 <a href="https://www.cnblogs.com/taiyonghai/p/nginx.org">nginx.org</a> ,选择windows版本进行下载</p>
+<p>下载完成后，放到服务器指定路径，并开启cmd窗口进行命令行格式的运行。</p>
+<p><strong>启动</strong></p>
+<pre><code class="language-bat">start nginx
+</code></pre>
+<p><strong>查看任务进程是否存在</strong></p>
+<pre><code class="language-bat">tasklist /fi &quot;imagename eq nginx.exe&quot;
+</code></pre>
+<p><strong>重新加载</strong></p>
+<pre><code class="language-bat">nginx -s reload
+</code></pre>
+<p><strong>快速停止</strong></p>
+<pre><code class="language-bat">nginx -s stop
+</code></pre>
+<h2 id="简单配置">简单配置：</h2>
+<p>首先正常启动是80端口，如果是阿里云服务器需要去安全组放行端口。</p>
+<p>再然后是443端口，这里如果需要用到多个的话，我建议是加一个 ‘/’ 用来区分端口例如如下配置</p>
+<pre><code class="language-js">
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '
+    #                  '$status $body_bytes_sent &quot;$http_referer&quot; '
+    #                  '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    server {
+        listen       80;
+        server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+
+        #error_page  404              /404.html;
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+
+    }
+    
+    #server {
+    #    listen       8000;
+    #    listen       somename:8080;
+    #    server_name  somename  alias  another.alias;
+
+    #    location / {
+    #        root   html;
+    #        index  index.html index.htm;
+    #    }
+    #}
+
+   server {
+        listen       443 ssl;
+        server_name  47.121.199.144;
+
+        ssl_certificate         C:/dev/nginx/nginx-1.26.2/nginx-1.26.2/443/certificate.crt;
+        ssl_certificate_key     C:/dev/nginx/nginx-1.26.2/nginx-1.26.2/443/private.key;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+
+        location /8081/ {
+            proxy_pass http://47.121.199.144:8081/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+}
+
+</code></pre>
+<p>其中这里的意思就是</p>
+<pre><code class="language-json"> location /8081/ {
+            proxy_pass http://47.121.199.144:8081/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+</code></pre>
+<p>将http://47.121.199.144:8081/这个网址指向https://47.121.199.144/8081/</p>
+<h2 id="注意">注意：</h2>
+<p>1.在这里需要注意<code>C:/dev/nginx/nginx-1.26.2/nginx-1.26.2/443/certificate.crt;</code>的/ 是向右的。路径使用双反斜杠（\）或正斜杠（/）</p>
+<p>2.在与zerossl.com交互的时候，涉及到地址验证的问题，其中需要创建<code>.well-known</code>文件夹，如果是简单的windows环境是无法创建的，会提示你“必须键入文件名”，这时候需要mkdir创建了，即<code>mkdir .well-known</code></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[java项目引入resources下面的文件]]></title>
+        <id>https://dellevin.github.io/post/java-xiang-mu-yin-ru-resources-xia-mian-de-wen-jian/</id>
+        <link href="https://dellevin.github.io/post/java-xiang-mu-yin-ru-resources-xia-mian-de-wen-jian/">
+        </link>
+        <updated>2024-09-26T13:56:19.000Z</updated>
+        <content type="html"><![CDATA[<p>好久没写java，差点都忘了。。。</p>
+<p>起因是一个资源文件在resources目录下面，转换后的地址类型是string类型不是file，于是用类加载器获取文件资源路径</p>
+<pre><code class="language-java">String dbPath = GetIpAddr.class.getClassLoader().getResource(&quot;ip2region/ip2region.xdb&quot;).getPath();
+</code></pre>
+<p>但是这样在编译部署完毕后会报错</p>
+<pre><code class="language-java">Generating unique operation named: userInfoUsingGET_1
+2024-09-26 17:15:40.345  INFO 3992 --- [nio-8081-exec-1] o.a.c.c.C.[.[localhost].[/sys_api]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+failed to load vector index from file:/C:/Users/Administrator/Desktop/jar/api.jar!/BOOT-INF/classes!/ip2region/ip2region.xdb: java.io.FileNotFoundException: file:\C:\Users\Administrator\Desktop\jar\api.jar!\BOOT-INF\classes!\ip2region\ip2region.xdb (文件名、目录名或卷标语法不正确。)
+2024-09-26 17:15:40.664 ERROR 3992 --- [nio-8081-exec-1] i.d.exception.RenExceptionHandler        :
+### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'ip_addr' at row 1
+### The error may exist in URL [jar:file:/C:/Users/Administrator/Desktop/jar/api.jar!/BOOT-INF/classes!/mapper/MarkVisiter.xml]
+### The error may involve io.dellevin.dao.MarkVisiterDao.insertVisitRecord-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO mark_visiter             ( visit_url, ip, ip_addr, create_time)         VALUES             (                  ?, ?, ?, NOW()             )
+### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'ip_addr' at row 1
+; Data truncation: Data too long for column 'ip_addr' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'ip_addr' at row 1
+
+org.springframework.dao.DataIntegrityViolationException:
+</code></pre>
+<p>只能用流方式加载文件，于是采用如下方式：可以使用一个临时文件来处理这个问题。首先读取输入流，然后将其写入一个临时文件，最后将该临时文件的路径作为 <code>dbPath</code></p>
+<pre><code class="language-java">String dbPath = null;
+
+        // 1、从 dbPath 中预先加载 VectorIndex 缓存
+        try (InputStream inputStream = GetIpAddr.class.getClassLoader().getResourceAsStream(&quot;ip2region/ip2region.xdb&quot;)) {
+            if (inputStream == null) {
+                throw new FileNotFoundException(&quot;Resource not found: ip2region/ip2region.xdb&quot;);
+            }
+
+            // 创建临时文件
+            File tempFile = Files.createTempFile(&quot;ip2region&quot;, &quot;.xdb&quot;).toFile();
+            try (FileOutputStream outputStream = new FileOutputStream(tempFile)) {
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+            }
+
+            // 获取临时文件路径
+            dbPath = tempFile.getAbsolutePath();
+        } catch (IOException e) {
+            System.out.printf(&quot;failed to load vector index: %s\n&quot;, e);
+            return &quot;failed to load vector index: &quot; + e + &quot; &quot;;
+        }
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[DAIL-SQL开源sql转换调试模型-chatgpt改为百度ERNIE-Speed-128K模型]]></title>
+        <id>https://dellevin.github.io/post/dail-sql-kai-yuan-sql-zhuan-huan-diao-shi-mo-xing-chatgpt-gai-wei-bai-du-ernie-speed-128k-mo-xing/</id>
+        <link href="https://dellevin.github.io/post/dail-sql-kai-yuan-sql-zhuan-huan-diao-shi-mo-xing-chatgpt-gai-wei-bai-du-ernie-speed-128k-mo-xing/">
+        </link>
+        <updated>2024-09-26T02:10:36.000Z</updated>
+        <content type="html"><![CDATA[<p>最近领导要求我带一带他手下的研究生，课题是关于<code>DAIL-SQL</code>这个开源模型调试的。研究生说他已经完成了项目的搭建和gpt模型的调试。接下来要改成百度千帆的模型，却遇到了难题。</p>
+<p>其实很简单，根据项目的框架走就可以了。正常部署环境过后（再次会遇到依赖安装不上，版本不匹配等诸多问题，按照报错排错修改即可）。根据readme生成数据模型之后。接下来就该调试ask_llm.py这一步开始了正式的模型修改了。</p>
+<p>首先更改一下init方式</p>
+<pre><code class="language-python"># 初始化百度千帆的api
+    init_qianfan(args.QIANFAN_ACCESS_KEY, args.QIANFAN_SECRET_KEY, args.model)
+</code></pre>
+<p>然后查看到init方法是自己写的chatgpt的接口解析，我们就需要模仿人家的写法写一个百度千帆的，根据ERNIE_Speed_128K接口模型进行调试更改</p>
+<p>https://cloud.baidu.com/doc/WENXINWORKSHOP/s/6ltgkzya5</p>
+<p>之后得出了如下的脚本qianfan.py</p>
+<pre><code class="language-python">import json.decoder
+
+import qianfan
+import os
+from utils.enums import LLM
+import time
+
+
+
+def init_qianfan(QIANFAN_ACCESS_KEY, QIANFAN_SECRET_KEY,model):
+    os.environ[&quot;QIANFAN_ACCESS_KEY&quot;] = QIANFAN_ACCESS_KEY
+    os.environ[&quot;QIANFAN_SECRET_KEY&quot;] = QIANFAN_SECRET_KEY
+
+# def init_qianfan(QIANFAN_ACCESS_KEY, QIANFAN_SECRET_KEY, model):
+#     qianfan.AccessKey(QIANFAN_ACCESS_KEY)
+#     qianfan.SecretKey(QIANFAN_SECRET_KEY)
+    # os.environ[&quot;QIANFAN_ACCESS_KEY&quot;] = QIANFAN_ACCESS_KEY
+    # os.environ[&quot;QIANFAN_SECRET_KEY&quot;] = QIANFAN_SECRET_KEY
+
+
+# 处理单轮对话的completion任务
+def ask_completion(model, batch, temperature):
+    completion = qianfan.Completion()
+    response = completion.do(
+        model=model,
+        prompt=batch,  # 这是当前问题
+        temperature=temperature,
+        max_output_tokens=200,  # 最大输出token数量，根据需要调整
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0,
+        stop=[&quot;;&quot;]
+    )
+    # 提取response中的结果部分
+    response_clean = [response[&quot;result&quot;]]
+    return dict(
+        response=response_clean,
+        prompt_tokens=response[&quot;usage&quot;][&quot;prompt_tokens&quot;],
+        completion_tokens=response[&quot;usage&quot;][&quot;completion_tokens&quot;],
+        total_tokens=response[&quot;usage&quot;][&quot;total_tokens&quot;]
+    )
+
+
+# 处理多轮对话的任务
+def ask_chat(model, messages: list, temperature, n):
+    chat_completion = qianfan.ChatCompletion()
+    response = chat_completion.do(
+        model=model,
+        messages=messages,  # messages 是带有历史对话的消息列表
+        temperature=temperature,
+        max_output_tokens=200  # 最大输出token数量，根据需要调整
+    )
+    # 提取返回的消息内容
+    response_clean = [response[&quot;result&quot;]]
+    if n == 1:
+        response_clean = response_clean[0]
+    return dict(
+        response=response_clean,
+        prompt_tokens=response[&quot;usage&quot;][&quot;prompt_tokens&quot;],
+        completion_tokens=response[&quot;usage&quot;][&quot;completion_tokens&quot;],
+        total_tokens=response[&quot;usage&quot;][&quot;total_tokens&quot;]
+    )
+
+
+
+# 调用对话请i去函数，p判断ask_completion/ask_chat
+def ask_llm(model: str, batch: list, temperature: float, n: int):
+    n_repeat = 0
+    while True:
+        try:
+            if model in LLM.TASK_COMPLETIONS:  # completion任务
+                assert n == 1
+                response = ask_completion(model, batch, temperature)
+            elif model in LLM.TASK_CHAT:  # chat任务
+                assert len(batch) == 1, &quot;batch must be 1 in this mode&quot;
+                messages = [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: batch[0]}]
+                response = ask_chat(model, messages, temperature, n)
+                response['response'] = [response['response']]
+            break
+        except json.decoder.JSONDecodeError:
+            n_repeat += 1
+            print(f&quot;Repeat for the {n_repeat} times for JSONDecodeError&quot;, end=&quot;\n&quot;)
+            time.sleep(1)
+            continue
+        except Exception as e:
+            n_repeat += 1
+            print(f&quot;Repeat for the {n_repeat} times for exception: {e}&quot;, end=&quot;\n&quot;)
+            time.sleep(1)
+            continue
+
+    return response
+</code></pre>
+<p>接下来你如果运行会发现在ask_llm的时候异常会报错，这是因为异常不匹配，我没有细察qianfan的异常有那些，就直接抛出Exception</p>
+<pre><code class="language-python"> try:
+                res = ask_llm(args.model, batch, args.temperature, args.n)
+            except Exception as e:
+                print(f&quot;The {i}-th question has too much tokens! Return \&quot;SELECT\&quot; instead&quot;)
+                # res = &quot;&quot;
+                res = {&quot;response&quot;: [&quot;&quot;], &quot;total_tokens&quot;: 0}
+</code></pre>
+<p>因为二者模型不一样，还需要对结果集进行数据的搜集更改，我这里没做处理，其实只需要一个简单的正则表达式就可以,在如下更改就可以了。</p>
+<pre><code class="language-python">                for sqls, db_id in zip(res[&quot;response&quot;], cur_db_ids):
+                    processed_sqls = []
+                    for sql in sqls:
+                        sql = &quot; &quot;.join(sql.replace(&quot;\n&quot;, &quot; &quot;).split())
+                        sql = process_duplication(sql)
+                        if sql.startswith(&quot;SELECT&quot;):
+                            pass
+                        elif sql.startswith(&quot; &quot;):
+                            sql = &quot;SELECT&quot; + sql
+                        else:
+                            sql = &quot;SELECT &quot; + sql
+                        processed_sqls.append(sql)
+</code></pre>
+<p>由于我没做更改，只得在后续生成的文件中进行数据提取，采用如下方法</p>
+<pre><code class="language-python">def extract_sql(content):
+    # 匹配```sql开头 ```结尾
+    pattern = r'```sql(.*?)```'
+    sql_blocks = re.findall(pattern, content, re.DOTALL)
+    sql_statements = []
+
+    for sql in sql_blocks:
+        cleaned_sql = &quot; &quot;.join(sql.split()) 
+        sql_statements.append(cleaned_sql)
+
+    return sql_statements
+</code></pre>
+<p>同时还需要再enmus脚本中添加对应的模型来识别</p>
+<pre><code class="language-python">
+class LLM:
+    # openai LLMs
+    TEXT_DAVINCI_003 = &quot;text-davinci-003&quot;
+    CODE_DAVINCI_002 = &quot;code-davinci-002&quot;
+    GPT_35_TURBO = &quot;gpt-3.5-turbo&quot;
+    GPT_35_TURBO_0613 = &quot;gpt-3.5-turbo-0613&quot;
+    GPT_35_TURBO_16K = &quot;gpt-3.5-turbo-16k&quot;
+    GPT_35_TURBO_0301 = &quot;gpt-3.5-turbo-0301&quot;
+    GPT_4 = &quot;gpt-4&quot;
+    ERNIE_Speed_128K = 'ERNIE-Speed-128K'
+
+    # LLMs that use openai completion api
+    TASK_COMPLETIONS = [
+        TEXT_DAVINCI_003,
+        CODE_DAVINCI_002
+    ]
+
+    # LLMs that use openai chat api
+    TASK_CHAT = [
+        GPT_35_TURBO,
+        GPT_35_TURBO_0613,
+        GPT_35_TURBO_16K,
+        GPT_35_TURBO_0301,
+        GPT_4,
+        ERNIE_Speed_128K
+    ]
+</code></pre>
+<p>脚本ask_llm输入的命令行修改为类似如下的方式</p>
+<pre><code class="language-python">    parser = argparse.ArgumentParser()
+    parser.add_argument(&quot;--question&quot;, type=str)
+    parser.add_argument(&quot;--QIANFAN_ACCESS_KEY&quot;, type=str)
+    parser.add_argument(&quot;--QIANFAN_SECRET_KEY&quot;, type=str)
+    # parser.add_argument(&quot;--openai_api_key&quot;, type=str)
+    # parser.add_argument(&quot;--openai_group_id&quot;, type=str, default=&quot;org-ktBefi7n9aK7sZjwc2R9G1Wo&quot;)
+    parser.add_argument(&quot;--model&quot;, type=str, choices=[LLM.TEXT_DAVINCI_003, 
+                                                      LLM.GPT_35_TURBO,
+                                                      LLM.GPT_35_TURBO_0613,
+                                                      # LLM.TONG_YI_QIAN_WEN,
+                                                      LLM.GPT_35_TURBO_16K,
+                                                      LLM.GPT_4,
+                                                      LLM.ERNIE_Speed_128K],
+                        default=LLM.ERNIE_Speed_128K)
+    parser.add_argument(&quot;--start_index&quot;, type=int, default=0)
+    parser.add_argument(&quot;--end_index&quot;, type=int, default=1000000)
+    parser.add_argument(&quot;--temperature&quot;, type=float, default=0) # qianfan  (0, 1.0]
+    parser.add_argument(&quot;--mini_index_path&quot;, type=str, default=&quot;&quot;)
+    parser.add_argument(&quot;--batch_size&quot;, type=int, default=1)
+    parser.add_argument(&quot;--n&quot;, type=int, default=5, help=&quot;Size of self-consistent set&quot;)
+    parser.add_argument(&quot;--db_dir&quot;, type=str, default=&quot;dataset/spider/database&quot;)
+</code></pre>
+<p>注意千帆的temperature是 (0, 1.0]和gpt的还不一样</p>
+<p>至此已经完全修改完毕。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Windows 上运行 Stanford CoreNLP 服务]]></title>
+        <id>https://dellevin.github.io/post/windows-shang-yun-xing-stanford-corenlp-fu-wu/</id>
+        <link href="https://dellevin.github.io/post/windows-shang-yun-xing-stanford-corenlp-fu-wu/">
+        </link>
+        <updated>2024-09-26T02:09:43.000Z</updated>
+        <content type="html"><![CDATA[<p><em><strong>*在 Windows 上运行 Stanford CoreNLP 服务的*</strong></em></p>
+<p>在 Windows 上运行 Stanford CoreNLP 服务的步骤如下：</p>
+<h3 id="1-下载-stanford-corenlp">1. <strong>下载 Stanford CoreNLP</strong></h3>
+<ul>
+<li>访问 Stanford CoreNLP 的下载页面。</li>
+<li>下载最新的 <code>stanford-corenlp-full</code> 压缩包文件。</li>
+<li>解压该文件到一个合适的目录，例如 <code>C:\stanford-corenlp-full-2023-06-18</code>。</li>
+</ul>
+<h3 id="2-启动-stanford-corenlp-服务器">2. <strong>启动 Stanford CoreNLP 服务器</strong></h3>
+<p>你可以通过命令行启动 CoreNLP 服务器，确保你已经安装并配置好了 Java 环境。</p>
+<ul>
+<li>
+<p>打开命令提示符（CMD），导航到解压的 CoreNLP 目录：</p>
+<pre><code>cd C:\stanford-corenlp-full-2023-06-18
+</code></pre>
+</li>
+<li>
+<p>启动服务器：</p>
+<pre><code>java -mx4g -cp &quot;*&quot; edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
+</code></pre>
+<p>这里，<code>-mx4g</code> 代表分配 4GB 内存给服务器，你可以根据实际需求调整此值。默认服务器会在 <code>http://localhost:9000</code> 运行。</p>
+</li>
+</ul>
+<h3 id="3-测试服务器">3. <strong>测试服务器</strong></h3>
+<ul>
+<li>在浏览器中访问 <code>http://localhost:9000</code>，查看是否服务器已经启动并运行。</li>
+</ul>
+<p>或者你可以通过发送 HTTP 请求来测试，例如使用 <code>curl</code>:</p>
+<pre><code>curl --data 'The quick brown fox jumps over the lazy dog.' 'http://localhost:9000/?properties={&quot;annotators&quot;:&quot;tokenize,ssplit,pos,lemma,ner,parse,depparse&quot;,&quot;outputFormat&quot;:&quot;json&quot;}'
+</code></pre>
+<p>成功后，服务器会返回 NLP 分析结果。</p>
+<h3 id="4-常见问题">4. <strong>常见问题</strong></h3>
+<ul>
+<li>如果遇到内存不足错误，可以尝试增加 <code>-mx</code> 后的内存值，比如 <code>-mx8g</code>。</li>
+<li>服务器默认在 9000 端口运行。如果此端口被占用，你可以使用 <code>-port</code> 参数指定其他端口。</li>
+</ul>
+<p>这样，就可以在 Windows 环境下运行 Stanford CoreNLP 服务了。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Window10 安装软件时报错：Called RunScript when not marked in progress]]></title>
+        <id>https://dellevin.github.io/post/window10-an-zhuang-ruan-jian-shi-bao-cuo-called-runscript-when-not-marked-in-progress/</id>
+        <link href="https://dellevin.github.io/post/window10-an-zhuang-ruan-jian-shi-bao-cuo-called-runscript-when-not-marked-in-progress/">
+        </link>
+        <updated>2024-09-13T13:31:05.000Z</updated>
+        <content type="html"><![CDATA[<p>Window10 安装软件时报错：Called RunScript when not marked in progress<br>
+<img src="https://dellevin.github.io/post-images/1726234410695.png" alt="" loading="lazy"></p>
+<p><strong>解决办法：</strong></p>
+<ol>
+<li>进入 C:\Windows</li>
+<li>找到&quot;temp&quot;文件夹  ---- 右键“属性” --- “高级”  --- “更改”</li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="https://dellevin.github.io/post-images/1726234431018.png" alt="" loading="lazy"></figure>
+<ol start="3">
+<li>然后点击 “高级”</li>
+</ol>
+<p><img src="https://dellevin.github.io/post-images/1726234438702.png" alt="" loading="lazy"><br>
+输入电脑当前用户的姓名，进行搜索</p>
+<figure data-type="image" tabindex="2"><img src="https://dellevin.github.io/post-images/1726234454906.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://dellevin.github.io/post-images/1726234460970.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[爱一个人是什么感觉呢？]]></title>
+        <id>https://dellevin.github.io/post/ai-yi-ge-ren-shi-shi-me-gan-jue-ni/</id>
+        <link href="https://dellevin.github.io/post/ai-yi-ge-ren-shi-shi-me-gan-jue-ni/">
+        </link>
+        <updated>2024-09-13T13:26:59.000Z</updated>
+        <content type="html"><![CDATA[<p>爱一个人是什么感觉呢？</p>
+<p>很久之前，我以为我对爱情看的很透彻，写过很多文字，姑且算是文字吧，说文章，真是对我自己的恭维了。在那些文字里面，充斥着对爱的不信任，对纯洁美好爱情的向往，还有觉得自以为是那种孤芳自赏的清高，最后总是用一句唏嘘作为收尾。</p>
+<p>现在看看，真的很好笑呀。</p>
+<p>爱一个人是什么感觉呢？怎么该描述呢？我也不知道。我会对她的一举一动细心观察。自己冷了觉得她也会冷，自己热了觉得她也会热，会把开心的不开心的汇报给她，会把自己的好都给她，给他展现出自己的好与坏，会为了她而改变。真的是很像一个小孩子呢。可是，这正是我需要的。</p>
+<p>很奇怪，我的控制欲是不是强的离谱，想和她时时刻刻在身边，想融为一体，想水乳交融。</p>
+<p>我好怕有一天她会离开我，之前的我信誓旦旦的说“世界上没有什么可以打动我了”，现在她的一句“早安‘我就感觉心要融化了。我又变成了那个患得患失，矫揉造作的我，我可是个男孩子啊。</p>
+<p>一定要小心翼翼的经营下去啊。即便懂得了再多，到她面前，一切理论都会崩溃。以前的自己真的好可笑呀。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[少年赠我红玫瑰]]></title>
+        <id>https://dellevin.github.io/post/shao-nian-zeng-wo-hong-mei-gui/</id>
+        <link href="https://dellevin.github.io/post/shao-nian-zeng-wo-hong-mei-gui/">
+        </link>
+        <updated>2024-06-10T13:36:20.000Z</updated>
+        <content type="html"><![CDATA[<p>人终将会被少年不可得之物困其一生。</p>
+<p>少年的我，喜欢电脑，奈何家里没有，便四处去有电脑的人家蹭，去同学家，去弟弟家，还好当时是小学，去网吧成了奢望。每次听着同班同学说玩了什么游戏，看了什么电视，我都装作毫不在意，其实竖耳倾听电脑世界的神奇。从那时起，便对电脑产生了浓厚的热情，可惜家境贫寒。这份热情甚至一度超过了父母，从那时起执念深深的埋在了小学。奈何家境贫寒。</p>
+<p>说起感情，我不知道自己为什么会对另一半的依恋很强。强到让人厌烦的地步。可是这个强依恋止步在了上一段感情之中。三番四次的背叛让我对感情彻底的失望。把自己困在一个只有纯真爱情的乌托邦。别人进不来，我也出不去。</p>
+<p>如今的我，有了三四台电脑，却没有当年的欢乐，没有人分享，我也不知道干什么。能激起我乐趣的，也就在网络上帮别人解决问题，发帖子带来的成就感让我提起兴趣。自己一个人单身了七八年，每时每刻都在告诉自己“喂！张昊洋！做一个拯救自己的英雄吧！”每当听到自己劝慰自己的话，我都想打了鸡血一样，从混乱中重生，从黎明中绽放。</p>
+<p>至于年少的我，早就死在了七年前六月十日的清晨。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[uni-app微信小程序属性为0]]></title>
+        <id>https://dellevin.github.io/post/uni-app-wei-xin-xiao-cheng-xu-shu-xing-wei-0/</id>
+        <link href="https://dellevin.github.io/post/uni-app-wei-xin-xiao-cheng-xu-shu-xing-wei-0/">
+        </link>
+        <updated>2024-06-04T11:36:18.000Z</updated>
+        <content type="html"><![CDATA[<p>前几日在封装一个组件的时候，接收数据的时候遇到一个属性等于0，但是，前端死活不显示</p>
+<figure data-type="image" tabindex="1"><img src="https://dellevin.github.io/post-images/1717501050718.png" alt="" loading="lazy"></figure>
+<p>这里是有值的，但</p>
+<figure data-type="image" tabindex="2"><img src="https://dellevin.github.io/post-images/1717501069743.png" alt="" loading="lazy"></figure>
+<p>到了前端就没有了，卧槽，太神奇了是不是。打印一下看看</p>
+<figure data-type="image" tabindex="3"><img src="https://dellevin.github.io/post-images/1717501074058.png" alt="" loading="lazy"></figure>
+<p>打印出来传入值竟然是undefined而不是0，一定是闹鬼了。。。</p>
+<p>最后再不断定位错误的时候，发现是这里的毛病</p>
+<pre><code class="language-vue">post: item.post || '', // 添加 post 属性，默认值为空字符串
+</code></pre>
+<p>原因是当数值为0的时候自己就默认是false</p>
+<p>0在布尔上下文中被认为是假值，因此 <code>item.post||‘’</code>  会在 <code>item.post </code> 为 0 时返回空字符串。所以说为了保留0，需要改成</p>
+<pre><code class="language-vue"> item.post !== undefined ? item.post : ''
+</code></pre>
+<p>来确保仅在 <code>item.post</code> 是 <code>undefined</code> 时返回空字符串。</p>
+<p>下面贴一下源代码</p>
+<pre><code class="language-vue">&lt;template&gt;
+	&lt;view&gt;
+		&lt;!-- 绑定个人信息 --&gt;
+		&lt;u-popup :show=&quot;localBindCompShow&quot; @close=&quot;onClickOverlayClose&quot; @open=&quot;localBindCompShow =true&quot; mode=&quot;center&quot;
+			round=&quot;20&quot; :closeOnClickOverlay=&quot;true&quot;&gt;
+			&lt;view class=&quot;bindCompCard&quot;&gt;
+
+				&lt;view class=&quot;header-container&quot;&gt;
+					&lt;view class='header-button'&gt;
+						&lt;u-button type=&quot;info&quot; size=&quot;5&quot; icon=&quot;close&quot; @click=&quot;onClickOverlayClose&quot; :plain=&quot;true&quot;
+							:hairline=&quot;true&quot;&gt;&lt;/u-button&gt;
+					&lt;/view&gt;
+
+					&lt;view class=&quot;header-text&quot;&gt;绑定企业信息&lt;/view&gt;
+					&lt;u-tabs :list=&quot;bindCompTabList&quot; @click=&quot;selectTab&quot; class=&quot;tabs&quot;&gt;&lt;/u-tabs&gt;
+				&lt;/view&gt;
+
+				&lt;view v-if=&quot;!bindCompNewShow&quot;&gt;
+					&lt;view class=&quot;supplier-container&quot;&gt;
+						&lt;view v-for=&quot;(item, index) in itemsToDisplay&quot; :key=&quot;index&quot; class=&quot;supplier-card&quot;&gt;
+							&lt;view class=&quot;supplier-details&quot;&gt;
+								&lt;view class=&quot;company-name&quot;&gt;{{ item.companyName }}&lt;/view&gt;
+								&lt;view class=&quot;supplier-name&quot;&gt;政采账号：{{ item.supplierAccessName }}&lt;/view&gt;
+							&lt;/view&gt;
+							&lt;view class=&quot;bind-button&quot;&gt;
+
+								&lt;view v-if=&quot;!item.isShow&quot;&gt;
+									&lt;view class=&quot;post-select&quot;&gt;
+										{{ getPostText(item.post) }}
+									&lt;/view&gt;
+									&lt;button size=&quot;default&quot; type=&quot;default&quot;
+										style=&quot;margin-top: 20rpx;color:#ffffff;background-color:#189f33;border-color:#ffffff;border-radius: 40rpx;height: 60rpx;display: flex;align-items: center;justify-content: center;&quot;&gt;已绑定&lt;/button&gt;
+								&lt;/view&gt;
+
+
+								&lt;view v-if=&quot;item.isShow&quot;&gt;
+									&lt;view class=&quot;post-select&quot; v-if=&quot;item.isShow&quot;&gt;
+										&lt;uni-data-select v-model=&quot;item.post&quot; :localdata=&quot;postList&quot;
+											placeholder=&quot;选择职位&quot;&gt;&lt;/uni-data-select&gt;
+									&lt;/view&gt;
+									&lt;button size=&quot;default&quot; type=&quot;default&quot; @click=&quot;submitBindCompCard(item)&quot;
+										style=&quot;margin-top: 20rpx;color:#ffffff;background-color:#4874cb;border-color:#ffffff;border-radius: 40rpx;height: 60rpx;display: flex;align-items: center;justify-content: center;&quot;&gt;提交绑定&lt;/button&gt;
+								&lt;/view&gt;
+							&lt;/view&gt;
+						&lt;/view&gt;
+					&lt;/view&gt;
+				&lt;/view&gt;
+
+				&lt;view v-if=&quot;bindCompNewShow&quot;&gt;
+					&lt;u--form labelPosition=&quot;left&quot; :model=&quot;formBindComp&quot;&gt;
+						&lt;u-form-item label=&quot;政采网账号&quot; prop=&quot;formBindComp.supplierAccessName&quot; borderBottom labelWidth='200'&gt;
+							&lt;u--input v-model=&quot;formBindComp.supplierAccessName&quot; border=&quot;none&quot;&gt;&lt;/u--input&gt;
+						&lt;/u-form-item&gt;
+						&lt;u-form-item label=&quot;职位&quot; prop=&quot;formBindComp.post&quot; borderBottom labelWidth='200'&gt;
+							&lt;uni-data-select v-model=&quot;formBindComp.post&quot; :localdata=&quot;postList&quot;
+								placeholder=&quot;选择职位&quot;&gt;&lt;/uni-data-select&gt;
+						&lt;/u-form-item&gt;
+					&lt;/u--form&gt;
+
+					&lt;!-- &lt;u-button type=&quot;success&quot;&gt;提交&lt;/u-button&gt; --&gt;
+					&lt;button size=&quot;default&quot; type=&quot;default&quot; @click=&quot;submitBindComp&quot;
+						style=&quot;margin-top: 40rpx;color:#ffffff;background-color:#4874cb;border-color:#ffffff;border-radius: 40rpx;height: 60rpx;display: flex;align-items: center;justify-content: center;&quot;&gt;提交绑定&lt;/button&gt;
+				&lt;/view&gt;
+
+			&lt;/view&gt;
+		&lt;/u-popup&gt;
+	&lt;/view&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	import {
+		getFieldList,
+		postBindEnterprise,
+		getUserBindComp,
+		getUserHaveBindComp,
+	} from &quot;@/api/user.js&quot;;
+	export default {
+		name: 'BindComp',
+		props: {
+			bindCompShow: {
+				type: Boolean,
+				default: true
+			},
+			userId: {
+				type: String,
+			},
+			itemList: {
+				type: Array,
+				default: () =&gt; []
+			}
+		},
+		computed: {
+			...mapState(&quot;user&quot;, [&quot;token&quot;, &quot;tokenExpire&quot;, &quot;userInfo&quot;]),
+			localBindCompShow: {
+				get() {
+					return this.bindCompShow;
+				},
+				set(val) {
+					this.$emit('update:bindCompShow', val)
+				}
+			},
+			itemsToDisplay() {
+				let list = this.itemList.length &gt; 0 ? this.itemList : this.supplierList;
+				// 处理 list，添加 post 和 isShow 属性
+				let processedList = list.map(item =&gt; ({
+				    ...item,
+				    post: item.post !== undefined ? item.post : '', // 添加 post 属性，保留原值或默认值为空字符串
+				    isShow: item.isShow !== undefined ? item.isShow : true // 添加 isShow 属性，默认值为 true
+				}));
+				return processedList;		
+			}
+		},
+		data() {
+			return {
+				supplierList: [],
+				bindCompNewShow: false,
+				bindCompTabList: [{
+						name: '政采企业信息绑定',
+					},
+					{
+						name: '绑定其他企业',
+					}
+				],
+				postList: [],
+				formBindComp: {
+					supplierAccessName: '',
+					post: '',
+					userId: '',
+				}
+			};
+		},
+		mounted() {
+			this.fieldListGet();
+			if (this.userInfo.id != undefined) {
+				this.userBindCompGet();
+			}
+		},
+		created() {
+			
+		},
+		methods: {
+			...mapMutations(&quot;user&quot;, [&quot;setUserInfo&quot;]),
+			async submitBindComp() {
+				this.formBindComp.userId = this.userId
+				if (!this.formBindComp.userId) {
+					this.formBindComp.userId = this.userInfo.id
+				}
+
+				if (this.formBindComp.userId == &quot;&quot;) {
+					uni.$u.toast('绑定失败，请尝试重新登陆后绑定！');
+					return;
+				}
+				if (this.formBindComp.supplierAccessName === &quot;&quot;) {
+					uni.$u.toast('政采网账号不能为空！');
+					return;
+				}
+				if (this.formBindComp.post === &quot;&quot;) {
+					uni.$u.toast('职位信息不能为空！');
+					return;
+				}
+				const {
+					code,
+					msg,
+					data
+				} = await postBindEnterprise(this.formBindComp);
+
+				if (code === 0) {
+					// console.log(data)
+					uni.$u.toast('绑定企业成功！');
+					setTimeout(() =&gt; {
+						this.$emit('close-popup');
+						uni.reLaunch({
+							url: '/pages/index/index'
+						});
+					}, 1000);
+				}
+
+			},
+			async submitBindCompCard(item) {
+				if (item.post === undefined || item.post === &quot;&quot;) {
+					uni.$u.toast('企业职位不能为空！');
+					return;
+				}
+				let userID = this.userId;
+				if (!userID) {
+					userID = this.userInfo.id
+				}
+
+				const params = {
+					supplierAccessName: item.supplierAccessName,
+					post: item.post,
+					userId: userID,
+				}
+				console.log(params)
+				const {
+					code,
+					msg,
+					data
+				} = await postBindEnterprise(params);
+				if (code === 0) {
+					// console.log(data)
+					// 更新 item 的 isShow 属性
+					this.$set(item, 'isShow', false);
+					uni.$u.toast('绑定' + item.companyName + '成功！');
+					// 更新绑定企业
+					this.userBindCompGet();
+
+				}
+			},
+			onClickOverlayClose() {
+				this.$emit('close-popup');
+			},
+			//获取用户下面的政采企业信息
+			async userBindCompGet() {
+				try {
+					// 如果resBindComp里面包含resHaveBind的数据,那么就设置该企业已经绑定好了
+					const resHaveBind = await getUserHaveBindComp();
+					const resBindComp = await getUserBindComp();
+					if (resHaveBind.code === 0 &amp;&amp; resBindComp.code === 0) {
+
+						const haveBindMap = new Map();
+						resHaveBind.data.forEach(item =&gt; {
+							haveBindMap.set(item.supplierId, item.post);
+						});
+
+						this.supplierList = resBindComp.data.map(item =&gt; {
+							if (haveBindMap.has(item.supplierId)) {
+								return {
+									...item,
+									post: haveBindMap.get(item.supplierId),
+									isShow: false
+								};
+							}
+							return item;
+						});
+
+						console.log(this.supplierList);
+					}
+				} catch (error) {
+					console.error('获取用户绑定企业信息失败', error);
+				}
+
+			},
+			//获取职位信息
+			async fieldListGet() {
+				const {
+					code,
+					msg,
+					data
+				} = await getFieldList({
+					fieldName: &quot;register_post&quot;
+				});
+				if (code === 0 &amp;&amp; data) {
+					// console.log(data)
+					this.postList = data.map(post =&gt; {
+						return {
+							value: post.dictCode,
+							text: post.dictName
+						}
+					});
+					// console.log(this.postList)
+				}
+			},
+			getPostText(postValue) {
+				const postItem = this.postList.find(post =&gt; post.value === postValue);
+				// console.log(postValue, postItem)
+				return postItem ? postItem.text : '未知职位';
+			},
+			selectTab(item) {
+				// console.log(item.name)
+				if (item.name == &quot;绑定其他企业&quot;) {
+					this.bindCompNewShow = true;
+				} else {
+					this.bindCompNewShow = false;
+				}
+			},
+		},
+	}
+&lt;/script&gt;
+
+&lt;style scoped lang=&quot;less&quot;&gt;
+	.bindCompCard {
+		width: 650rpx;
+		padding: 20rpx;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+
+	.header-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 20rpx;
+	}
+
+	.header-button {
+		position: absolute;
+		width: 80rpx;
+		top: 0;
+		right: 5px;
+		margin: 10rpx;
+	}
+
+	.header-text {
+		font-size: 36rpx;
+		margin-bottom: 10rpx;
+		text-align: center;
+		width: 100%;
+	}
+
+	.tabs {
+		width: 100%;
+	}
+
+	// ------------------------
+	.supplier-container {
+		display: flex;
+		flex-direction: column;
+		gap: 20rpx;
+		padding: 20rpx;
+		height: 600rpx;
+		overflow: auto;
+	}
+
+	.supplier-card {
+		background: #fff;
+		border-radius: 10rpx;
+		box-shadow: 0 2rpx 5rpx rgba(0, 0, 0, 0.1);
+		padding: 20rpx;
+		display: flex;
+		// flex-direction: column;
+		gap: 10rpx;
+	}
+
+	.supplier-details {
+		margin-top: 27rpx;
+		width: 360rpx;
+		display: flex;
+		flex-direction: column;
+		gap: 10rpx;
+	}
+
+	.company-name,
+	.supplier-name {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 100%;
+	}
+
+	.company-name {
+		font-size: 32rpx;
+		font-weight: bold;
+		color: #333;
+	}
+
+	.supplier-name {
+		font-size: 32rpx;
+		color: #666;
+	}
+
+	.post-select {
+		margin-top: 10rpx;
+		width: 222rpx;
+	}
+
+	.bind-button {
+		margin-left: 10rpx;
+	}
+&lt;/style&gt;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[mysql-explain的用法及返回字段的含义]]></title>
+        <id>https://dellevin.github.io/post/mysql-explain的用法及返回字段的含义/</id>
+        <link href="https://dellevin.github.io/post/mysql-explain的用法及返回字段的含义/">
+        </link>
+        <updated>2024-05-15T11:36:03.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="一-explain都用在哪">一 . explain都用在哪：</h4>
+<ol>
+<li>explain语句提供有关mysql如何执行语句的信息，可以处理select、delete、insert、replact和update语句。</li>
+<li>explain执行select语句中使用的每个表返回一行信息，是按照mysql在处理语句时读取他们顺序列输出中的表。</li>
+<li>对应select语句，explain会生成扩展信息，这些信息可以在explain之后通过“show warnings”查看。</li>
+</ol>
+<h4 id="二-explain返回参数详解">二 . explain返回参数详解：</h4>
+<h4 id="1-id-列数字">1. id : 列数字</h4>
+<p>越大越先执行，如果说数字一样大，那么就从上往下依次执行，id列为null的就表是这是一个结果集，不需要使用它来进行查询。</p>
+<h4 id="2-select_type列常见的有">2. select_type列,常见的有：</h4>
+<p><strong>1）simple</strong>：表示不需要union操作或者不包含子查询的简单select查询。有连接查询时，外层的查询为simple，且只有一个</p>
+<p><strong>2）primary</strong>：一个需要union操作或含有子查询的select，位于最外层的单位查询的select_type即为primary。且只有一个</p>
+<p><strong>3）union</strong>：union连接的两个select查询，第一个查询是dervied派生表，除了第一个表外，第二个以后的表select_type都是union</p>
+<p><strong>4）dependent union</strong>：与union一样，出现在union 或union all语句中，但是这个查询要受到外部查询的影响</p>
+<p><strong>5）union result</strong>：包含union的结果集，在union和union all语句中,因为它不需要参与查询，所以id字段为null</p>
+<p><strong>6）subquery</strong>：除了from句中包含的子查询外，其他地方出现的子查询都可能是subquery</p>
+<p><strong>7）dependent subquery</strong>：与dependent union类似，表示这个subquery的查询要受到外部表查询的影响</p>
+<p><strong>8）derived</strong>：from字句中出现的子查询，也叫做派生表，其他数据库中可能叫做内联视图或嵌套select</p>
+<h4 id="3-table-表名">3. table : 表名</h4>
+<p>显示的查询表名，如果查询使用了别名，那么这里显示的是别名，如果不涉及对数据表的操作，那么这显示为null，如果显示为尖括号括起来的就表示这个是临时表，后边的N就是执行计划中的id，表示结果来自于这个查询产生。如果是尖括号括起来的&lt;union M,N&gt;，与类似，也是一个临时表，表示这个结果来自于union查询的id为M,N的结果集。</p>
+<h4 id="4-type-访问类型">4 . type : 访问类型</h4>
+<p>依次从好到差：system，const，eq_ref，ref，fulltext，ref_or_null，unique_subquery，index_subquery，range，index_merge，index，ALL，除了all之外，其他的type都可以使用到索引，除了index_merge之外，其他的type只可以用到一个索引</p>
+<p><strong>1) system：</strong> 表中只有一行数据或者是空表，且只能用于myisam和memory表。如果是Innodb引擎表，type列在这个情况通常都是all或者index</p>
+<p><strong>2) const：</strong> 使用唯一索引或者主键，返回记录一定是1行记录的等值where条件时，通常type是const。其他数据库也叫做唯一索引扫描</p>
+<p><strong>3) eq_ref：</strong> 出现在要连接过个表的查询计划中，驱动表只返回一行数据，且这行数据是第二个表的主键或者唯一索引，且必须为not null，唯一索引和主键是多列时，只有所有的列都用作比较时才会出现eq_ref</p>
+<p><strong>4) ref：</strong> 不像eq_ref那样要求连接顺序，也没有主键和唯一索引的要求，只要使用相等条件检索时就可能出现，常见与辅助索引的等值查找。或者多列主键、唯一索引中，使用第一个列之外的列作为等值查找也会出现，总之，返回数据不唯一的等值查找就可能出现。</p>
+<p><strong>5) fulltext：</strong> 全文索引检索，要注意，全文索引的优先级很高，若全文索引和普通索引同时存在时，mysql不管代价，优先选择使用全文索引</p>
+<p><strong>6) ref_or_null：</strong> 与ref方法类似，只是增加了null值的比较。实际用的不多。</p>
+<p><strong>7) unique_subquery：</strong> 用于where中的in形式子查询，子查询返回不重复值唯一值</p>
+<p><strong>8) index_subquery：</strong> 用于in形式子查询使用到了辅助索引或者in常数列表，子查询可能返回重复值，可以使用索引将子查询去重。</p>
+<p><strong>9) range：</strong> 索引范围扫描，常见于使用&gt;,&lt;,is null,between ,in ,like等运算符的查询中。</p>
+<p><strong>10) index_merge：</strong> 表示查询使用了两个以上的索引，最后取交集或者并集，常见and ，or的条件使用了不同的索引，官方排序这个在ref_or_null之后，但是实际上由于要读取所个索引，性能可能大部分时间都不如range</p>
+<p><strong>11) index：</strong> 索引全表扫描，把索引从头到尾扫一遍。出现index是sql使用了索引但是没用通过索引进行过滤，一般是使用了覆盖索引或者是利用索引进行了排序分组。</p>
+<p><strong>12) all :</strong>  这个就是全表扫描数据文件，然后再在server层进行过滤返回符合要求的记录。（这一般比较糟糕，应该尽量避免）</p>
+<h4 id="5-possible_keys">5 . possible_keys:</h4>
+<p>查询可能使用到的索引都会在这里列出来,但不一 定被查询实际使用。</p>
+<h4 id="6-key">6 . key :</h4>
+<p>查询真正使用到的索引，select_type为index_merge时，这里可能出现两个以上的索引，其他的select_type这里只会出现一个。如果为NULL，则没有使用索引。</p>
+<h4 id="7-key_len">7 . key_len :</h4>
+<p>表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度。 key_len 字段能够帮你检查是否充分的 利用上了索引。ken_len 越长，说明索引使用的越充分。</p>
+<h4 id="8-ref">8 . ref :</h4>
+<p>如果是使用的常数等值查询，这里会显示const，如果是连接查询，被驱动表的执行计划这里会显示驱动表的关联字段，如果是条件使用了表达式或者函数，或者条件列发生了内部隐式转换，这里可能显示为func</p>
+<h4 id="9-rows">9 . rows :</h4>
+<p>这里是执行计划中估算的扫描行数，不是精确值</p>
+<h4 id="10-extra">10 . extra :</h4>
+<p>重点关注：using filesort和using temporary</p>
+<p><strong>1) distinct：</strong> 在select部分使用了distinc关键字</p>
+<p><strong>2) no tables used：</strong> 不带from字句的查询或者From dual查询</p>
+<p><strong>3) using filesort：</strong> 排序时无法使用到索引时，就会出现这个。常见于order by和group by语句中。（看到这个的时候，查询就需要优化了）</p>
+<p><strong>4) using index：</strong> 查询时不需要回表查询，直接通过索引就可以获取查询的数据。</p>
+<p><strong>5) using join buffer（block nested loop），using join buffer（batched key accss）：</strong> 5.6.x之后的版本优化关联查询的BNL，BKA特性。主要是减少内表的循环数量以及比较顺序地扫描查询。</p>
+<p><strong>6) using sort_union，using_union，using intersect，using sort_intersection：</strong></p>
+<p>​     <strong>A:</strong>  using intersect：表示使用and的各个索引的条件时，该信息表示是从处理结果获取交集</p>
+<p>​     <strong>B:</strong>  using union：表示使用or连接各个使用索引的条件时，该信息表示从处理结果获取并集</p>
+<p>​     <strong>C:</strong>  using sort_union和using sort_intersection：与前面两个对应的类似，只是他们是出现在用and和or查询信息量大时，先查询主键，然后进行排序合并后，才能读取记录并返回。</p>
+<p><strong>7) using temporary：</strong> 表示使用了临时表存储中间结果。临时表可以是内存临时表和磁盘临时表，执行计划中看不出来，需要查看status变量，used_tmp_table，used_tmp_disk_table才能看出来。这通常发生在对不同的列集进行ORDER BY上，而不是GROUP BY上。（看到这个的时候，查询需要优化了）</p>
+<p><strong>8) using where：</strong>  表示存储引擎返回的记录并不是所有的都满足查询条件，需要在server层进行过滤。查询条件中分为限制条件和检查条件，5.6之前，存储引擎只能根据限制条件扫描数据并返回，然后server层根据检查条件进行过滤再返回真正符合查询的数据。5.6.x之后支持ICP特性，可以把检查条件也下推到存储引擎层，不符合检查条件和限制条件的数据，直接不读取，这样就大大减少了存储引擎扫描的记录数量。extra列显示using index condition</p>
+<p><strong>9) firstmatch(tb_name)：</strong> 5.6.x开始引入的优化子查询的新特性之一，常见于where字句含有in()类型的子查询。如果内表的数据量比较大，就可能出现这个</p>
+<p><strong>10) loosescan(m…n)：</strong> 5.6.x之后引入的优化子查询的新特性之一，在in()类型的子查询中，子查询返回的可能有重复记录时，就可能出现这个</p>
+<p><strong>11）no exists :</strong> MYSQL优化了LEFT JOIN，一旦它找到了匹配LEFT JOIN标准的行，就不再搜索了</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[我，一条新时代的裹脚布]]></title>
+        <id>https://dellevin.github.io/post/我一条新时代的裹脚布/</id>
+        <link href="https://dellevin.github.io/post/我一条新时代的裹脚布/">
+        </link>
+        <updated>2024-05-15T10:56:54.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>我，一条新时代的裹脚布，在这个纵欲的社会坚守着自己的底线。在追求金钱的世界苟活着。</strong></p>
+<p>事情起因源自于前几天和学姐的聊天。偶然间谈到了渣男渣女，因为和她聊天让我有种奇怪的感觉。最后果然不出我所料，她和我说，自己和前男友在清明的时候上床了，而且不止一次，之前还有很多次。我的脑中宛如炸雷，想到这种靡乱就在我的身边时时刻刻的发生着，我就难免耳脸赤红。分手了，和前男友？如果这不算是炸裂的，和她继续聊天后，她和我说疼，我本以为是哪里磕到了，结果她和我说“下面觉撕裂了”我真的很愤怒，我想骂她“你要真寂寞了，可以拿根黄瓜”，可是我没这么说。不过我还是难以接受这种反差感，那一刻所有的美好幻想都在我的梦中破裂，一个清新青春的学姐和我说出这种话，很难接受。宛若天上的仙子堕入凡尘，多了些许的烟火气。这就是爱情给人带来的改变吗？真的太可怕了。我的思想还停留在择一人终一生的围成当中，可是我这些思想在她的眼中就像一个小孩认真说着未来的梦想，幼稚而又可笑。</p>
+<p>我承认我是有些清高了，但我还是继续这样。我对感情的不信任对感情的失望，源自于我本身的经历。被绿过好几次，被误会过，在那之后也骗过其他人，我一直认为自己不是个好人，但我会坚守我的底线绝不动摇，但是能坚持多久呢？能活多久呢？我明白我未来终会向现实低头的。我相信一个人能克制自己的欲望，那这个人是强大的。但是在物欲横流的社会，有几人能坚持呢？“乱花渐欲迷人眼”。进去了，再脱身就难了。我还是希望我能坚持自己的思想，卑微而又伟大，做一个拯救自己的英雄。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[简单优化-针对大数据查询的一些小思路]]></title>
+        <id>https://dellevin.github.io/post/简单优化-针对大数据查询的一些小思路/</id>
+        <link href="https://dellevin.github.io/post/简单优化-针对大数据查询的一些小思路/">
+        </link>
+        <updated>2024-04-10T00:35:14.000Z</updated>
+        <content type="html"><![CDATA[<p>我的member_user里面有352599条数据，gp_project里面有1211974条数据，请问该如何优化这个sql的查询效率</p>
+<pre><code class="language-mysql">SELECT gp.*, mu.linkmanName , mu.linkmanPhone, mu.legalPersonName, mu.legalPersonPhone, mu.address, mu.registerArea FROM gp_project gp LEFT JOIN member_user mu ON mu.supplierId = gp.supplier_id WHERE DATE(gp.publicity_time) &gt;= '2024-04-03' AND DATE(gp.publicity_time) &lt;= '2024-04-07' and mu.deleted = 0
+</code></pre>
+<p>针对这样的数据，我的数据表里面数据太多，导致了查询需要512秒的时间，而且这仅仅是两个表的关联，之后还需要关联四五个表组成一条查询语句，如果仅在mysql里面查，未免有些太为难服务器了。因为平常找数据用的sql里面的in语法比较多，所以尝试了一下用关联字段in数据的情况，突然发现，这样还挺快，主要是因为关联字段是索引，所以比较快，通过单表查出数据，然后将关键字段提取出来，in到另一个表里面快速查询，最后拼接字段，来实现数据的查询结果。</p>
+<p>另外因为涉及到多个循环，如果仅仅遵循  循环的外小内大原则，这样未免要写多个循环，降低了程序的运行效率多个O(n^2)的程序跑的，这样未免太致命了。改用map的key和value对照关系这样通过一个循环+map的方式降低时间复杂度为O(1)  ，这样就会快很多</p>
+<p>下面是操作案例</p>
+<p><strong>mybaits部分</strong>（单个案例）</p>
+<pre><code class="language-mybatis">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
+&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;  
+  
+&lt;mapper namespace=&quot;com.xyjq.mapper.db1.LoginMemberUserDao&quot;&gt;  
+  
+    &lt;!--根据供应商id判断是否为注册用户 --&gt;  
+    &lt;select id=&quot;isRegisterSupplier&quot; resultType=&quot;com.xyjq.entity.db1.LoginMemberUserEntity&quot;&gt;  
+        SELECT supplierId,createTime FROM `login_member_user` WHERE supplierId in  
+        &lt;foreach collection=&quot;supplierIdList&quot; item=&quot;supplierId&quot; open=&quot;(&quot; separator=&quot;,&quot; close=&quot;)&quot;&gt;  
+            #{supplierId}  
+        &lt;/foreach&gt;  
+    &lt;/select&gt;  
+  
+&lt;/mapper&gt;
+
+</code></pre>
+<p><strong>业务层部分</strong></p>
+<pre><code class="language-java">List&lt;GpProjectEntity&gt; list = baseDao.queryList(params);  
+  
+// 提取查询结果里面的supplierID的set集合  
+Set&lt;Integer&gt; supplierIdList =  list.stream()  
+                            .map(GpProjectEntity::getSupplierId)  
+                            .filter(Objects::nonNull)  
+                            .collect(Collectors.toSet());  
+SimpleDateFormat inputFormat = new SimpleDateFormat(&quot;yyyyMMddHHmmss&quot;);  
+SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);  
+// 以下遍历中防止嵌套for循环O(n^2)，使用map对象存储降低时间复杂度为O(1)  
+// 优化设置供应商信息  
+Map&lt;String, MemberUserEntity&gt; memberUserInfoMap = new HashMap&lt;&gt;();  
+memberUserDao.getMemberUserInfo(supplierIdList).forEach(memberUser -&gt; memberUserInfoMap.put(memberUser.getSupplierId().toString(), memberUser));  
+// 设置供应商的工商地址信息  
+Map&lt;String, SupplierBussinessInformationEntity&gt; supplierBusinessInfoMap = new HashMap&lt;&gt;();  
+supplierBussinessInformationDao.getSupplierBusinessInfo(supplierIdList).forEach(supplierBusinessInfo -&gt; supplierBusinessInfoMap.put(supplierBusinessInfo.getSupplierId().toString(), supplierBusinessInfo));  
+// 设置是否是注册用户  
+Map&lt;String, LoginMemberUserEntity&gt; loginMemberUserMap = new HashMap&lt;&gt;();  
+loginMemberUserDao.isRegisterSupplier(supplierIdList).forEach(loginMemberUser -&gt; loginMemberUserMap.put(loginMemberUser.getSupplierId().toString(), loginMemberUser));  
+// 设置是否有融资需求  
+Map&lt;String, String&gt; financingNeedsMap = new HashMap&lt;&gt;();  
+// 根据搜索结果，如果key一样就拼接value  
+financingNeedsDao.getCompFinancingNeeds(supplierIdList).forEach(financingNeeds -&gt; {  
+    String key = financingNeeds.getSupplierId();  
+    String value = FinancingStatus.getDescriptionByCode(financingNeeds.getFinancingProgress()) + &quot;(&quot; + financingNeeds.getCreateTime() + &quot;)&quot;;  
+    financingNeedsMap.merge(key, value, (oldValue, newValue) -&gt; oldValue + &quot;, &quot; + newValue);  
+});  
+  
+for (GpProjectEntity project : list) {  
+    // 设置项目名称  
+    if (project.getAgName() != null &amp;&amp; !project.getAgName().isEmpty()) {  
+        project.setProjectNameMergeAgBid(project.getAgName());  
+    } else if (project.getJatTpProName() != null &amp;&amp; !project.getJatTpProName().isEmpty()) {  
+        project.setProjectNameMergeAgBid(project.getJatTpProName());  
+    }  
+    // 设置项目金额  
+    if (project.getAgTotalMoney() != null) {  
+        project.setProjectMoneyMergeAgBid(project.getAgTotalMoney());  
+    } else {  
+        project.setProjectMoneyMergeAgBid(project.getWinPriceRevised());  
+    }  
+    // 设置项目的日期  
+    if (project.getAgSignDate() != null) {  
+        Date date = null;  
+        try {  
+            date = inputFormat.parse(project.getAgSignDate());  
+        } catch (ParseException e) {  
+            throw new RuntimeException(e);  
+        }  
+        project.setProjectDateMergeAgBid(dateFormat.format(date));  
+    } else {  
+        project.setProjectDateMergeAgBid( dateFormat.format(project.getJatWinTime()) );  
+    }  
+  
+    String supplierId = project.getSupplierId().toString();  
+    // 设置供应商信息  
+    MemberUserEntity memberUser = memberUserInfoMap.get(supplierId);  
+    if (memberUser != null) {  
+        project.setProjectLinkManName(memberUser.getLinkmanName());  
+        project.setProjectLinkManPhone(memberUser.getLinkmanPhone());  
+        project.setProjectLegalPersonName(memberUser.getLegalPersonName());  
+        project.setProjectLegalPersonPhone(memberUser.getLegaPersonPhone());  
+        project.setProjectAddress(memberUser.getAddress());  
+        project.setProjectRegisterArea(memberUser.getRegisterArea());  
+    }  
+    // 设置工商信息省市区  
+    SupplierBussinessInformationEntity supplierBussinessInformation = supplierBusinessInfoMap.get(supplierId);  
+    if (supplierBussinessInformation != null) {  
+        project.setProjectProvince(supplierBussinessInformation.getProvince());  
+        project.setProjectCity(supplierBussinessInformation.getCity());  
+        project.setProjectDistrict(supplierBussinessInformation.getDistrict());  
+    }  
+    // 设置是否是注册用户  
+    LoginMemberUserEntity loginMemberUser = loginMemberUserMap.get(supplierId);  
+    if (loginMemberUser != null) {  
+        project.setProjectIsRegisterSupplier(&quot;已注册（&quot; + dateFormat.format(loginMemberUser.getCreateTime()) + &quot;)&quot;);  
+    }  
+    // 设置融资历史记录  
+    String financingNeeds = financingNeedsMap.get(supplierId);  
+    if (financingNeeds != null) {  
+        project.setProjectFinancingNeeds(financingNeeds);  
+    }  
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[将同一层级下面的国标行业分类转换成父包含子的形式]]></title>
+        <id>https://dellevin.github.io/post/将同一层级下面的国标行业分类转换成父包含子的形式/</id>
+        <link href="https://dellevin.github.io/post/将同一层级下面的国标行业分类转换成父包含子的形式/">
+        </link>
+        <updated>2024-02-22T05:43:40.000Z</updated>
+        <content type="html"><![CDATA[<p>这是一开始的形式（部分）</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: &quot;A&quot;,
+    &quot;name&quot;: &quot;农、林、牧、渔业&quot;,
+    &quot;pid&quot;: null,
+    &quot;level&quot;: &quot;0&quot;,
+    &quot;desc&quot;: &quot;本门类包括 01～05 大类&quot;
+  },
+  {
+    &quot;id&quot;: &quot;A01&quot;,
+    &quot;name&quot;: &quot;农业&quot;,
+    &quot;pid&quot;: &quot;A&quot;,
+    &quot;level&quot;: &quot;1&quot;,
+    &quot;desc&quot;: &quot;指对各种农作物的种植&quot;
+  },
+  {
+    &quot;id&quot;: &quot;A011&quot;,
+    &quot;name&quot;: &quot;谷物种植&quot;,
+    &quot;pid&quot;: &quot;A01&quot;,
+    &quot;level&quot;: &quot;2&quot;,
+    &quot;desc&quot;: &quot;指以收获籽实为主的农作物的种植，包括稻 谷、小麦、玉米等农作物的种植和作为饲料和工业原料的谷物的种植&quot;
+  },
+  {
+    &quot;id&quot;: &quot;A0111&quot;,
+    &quot;name&quot;: &quot;稻谷种植&quot;,
+    &quot;pid&quot;: &quot;A011&quot;,
+    &quot;level&quot;: &quot;3&quot;,
+    &quot;desc&quot;: null
+  },
+  {
+    &quot;id&quot;: &quot;A0112&quot;,
+    &quot;name&quot;: &quot;小麦种植&quot;,
+    &quot;pid&quot;: &quot;A011&quot;,
+    &quot;level&quot;: &quot;3&quot;,
+    &quot;desc&quot;: null
+  },
+  {
+    &quot;id&quot;: &quot;A0113&quot;,
+    &quot;name&quot;: &quot;玉米种植&quot;,
+    &quot;pid&quot;: &quot;A011&quot;,
+    &quot;level&quot;: &quot;3&quot;,
+    &quot;desc&quot;: null
+  },
+  {
+    &quot;id&quot;: &quot;A0119&quot;,
+    &quot;name&quot;: &quot;其他谷物种植&quot;,
+    &quot;pid&quot;: &quot;A011&quot;,
+    &quot;level&quot;: &quot;3&quot;,
+    &quot;desc&quot;: null
+  },
+  {
+    &quot;id&quot;: &quot;A012&quot;,
+    &quot;name&quot;: &quot;豆类、油料和薯类种植&quot;,
+    &quot;pid&quot;: &quot;A01&quot;,
+    &quot;level&quot;: &quot;2&quot;,
+    &quot;desc&quot;: null
+  }
+]
+</code></pre>
+<p>然后将他们转换成这种形式</p>
+<pre><code class="language-json">[
+    {
+        &quot;id&quot;: &quot;A&quot;,
+        &quot;name&quot;: &quot;农、林、牧、渔业&quot;,
+        &quot;pid&quot;: null,
+        &quot;level&quot;: &quot;0&quot;,
+        &quot;desc&quot;: &quot;本门类包括 01～05 大类&quot;,
+        &quot;children&quot;: [
+            {
+                &quot;id&quot;: &quot;A01&quot;,
+                &quot;name&quot;: &quot;农业&quot;,
+                &quot;pid&quot;: &quot;A&quot;,
+                &quot;level&quot;: &quot;1&quot;,
+                &quot;desc&quot;: &quot;指对各种农作物的种植&quot;,
+                &quot;children&quot;: [
+                    {
+                        &quot;id&quot;: &quot;A011&quot;,
+                        &quot;name&quot;: &quot;谷物种植&quot;,
+                        &quot;pid&quot;: &quot;A01&quot;,
+                        &quot;level&quot;: &quot;2&quot;,
+                        &quot;desc&quot;: &quot;指以收获籽实为主的农作物的种植，包括稻 谷、小麦、玉米等农作物的种植和作为饲料和工业原料的谷物的种植&quot;,
+                        &quot;children&quot;: [
+                            {
+                                &quot;id&quot;: &quot;A0111&quot;,
+                                &quot;name&quot;: &quot;稻谷种植&quot;,
+                                &quot;pid&quot;: &quot;A011&quot;,
+                                &quot;level&quot;: &quot;3&quot;,
+                                &quot;desc&quot;: null
+                            },
+                            {
+                                &quot;id&quot;: &quot;A0112&quot;,
+                                &quot;name&quot;: &quot;小麦种植&quot;,
+                                &quot;pid&quot;: &quot;A011&quot;,
+                                &quot;level&quot;: &quot;3&quot;,
+                                &quot;desc&quot;: null
+                            }
+</code></pre>
+<p>下面是python代码</p>
+<pre><code class="language-python"># 划分同一个数据下面的各种类别
+import json
+
+# 读取文件并解析 JSON 数据
+def read_json_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+    return data
+
+# 写入到 JSON 文件
+def write_json_file(data, file_path):
+    with open(file_path, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+
+def build_hierarchy(categories):
+    # 创建一个空的字典列表，用于存储最终结果
+    result = []
+
+    # 创建字典，用于将分类按照 id 分组
+    category_map = {}
+    for category in categories:
+        category_map[category['id']] = category
+
+    # 遍历分类列表，构建分类树
+    for category in categories:
+        # 如果当前分类的 pid 为空，则将其视为一级分类
+        if category['pid'] is None:
+            result.append(category)
+        # 否则，将当前分类添加到其父分类的 children 列表中
+        else:
+            parent_id = category['pid']
+            parent_category = category_map.get(parent_id)
+            if parent_category is not None:
+                if 'children' not in parent_category:
+                    parent_category['children'] = []
+                parent_category['children'].append(category)
+
+    return result
+
+
+
+
+# 读取数据
+categories = read_json_file('D:\ALL_Proj\PyCharm_Proj\pythonProjectDemo01\无标题.json')
+# 构建分类树
+result = build_hierarchy(categories)
+# 写入数据
+write_json_file(result, 'D:\ALL_Proj\PyCharm_Proj\pythonProjectDemo01\Aresult.json')
+
+print(&quot;文件写入成功&quot;)
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[爱一个人真的好难]]></title>
+        <id>https://dellevin.github.io/post/爱一个人真的好难/</id>
+        <link href="https://dellevin.github.io/post/爱一个人真的好难/">
+        </link>
+        <updated>2024-02-19T09:08:44.000Z</updated>
+        <content type="html"><![CDATA[<p>当我经历了一份全身心都投入的失败感情后，突然间发现，我好像失去了爱一个人的能力。或许是哀莫大于心死，我生活的一切都伴随着我的心变得枯燥乏味。我像一个机器人一样的活着，每天执行着三点一线的指令。胖了，丑了，似乎活着的意义只剩下了让自己开心 。以前我是为她而活，昂扬向上，努力刻苦。现在为自己而活，我好像好像失去了动力一样。</p>
+<p>我不断的努力去尝试爱一个人，喜欢一个人，可是到头来却发现，我喜欢的只是她们的外表。从未触及她们的灵魂，我是卑鄙的，挺喜欢的名义坠入声色犬马的世界。</p>
+<p>好想爱一个人，去灵魂的触碰，去心与心的相拥，想去试试那种奋不顾身的感觉，粉身碎骨也无所谓了。。。可是，我又怎么该劝自己呢？</p>
+]]></content>
+    </entry>
+</feed>

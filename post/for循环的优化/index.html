@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="shortcut icon" href="https://dellevin.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit">
+<meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。">
+<meta charset="UTF-8">
+<title>
+	for循环的优化 | Del Levin‘s blog
+</title>
+<link href="https://dellevin.github.io/styles/main.css" type="text/css" rel="stylesheet" />
+<link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+<script src="https://dellevin.github.io/media/js/magnify.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script
+	type="text/javascript">function btn_toggle() { document.getElementById("hn").classList.contains("no-js") ? document.getElementById("hn").classList.remove("no-js") : document.getElementById("hn").classList.add("no-js") }</script>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// const urlWithParams = `http://127.0.0.1:8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			const urlWithParams = `https://47.121.199.144/8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			fetch(urlWithParams)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response.json(); // 如果返回的是 JSON 数据
+				})
+				.then(data => {
+					// console.log('Response data:', data);
+				})
+				.catch(error => {
+					console.error('There has been a problem with your fetch operation:', error);
+				});
+		});
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-6Z5DFKZBTD');
+	</script>
+	
+		<link rel="canonical" href="https://dellevin.github.io/post/for循环的优化/" />
+</head>
+
+<body>
+	<div class="progress"></div>
+<style>
+    .progress {
+        background: linear-gradient(to right, #87ceeb var(--scroll), transparent 0);
+        background-repeat: no-repeat;
+        position: fixed;
+        width: 100%;
+        height: 4px;
+        z-index: 1
+    }
+</style>
+<div class="darkmode-background"></div>
+<div class="darkmode-layer"></div>
+<noscript>
+    <p class="warn">本页面需要浏览器支持（启用）JavaScript</p>
+</noscript>
+<div class="header">
+    <div class="logo_title">
+        <div class="title animated fadeInDown"><a href="https://dellevin.github.io"><img alt="logo"
+                    style="display:inline-block;" src="https://dellevin.github.io/images/avatar.png" /></a>
+            <h1 title="Del Levin‘s blog" class="weaklink"><a href="/">
+                    Del Levin‘s blog
+                </a></h1>
+            
+                    <div class="navbar weaklink">
+                        <div class="normal_nav">
+                            <div class="bitcron_nav_container">
+                                <div class="bitcron_nav">
+                                    <div class="bitcron_nav">
+                                        <div style="display:flex;justify-content:center;">
+                                            <nav class="mixed_site_nav_wrap site_nav_wrap">
+                                                <ul class="mixed_site_nav site_nav sm sm-base">
+                                                    
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/"
+                                                                class="selected active current nav__item">
+                                                                首页
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/archives"
+                                                                class="selected active current nav__item">
+                                                                归档
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/tags"
+                                                                class="selected active current nav__item">
+                                                                标签
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/image-list"
+                                                                class="selected active current nav__item">
+                                                                相册
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/yue-wen"
+                                                                class="selected active current nav__item">
+                                                                阅读
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/you-ren-zhang"
+                                                                class="selected active current nav__item">
+                                                                 友链
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/guan-yu"
+                                                                class="selected active current nav__item">
+                                                                关于
+                                                            </a></li>
+                                                        
+                                                </ul>
+                                            </nav>
+                                            <div style="float:right;margin-top:1em">
+                                                <form id="gridea-search-form" data-update="1578893743252"
+                                                    action="/search/index.html"><input class="search-input"
+                                                        autocomplete="off" spellcheck="false" name="q"
+                                                        placeholder="Search..."></form>
+                                            </div>
+                                            <div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default"
+                                                    onclick="mobileBtn()" type="checkbox" class="switch_default"><label
+                                                    for="switch_default" class="toggleBtn"></label></div>
+                                        </div>
+                                        <div class="clear clear_nav_inline_end"></div>
+                                    </div>
+                                </div>
+                                <div class="clear clear_nav_end"></div>
+                            </div>
+                        </div>
+                        <div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i
+                                class="iconfont icon-category"></i></div>
+                    </div>
+        </div>
+    </div>
+    <div id="hn" class="no-js hidden_nav animated fadeInDown">
+        <div class="bitcron_nav_container">
+            <div class="bitcron_nav">
+                <nav class="mixed_site_nav_wrap site_nav_wrap">
+                    <ul class="mixed_site_nav site_nav sm sm-base">
+                        
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/"
+                                    class="selected active current nav__item">
+                                    首页
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives"
+                                    class="selected active current nav__item">
+                                    归档
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags"
+                                    class="selected active current nav__item">
+                                    标签
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/image-list"
+                                    class="selected active current nav__item">
+                                    相册
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-wen"
+                                    class="selected active current nav__item">
+                                    阅读
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang"
+                                    class="selected active current nav__item">
+                                     友链
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu"
+                                    class="selected active current nav__item">
+                                    关于
+                                </a></li>
+                            
+                    </ul>
+                    <div class="clear clear_nav_inline_end"></div>
+                </nav>
+            </div>
+            <div class="clear clear_nav_end"></div>
+        </div>
+        <div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%">
+            <div>
+                <form id="gridea-search-form" data-update="1729238926153" action="/search/index.html"><input
+                        class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..." />
+                </form>
+            </div>
+            <div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox"
+                    class="switch_default"><label for="switch_default" class="toggleBtn"></label></div>
+        </div>
+    </div>
+</div>
+<script>function enableDarkmode() { document.body.classList.add("darkmode"), document.getElementById("switch_default").checked = 1, document.getElementById("switch_default_h").checked = 1 } function removeDarkmode() { document.body.classList.remove("darkmode"), document.getElementById("switch_default").checked = 0, document.getElementById("switch_default_h").checked = 0 } function getCookie(a) { var b, c = new RegExp("(^| )" + a + "=([^;]*)(;|$)"); return (b = document.cookie.match(c)) ? unescape(b[2]) : null } cookie = getCookie("darkmode"), "enable" == cookie && enableDarkmode(), window.matchMedia("(prefers-color-scheme: dark)").matches && "disable" !== cookie && (enableDarkmode(), document.cookie = "darkmode=enable; path=/"); var mobileBtn = function () { 1 == document.getElementById("switch_default").checked ? (enableDarkmode(), document.cookie = "darkmode=enable; path=/") : (removeDarkmode(), document.cookie = "darkmode=disable; path=/") };</script>
+
+		<div class="main">
+			<div class="main-inner">
+				<div class="content">
+					<article class="post">
+						<h2 class="post_title sm_margin"><a>
+								for循环的优化
+							</a></h2>
+						<script>function lan() { if (document.getElementById("lan").innerText == "繁") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "简" } else { if (document.getElementById("lan").innerText == "簡") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "繁" } } };</script>
+						<section class="post_details"><i class="iconfont icon-calendar"></i><span
+								style="margin-right:15px">
+								2023-04-01
+							</span>
+							<!-- <i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span
+									id="busuanzi_value_page_pv"></span> Views</span> -->
+									<i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">
+								 <a href="https://dellevin.github.io/tag/java/" class="tag">
+										java
+									</a>
+									
+											
+							</span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">
+								774字
+							</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">
+								4 min read
+							</span><a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体"
+								style="margin-right:15px;">繁</a>
+							
+						</section>
+						
+								<div style="display:flex">
+									<div class="md_block" id="md_block">
+										<div class="round-shape-one"></div>
+										<h2 id="for循环的优化">for循环的优化</h2>
+<p>2022年11月12日17点52分</p>
+<p>今天使用wincc oa的时候遍历excel表的时候，五千多行，慢的要死，最后还是归结自己的定义变量的随便。以至于自己写的程序拖慢了速度。<br>
+以下是几条优化for循环的方式</p>
+<h2 id="方法一消除循环终止判断时的方法调用">方法一：消除循环终止判断时的方法调用</h2>
+<p>优化前：</p>
+<pre><code class="language-java">for (int i = 0; i &lt; list.size(); i++) {
+	System.out.println(list.get(i));
+}
+</code></pre>
+<p>优点：较常见，易于理解<br>
+缺点：每次都要计算list.size()</p>
+<p>优化一：<br>
+将计算list长度提取出来</p>
+<pre><code class="language-java">int m = list.size();
+for (int i = 0; i &lt; m; i++) {
+      System.out.println(list.get(i));
+}
+</code></pre>
+<p>优点：将list长度提取出来，不必每次都计算<br>
+缺点：</p>
+<ol>
+<li>m的作用域不够小，违反了最小作用域原则</li>
+<li>不能在for循环中操作list的大小，比如除去或新加一个元素</li>
+</ol>
+<p>分析：<br>
+list.size()每次循环都会被执行一次，这无疑会影响程序的性能，所以应该将其放到循环外面，用一个变量来代替，优化前后的对比也很明显。</p>
+<p>优化二：<br>
+将计算list长度提取出来</p>
+<pre><code class="language-java">for (int i = 0, n = list.size(); i &lt; n; i++) {
+      System.out.println(list.get(i));
+} 
+</code></pre>
+<p>优点：不必每次都计算 ，变量的作用域遵循最小范围原则</p>
+<p>优化三：<br>
+采用倒序的写法</p>
+<pre><code class="language-java">for (int i = list.size() - 1; i &gt;= 0; i--) {
+      System.out.println(list.get(i));
+}
+</code></pre>
+<p>优点：不必每次都计算 ，变量的作用域遵循最小范围原则<br>
+缺点：</p>
+<ol>
+<li>结果的顺序会反</li>
+<li>看起来不习惯，不易读懂</li>
+</ol>
+<p>适用场合：与显示结果顺序无关的地方：比如保存之前数据的校验</p>
+<h2 id="方法二iterator-遍历">方法二：Iterator 遍历</h2>
+<pre><code class="language-java">for (Iterator&lt;String&gt; it = list.iterator(); it.hasNext();) {
+      System.out.println(it.next());
+}
+</code></pre>
+<p>优点：简洁</p>
+<h2 id="方法三jdk15新写法">方法三：jdk1.5新写法</h2>
+<pre><code class="language-java">for (Object o : list) {
+     System.out.println(o);
+}
+</code></pre>
+<p>优点：简洁结合泛型使用更简洁<br>
+缺点：jdk1.4向下不兼容</p>
+<h2 id="方法四循环嵌套外小内大原则从外至里循环对象size要从小到大">方法四：循环嵌套外小内大原则（从外至里，循环对象size要从小到大）</h2>
+<p>优化前：</p>
+<pre><code class="language-java">for (int i = 0; i &lt; 100000; i++) {
+      for (int j = 0; j &lt; 10; j++) {
+         }
+  }
+</code></pre>
+<p>优化后：</p>
+<pre><code class="language-java">for (int i = 0; i &lt; 10; i++) {
+      for (int j = 0; j &lt; 100000; j++) {
+         }
+  }
+</code></pre>
+<p>理解：这就好比你复制很多个小文件和复制几个大文件的区别。</p>
+<h2 id="方法五循环嵌套提取不需要循环的逻辑">方法五：循环嵌套提取不需要循环的逻辑</h2>
+<p>优化前：</p>
+<pre><code class="language-java"> int a = 10, b = 11;
+  for (int i = 0; i &lt; 10; i++) {
+               i = i * a * b;
+   } 
+</code></pre>
+<p>优化后：</p>
+<pre><code class="language-java"> int c = a * b;
+ for (int i = 0; i &lt; 10; i++) {
+         i = i * c;
+  }
+</code></pre>
+<p>分析：代码中a*b与我们的循环无关，所以为避免重复计算，应该把它放到外面。优化后性能会提升好几个数量级，这些是不容忽视的。</p>
+<h2 id="方法六异常处理写在循环外面">方法六：异常处理写在循环外面</h2>
+<p>优化前：</p>
+<pre><code class="language-php">  for (int i = 0; i &lt; 10; i++) {
+          try {
+ 
+              } catch (Exception e) {
+ 
+              }
+    }
+</code></pre>
+<p>优化后：</p>
+<pre><code class="language-java">try {
+         for (int i = 0; i &lt; 10; i++) {
+                }
+     } catch (Exception e) {
+ 
+  }
+</code></pre>
+<p>分析：捕获异常是很耗资源的，所以不能将try catch放到循环内部，优化后同样有好几个数量级的提升</p>
+
+											<span id="footnote"></span>
+											<div id="warn"></div>
+									</div>
+									<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#for%E5%BE%AA%E7%8E%AF%E7%9A%84%E4%BC%98%E5%8C%96">for循环的优化</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80%E6%B6%88%E9%99%A4%E5%BE%AA%E7%8E%AF%E7%BB%88%E6%AD%A2%E5%88%A4%E6%96%AD%E6%97%B6%E7%9A%84%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8">方法一：消除循环终止判断时的方法调用</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8Citerator-%E9%81%8D%E5%8E%86">方法二：Iterator 遍历</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%89jdk15%E6%96%B0%E5%86%99%E6%B3%95">方法三：jdk1.5新写法</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E5%9B%9B%E5%BE%AA%E7%8E%AF%E5%B5%8C%E5%A5%97%E5%A4%96%E5%B0%8F%E5%86%85%E5%A4%A7%E5%8E%9F%E5%88%99%E4%BB%8E%E5%A4%96%E8%87%B3%E9%87%8C%E5%BE%AA%E7%8E%AF%E5%AF%B9%E8%B1%A1size%E8%A6%81%E4%BB%8E%E5%B0%8F%E5%88%B0%E5%A4%A7">方法四：循环嵌套外小内大原则（从外至里，循环对象size要从小到大）</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%94%E5%BE%AA%E7%8E%AF%E5%B5%8C%E5%A5%97%E6%8F%90%E5%8F%96%E4%B8%8D%E9%9C%80%E8%A6%81%E5%BE%AA%E7%8E%AF%E7%9A%84%E9%80%BB%E8%BE%91">方法五：循环嵌套提取不需要循环的逻辑</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E5%85%AD%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%86%99%E5%9C%A8%E5%BE%AA%E7%8E%AF%E5%A4%96%E9%9D%A2">方法六：异常处理写在循环外面</a></li>
+</ul>
+</li>
+</ul>
+</div>
+								</div>
+								<div id="fullPage"><canvas id="canvas"></canvas></div>
+					</article>
+					<div id="eof"><span>EOF</span></div>
+					<div class="round-shape-one"></div>
+					<section>
+						<div class="doc_comments">
+							
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<script>
+			"use strict"; !function () { for (var n = document.getElementsByTagName("pre"), e = n.length, s = 0; s < e; s++) { n[s].innerHTML = '<span class="line-number"></span>' + n[s].innerHTML + '<span class="cl"></span>'; for (var a = n[s].innerHTML.split(/\n/).length, r = 0; r < a - 1; r++) { n[s].getElementsByTagName("span")[0].innerHTML += "<span>" + (r + 1) + "</span>" } } }();
+			let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a"); window.addEventListener("scroll", event => {
+				let fromTop = window.scrollY; mainNavLinks.forEach((link, index) => {
+					let section = document.getElementById(decodeURI(link.hash).substring(1)); let nextSection = null
+					if (mainNavLinks[index + 1]) { nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1)); }
+					if (section.offsetTop <= fromTop) { if (nextSection) { if (nextSection.offsetTop > fromTop) { link.classList.add("currentToc"); } else { link.classList.remove("currentToc"); } } else { link.classList.add("currentToc"); } } else { link.classList.remove("currentToc"); }
+				});
+			});
+			var h = document.documentElement, b = document.body, st = "scrollTop", sh = "scrollHeight", progress = document.querySelector(".progress"), scroll; document.addEventListener("scroll", function () { scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100; progress.style.setProperty("--scroll", scroll + "%") });
+			var wxScale = new WxScale({ fullPage: document.querySelector("#fullPage"), canvas: document.querySelector("#canvas") }); var imgBox = document.querySelectorAll("#md_block img"); for (var i = 0; i < imgBox.length; i++) { imgBox[i].onclick = function (e) { wxScale.start(this) } };
+		</script>
+		<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a>
+<div class="footer animated fadeInDown">
+    <div class="site_footer">
+        <div class="mysocials">
+            <div class="my_socials">
+                
+                    
+                            
+                    
+                            
+                    <a href="https://weibo.com/u/6094785105" title="weibo"><i
+                                class="iconfont icon-weibo"></i></a>
+                        
+                            
+                    <a href="https://github.com/dellevin" title="github"><i
+                                class="iconfont icon-github"></i></a>
+                        
+                            
+                    
+                            
+                    <a href="https://www.ittoolman.top/atom.xml" title="rss"><i
+                                class="iconfont icon-rss"></i></a>
+                        
+                            
+                    <a href="https://www.zhihu.com/people/bing-xue-chen-xi-59" title="zhihu"><i
+                                class="iconfont icon-zhihu"></i></a>
+                        
+                            
+            </div>
+        </div>
+        <div class="copyright" id="copyright">Copyright © 2020-2024 <a
+                    href="https://dellevin.github.io" style="margin:0;">
+                    Del Levin‘s blog
+                </a>.</div>
+        <!-- <span style="display: inline;margin-right:15px;">👁<strong><span
+                    id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv"
+            style="display: inline;"> -->
+            
+            <span>📚<strong>
+                    122
+                </strong> posts</span>
+    </div>
+</div>
+<script>
+    // console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;",);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+			<script type="text/javascript" async src="https://dellevin.github.io/media/js/prism.js"></script>
+</body>
+
+</html>

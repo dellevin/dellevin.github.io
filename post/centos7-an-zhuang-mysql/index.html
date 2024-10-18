@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="shortcut icon" href="https://dellevin.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit">
+<meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。">
+<meta charset="UTF-8">
+<title>
+	centos7安装Mysql | Del Levin‘s blog
+</title>
+<link href="https://dellevin.github.io/styles/main.css" type="text/css" rel="stylesheet" />
+<link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+<script src="https://dellevin.github.io/media/js/magnify.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script
+	type="text/javascript">function btn_toggle() { document.getElementById("hn").classList.contains("no-js") ? document.getElementById("hn").classList.remove("no-js") : document.getElementById("hn").classList.add("no-js") }</script>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// const urlWithParams = `http://127.0.0.1:8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			const urlWithParams = `https://47.121.199.144/8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			fetch(urlWithParams)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response.json(); // 如果返回的是 JSON 数据
+				})
+				.then(data => {
+					// console.log('Response data:', data);
+				})
+				.catch(error => {
+					console.error('There has been a problem with your fetch operation:', error);
+				});
+		});
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-6Z5DFKZBTD');
+	</script>
+	
+		<link rel="canonical" href="https://dellevin.github.io/post/centos7-an-zhuang-mysql/" />
+</head>
+
+<body>
+	<div class="progress"></div>
+<style>
+    .progress {
+        background: linear-gradient(to right, #87ceeb var(--scroll), transparent 0);
+        background-repeat: no-repeat;
+        position: fixed;
+        width: 100%;
+        height: 4px;
+        z-index: 1
+    }
+</style>
+<div class="darkmode-background"></div>
+<div class="darkmode-layer"></div>
+<noscript>
+    <p class="warn">本页面需要浏览器支持（启用）JavaScript</p>
+</noscript>
+<div class="header">
+    <div class="logo_title">
+        <div class="title animated fadeInDown"><a href="https://dellevin.github.io"><img alt="logo"
+                    style="display:inline-block;" src="https://dellevin.github.io/images/avatar.png" /></a>
+            <h1 title="Del Levin‘s blog" class="weaklink"><a href="/">
+                    Del Levin‘s blog
+                </a></h1>
+            
+                    <div class="navbar weaklink">
+                        <div class="normal_nav">
+                            <div class="bitcron_nav_container">
+                                <div class="bitcron_nav">
+                                    <div class="bitcron_nav">
+                                        <div style="display:flex;justify-content:center;">
+                                            <nav class="mixed_site_nav_wrap site_nav_wrap">
+                                                <ul class="mixed_site_nav site_nav sm sm-base">
+                                                    
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/"
+                                                                class="selected active current nav__item">
+                                                                首页
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/archives"
+                                                                class="selected active current nav__item">
+                                                                归档
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/tags"
+                                                                class="selected active current nav__item">
+                                                                标签
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/image-list"
+                                                                class="selected active current nav__item">
+                                                                相册
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/yue-wen"
+                                                                class="selected active current nav__item">
+                                                                阅读
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/you-ren-zhang"
+                                                                class="selected active current nav__item">
+                                                                 友链
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/guan-yu"
+                                                                class="selected active current nav__item">
+                                                                关于
+                                                            </a></li>
+                                                        
+                                                </ul>
+                                            </nav>
+                                            <div style="float:right;margin-top:1em">
+                                                <form id="gridea-search-form" data-update="1578893743252"
+                                                    action="/search/index.html"><input class="search-input"
+                                                        autocomplete="off" spellcheck="false" name="q"
+                                                        placeholder="Search..."></form>
+                                            </div>
+                                            <div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default"
+                                                    onclick="mobileBtn()" type="checkbox" class="switch_default"><label
+                                                    for="switch_default" class="toggleBtn"></label></div>
+                                        </div>
+                                        <div class="clear clear_nav_inline_end"></div>
+                                    </div>
+                                </div>
+                                <div class="clear clear_nav_end"></div>
+                            </div>
+                        </div>
+                        <div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i
+                                class="iconfont icon-category"></i></div>
+                    </div>
+        </div>
+    </div>
+    <div id="hn" class="no-js hidden_nav animated fadeInDown">
+        <div class="bitcron_nav_container">
+            <div class="bitcron_nav">
+                <nav class="mixed_site_nav_wrap site_nav_wrap">
+                    <ul class="mixed_site_nav site_nav sm sm-base">
+                        
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/"
+                                    class="selected active current nav__item">
+                                    首页
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives"
+                                    class="selected active current nav__item">
+                                    归档
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags"
+                                    class="selected active current nav__item">
+                                    标签
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/image-list"
+                                    class="selected active current nav__item">
+                                    相册
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-wen"
+                                    class="selected active current nav__item">
+                                    阅读
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang"
+                                    class="selected active current nav__item">
+                                     友链
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu"
+                                    class="selected active current nav__item">
+                                    关于
+                                </a></li>
+                            
+                    </ul>
+                    <div class="clear clear_nav_inline_end"></div>
+                </nav>
+            </div>
+            <div class="clear clear_nav_end"></div>
+        </div>
+        <div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%">
+            <div>
+                <form id="gridea-search-form" data-update="1729238926153" action="/search/index.html"><input
+                        class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..." />
+                </form>
+            </div>
+            <div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox"
+                    class="switch_default"><label for="switch_default" class="toggleBtn"></label></div>
+        </div>
+    </div>
+</div>
+<script>function enableDarkmode() { document.body.classList.add("darkmode"), document.getElementById("switch_default").checked = 1, document.getElementById("switch_default_h").checked = 1 } function removeDarkmode() { document.body.classList.remove("darkmode"), document.getElementById("switch_default").checked = 0, document.getElementById("switch_default_h").checked = 0 } function getCookie(a) { var b, c = new RegExp("(^| )" + a + "=([^;]*)(;|$)"); return (b = document.cookie.match(c)) ? unescape(b[2]) : null } cookie = getCookie("darkmode"), "enable" == cookie && enableDarkmode(), window.matchMedia("(prefers-color-scheme: dark)").matches && "disable" !== cookie && (enableDarkmode(), document.cookie = "darkmode=enable; path=/"); var mobileBtn = function () { 1 == document.getElementById("switch_default").checked ? (enableDarkmode(), document.cookie = "darkmode=enable; path=/") : (removeDarkmode(), document.cookie = "darkmode=disable; path=/") };</script>
+
+		<div class="main">
+			<div class="main-inner">
+				<div class="content">
+					<article class="post">
+						<h2 class="post_title sm_margin"><a>
+								centos7安装Mysql
+							</a></h2>
+						<script>function lan() { if (document.getElementById("lan").innerText == "繁") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "简" } else { if (document.getElementById("lan").innerText == "簡") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "繁" } } };</script>
+						<section class="post_details"><i class="iconfont icon-calendar"></i><span
+								style="margin-right:15px">
+								2023-02-08
+							</span>
+							<!-- <i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span
+									id="busuanzi_value_page_pv"></span> Views</span> -->
+									<i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">
+								 <a href="https://dellevin.github.io/tag/linux/" class="tag">
+										linux
+									</a>
+									
+											
+							</span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">
+								422字
+							</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">
+								2 min read
+							</span><a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体"
+								style="margin-right:15px;">繁</a>
+							
+						</section>
+						
+								<div style="display:flex">
+									<div class="md_block" id="md_block">
+										<div class="round-shape-one"></div>
+										<h3 id="1-下载-mysql-yum包">1. 下载 <a href="https://cloud.tencent.com/product/cdb?from=10680">MySQL</a> yum包</h3>
+<pre><code class="language-javascript">wget http://repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm
+</code></pre>
+<h3 id="2安装mysql源">2.安装MySQL源</h3>
+<pre><code class="language-javascript">rpm -Uvh mysql57-community-release-el7-10.noarch.rpm
+</code></pre>
+<h3 id="3安装mysql服务端需要等待一些时间">3.安装MySQL服务端,需要等待一些时间</h3>
+<pre><code class="language-javascript">yum install -y mysql-community-server
+</code></pre>
+<h3 id="4启动mysql">4.启动MySQL</h3>
+<pre><code class="language-javascript">systemctl start mysqld.service
+</code></pre>
+<h3 id="5检查是否启动成功">5.检查是否启动成功</h3>
+<pre><code class="language-javascript">systemctl status mysqld.service
+</code></pre>
+<h3 id="6获取临时密码mysql57为root用户随机生成了一个密码">6.获取临时密码，MySQL5.7为root用户随机生成了一个密码</h3>
+<p>冒号后面的是随机密码</p>
+<pre><code class="language-javascript">grep 'temporary password' /var/log/mysqld.log 
+</code></pre>
+<h3 id="7通过临时密码登录mysql进行修改密码操作">7.通过临时密码登录MySQL，进行修改密码操作</h3>
+<pre><code class="language-javascript">mysql -uroot -p
+</code></pre>
+<p>使用临时密码登录后，不能进行其他的操作，否则会报错，这时候我们进行修改密码操作</p>
+<h3 id="8因为mysql的密码规则需要很复杂我们一般自己设置的不会设置成这样所以我们全局修改一下">8.因为MySQL的密码规则需要很复杂，我们一般自己设置的不会设置成这样，所以我们全局修改一下</h3>
+<pre><code class="language-javascript">mysql&gt; set global validate_password_policy=0;
+mysql&gt; set global validate_password_length=1;
+</code></pre>
+<p>这时候我们就可以自己设置想要的密码了</p>
+<pre><code class="language-javascript">ALTER USER 'root'@'localhost' IDENTIFIED BY 'yourpassword';
+</code></pre>
+<h3 id="9授权其他机器远程登录">9.授权其他机器远程登录</h3>
+<pre><code class="language-javascript">GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'yourpassword' WITH GRANT OPTION;
+ 
+FLUSH PRIVILEGES;
+</code></pre>
+<h3 id="10开启开机自启动">10.开启开机自启动</h3>
+<p>先退出mysql命令行，然后输入以下命令</p>
+<pre><code class="language-javascript">systemctl enable mysqld
+systemctl daemon-reload
+</code></pre>
+<h3 id="11设置mysql的字符集为utf-8令其支持中文">11.设置MySQL的字符集为UTF-8，令其支持中文</h3>
+<pre><code class="language-javascript">vim /etc/my.cnf
+</code></pre>
+<p>改成如下,然后保存</p>
+<pre><code class="language-javascript"># For advice on how to change settings please see
+# http://dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html
+ 
+[mysql]
+default-character-set=utf8
+ 
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+character_set_server=utf8
+ 
+symbolic-links=0
+ 
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+</code></pre>
+<h3 id="12重启一下mysql令配置生效">12.重启一下MySQL,令配置生效</h3>
+<pre><code class="language-javascript">service mysqld restart
+</code></pre>
+<h3 id="13防火墙开放3306端口">13.防火墙开放3306端口</h3>
+<pre><code class="language-javascript">firewall-cmd --state
+firewall-cmd --zone=public --add-port=3306/tcp --permanent
+firewall-cmd --reload
+</code></pre>
+
+											<span id="footnote"></span>
+											<div id="warn"></div>
+									</div>
+									<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1-%E4%B8%8B%E8%BD%BD-mysql-yum%E5%8C%85">1. 下载 MySQL yum包</a></li>
+<li><a href="#2%E5%AE%89%E8%A3%85mysql%E6%BA%90">2.安装MySQL源</a></li>
+<li><a href="#3%E5%AE%89%E8%A3%85mysql%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%9C%80%E8%A6%81%E7%AD%89%E5%BE%85%E4%B8%80%E4%BA%9B%E6%97%B6%E9%97%B4">3.安装MySQL服务端,需要等待一些时间</a></li>
+<li><a href="#4%E5%90%AF%E5%8A%A8mysql">4.启动MySQL</a></li>
+<li><a href="#5%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F">5.检查是否启动成功</a></li>
+<li><a href="#6%E8%8E%B7%E5%8F%96%E4%B8%B4%E6%97%B6%E5%AF%86%E7%A0%81mysql57%E4%B8%BAroot%E7%94%A8%E6%88%B7%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E4%BA%86%E4%B8%80%E4%B8%AA%E5%AF%86%E7%A0%81">6.获取临时密码，MySQL5.7为root用户随机生成了一个密码</a></li>
+<li><a href="#7%E9%80%9A%E8%BF%87%E4%B8%B4%E6%97%B6%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95mysql%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%E6%93%8D%E4%BD%9C">7.通过临时密码登录MySQL，进行修改密码操作</a></li>
+<li><a href="#8%E5%9B%A0%E4%B8%BAmysql%E7%9A%84%E5%AF%86%E7%A0%81%E8%A7%84%E5%88%99%E9%9C%80%E8%A6%81%E5%BE%88%E5%A4%8D%E6%9D%82%E6%88%91%E4%BB%AC%E4%B8%80%E8%88%AC%E8%87%AA%E5%B7%B1%E8%AE%BE%E7%BD%AE%E7%9A%84%E4%B8%8D%E4%BC%9A%E8%AE%BE%E7%BD%AE%E6%88%90%E8%BF%99%E6%A0%B7%E6%89%80%E4%BB%A5%E6%88%91%E4%BB%AC%E5%85%A8%E5%B1%80%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%8B">8.因为MySQL的密码规则需要很复杂，我们一般自己设置的不会设置成这样，所以我们全局修改一下</a></li>
+<li><a href="#9%E6%8E%88%E6%9D%83%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95">9.授权其他机器远程登录</a></li>
+<li><a href="#10%E5%BC%80%E5%90%AF%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8">10.开启开机自启动</a></li>
+<li><a href="#11%E8%AE%BE%E7%BD%AEmysql%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%BAutf-8%E4%BB%A4%E5%85%B6%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87">11.设置MySQL的字符集为UTF-8，令其支持中文</a></li>
+<li><a href="#12%E9%87%8D%E5%90%AF%E4%B8%80%E4%B8%8Bmysql%E4%BB%A4%E9%85%8D%E7%BD%AE%E7%94%9F%E6%95%88">12.重启一下MySQL,令配置生效</a></li>
+<li><a href="#13%E9%98%B2%E7%81%AB%E5%A2%99%E5%BC%80%E6%94%BE3306%E7%AB%AF%E5%8F%A3">13.防火墙开放3306端口</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+								</div>
+								<div id="fullPage"><canvas id="canvas"></canvas></div>
+					</article>
+					<div id="eof"><span>EOF</span></div>
+					<div class="round-shape-one"></div>
+					<section>
+						<div class="doc_comments">
+							
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<script>
+			"use strict"; !function () { for (var n = document.getElementsByTagName("pre"), e = n.length, s = 0; s < e; s++) { n[s].innerHTML = '<span class="line-number"></span>' + n[s].innerHTML + '<span class="cl"></span>'; for (var a = n[s].innerHTML.split(/\n/).length, r = 0; r < a - 1; r++) { n[s].getElementsByTagName("span")[0].innerHTML += "<span>" + (r + 1) + "</span>" } } }();
+			let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a"); window.addEventListener("scroll", event => {
+				let fromTop = window.scrollY; mainNavLinks.forEach((link, index) => {
+					let section = document.getElementById(decodeURI(link.hash).substring(1)); let nextSection = null
+					if (mainNavLinks[index + 1]) { nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1)); }
+					if (section.offsetTop <= fromTop) { if (nextSection) { if (nextSection.offsetTop > fromTop) { link.classList.add("currentToc"); } else { link.classList.remove("currentToc"); } } else { link.classList.add("currentToc"); } } else { link.classList.remove("currentToc"); }
+				});
+			});
+			var h = document.documentElement, b = document.body, st = "scrollTop", sh = "scrollHeight", progress = document.querySelector(".progress"), scroll; document.addEventListener("scroll", function () { scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100; progress.style.setProperty("--scroll", scroll + "%") });
+			var wxScale = new WxScale({ fullPage: document.querySelector("#fullPage"), canvas: document.querySelector("#canvas") }); var imgBox = document.querySelectorAll("#md_block img"); for (var i = 0; i < imgBox.length; i++) { imgBox[i].onclick = function (e) { wxScale.start(this) } };
+		</script>
+		<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a>
+<div class="footer animated fadeInDown">
+    <div class="site_footer">
+        <div class="mysocials">
+            <div class="my_socials">
+                
+                    
+                            
+                    
+                            
+                    <a href="https://weibo.com/u/6094785105" title="weibo"><i
+                                class="iconfont icon-weibo"></i></a>
+                        
+                            
+                    <a href="https://github.com/dellevin" title="github"><i
+                                class="iconfont icon-github"></i></a>
+                        
+                            
+                    
+                            
+                    <a href="https://www.ittoolman.top/atom.xml" title="rss"><i
+                                class="iconfont icon-rss"></i></a>
+                        
+                            
+                    <a href="https://www.zhihu.com/people/bing-xue-chen-xi-59" title="zhihu"><i
+                                class="iconfont icon-zhihu"></i></a>
+                        
+                            
+            </div>
+        </div>
+        <div class="copyright" id="copyright">Copyright © 2020-2024 <a
+                    href="https://dellevin.github.io" style="margin:0;">
+                    Del Levin‘s blog
+                </a>.</div>
+        <!-- <span style="display: inline;margin-right:15px;">👁<strong><span
+                    id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv"
+            style="display: inline;"> -->
+            
+            <span>📚<strong>
+                    122
+                </strong> posts</span>
+    </div>
+</div>
+<script>
+    // console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;",);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+			<script type="text/javascript" async src="https://dellevin.github.io/media/js/prism.js"></script>
+</body>
+
+</html>

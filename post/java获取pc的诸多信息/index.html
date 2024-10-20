@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="shortcut icon" href="https://dellevin.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit">
+<meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。">
+<meta charset="UTF-8">
+<title>
+	 java获取pc的诸多信息 | Del Levin‘s blog
+</title>
+<link href="https://dellevin.github.io/styles/main.css" type="text/css" rel="stylesheet" />
+<link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+<script src="https://dellevin.github.io/media/js/magnify.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script
+	type="text/javascript">function btn_toggle() { document.getElementById("hn").classList.contains("no-js") ? document.getElementById("hn").classList.remove("no-js") : document.getElementById("hn").classList.add("no-js") }</script>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// const urlWithParams = `http://127.0.0.1:8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			const urlWithParams = `https://47.121.199.144/8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			fetch(urlWithParams)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response.json(); // 如果返回的是 JSON 数据
+				})
+				.then(data => {
+					// console.log('Response data:', data);
+				})
+				.catch(error => {
+					console.error('There has been a problem with your fetch operation:', error);
+				});
+		});
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-6Z5DFKZBTD');
+	</script>
+	
+		<link rel="canonical" href="https://dellevin.github.io/post/java获取pc的诸多信息/" />
+</head>
+
+<body>
+	<div class="progress"></div>
+<style>
+    .progress {
+        background: linear-gradient(to right, #87ceeb var(--scroll), transparent 0);
+        background-repeat: no-repeat;
+        position: fixed;
+        width: 100%;
+        height: 4px;
+        z-index: 1
+    }
+</style>
+<div class="darkmode-background"></div>
+<div class="darkmode-layer"></div>
+<noscript>
+    <p class="warn">本页面需要浏览器支持（启用）JavaScript</p>
+</noscript>
+<div class="header">
+    <div class="logo_title">
+        <div class="title animated fadeInDown"><a href="https://dellevin.github.io"><img alt="logo"
+                    style="display:inline-block;" src="https://dellevin.github.io/images/avatar.png" /></a>
+            <h1 title="Del Levin‘s blog" class="weaklink"><a href="/">
+                    Del Levin‘s blog
+                </a></h1>
+            
+                    <div class="navbar weaklink">
+                        <div class="normal_nav">
+                            <div class="bitcron_nav_container">
+                                <div class="bitcron_nav">
+                                    <div class="bitcron_nav">
+                                        <div style="display:flex;justify-content:center;">
+                                            <nav class="mixed_site_nav_wrap site_nav_wrap">
+                                                <ul class="mixed_site_nav site_nav sm sm-base">
+                                                    
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/"
+                                                                class="selected active current nav__item">
+                                                                首页
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/archives"
+                                                                class="selected active current nav__item">
+                                                                归档
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/tags"
+                                                                class="selected active current nav__item">
+                                                                标签
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/image-list"
+                                                                class="selected active current nav__item">
+                                                                相册
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/yue-wen"
+                                                                class="selected active current nav__item">
+                                                                阅读
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/you-ren-zhang"
+                                                                class="selected active current nav__item">
+                                                                 友链
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/guan-yu"
+                                                                class="selected active current nav__item">
+                                                                关于
+                                                            </a></li>
+                                                        
+                                                </ul>
+                                            </nav>
+                                            <div style="float:right;margin-top:1em">
+                                                <form id="gridea-search-form" data-update="1578893743252"
+                                                    action="/search/index.html"><input class="search-input"
+                                                        autocomplete="off" spellcheck="false" name="q"
+                                                        placeholder="Search..."></form>
+                                            </div>
+                                            <div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default"
+                                                    onclick="mobileBtn()" type="checkbox" class="switch_default"><label
+                                                    for="switch_default" class="toggleBtn"></label></div>
+                                        </div>
+                                        <div class="clear clear_nav_inline_end"></div>
+                                    </div>
+                                </div>
+                                <div class="clear clear_nav_end"></div>
+                            </div>
+                        </div>
+                        <div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i
+                                class="iconfont icon-category"></i></div>
+                    </div>
+        </div>
+    </div>
+    <div id="hn" class="no-js hidden_nav animated fadeInDown">
+        <div class="bitcron_nav_container">
+            <div class="bitcron_nav">
+                <nav class="mixed_site_nav_wrap site_nav_wrap">
+                    <ul class="mixed_site_nav site_nav sm sm-base">
+                        
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/"
+                                    class="selected active current nav__item">
+                                    首页
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives"
+                                    class="selected active current nav__item">
+                                    归档
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags"
+                                    class="selected active current nav__item">
+                                    标签
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/image-list"
+                                    class="selected active current nav__item">
+                                    相册
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-wen"
+                                    class="selected active current nav__item">
+                                    阅读
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang"
+                                    class="selected active current nav__item">
+                                     友链
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu"
+                                    class="selected active current nav__item">
+                                    关于
+                                </a></li>
+                            
+                    </ul>
+                    <div class="clear clear_nav_inline_end"></div>
+                </nav>
+            </div>
+            <div class="clear clear_nav_end"></div>
+        </div>
+        <div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%">
+            <div>
+                <form id="gridea-search-form" data-update="1729433799915" action="/search/index.html"><input
+                        class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..." />
+                </form>
+            </div>
+            <div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox"
+                    class="switch_default"><label for="switch_default" class="toggleBtn"></label></div>
+        </div>
+    </div>
+</div>
+<script>function enableDarkmode() { document.body.classList.add("darkmode"), document.getElementById("switch_default").checked = 1, document.getElementById("switch_default_h").checked = 1 } function removeDarkmode() { document.body.classList.remove("darkmode"), document.getElementById("switch_default").checked = 0, document.getElementById("switch_default_h").checked = 0 } function getCookie(a) { var b, c = new RegExp("(^| )" + a + "=([^;]*)(;|$)"); return (b = document.cookie.match(c)) ? unescape(b[2]) : null } cookie = getCookie("darkmode"), "enable" == cookie && enableDarkmode(), window.matchMedia("(prefers-color-scheme: dark)").matches && "disable" !== cookie && (enableDarkmode(), document.cookie = "darkmode=enable; path=/"); var mobileBtn = function () { 1 == document.getElementById("switch_default").checked ? (enableDarkmode(), document.cookie = "darkmode=enable; path=/") : (removeDarkmode(), document.cookie = "darkmode=disable; path=/") };</script>
+
+		<div class="main">
+			<div class="main-inner">
+				<div class="content">
+					<article class="post">
+						<h2 class="post_title sm_margin"><a>
+								 java获取pc的诸多信息
+							</a></h2>
+						<script>function lan() { if (document.getElementById("lan").innerText == "繁") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "简" } else { if (document.getElementById("lan").innerText == "簡") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "繁" } } };</script>
+						<section class="post_details"><i class="iconfont icon-calendar"></i><span
+								style="margin-right:15px">
+								2023-03-30
+							</span>
+							<!-- <i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span
+									id="busuanzi_value_page_pv"></span> Views</span> -->
+									<i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">
+								 <a href="https://dellevin.github.io/tag/java/" class="tag">
+										java
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/ji-zhu-bi-ji/" class="tag">
+										技术笔记
+									</a>
+									
+											
+							</span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">
+								1799字
+							</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">
+								11 min read
+							</span><a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体"
+								style="margin-right:15px;">繁</a>
+							
+						</section>
+						
+								<div style="display:flex">
+									<div class="md_block" id="md_block">
+										<div class="round-shape-one"></div>
+										<pre><code class="language-java">package com.wonder.utils;
+import cn.hutool.core.util.CharsetUtil;
+import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
+import cn.hutool.crypto.symmetric.SymmetricCrypto;
+import lombok.extern.slf4j.Slf4j;
+import oshi.SystemInfo;
+import oshi.hardware.*;
+import oshi.software.os.OperatingSystem;
+
+import java.io.File;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.text.DecimalFormat;
+import java.util.*;
+
+/**
+ * 读取硬件信息工具类（含加密解密）
+ * 使用类库:oshi-6.3.0 和 hutool-5.8.6
+ * [url=home.php?mod=space&amp;uid=686208]@AuThor[/url] ying
+ * [url=home.php?mod=space&amp;uid=1248337]@version[/url] 1.0
+ * [url=home.php?mod=space&amp;uid=686237]@date[/url] 2022-10-24
+ */
+
+@Slf4j
+public class OshiTool {
+
+    public static void main(String[] args) {
+        SystemInfo si = new SystemInfo();
+
+        // System.out.println(getSysInfo(si));
+        //getCpuInfo(si);
+        getDisks(si);
+        //getMemInfo(si);
+        //getNetWork(si);
+
+        //OshiTool.getDisks(si);
+        //OshiTool.getUsbDevices(si);
+        // OshiTool.getMemInfo(si);
+//        String context=OshiTool.getSysHashCode();
+//        System.out.println(&quot;原始:&quot;+context);
+//        String encyptStr=OshiTool.encryptCode(context);
+//        System.out.println(&quot;加密:&quot;+encyptStr);
+//        System.out.println(&quot;解密:&quot;+OshiTool.decryptCode(encyptStr));
+
+
+    }
+
+    /**
+     * 解密
+     * [url=home.php?mod=space&amp;uid=952169]@Param[/url] encryptStr 加密字符串
+     * [url=home.php?mod=space&amp;uid=155549]@Return[/url] String
+     */
+    public static String decryptCode(String encryptStr){
+        //随机生成密钥
+        byte[] key = {12,3,6,8,9,0,7,5,4,3,7,11,88,54,12,35};
+        //构建
+        SymmetricCrypto aes = new SymmetricCrypto(SymmetricAlgorithm.AES, key);
+
+        //解密为字符串
+        String decryptStr = aes.decryptStr(encryptStr, CharsetUtil.CHARSET_UTF_8);
+        return decryptStr;
+    }
+
+    /**
+     * 加密
+     * @param content 加密内容
+     * @return String
+     */
+    public static String encryptCode(String content) {
+        //固定密钥key
+        byte[] key = {12,3,6,8,9,0,7,5,4,3,7,11,88,54,12,35};
+        //构建
+        SymmetricCrypto aes = new SymmetricCrypto(SymmetricAlgorithm.AES, key);
+        //加密为16进制表示
+        String encryptHex = aes.encryptHex(content);
+
+
+        return encryptHex;
+    }
+
+    /**
+     * 获取电脑 品牌+序列号+硬盘UUID
+     * 用于注册码
+     *
+     * @return String
+     */
+    public static String getSysHashCode() {
+        //系统信息
+        SystemInfo si = new SystemInfo();
+        //硬件信息
+        HardwareAbstractionLayer hardware = si.getHardware();
+        //计算机系统
+        ComputerSystem cs = hardware.getComputerSystem();
+        //生成硬件特征码
+        String vendor = cs.getManufacturer();
+        String processorSerialNumber = cs.getSerialNumber();
+        String uuid = cs.getHardwareUUID();
+
+        String hardcode = String.format(&quot;%08x&quot;, vendor.hashCode()) + String.format(&quot;%08x&quot;, processorSerialNumber.hashCode()) + String.format(&quot;%08x&quot;, uuid.hashCode());
+
+
+        return hardcode;
+    }
+
+    /**
+     * 获取外接设备信息
+     *
+     * @param si oshi.SystemInfo
+     */
+    public static void getUsbDevices(SystemInfo si) {
+        try {
+            HardwareAbstractionLayer hardware = si.getHardware();
+            List&lt;UsbDevice&gt; devs = hardware.getUsbDevices(true);
+            for (UsbDevice ud : devs) {
+                System.out.println(&quot;Usb名称:&quot; + ud.getName());
+                System.out.println(&quot;Usb产品ID:&quot; + ud.getProductId());
+                System.out.println(&quot;Usb序列号:&quot; + ud.getSerialNumber());
+                System.out.println(&quot;Usb供应商:&quot; + ud.getVendor());
+                System.out.println(&quot;Usb唯一设备号:&quot; + ud.getUniqueDeviceId());
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    /**
+     * 获取硬盘信息
+     *
+     * @param si oshi.SystemInfo
+     */
+    public static void getDisks(SystemInfo si) {
+        List&lt;HWDiskStore&gt; list = si.getHardware().getDiskStores();
+        for (HWDiskStore disk : list) {
+            System.out.println(&quot;品牌型号：&quot; + disk.getName() + &quot; &quot; + disk.getModel());
+
+            System.out.println(&quot;硬盘序号: &quot; + disk.getSerial());
+
+            File win = null;
+
+            List&lt;HWPartition&gt; partitions = disk.getPartitions();
+            long sumFreeSize = 0;
+            for (HWPartition part : partitions) {
+                win = new File(part.getMountPoint());
+                sumFreeSize += win.getFreeSpace();
+                System.out.print(&quot;盘符：&quot; + part.getMountPoint() + &quot;\t&quot;);
+                System.out.print(&quot;名称：&quot; + part.getName() + &quot;\t&quot;);
+                System.out.print(&quot;大小：&quot; + convertFileSize(part.getSize()) + &quot;\t&quot;);
+                System.out.print(&quot;使用：&quot; + convertFileSize(part.getSize() - win.getFreeSpace()) + &quot;\t&quot;);
+                System.out.print(&quot;空闲: &quot; + convertFileSize(win.getFreeSpace()) + &quot;\t&quot;);
+                System.out.println(&quot;使用率： &quot; + new DecimalFormat(&quot;#.##%&quot;).format((part.getSize() - win.getFreeSpace()) * 1.0 / part.getSize()));
+            }
+            System.out.print(&quot;硬盘总大小: &quot; + convertFileSize(disk.getSize()) + &quot;\t&quot;);
+            System.out.print(&quot;硬盘总空闲: &quot; + convertFileSize(sumFreeSize) + &quot;\t&quot;);
+            System.out.print(&quot;硬盘总使用: &quot; + convertFileSize(disk.getSize() - sumFreeSize) + &quot;\t&quot;);
+            System.out.println(&quot;硬盘总使用率: &quot; + new DecimalFormat(&quot;#.##%&quot;).format((disk.getSize() - sumFreeSize) * 1.0 / disk.getSize()));
+        }
+    }
+
+    /**
+     * 获取网络信息
+     *
+     * @param si oshi.SystemInfo
+     */
+    public static void getNetWork(SystemInfo si) {
+
+        HardwareAbstractionLayer hardware = si.getHardware();
+        List&lt;NetworkIF&gt; netWorkifs = hardware.getNetworkIFs();
+        for (NetworkIF networkIF : netWorkifs) {
+            System.out.println(String.format(&quot;IPV4:%s\t网络接收:%s\t网络发送:%s\t显示名称:%s\tMAC地址:%s\t&quot;, Arrays.toString(networkIF.getIPv4addr()), networkIF.getBytesRecv(), networkIF.getBytesSent(), networkIF.getDisplayName(), networkIF.getMacaddr()));
+        }
+    }
+
+    /**
+     * 获取JVM信息
+     *
+     * @param si oshi.SystemInfo
+     */
+    public static void getJvmInfo(SystemInfo si) {
+        Properties props = System.getProperties();
+        // 当前可用的内存总量MB
+        long totalMemory = Runtime.getRuntime().totalMemory();
+        System.out.println(&quot;JVM当前可用的内存总量:&quot; + convertFileSize(totalMemory));
+        // 当前内存总量的近似值
+        long freeMemory = Runtime.getRuntime().freeMemory();
+        System.out.println(&quot;JVM当前内存总量的近似值:&quot; + convertFileSize(freeMemory));
+        // 虚拟机的最大内存容量
+        long maxMemory = Runtime.getRuntime().maxMemory();
+        System.out.println(&quot;JVM最大内存容量&quot; + convertFileSize(maxMemory));
+        System.out.println(&quot;JAVA版本:&quot; + props.getProperty(&quot;java.version&quot;));
+        System.out.println(&quot;JAVA_HOME:&quot; + props.getProperty(&quot;java.home&quot;));
+        System.out.println(&quot;用户时区：&quot; + props.getProperty(&quot;user.timezone&quot;));
+    }
+
+    /**
+     * 获取CPU信息
+     *
+     * @param si oshi.SystemInfo
+     * @return
+     */
+    public static Map&lt;String, Object&gt; getCpuInfo(SystemInfo si) {
+        HardwareAbstractionLayer hardware = si.getHardware();
+        Sensors sensors = hardware.getSensors();
+        CentralProcessor processor = hardware.getProcessor();
+//        System.out.println(&quot;CPU型号: &quot; + processor.getProcessorIdentifier().getName());
+//        System.out.println(&quot;CPU序列号: &quot; + processor.getProcessorIdentifier().getProcessorID());
+//        System.out.println(&quot;CPU核心: &quot; + processor.getLogicalProcessorCount());
+        //System.out.println(&quot;CPU温度: &quot; + sensors.getCpuTemperature());
+        ComputerSystem cs = hardware.getComputerSystem();
+//        System.out.println(&quot;主板品牌: &quot; + cs.getManufacturer());
+//        System.out.println(&quot;主板型号: &quot; + cs.getModel());
+//        System.out.println(&quot;主板UUID: &quot; + cs.getHardwareUUID());
+//        System.out.println(&quot;主板序列号: &quot; + cs.getSerialNumber());
+
+        String CPUXingHao =processor.getProcessorIdentifier().getName();
+        String CPUXuLieHao=processor.getProcessorIdentifier().getProcessorID();
+        String CPUHeXin = String.valueOf(processor.getLogicalProcessorCount());
+        String CPUWenDu = String.valueOf(sensors.getCpuTemperature());
+        String ZhuBanPinPai=cs.getManufacturer();
+        String ZhuBanXingHao=cs.getModel();
+        String ZhuBanUUID=cs.getHardwareUUID();
+        String ZhuBanXuLieHao=cs.getSerialNumber();
+        Map&lt;String,Object&gt; cpuInfoMap = new HashMap&lt;String,Object&gt;();
+        cpuInfoMap.put(&quot;CPUXingHao&quot;,CPUXingHao);
+        cpuInfoMap.put(&quot;CPUXuLieHao&quot;,CPUXuLieHao);
+        cpuInfoMap.put(&quot;CPUHeXin&quot;,CPUHeXin);
+        //cpuInfoMap.put(&quot;CPUWenDu&quot;,CPUWenDu);
+        cpuInfoMap.put(&quot;ZhuBanPinPai&quot;,ZhuBanPinPai);
+        cpuInfoMap.put(&quot;ZhuBanXingHao&quot;,ZhuBanXingHao);
+        cpuInfoMap.put(&quot;ZhuBanUUID&quot;,ZhuBanUUID);
+        cpuInfoMap.put(&quot;ZhuBanXuLieHao&quot;,ZhuBanXuLieHao);
+        return cpuInfoMap;
+    }
+
+    /**
+     * 获取内存信息
+     *
+     * @param si oshi.SystemInfo
+     */
+    public static void getMemInfo(SystemInfo si) {
+        HardwareAbstractionLayer hardware = si.getHardware();
+        GlobalMemory m = hardware.getMemory();
+
+        System.out.println(&quot;total总内存:&quot; + convertFileSize(m.getTotal()));
+        System.out.println(&quot;used已用内存:&quot; + convertFileSize(m.getTotal() - m.getAvailable()));
+        System.out.println(&quot;free剩余内存:&quot; + convertFileSize(m.getAvailable()));
+        System.out.println(&quot;usageRate内存使用率:&quot; + new DecimalFormat(&quot;#.##%&quot;).format((m.getTotal() - m.getAvailable()) * 1.0 / m.getTotal()));
+
+        List&lt;PhysicalMemory&gt; memoryList = m.getPhysicalMemory();
+        int i = 0;
+        for (PhysicalMemory pm : memoryList) {
+            i++;
+            System.out.println(&quot;第[&quot; + i + &quot;]根内存&quot;);
+            System.out.print(&quot;内存型号:&quot; + pm.getManufacturer() + &quot;\t&quot;);
+            System.out.print(&quot;内存规格:&quot; + pm.getMemoryType() + &quot;\t&quot;);
+            System.out.print(&quot;内存主频:&quot; + convertFileSize(pm.getClockSpeed()) + &quot;\t&quot;);
+            System.out.println(&quot;内存大小:&quot; + convertFileSize(pm.getCapacity()));
+        }
+
+    }
+
+    /**
+     * 字节转换
+     *
+     * @param size 字节大小
+     * @return 转换后值
+     */
+    public static String convertFileSize(long size) {
+        long kb = 1024;
+        long mb = kb * 1024;
+        long gb = mb * 1024;
+        if (size &gt;= gb) {
+            return String.format(&quot;%.1f GB&quot;, (float) size / gb);
+        } else if (size &gt;= mb) {
+            float f = (float) size / mb;
+            return String.format(f &gt; 100 ? &quot;%.0f MB&quot; : &quot;%.1f MB&quot;, f);
+        } else if (size &gt;= kb) {
+            float f = (float) size / kb;
+            return String.format(f &gt; 100 ? &quot;%.0f KB&quot; : &quot;%.1f KB&quot;, f);
+        } else {
+            return String.format(&quot;%d B&quot;, size);
+        }
+    }
+
+    /**
+     * 获得系统基础信息
+     *
+     * @param si oshi.SystemInfo
+     */
+    public static Map&lt;String, Object&gt; getSysInfo(SystemInfo si) {
+        try {
+            OperatingSystem os = si.getOperatingSystem();
+            InetAddress ip = Inet4Address.getLocalHost();
+            Properties properties = System.getProperties();
+
+            String hostname = ip.getHostName();
+            String osVersion = os.getManufacturer() + &quot; &quot; + os.getFamily() + os.getVersionInfo();
+            String netInfo = os.getNetworkParams().toString() ;
+            String gateWay =os.getNetworkParams().getIpv4DefaultGateway();
+            String fileOS =  os.getFileSystem().toString();
+            String bitNess = String.valueOf(os.getBitness());
+            String processCount = String.valueOf(os.getProcessCount());
+            String threadCount =  String.valueOf(os.getThreadCount());
+            String propertyArch = properties.getProperty(&quot;os.arch&quot;);
+            String propertyVersion = properties.getProperty(&quot;os.version&quot;);
+            //System.out.println(&quot;主机名: &quot; + ip.getHostName());
+            //System.out.println(&quot;系统版本：&quot; + os.getManufacturer() + &quot; &quot; + os.getFamily() + os.getVersionInfo());
+            //System.out.println(&quot;网络信息：&quot; + os.getNetworkParams().toString() + &quot; 网关：&quot; + os.getNetworkParams().getIpv4DefaultGateway());
+            //System.out.println(&quot;文件系统: &quot; + os.getFileSystem().toString());
+            //System.out.println(&quot;系统支持位数: &quot; + os.getBitness());
+            //System.out.println(&quot;进程运行数量: &quot; + os.getProcessCount());
+            //System.out.println(&quot;线程运行数量: &quot; + os.getThreadCount());
+            //System.out.println(&quot;系统位数: &quot; + properties.getProperty(&quot;os.arch&quot;));
+            //System.out.println(&quot;系统版本: &quot; + properties.getProperty(&quot;os.version&quot;));
+            Map&lt;String,Object&gt; sysInfoMap = new HashMap&lt;String,Object&gt;();
+            sysInfoMap.put(&quot;hostname&quot;,hostname);
+            sysInfoMap.put(&quot;osVersion&quot;,osVersion);
+            //sysInfoMap.put(&quot;netInfo&quot;,netInfo);
+            sysInfoMap.put(&quot;gateWay&quot;,gateWay);
+            sysInfoMap.put(&quot;fileOS&quot;,fileOS);
+            sysInfoMap.put(&quot;bitNess&quot;,bitNess);
+            sysInfoMap.put(&quot;processCount&quot;,processCount);
+            sysInfoMap.put(&quot;threadCount&quot;,threadCount);
+            sysInfoMap.put(&quot;propertyArch&quot;,propertyArch);
+            sysInfoMap.put(&quot;propertyVersion&quot;,propertyVersion);
+            return sysInfoMap;
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+}
+</code></pre>
+
+											<span id="footnote"></span>
+											<div id="warn"></div>
+									</div>
+									<div class="toc-container"></div>
+								</div>
+								<div id="fullPage"><canvas id="canvas"></canvas></div>
+					</article>
+					<div id="eof"><span>EOF</span></div>
+					<div class="round-shape-one"></div>
+					<section>
+						<div class="doc_comments">
+							
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<script>
+			"use strict"; !function () { for (var n = document.getElementsByTagName("pre"), e = n.length, s = 0; s < e; s++) { n[s].innerHTML = '<span class="line-number"></span>' + n[s].innerHTML + '<span class="cl"></span>'; for (var a = n[s].innerHTML.split(/\n/).length, r = 0; r < a - 1; r++) { n[s].getElementsByTagName("span")[0].innerHTML += "<span>" + (r + 1) + "</span>" } } }();
+			let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a"); window.addEventListener("scroll", event => {
+				let fromTop = window.scrollY; mainNavLinks.forEach((link, index) => {
+					let section = document.getElementById(decodeURI(link.hash).substring(1)); let nextSection = null
+					if (mainNavLinks[index + 1]) { nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1)); }
+					if (section.offsetTop <= fromTop) { if (nextSection) { if (nextSection.offsetTop > fromTop) { link.classList.add("currentToc"); } else { link.classList.remove("currentToc"); } } else { link.classList.add("currentToc"); } } else { link.classList.remove("currentToc"); }
+				});
+			});
+			var h = document.documentElement, b = document.body, st = "scrollTop", sh = "scrollHeight", progress = document.querySelector(".progress"), scroll; document.addEventListener("scroll", function () { scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100; progress.style.setProperty("--scroll", scroll + "%") });
+			var wxScale = new WxScale({ fullPage: document.querySelector("#fullPage"), canvas: document.querySelector("#canvas") }); var imgBox = document.querySelectorAll("#md_block img"); for (var i = 0; i < imgBox.length; i++) { imgBox[i].onclick = function (e) { wxScale.start(this) } };
+		</script>
+		<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a>
+<div class="footer animated fadeInDown">
+    <div class="site_footer">
+        <div class="mysocials">
+            <div class="my_socials">
+                
+                    
+                            
+                    
+                            
+                    <a href="https://weibo.com/u/6094785105" title="weibo"><i
+                                class="iconfont icon-weibo"></i></a>
+                        
+                            
+                    <a href="https://github.com/dellevin" title="github"><i
+                                class="iconfont icon-github"></i></a>
+                        
+                            
+                    
+                            
+                    <a href="https://www.ittoolman.top/atom.xml" title="rss"><i
+                                class="iconfont icon-rss"></i></a>
+                        
+                            
+                    <a href="https://www.zhihu.com/people/bing-xue-chen-xi-59" title="zhihu"><i
+                                class="iconfont icon-zhihu"></i></a>
+                        
+                            
+            </div>
+        </div>
+        <div class="copyright" id="copyright">Copyright © 2020-2024 <a
+                    href="https://dellevin.github.io" style="margin:0;">
+                    Del Levin‘s blog
+                </a>.</div>
+        <!-- <span style="display: inline;margin-right:15px;">👁<strong><span
+                    id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv"
+            style="display: inline;"> -->
+            
+            <span>📚<strong>
+                    122
+                </strong> posts</span>
+    </div>
+</div>
+<script>
+    // console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;",);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+			<script type="text/javascript" async src="https://dellevin.github.io/media/js/prism.js"></script>
+</body>
+
+</html>

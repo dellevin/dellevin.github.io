@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="shortcut icon" href="https://dellevin.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit">
+<meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。">
+<meta charset="UTF-8">
+<title>
+	FRP内网穿透的使用 | Del Levin‘s blog
+</title>
+<link href="https://dellevin.github.io/styles/main.css" type="text/css" rel="stylesheet" />
+<link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+<script src="https://dellevin.github.io/media/js/magnify.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script
+	type="text/javascript">function btn_toggle() { document.getElementById("hn").classList.contains("no-js") ? document.getElementById("hn").classList.remove("no-js") : document.getElementById("hn").classList.add("no-js") }</script>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// const urlWithParams = `http://127.0.0.1:8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			const urlWithParams = `https://47.121.199.144/8081/sys_api/api/markIP?url=${encodeURIComponent(window.location.href)}`;
+			fetch(urlWithParams)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response.json(); // 如果返回的是 JSON 数据
+				})
+				.then(data => {
+					// console.log('Response data:', data);
+				})
+				.catch(error => {
+					console.error('There has been a problem with your fetch operation:', error);
+				});
+		});
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-6Z5DFKZBTD');
+	</script>
+	
+		<link rel="canonical" href="https://dellevin.github.io/post/FRP内网穿透的使用/" />
+</head>
+
+<body>
+	<div class="progress"></div>
+<style>
+    .progress {
+        background: linear-gradient(to right, #87ceeb var(--scroll), transparent 0);
+        background-repeat: no-repeat;
+        position: fixed;
+        width: 100%;
+        height: 4px;
+        z-index: 1
+    }
+</style>
+<div class="darkmode-background"></div>
+<div class="darkmode-layer"></div>
+<noscript>
+    <p class="warn">本页面需要浏览器支持（启用）JavaScript</p>
+</noscript>
+<div class="header">
+    <div class="logo_title">
+        <div class="title animated fadeInDown"><a href="https://dellevin.github.io"><img alt="logo"
+                    style="display:inline-block;" src="https://dellevin.github.io/images/avatar.png" /></a>
+            <h1 title="Del Levin‘s blog" class="weaklink"><a href="/">
+                    Del Levin‘s blog
+                </a></h1>
+            
+                    <div class="navbar weaklink">
+                        <div class="normal_nav">
+                            <div class="bitcron_nav_container">
+                                <div class="bitcron_nav">
+                                    <div class="bitcron_nav">
+                                        <div style="display:flex;justify-content:center;">
+                                            <nav class="mixed_site_nav_wrap site_nav_wrap">
+                                                <ul class="mixed_site_nav site_nav sm sm-base">
+                                                    
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/"
+                                                                class="selected active current nav__item">
+                                                                首页
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/archives"
+                                                                class="selected active current nav__item">
+                                                                归档
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/tags"
+                                                                class="selected active current nav__item">
+                                                                标签
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/image-list"
+                                                                class="selected active current nav__item">
+                                                                相册
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/yue-wen"
+                                                                class="selected active current nav__item">
+                                                                阅读
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/you-ren-zhang"
+                                                                class="selected active current nav__item">
+                                                                 友链
+                                                            </a></li>
+                                                        
+                                                        <li><a id="d2ef19af68cc211e98f8a0242ac110003"
+                                                                href="/post/guan-yu"
+                                                                class="selected active current nav__item">
+                                                                关于
+                                                            </a></li>
+                                                        
+                                                </ul>
+                                            </nav>
+                                            <div style="float:right;margin-top:1em">
+                                                <form id="gridea-search-form" data-update="1578893743252"
+                                                    action="/search/index.html"><input class="search-input"
+                                                        autocomplete="off" spellcheck="false" name="q"
+                                                        placeholder="Search..."></form>
+                                            </div>
+                                            <div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default"
+                                                    onclick="mobileBtn()" type="checkbox" class="switch_default"><label
+                                                    for="switch_default" class="toggleBtn"></label></div>
+                                        </div>
+                                        <div class="clear clear_nav_inline_end"></div>
+                                    </div>
+                                </div>
+                                <div class="clear clear_nav_end"></div>
+                            </div>
+                        </div>
+                        <div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i
+                                class="iconfont icon-category"></i></div>
+                    </div>
+        </div>
+    </div>
+    <div id="hn" class="no-js hidden_nav animated fadeInDown">
+        <div class="bitcron_nav_container">
+            <div class="bitcron_nav">
+                <nav class="mixed_site_nav_wrap site_nav_wrap">
+                    <ul class="mixed_site_nav site_nav sm sm-base">
+                        
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/"
+                                    class="selected active current nav__item">
+                                    首页
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives"
+                                    class="selected active current nav__item">
+                                    归档
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags"
+                                    class="selected active current nav__item">
+                                    标签
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/image-list"
+                                    class="selected active current nav__item">
+                                    相册
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/yue-wen"
+                                    class="selected active current nav__item">
+                                    阅读
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/you-ren-zhang"
+                                    class="selected active current nav__item">
+                                     友链
+                                </a></li>
+                            
+                            <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/guan-yu"
+                                    class="selected active current nav__item">
+                                    关于
+                                </a></li>
+                            
+                    </ul>
+                    <div class="clear clear_nav_inline_end"></div>
+                </nav>
+            </div>
+            <div class="clear clear_nav_end"></div>
+        </div>
+        <div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%">
+            <div>
+                <form id="gridea-search-form" data-update="1729433799915" action="/search/index.html"><input
+                        class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..." />
+                </form>
+            </div>
+            <div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox"
+                    class="switch_default"><label for="switch_default" class="toggleBtn"></label></div>
+        </div>
+    </div>
+</div>
+<script>function enableDarkmode() { document.body.classList.add("darkmode"), document.getElementById("switch_default").checked = 1, document.getElementById("switch_default_h").checked = 1 } function removeDarkmode() { document.body.classList.remove("darkmode"), document.getElementById("switch_default").checked = 0, document.getElementById("switch_default_h").checked = 0 } function getCookie(a) { var b, c = new RegExp("(^| )" + a + "=([^;]*)(;|$)"); return (b = document.cookie.match(c)) ? unescape(b[2]) : null } cookie = getCookie("darkmode"), "enable" == cookie && enableDarkmode(), window.matchMedia("(prefers-color-scheme: dark)").matches && "disable" !== cookie && (enableDarkmode(), document.cookie = "darkmode=enable; path=/"); var mobileBtn = function () { 1 == document.getElementById("switch_default").checked ? (enableDarkmode(), document.cookie = "darkmode=enable; path=/") : (removeDarkmode(), document.cookie = "darkmode=disable; path=/") };</script>
+
+		<div class="main">
+			<div class="main-inner">
+				<div class="content">
+					<article class="post">
+						<h2 class="post_title sm_margin"><a>
+								FRP内网穿透的使用
+							</a></h2>
+						<script>function lan() { if (document.getElementById("lan").innerText == "繁") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "简" } else { if (document.getElementById("lan").innerText == "簡") { var s = document.getElementById("tongwenlet_cn"); if (s != null) { document.body.removeChild(s) } var s = document.createElement("script"); s.language = "javascript"; s.type = "text/javascript"; s.src = "https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js"; s.id = "tongwenlet_cn"; document.body.appendChild(s); document.getElementById("lan").innerHTML = "繁" } } };</script>
+						<section class="post_details"><i class="iconfont icon-calendar"></i><span
+								style="margin-right:15px">
+								2023-07-30
+							</span>
+							<!-- <i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span
+									id="busuanzi_value_page_pv"></span> Views</span> -->
+									<i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">
+								 <a href="https://dellevin.github.io/tag/windows/" class="tag">
+										windows
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/linux/" class="tag">
+										linux
+									</a>
+									 | 
+											 <a href="https://dellevin.github.io/tag/ji-zhu-bi-ji/" class="tag">
+										技术笔记
+									</a>
+									
+											
+							</span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">
+								1367字
+							</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">
+								6 min read
+							</span><a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体"
+								style="margin-right:15px;">繁</a>
+							
+						</section>
+						
+								<div style="display:flex">
+									<div class="md_block" id="md_block">
+										<div class="round-shape-one"></div>
+										<p>今天还好，算是吧frp搞明白了些许，有些时候，一些知识搞不懂， 也许睡醒了就能搞明白了</p>
+<p>现在简单记录一下frp的简单使用</p>
+<h2 id="frp是什么">frp是什么</h2>
+<p>简单地说，frp就是一个反向代理软件，它体积轻量但功能很强大，可以<strong>使处于内网或防火墙后的设备对外界提供服务</strong>，它支持HTTP、TCP、UDP等众多协议。我们今天仅讨论TCP和UDP相关的内容。</p>
+<p>项目地址：https://github.com/fatedier/frp</p>
+<p>其中frps是服务端的配置，frpc是客户端的配置，每个都有三个文件，服务端只保留服务端的三个，客户端只保留客户端的三个即可。</p>
+<p><strong>Windows客户端启动方式</strong>，打开当前文件夹，输入以下命令</p>
+<pre><code class="language-bash">frpc -c ./frpc.ini
+</code></pre>
+<p><strong>Linux服务端启动方式</strong>，打开当前文件夹，输入以下命令</p>
+<pre><code class="language-bash">./frps -c ./frps.ini
+</code></pre>
+<h2 id="通过ip穿透">通过ip穿透</h2>
+<p>这种情况只需要拥有一台服务器就可以了。</p>
+<h3 id="服务端配置">服务端配置</h3>
+<pre><code class="language-bash">[common]
+bind_port = 6001
+dashboard_port = 6002
+token = 12345678
+dashboard_user = admin
+dashboard_pwd = admin
+vhost_http_port = 6003
+</code></pre>
+<p>现在解释一下服务端配置的一些</p>
+<ol>
+<li><code>bind_port</code>: FRP 服务端或客户端绑定的端口号。服务端用于接收来自客户端的请求，客户端用于连接服务端。（可自定义）</li>
+<li><code>dashboard_port</code>: FRP 的仪表盘（Dashboard）端口号。通过这个端口，您可以使用 Web 界面来查看 FRP 的状态和运行情况。（可自定义）</li>
+<li><code>token</code>: FRP 鉴权的 Token。Token 是客户端连接到服务端时进行验证的凭据，用于确保只有具有正确 Token 的客户端可以连接到服务端。（可自定义）</li>
+<li><code>dashboard_user</code>: FRP 仪表盘v的用户名。（可自定义）</li>
+<li><code>dashboard_pwd</code>: FRP 仪表盘的密码。（可自定义）</li>
+<li><code>vhost_http_port</code>: 虚拟主机 HTTP 端口。如果您启用了虚拟主机功能，这个端口将用于 HTTP 请求。（可自定义）</li>
+</ol>
+<p>当然这里我之打开了http端口，如果你还想的话可以打开https，socket，tcp等各种链接的端口，这些都是可以自定义的</p>
+<h3 id="客户端配置">客户端配置</h3>
+<pre><code class="language-bash">[common]
+server_addr = 101.42.5.22
+server_port = 6001
+token = 12345678
+
+[web] 
+type = http
+local_ip = 127.0.0.1
+local_port = 4000
+remote_port = 6003
+custom_domains = 101.42.5.22
+</code></pre>
+<ol>
+<li><code>[common]</code> 部分：
+<ul>
+<li><code>server_addr</code>: FRP 服务端的 IP 地址或域名。</li>
+<li><code>server_port</code>: FRP 服务端的端口号。</li>
+<li><code>token</code>: FRP 鉴权的 Token，与服务端配置中的 Token 要一致。</li>
+</ul>
+</li>
+<li><code>[web]</code> 部分：
+<ul>
+<li><code>type</code>: 代理类型，这里是 http 类型，用于配置 HTTP 代理。</li>
+<li><code>local_ip</code>: 要代理的本地 IP 地址，这里设置为 <code>127.0.0.1</code> 表示代理本地。</li>
+<li><code>local_port</code>: 要代理的本地端口号，这里设置为 <code>4000</code>。</li>
+<li><code>remote_port</code>: 服务端映射的端口号，客户端请求该端口时将被代理到本地的 <code>local_port</code> 上。</li>
+<li><code>custom_domains</code>: 自定义域名，这里设置为 <code>101.42.5.22</code>。</li>
+</ul>
+</li>
+</ol>
+<p>其中<code>[web]</code>可以自定义但是要注意名称不能重复</p>
+<h2 id="通过域名穿透">通过域名穿透</h2>
+<p>这种情况需要配置好域名，服务器的解析，做好解析后才能开始配置。一些服务器提供厂商的还需要再控制台释放对应端口（比如腾讯云，阿里云）。</p>
+<h3 id="服务端配置-2">服务端配置</h3>
+<pre><code class="language-bash">[common]
+bind_port = 6001
+dashboard_port = 6002
+token = 12345678
+dashboard_user = admin
+dashboard_pwd = admin
+vhost_http_port = 6003
+subdomain_host = twoitmen.club
+</code></pre>
+<p>相同配置不做赘述，这里多出来一个<code>subdomain_host</code>，在这里<code>subdomain_host</code>的作用是自定义子域名的主机名。比如我的服务器绑定的域名是twoitmen.club（我解析的时候喜欢用*做解析，一次配置，随便使用）。那我我在这里填写twoitmen.club就可以了。</p>
+<h3 id="客户端配置-2">客户端配置</h3>
+<pre><code class="language-bash">[common]
+server_addr = 101.42.5.22
+server_port = 6001
+token = 12345678
+
+[web] 
+type = http
+local_ip = 127.0.0.1
+local_port = 4000
+remote_port = 6003
+subdomain = frp
+</code></pre>
+<p>相同配置不做赘述，这里多出来一个<code>subdomain</code>，在这里<code>subdomain</code>的作用是子域名，用于标识代理服务。也就是说，我要访问frp.twoitmen.club:6003就是我穿透完毕后的域名地址。</p>
+<h3 id="nginx配置">nginx配置</h3>
+<p>在这里多出来一个nginx配置，它是用来反向代理的，就是省略后面端口号的书写</p>
+<h4 id="通过域名穿透的方式的nginx配置">通过域名穿透的方式的nginx配置</h4>
+<pre><code class="language-bat">
+#user  nobody;
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    include /home/conf/*.conf;
+    keepalive_timeout  65;
+    server {
+        listen       80;
+        server_name  localhost;
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+        
+	  location /memos {
+		proxy_pass  http://101.42.5.22:6060; # 转发规则
+	  }
+      
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+    server {
+        listen       80;
+        server_name  frp.twoitmen.club;
+        	location / {
+			proxy_pass http://frp.twoitmen.club:6003/;
+			proxy_set_header Host $host;
+			proxy_set_header X-Real-IP $remote_addr;
+		}
+     }
+}
+
+</code></pre>
+<p>在这里只是多出来一个server，这里简单讲述一下多出来的server配置</p>
+<ol>
+<li><code>listen 80;</code>: 监听来自端口 80 的 HTTP 请求。</li>
+<li><code>server_name frp.twoitmen.club;</code>: 指定该服务器块的域名为 <code>frp.twoitmen.club</code>。</li>
+<li><code>location / { ... }</code>: 这是一个代理规则，它会将来自 <code>/</code> 路径的请求转发到 <code>http://frp.twoitmen.club:6003/</code> 上。</li>
+<li><code>proxy_pass http://frp.twoitmen.club:6003/;</code>: 它指定了要转发到的目标地址为 <code>http://frp.twoitmen.club:6003/</code>。</li>
+<li><code>proxy_set_header Host $host;</code>: 在转发请求时，设置了 <code>Host</code> 请求头为原始请求的主机名。</li>
+<li><code>proxy_set_header X-Real-IP $remote_addr;</code>: 在转发请求时，设置了 <code>X-Real-IP</code> 请求头为原始请求的客户端 IP 地址。</li>
+</ol>
+<h2 id="将frps命令写入system">将frps命令写入system</h2>
+<p>输入命令</p>
+<pre><code class="language-bash">vim /lib/systemd/system/frps.service
+</code></pre>
+<p>写入配置</p>
+<pre><code class="language-bash">[Unit]
+Description=frps service
+After=network.target syslog.target
+Wants=network.target
+
+[Service]
+Type=simple
+# 启动服务的命令（此处写你的frps的实际安装目录）
+# ExecStart=/your/path/frps -c /your/path/frps.ini
+ExecStart=/home/zhang/frpServer/frps -c /home/zhang/frpServerfrps.ini
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+
+											<span id="footnote"></span>
+											<div id="warn"></div>
+									</div>
+									<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#frp%E6%98%AF%E4%BB%80%E4%B9%88">frp是什么</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87ip%E7%A9%BF%E9%80%8F">通过ip穿透</a>
+<ul>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE">服务端配置</a></li>
+<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE">客户端配置</a></li>
+</ul>
+</li>
+<li><a href="#%E9%80%9A%E8%BF%87%E5%9F%9F%E5%90%8D%E7%A9%BF%E9%80%8F">通过域名穿透</a>
+<ul>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE-2">服务端配置</a></li>
+<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE-2">客户端配置</a></li>
+<li><a href="#nginx%E9%85%8D%E7%BD%AE">nginx配置</a>
+<ul>
+<li><a href="#%E9%80%9A%E8%BF%87%E5%9F%9F%E5%90%8D%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E5%BC%8F%E7%9A%84nginx%E9%85%8D%E7%BD%AE">通过域名穿透的方式的nginx配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%B0%86frps%E5%91%BD%E4%BB%A4%E5%86%99%E5%85%A5system">将frps命令写入system</a></li>
+</ul>
+</li>
+</ul>
+</div>
+								</div>
+								<div id="fullPage"><canvas id="canvas"></canvas></div>
+					</article>
+					<div id="eof"><span>EOF</span></div>
+					<div class="round-shape-one"></div>
+					<section>
+						<div class="doc_comments">
+							
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<script>
+			"use strict"; !function () { for (var n = document.getElementsByTagName("pre"), e = n.length, s = 0; s < e; s++) { n[s].innerHTML = '<span class="line-number"></span>' + n[s].innerHTML + '<span class="cl"></span>'; for (var a = n[s].innerHTML.split(/\n/).length, r = 0; r < a - 1; r++) { n[s].getElementsByTagName("span")[0].innerHTML += "<span>" + (r + 1) + "</span>" } } }();
+			let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a"); window.addEventListener("scroll", event => {
+				let fromTop = window.scrollY; mainNavLinks.forEach((link, index) => {
+					let section = document.getElementById(decodeURI(link.hash).substring(1)); let nextSection = null
+					if (mainNavLinks[index + 1]) { nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1)); }
+					if (section.offsetTop <= fromTop) { if (nextSection) { if (nextSection.offsetTop > fromTop) { link.classList.add("currentToc"); } else { link.classList.remove("currentToc"); } } else { link.classList.add("currentToc"); } } else { link.classList.remove("currentToc"); }
+				});
+			});
+			var h = document.documentElement, b = document.body, st = "scrollTop", sh = "scrollHeight", progress = document.querySelector(".progress"), scroll; document.addEventListener("scroll", function () { scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100; progress.style.setProperty("--scroll", scroll + "%") });
+			var wxScale = new WxScale({ fullPage: document.querySelector("#fullPage"), canvas: document.querySelector("#canvas") }); var imgBox = document.querySelectorAll("#md_block img"); for (var i = 0; i < imgBox.length; i++) { imgBox[i].onclick = function (e) { wxScale.start(this) } };
+		</script>
+		<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a>
+<div class="footer animated fadeInDown">
+    <div class="site_footer">
+        <div class="mysocials">
+            <div class="my_socials">
+                
+                    
+                            
+                    
+                            
+                    <a href="https://weibo.com/u/6094785105" title="weibo"><i
+                                class="iconfont icon-weibo"></i></a>
+                        
+                            
+                    <a href="https://github.com/dellevin" title="github"><i
+                                class="iconfont icon-github"></i></a>
+                        
+                            
+                    
+                            
+                    <a href="https://www.ittoolman.top/atom.xml" title="rss"><i
+                                class="iconfont icon-rss"></i></a>
+                        
+                            
+                    <a href="https://www.zhihu.com/people/bing-xue-chen-xi-59" title="zhihu"><i
+                                class="iconfont icon-zhihu"></i></a>
+                        
+                            
+            </div>
+        </div>
+        <div class="copyright" id="copyright">Copyright © 2020-2024 <a
+                    href="https://dellevin.github.io" style="margin:0;">
+                    Del Levin‘s blog
+                </a>.</div>
+        <!-- <span style="display: inline;margin-right:15px;">👁<strong><span
+                    id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv"
+            style="display: inline;"> -->
+            
+            <span>📚<strong>
+                    122
+                </strong> posts</span>
+    </div>
+</div>
+<script>
+    // console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;",);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+			<script type="text/javascript" async src="https://dellevin.github.io/media/js/prism.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Del Levin" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  <meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。" />
+  
+  
+  
+  <title>
+    
+      typecho的handsome主题微调 
+      
+      
+      |
+    
+     Del Levin&#39;s Blog
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+    
+<link rel="stylesheet" href="/css/figcaption/mac-block.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6Z5DFKZBTD');
+    </script>
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Del Levin's Blog" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Del Levin</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          <a href="/categories/">Categories</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">typecho的handsome主题微调</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2024-11-06 16:55:51
+        </span>
+        
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="分类"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    <b>#</b> 技术笔记
+                  </a>
+                </span>
+                
+              </span>
+          
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    #技术笔记
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                    #前端
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>用国typecho和wordpress之后，个人还是比较中意typecho这个，handsome主题相对全面，所以就选择使用它了。但是总有一些自己小瑕疵需要自己去调整，比如归档页面的文章目录等等，handsome版本: 9.2.1（个人是php菜鸡，没学过，一边百度一边改。）</p>
+<h3 id="取消归档页面的文章目录"><a href="#取消归档页面的文章目录" class="headerlink" title="取消归档页面的文章目录"></a>取消归档页面的文章目录</h3><p>找到主题文件下面的sidebar.php然后打开编辑，搜索到<code>&lt;!--非文章页面--&gt;</code>这个之后，然后会看到<code>&lt;?php echo PostContent::returnTOC($this-&gt;is(&#39;page&#39;),false) ?&gt;</code>这个代码，这个就是非文章界面的文章目录显示。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--非文章页面--&gt;</span><br><span class="line">      <span class="meta">&lt;?php</span> <span class="keyword">if</span> (!(<span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">is</span>(<span class="string">&#x27;post&#x27;</span>))) : <span class="meta">?&gt;</span></span><br><span class="line">      &lt;section id=<span class="string">&quot;tag_cloud&quot;</span> <span class="class"><span class="keyword">class</span>=&quot;<span class="title">widget</span> <span class="title">widget_tag_cloud</span> <span class="title">wrapper</span>-<span class="title">md</span> <span class="title">padder</span>-<span class="title">v</span>-<span class="title">none</span> <span class="title">clear</span>&quot;&gt;</span></span><br><span class="line"><span class="class">       &lt;<span class="title">h5</span> <span class="title">class</span>=&quot;<span class="title">widget</span>-<span class="title">title</span> <span class="title">m</span>-<span class="title">t</span>-<span class="title">none</span>&quot;&gt;&lt;?<span class="title">php</span> <span class="title">_me</span>(&quot;标签云&quot;) ?&gt;&lt;/<span class="title">h5</span>&gt;</span></span><br><span class="line"><span class="class">          &lt;<span class="title">div</span> <span class="title">class</span>=&quot;<span class="title">tags</span> <span class="title">l</span>-<span class="title">h</span>-2<span class="title">x</span> <span class="title">panel</span> <span class="title">wrapper</span>-<span class="title">sm</span> <span class="title">padder</span>-<span class="title">v</span>-<span class="title">ssm</span>&quot;&gt;</span></span><br><span class="line"><span class="class">              &lt;?<span class="title">php</span> <span class="title">Typecho_Widget</span>::<span class="title">widget</span>(&#x27;<span class="title">Widget_Metas_Tag_Cloud</span>&#x27;,&#x27;<span class="title">ignoreZeroCount</span>=1&amp;<span class="title">limit</span>=30&#x27;)-&gt;<span class="title">to</span>($<span class="title">tags</span>); ?&gt;</span></span><br><span class="line"><span class="class">              &lt;?<span class="title">php</span> <span class="title">if</span>($<span class="title">tags</span>-&gt;<span class="title">have</span>()): ?&gt;</span></span><br><span class="line"><span class="class">                  &lt;?<span class="title">php</span> <span class="title">while</span> ($<span class="title">tags</span>-&gt;<span class="title">next</span>()): ?&gt;</span></span><br><span class="line"><span class="class">                      &lt;<span class="title">a</span> <span class="title">href</span>=&quot;&lt;?<span class="title">php</span> $<span class="title">tags</span>-&gt;<span class="title">permalink</span>();?&gt;&quot; <span class="title">class</span>=&quot;<span class="title">label</span> <span class="title">badge</span>&quot;&gt;&lt;?<span class="title">php</span> $<span class="title">tags</span>-&gt;<span class="title">name</span>(); ?&gt;&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="class">                  &lt;?<span class="title">php</span> <span class="title">endwhile</span>; ?&gt;</span></span><br><span class="line"><span class="class">              &lt;?<span class="title">php</span> <span class="title">endif</span>; ?&gt;</span></span><br><span class="line"><span class="class">          &lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="class">      &lt;/<span class="title">section</span>&gt;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">        &lt;!--&lt;?<span class="title">php</span> <span class="title">echo</span> <span class="title">PostContent</span>::<span class="title">returnTOC</span>($<span class="title">this</span>-&gt;<span class="title">is</span>(&#x27;<span class="title">page</span>&#x27;),<span class="title">false</span>) ?&gt;--&gt;</span></span><br><span class="line"><span class="class">        &lt;?<span class="title">php</span> </span></span><br><span class="line"><span class="class">            // 获取当前页面的路径</span></span><br><span class="line"><span class="class">            $<span class="title">currentUrlPath</span> = <span class="title">parse_url</span>($<span class="title">this</span>-&gt;<span class="title">permalink</span>, <span class="title">PHP_URL_PATH</span>);</span></span><br><span class="line"><span class="class">            // 判断是否为页面，且 <span class="title">URL</span> 中不包含 &quot;<span class="title">archive</span>&quot;</span></span><br><span class="line"><span class="class">            <span class="title">if</span> ($<span class="title">this</span>-&gt;<span class="title">is</span>(&#x27;<span class="title">page</span>&#x27;) &amp;&amp; <span class="title">substr</span>($<span class="title">currentUrlPath</span>, -12) !== &#x27;<span class="title">archive</span>.<span class="title">html</span>&#x27; ) </span>&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="title class_">PostContent</span>::<span class="title function_ invoke__">returnTOC</span>(<span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="meta">?&gt;</span></span><br><span class="line">          </span><br><span class="line">      </span><br><span class="line">      <span class="meta">&lt;?php</span> <span class="keyword">else</span>: <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你想对具体方法进行操作，可以找到<code>libs/content/PostContent.php</code> 这个就是相应的右侧边栏的一些用到的方法。</p>
+<h3 id="去除掉友情链接的内页链接"><a href="#去除掉友情链接的内页链接" class="headerlink" title="去除掉友情链接的内页链接"></a>去除掉友情链接的内页链接</h3><p>友情链接嘛，就是links，那我们就在主题文件夹下搜索links</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul <span class="class"><span class="keyword">class</span>=&quot;<span class="title">nav</span> <span class="title">no</span>-<span class="title">padder</span> <span class="title">b</span>-<span class="title">b</span>&quot;&gt;</span></span><br><span class="line"><span class="class">                    &lt;<span class="title">li</span> <span class="title">class</span>=&quot;<span class="title">nav</span>-<span class="title">item</span> <span class="title">active</span>&quot;&gt;&lt;<span class="title">a</span> <span class="title">class</span>=&quot;<span class="title">nav</span>-<span class="title">link</span>&quot; <span class="title">href</span> <span class="title">data</span>-<span class="title">toggle</span>=&quot;<span class="title">tab</span>&quot; <span class="title">data</span>-<span class="title">target</span>=&quot;#<span class="title">my</span>-<span class="title">info</span>&quot;&gt;&lt;?<span class="title">php</span></span></span><br><span class="line"><span class="class">                            <span class="title">_me</span>(&quot;申请友链&quot;)</span></span><br><span class="line"><span class="class">                            ?&gt;&lt;/<span class="title">a</span>&gt;&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="class">                    &lt;!--&lt;<span class="title">li</span> <span class="title">class</span>=&quot;<span class="title">nav</span>-<span class="title">item</span>&quot;&gt;&lt;<span class="title">a</span> <span class="title">class</span>=&quot;<span class="title">nav</span>-<span class="title">link</span>&quot; <span class="title">href</span> <span class="title">data</span>-<span class="title">toggle</span>=&quot;<span class="title">tab</span>&quot; <span class="title">data</span>-<span class="title">target</span>=&quot;#<span class="title">tab_2</span>&quot;&gt;&lt;?<span class="title">php</span> <span class="title">_me</span>(&quot;内页链接&quot;) ?&gt;&lt;/<span class="title">a</span>&gt;&lt;/<span class="title">li</span>&gt;--&gt;</span></span><br><span class="line"><span class="class">                    &lt;<span class="title">li</span> <span class="title">class</span>=&quot;<span class="title">nav</span>-<span class="title">item</span>&quot;&gt;&lt;<span class="title">a</span> <span class="title">class</span>=&quot;<span class="title">nav</span>-<span class="title">link</span>&quot; <span class="title">href</span> <span class="title">data</span>-<span class="title">toggle</span>=&quot;<span class="title">tab</span>&quot; <span class="title">data</span>-<span class="title">target</span>=&quot;#<span class="title">tab_4</span>&quot;&gt;&lt;?<span class="title">php</span> <span class="title">_me</span>(&quot;全站链接&quot;) ?&gt;&lt;/<span class="title">a</span>&gt;&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="class">                    &lt;<span class="title">li</span> <span class="title">class</span>=&quot;<span class="title">nav</span>-<span class="title">item</span>&quot;&gt;&lt;<span class="title">a</span> <span class="title">class</span>=&quot;<span class="title">nav</span>-<span class="title">link</span>&quot; <span class="title">href</span> <span class="title">data</span>-<span class="title">toggle</span>=&quot;<span class="title">tab</span>&quot; <span class="title">data</span>-<span class="title">target</span>=&quot;#<span class="title">tab_3</span>&quot;&gt;&lt;?<span class="title">php</span> <span class="title">_me</span>(&quot;推荐链接&quot;) ?&gt;&lt;/<span class="title">a</span>&gt;&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="class">                &lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里就是对链接的显示，注释掉你不喜欢的就可以了。</p>
+<p>注释完毕后，如果你有强迫症的话，可以想我一样进行接下来的更改。针对后台管理的友情链接的操作。找到插件里面的handsome插件，找到Plugin.php这个文件，里面有个form函数，就是他，你若找到的话可以看到该函数下面有一部分的代码。注释掉你不喜欢的就可以了。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sort</span> = <span class="keyword">new</span> <span class="title class_">Typecho_Widget_Helper_Form_Element_Select</span>(<span class="string">&#x27;sort&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&#x27;ten&#x27;</span> =&gt; <span class="string">&#x27;全站链接，首页左侧边栏显示&#x27;</span>,</span><br><span class="line">            <span class="comment">// &#x27;one&#x27; =&gt; &#x27;内页链接，在独立页面中显示（需要新建独立页面&lt;a href=&quot;https://handsome2.ihewro.com/#/plugin&quot; target=&quot;_blank&quot;&gt;友情链接&lt;/a&gt;）&#x27;,</span></span><br><span class="line">            <span class="string">&#x27;good&#x27;</span> =&gt; <span class="string">&#x27;推荐链接，在独立页面中显示&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;others&#x27;</span> =&gt; <span class="string">&#x27;失效链接，不置输出，标注暂时失效的友链&#x27;</span></span><br><span class="line">        ), <span class="string">&#x27;ten&#x27;</span>, <span class="title function_ invoke__">_t</span>(<span class="string">&#x27;链接输出位置*&#x27;</span>), <span class="string">&#x27;选择友情链接输出的位置&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="左侧边栏导航-配置"><a href="#左侧边栏导航-配置" class="headerlink" title="左侧边栏导航 配置"></a>左侧边栏导航 配置</h3><p>打开主题的后台，可以参考本博客的配置进行修改,左侧边栏的图标用的是feather图标，点击链接跳转查看，<a href="%5Bhttps://%5D(https://feathericons.com/)">https://feathericons.com/</a></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;云盘&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;feather&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cloud&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;link&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://alist.ittoolman.com/&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;_blank&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;图床&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;feather&quot;</span><span class="punctuation">:</span> <span class="string">&quot;inbox&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;link&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://img.ittoolman.com/&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;_blank&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;相册&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;feather&quot;</span><span class="punctuation">:</span> <span class="string">&quot;image&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;link&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://blog.ittoolman.com/index.php/category/image/&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;_self&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;分类&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;feather&quot;</span><span class="punctuation">:</span> <span class="string">&quot;layout&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;sub&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;随笔&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;feather&quot;</span><span class="punctuation">:</span> <span class="string">&quot;edit&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;_self&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;link&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://blog.ittoolman.com/index.php/category/sui-bi/&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;技术笔记&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;feather&quot;</span><span class="punctuation">:</span> <span class="string">&quot;monitor&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;_self&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;link&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://blog.ittoolman.com/index.php/category/ji-shu-bi-ji/&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;文章收藏&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;feather&quot;</span><span class="punctuation">:</span> <span class="string">&quot;scissors&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;_self&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;link&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://blog.ittoolman.com/index.php/category/wen-zhang/&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;归档&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;feather&quot;</span><span class="punctuation">:</span> <span class="string">&quot;archive&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;link&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://blog.ittoolman.com/index.php/archive.html&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;_self&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;时光机&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;feather&quot;</span><span class="punctuation">:</span> <span class="string">&quot;clock&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;link&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://blog.ittoolman.com/index.php/cross.html&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;_self&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;友人帐&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;feather&quot;</span><span class="punctuation">:</span> <span class="string">&quot;users&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;link&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://blog.ittoolman.com/index.php/links.html&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;_self&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;关于我&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;feather&quot;</span><span class="punctuation">:</span> <span class="string">&quot;coffee&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;link&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://blog.ittoolman.com/index.php/start-page.html&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;_self&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/11/04/%E9%9A%8F%E7%AC%94/2024-11-04-%E8%99%9A%E5%81%87%E7%9A%84%E8%A7%89%E9%86%92/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2024-11-06 16:55:51
+            </span>
+            
+                  <span class="post-categories">
+                    <i class="iconfont icon-bookmark" title="分类"></i>
+                    
+                    <span class="span--category">
+                      <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        <b>#</b> 技术笔记
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        #技术笔记
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                        #前端
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2024/11/10/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2024-11-10-%E5%B7%A7%E7%94%A8nginx%E8%87%AA%E5%BB%BAcdn%E5%8A%A0%E9%80%9F%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E6%B6%88%E5%BD%92%E6%A1%A3%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95"><span class="toc-text">取消归档页面的文章目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%BB%E9%99%A4%E6%8E%89%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E7%9A%84%E5%86%85%E9%A1%B5%E9%93%BE%E6%8E%A5"><span class="toc-text">去除掉友情链接的内页链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%AF%BC%E8%88%AA-%E9%85%8D%E7%BD%AE"><span class="toc-text">左侧边栏导航 配置</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/dellevin/dellevin.github.io">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+            <a title="email" href="mailto:dellevin99@gmail.com">
+              <i class="iconfont icon-envelope"></i>
+            </a>
+            
+        </li>
+        
+        <li>
+          
+              <a title="weibo" target="_blank" rel="noopener" href="https://weibo.com/u/6094785105">
+                <i class="iconfont icon-weibo"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+              <a title="rss" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+              </a>
+              
+        </li>
+        
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + typecho%E7%9A%84handsome%E4%B8%BB%E9%A2%98%E5%BE%AE%E8%B0%83 + '&url=' + https%3A%2F%2Fdellevin.github.io%2F2024%2F11%2F06%2F%25E6%258A%2580%25E6%259C%25AF%25E7%25AC%2594%25E8%25AE%25B0%2F2024-11-06-typecho%25E7%259A%2584handsome%25E4%25B8%25BB%25E9%25A2%2598%25E5%25BE%25AE%25E8%25B0%2583%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://dellevin.github.io/2024/11/06/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2024-11-06-typecho%E7%9A%84handsome%E4%B8%BB%E9%A2%98%E5%BE%AE%E8%B0%83/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

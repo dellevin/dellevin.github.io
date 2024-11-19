@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Del Levin" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  <meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。" />
+  
+  
+  
+  <title>
+    
+      centos7安装Mysql 
+      
+      
+      |
+    
+     Del Levin&#39;s Blog
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
+  <!-- 代码块风格 -->
+  
+    
+<link rel="stylesheet" href="/css/figcaption/mac-block.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6Z5DFKZBTD');
+    </script>
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Del Levin's Blog" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Del Levin</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          <a href="/categories/">Categories</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/album/">
+          <a href="/album/">Album</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  
+
+
+
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">centos7安装Mysql</div>
+      <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2024-11-04 15:31:28
+        </span>
+        
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="分类"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    <b>#</b> 技术笔记
+                  </a>
+                </span>
+                
+              </span>
+          
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/linux/" title="linux">
+                    #linux
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <script>
+        (function() {
+          const content = `<h3 id="1-下载-MySQL-yum包"><a href="#1-下载-MySQL-yum包" class="headerlink" title="1. 下载 MySQL yum包"></a>1. 下载 <a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/cdb?from=10680">MySQL</a> yum包</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="attr">http</span>:<span class="comment">//repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-安装MySQL源"><a href="#2-安装MySQL源" class="headerlink" title="2.安装MySQL源"></a>2.安装MySQL源</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -<span class="title class_">Uvh</span> mysql57-community-release-el7-<span class="number">10.</span>noarch.<span class="property">rpm</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-安装MySQL服务端-需要等待一些时间"><a href="#3-安装MySQL服务端-需要等待一些时间" class="headerlink" title="3.安装MySQL服务端,需要等待一些时间"></a>3.安装MySQL服务端,需要等待一些时间</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y mysql-community-server</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-启动MySQL"><a href="#4-启动MySQL" class="headerlink" title="4.启动MySQL"></a>4.启动MySQL</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld.<span class="property">service</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-检查是否启动成功"><a href="#5-检查是否启动成功" class="headerlink" title="5.检查是否启动成功"></a>5.检查是否启动成功</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status mysqld.<span class="property">service</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-获取临时密码，MySQL5-7为root用户随机生成了一个密码"><a href="#6-获取临时密码，MySQL5-7为root用户随机生成了一个密码" class="headerlink" title="6.获取临时密码，MySQL5.7为root用户随机生成了一个密码"></a>6.获取临时密码，MySQL5.7为root用户随机生成了一个密码</h3><p>冒号后面的是随机密码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">&#x27;temporary password&#x27;</span> /<span class="keyword">var</span>/log/mysqld.<span class="property">log</span> </span><br></pre></td></tr></table></figure>
+<h3 id="7-通过临时密码登录MySQL，进行修改密码操作"><a href="#7-通过临时密码登录MySQL，进行修改密码操作" class="headerlink" title="7.通过临时密码登录MySQL，进行修改密码操作"></a>7.通过临时密码登录MySQL，进行修改密码操作</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用临时密码登录后，不能进行其他的操作，否则会报错，这时候我们进行修改密码操作</p>
+<h3 id="8-因为MySQL的密码规则需要很复杂，我们一般自己设置的不会设置成这样，所以我们全局修改一下"><a href="#8-因为MySQL的密码规则需要很复杂，我们一般自己设置的不会设置成这样，所以我们全局修改一下" class="headerlink" title="8.因为MySQL的密码规则需要很复杂，我们一般自己设置的不会设置成这样，所以我们全局修改一下"></a>8.因为MySQL的密码规则需要很复杂，我们一般自己设置的不会设置成这样，所以我们全局修改一下</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set <span class="variable language_">global</span> validate_password_policy=<span class="number">0</span>;</span><br><span class="line">mysql&gt; set <span class="variable language_">global</span> validate_password_length=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这时候我们就可以自己设置想要的密码了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">ALTER</span> <span class="variable constant_">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> <span class="variable constant_">IDENTIFIED</span> <span class="variable constant_">BY</span> <span class="string">&#x27;yourpassword&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9-授权其他机器远程登录"><a href="#9-授权其他机器远程登录" class="headerlink" title="9.授权其他机器远程登录"></a>9.授权其他机器远程登录</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">GRANT</span> <span class="variable constant_">ALL</span> <span class="variable constant_">PRIVILEGES</span> <span class="variable constant_">ON</span> *.* <span class="variable constant_">TO</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> <span class="variable constant_">IDENTIFIED</span> <span class="variable constant_">BY</span> <span class="string">&#x27;yourpassword&#x27;</span> <span class="variable constant_">WITH</span> <span class="variable constant_">GRANT</span> <span class="variable constant_">OPTION</span>;</span><br><span class="line"> </span><br><span class="line"><span class="variable constant_">FLUSH</span> <span class="variable constant_">PRIVILEGES</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="10-开启开机自启动"><a href="#10-开启开机自启动" class="headerlink" title="10.开启开机自启动"></a>10.开启开机自启动</h3><p>先退出mysql命令行，然后输入以下命令</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable mysqld</span><br><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="11-设置MySQL的字符集为UTF-8，令其支持中文"><a href="#11-设置MySQL的字符集为UTF-8，令其支持中文" class="headerlink" title="11.设置MySQL的字符集为UTF-8，令其支持中文"></a>11.设置MySQL的字符集为UTF-8，令其支持中文</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.<span class="property">cnf</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>改成如下,然后保存</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># <span class="title class_">For</span> advice on how to change settings please see</span><br><span class="line"># <span class="attr">http</span>:<span class="comment">//dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html</span></span><br><span class="line"> </span><br><span class="line">[mysql]</span><br><span class="line"><span class="keyword">default</span>-character-set=utf8</span><br><span class="line"> </span><br><span class="line">[mysqld]</span><br><span class="line">datadir=<span class="regexp">/var/</span>lib/mysql</span><br><span class="line">socket=<span class="regexp">/var/</span>lib/mysql/mysql.<span class="property">sock</span></span><br><span class="line">character_set_server=utf8</span><br><span class="line"> </span><br><span class="line">symbolic-links=<span class="number">0</span></span><br><span class="line"> </span><br><span class="line">log-error=<span class="regexp">/var/</span>log/mysqld.<span class="property">log</span></span><br><span class="line">pid-file=<span class="regexp">/var/</span>run/mysqld/mysqld.<span class="property">pid</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="12-重启一下MySQL-令配置生效"><a href="#12-重启一下MySQL-令配置生效" class="headerlink" title="12.重启一下MySQL,令配置生效"></a>12.重启一下MySQL,令配置生效</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="13-防火墙开放3306端口"><a href="#13-防火墙开放3306端口" class="headerlink" title="13.防火墙开放3306端口"></a>13.防火墙开放3306端口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">firewall-cmd --zone=public --add-port=<span class="number">3306</span>/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
+      <div class="markdown-body">
+        <h3 id="1-下载-MySQL-yum包"><a href="#1-下载-MySQL-yum包" class="headerlink" title="1. 下载 MySQL yum包"></a>1. 下载 <a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/cdb?from=10680">MySQL</a> yum包</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="attr">http</span>:<span class="comment">//repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-安装MySQL源"><a href="#2-安装MySQL源" class="headerlink" title="2.安装MySQL源"></a>2.安装MySQL源</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -<span class="title class_">Uvh</span> mysql57-community-release-el7-<span class="number">10.</span>noarch.<span class="property">rpm</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-安装MySQL服务端-需要等待一些时间"><a href="#3-安装MySQL服务端-需要等待一些时间" class="headerlink" title="3.安装MySQL服务端,需要等待一些时间"></a>3.安装MySQL服务端,需要等待一些时间</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y mysql-community-server</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-启动MySQL"><a href="#4-启动MySQL" class="headerlink" title="4.启动MySQL"></a>4.启动MySQL</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld.<span class="property">service</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-检查是否启动成功"><a href="#5-检查是否启动成功" class="headerlink" title="5.检查是否启动成功"></a>5.检查是否启动成功</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status mysqld.<span class="property">service</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-获取临时密码，MySQL5-7为root用户随机生成了一个密码"><a href="#6-获取临时密码，MySQL5-7为root用户随机生成了一个密码" class="headerlink" title="6.获取临时密码，MySQL5.7为root用户随机生成了一个密码"></a>6.获取临时密码，MySQL5.7为root用户随机生成了一个密码</h3><p>冒号后面的是随机密码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">&#x27;temporary password&#x27;</span> /<span class="keyword">var</span>/log/mysqld.<span class="property">log</span> </span><br></pre></td></tr></table></figure>
+<h3 id="7-通过临时密码登录MySQL，进行修改密码操作"><a href="#7-通过临时密码登录MySQL，进行修改密码操作" class="headerlink" title="7.通过临时密码登录MySQL，进行修改密码操作"></a>7.通过临时密码登录MySQL，进行修改密码操作</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用临时密码登录后，不能进行其他的操作，否则会报错，这时候我们进行修改密码操作</p>
+<h3 id="8-因为MySQL的密码规则需要很复杂，我们一般自己设置的不会设置成这样，所以我们全局修改一下"><a href="#8-因为MySQL的密码规则需要很复杂，我们一般自己设置的不会设置成这样，所以我们全局修改一下" class="headerlink" title="8.因为MySQL的密码规则需要很复杂，我们一般自己设置的不会设置成这样，所以我们全局修改一下"></a>8.因为MySQL的密码规则需要很复杂，我们一般自己设置的不会设置成这样，所以我们全局修改一下</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set <span class="variable language_">global</span> validate_password_policy=<span class="number">0</span>;</span><br><span class="line">mysql&gt; set <span class="variable language_">global</span> validate_password_length=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这时候我们就可以自己设置想要的密码了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">ALTER</span> <span class="variable constant_">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> <span class="variable constant_">IDENTIFIED</span> <span class="variable constant_">BY</span> <span class="string">&#x27;yourpassword&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9-授权其他机器远程登录"><a href="#9-授权其他机器远程登录" class="headerlink" title="9.授权其他机器远程登录"></a>9.授权其他机器远程登录</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">GRANT</span> <span class="variable constant_">ALL</span> <span class="variable constant_">PRIVILEGES</span> <span class="variable constant_">ON</span> *.* <span class="variable constant_">TO</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> <span class="variable constant_">IDENTIFIED</span> <span class="variable constant_">BY</span> <span class="string">&#x27;yourpassword&#x27;</span> <span class="variable constant_">WITH</span> <span class="variable constant_">GRANT</span> <span class="variable constant_">OPTION</span>;</span><br><span class="line"> </span><br><span class="line"><span class="variable constant_">FLUSH</span> <span class="variable constant_">PRIVILEGES</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="10-开启开机自启动"><a href="#10-开启开机自启动" class="headerlink" title="10.开启开机自启动"></a>10.开启开机自启动</h3><p>先退出mysql命令行，然后输入以下命令</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable mysqld</span><br><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="11-设置MySQL的字符集为UTF-8，令其支持中文"><a href="#11-设置MySQL的字符集为UTF-8，令其支持中文" class="headerlink" title="11.设置MySQL的字符集为UTF-8，令其支持中文"></a>11.设置MySQL的字符集为UTF-8，令其支持中文</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.<span class="property">cnf</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>改成如下,然后保存</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># <span class="title class_">For</span> advice on how to change settings please see</span><br><span class="line"># <span class="attr">http</span>:<span class="comment">//dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html</span></span><br><span class="line"> </span><br><span class="line">[mysql]</span><br><span class="line"><span class="keyword">default</span>-character-set=utf8</span><br><span class="line"> </span><br><span class="line">[mysqld]</span><br><span class="line">datadir=<span class="regexp">/var/</span>lib/mysql</span><br><span class="line">socket=<span class="regexp">/var/</span>lib/mysql/mysql.<span class="property">sock</span></span><br><span class="line">character_set_server=utf8</span><br><span class="line"> </span><br><span class="line">symbolic-links=<span class="number">0</span></span><br><span class="line"> </span><br><span class="line">log-error=<span class="regexp">/var/</span>log/mysqld.<span class="property">log</span></span><br><span class="line">pid-file=<span class="regexp">/var/</span>run/mysqld/mysqld.<span class="property">pid</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="12-重启一下MySQL-令配置生效"><a href="#12-重启一下MySQL-令配置生效" class="headerlink" title="12.重启一下MySQL,令配置生效"></a>12.重启一下MySQL,令配置生效</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="13-防火墙开放3306端口"><a href="#13-防火墙开放3306端口" class="headerlink" title="13.防火墙开放3306端口"></a>13.防火墙开放3306端口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">firewall-cmd --zone=public --add-port=<span class="number">3306</span>/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2023/02/08/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95/2023-02-08-%E5%88%9D%E7%BA%A7%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8_%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2024-11-04 15:31:28
+            </span>
+            
+                  <span class="post-categories">
+                    <i class="iconfont icon-bookmark" title="分类"></i>
+                    
+                    <span class="span--category">
+                      <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        <b>#</b> 技术笔记
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/linux/" title="linux">
+                        #linux
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2023/02/08/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/2023-02-08-centos7%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD-MySQL-yum%E5%8C%85"><span class="toc-text">1. 下载 MySQL yum包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85MySQL%E6%BA%90"><span class="toc-text">2.安装MySQL源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85MySQL%E6%9C%8D%E5%8A%A1%E7%AB%AF-%E9%9C%80%E8%A6%81%E7%AD%89%E5%BE%85%E4%B8%80%E4%BA%9B%E6%97%B6%E9%97%B4"><span class="toc-text">3.安装MySQL服务端,需要等待一些时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%90%AF%E5%8A%A8MySQL"><span class="toc-text">4.启动MySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F"><span class="toc-text">5.检查是否启动成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E8%8E%B7%E5%8F%96%E4%B8%B4%E6%97%B6%E5%AF%86%E7%A0%81%EF%BC%8CMySQL5-7%E4%B8%BAroot%E7%94%A8%E6%88%B7%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E4%BA%86%E4%B8%80%E4%B8%AA%E5%AF%86%E7%A0%81"><span class="toc-text">6.获取临时密码，MySQL5.7为root用户随机生成了一个密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E9%80%9A%E8%BF%87%E4%B8%B4%E6%97%B6%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95MySQL%EF%BC%8C%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%E6%93%8D%E4%BD%9C"><span class="toc-text">7.通过临时密码登录MySQL，进行修改密码操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%9B%A0%E4%B8%BAMySQL%E7%9A%84%E5%AF%86%E7%A0%81%E8%A7%84%E5%88%99%E9%9C%80%E8%A6%81%E5%BE%88%E5%A4%8D%E6%9D%82%EF%BC%8C%E6%88%91%E4%BB%AC%E4%B8%80%E8%88%AC%E8%87%AA%E5%B7%B1%E8%AE%BE%E7%BD%AE%E7%9A%84%E4%B8%8D%E4%BC%9A%E8%AE%BE%E7%BD%AE%E6%88%90%E8%BF%99%E6%A0%B7%EF%BC%8C%E6%89%80%E4%BB%A5%E6%88%91%E4%BB%AC%E5%85%A8%E5%B1%80%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%8B"><span class="toc-text">8.因为MySQL的密码规则需要很复杂，我们一般自己设置的不会设置成这样，所以我们全局修改一下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E6%8E%88%E6%9D%83%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="toc-text">9.授权其他机器远程登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E5%BC%80%E5%90%AF%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="toc-text">10.开启开机自启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E8%AE%BE%E7%BD%AEMySQL%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%BAUTF-8%EF%BC%8C%E4%BB%A4%E5%85%B6%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87"><span class="toc-text">11.设置MySQL的字符集为UTF-8，令其支持中文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E9%87%8D%E5%90%AF%E4%B8%80%E4%B8%8BMySQL-%E4%BB%A4%E9%85%8D%E7%BD%AE%E7%94%9F%E6%95%88"><span class="toc-text">12.重启一下MySQL,令配置生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E9%98%B2%E7%81%AB%E5%A2%99%E5%BC%80%E6%94%BE3306%E7%AB%AF%E5%8F%A3"><span class="toc-text">13.防火墙开放3306端口</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+  </div>
+
+
+        
+  
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/dellevin/dellevin.github.io">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+            <a title="email" href="mailto:dellevin99@gmail.com">
+              <i class="iconfont icon-envelope"></i>
+            </a>
+            
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+              <a title="weibo" target="_blank" rel="noopener" href="https://weibo.com/u/6094785105">
+                <i class="iconfont icon-weibo"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+              <a title="rss" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+              </a>
+              
+        </li>
+        
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + centos7%E5%AE%89%E8%A3%85Mysql + '&url=' + https%3A%2F%2Fwww.ittoolman.top%2F2023%2F02%2F08%2F%25E6%258A%2580%25E6%259C%25AF%25E7%25AC%2594%25E8%25AE%25B0%2Flinux%2F2023-02-08-centos7%25E5%25AE%2589%25E8%25A3%2585Mysql%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://www.ittoolman.top/2023/02/08/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/2023-02-08-centos7%E5%AE%89%E8%A3%85Mysql/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

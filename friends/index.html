@@ -113,6 +113,10 @@
           <a href="/tags/">Tags</a>
         </li>
       
+        <li class="nav-item" data-path="/album/">
+          <a href="/album/">Album</a>
+        </li>
+      
         <li class="nav-item" data-path="/friends/">
           <a href="/friends/">Friends</a>
         </li>
@@ -166,15 +170,23 @@
 
 
 
+
   
 
   
   <!-- 朋友页 url形式：https://yoursite/friends/ -->
   <div class="container friend-index">
+    <div class="markdown-body">
+      <p><img src="https://raw.githubusercontent.com/dellevin/BlogImgs/refs/heads/main/img/yan-guo-liu-hen.png" alt="雁过流痕"></p>
+<p>欢迎各位大佬互换友链，可以 <a target="_blank" rel="noopener" href="https://github.com/dellevin/dellevin.github.io/issues">点击链接</a> 提交issue，或者通过邮箱（<a href="mailto:&#100;&#x65;&#108;&#x6c;&#101;&#x76;&#x69;&#x6e;&#x39;&#57;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#109;">&#100;&#x65;&#108;&#x6c;&#101;&#x76;&#x69;&#x6e;&#x39;&#57;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#109;</a>）方式联系我，来申请友情链接呀！</p>
+<hr>
+
+    </div>
     <div class="friend-list">
       
         <div class="friend-list-item">
           <span class="nickname">@ hiRipple</span>
+          <br>
           <a href="https://hiripple.com" target="_blank">
             <span class="site-path">https://hiripple.com</span>
           </a>
@@ -185,6 +197,7 @@
       
         <div class="friend-list-item">
           <span class="nickname">@ gao_cai_shengの个人博客</span>
+          <br>
           <a href="https://qwq2333.top/" target="_blank">
             <span class="site-path">https://qwq2333.top/</span>
           </a>
@@ -195,6 +208,7 @@
       
         <div class="friend-list-item">
           <span class="nickname">@ 這個博客</span>
+          <br>
           <a href="https://thisblog.me/" target="_blank">
             <span class="site-path">https://thisblog.me/</span>
           </a>
@@ -204,13 +218,60 @@
         </div>
       
     </div>
-    <div class="markdown-body">
-      
-    </div>
   </div>
+  <style>
+
+    
+    .friend-card {
+        width: 90%;
+        max-width: 500px; /* 设置最大宽度，适配不同设备 */
+        background: #ffffff; /* 背景颜色 */
+        border-radius: 15px; /* 圆角 */
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* 卡片阴影 */
+        padding: 1.5rem; /* 内边距 */
+        text-align: center; /* 内容居中 */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加悬停动画 */
+        border: 1px solid #f0f0f0; /* 添加边框 */
+    }
+    
+    .friend-card:hover {
+        transform: translateY(-5px); /* 悬停时卡片轻微上移 */
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); /* 悬停时增加阴影 */
+    }
+    
+    .nickname {
+        font-size: 1.5rem; /* 增大昵称字体 */
+        font-weight: bold; /* 加粗 */
+        color: #333333; /* 昵称字体颜色 */
+    }
+    
+    .site-link {
+        text-decoration: none; /* 去掉下划线 */
+        color: #1e90ff; /* 链接颜色 */
+        font-weight: 500; /* 链接字体加粗 */
+        font-size: 1rem; /* 链接字体大小 */
+    }
+    
+    .site-link:hover {
+        text-decoration: underline; /* 悬停时加下划线 */
+        color: #0056b3; /* 悬停时改变颜色 */
+    }
+    
+    .card-meta {
+        font-size: 1.5rem; /* 元信息字体大小 */
+        color: #666666; /* 元信息字体颜色 */
+        margin-top: 1rem; /* 增加与上方间距 */
+        line-height: 1.5; /* 行高 */
+    }
+    </style>
   
 
+
+
   
+
+
+
 
   
 

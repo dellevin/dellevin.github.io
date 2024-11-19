@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">朝花夕拾-我的博客重启之路</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-10-23 15:27:07
@@ -204,6 +210,18 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>2020年2月2日，当时上大学的我怀着忐忑的心情买了人生第一台服务器。当时我还是一瓶子不满半瓶子晃荡的状态，什么都会但什么都只会一点点。从那天之后，我开始了自建博客，自建服务，nextcloud，网易云代理，bitwarden，docker……等等，各种搭建，各种报错，用自己浅薄的知识去百度去一点点查询。</p>
+<p>那时候，我开始了写笔记，我爱上了文字，爱上了这种全身心投入的感觉。我在自己的博客，在自己一片天地批评着世间的不公、羡慕着他人能力的出众。</p>
+<p>如今我也变成了自己想变成的人，但是，笔记很少写了，日记很少写了。我知道，是我自己变了，变的懒惰不堪，变得浮于表面。</p>
+<p>于是，我决定重启博客，脱离我这混乱不堪的生活。。。。。。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>2020年2月2日，当时上大学的我怀着忐忑的心情买了人生第一台服务器。当时我还是一瓶子不满半瓶子晃荡的状态，什么都会但什么都只会一点点。从那天之后，我开始了自建博客，自建服务，nextcloud，网易云代理，bitwarden，docker……等等，各种搭建，各种报错，用自己浅薄的知识去百度去一点点查询。</p>
 <p>那时候，我开始了写笔记，我爱上了文字，爱上了这种全身心投入的感觉。我在自己的博客，在自己一片天地批评着世间的不公、羡慕着他人能力的出众。</p>
@@ -268,6 +286,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -286,6 +305,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -310,7 +337,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -320,7 +347,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

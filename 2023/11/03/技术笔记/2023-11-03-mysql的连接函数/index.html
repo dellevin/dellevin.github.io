@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">mysql的连接函数</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:51:25
@@ -210,6 +216,33 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>今天遇到了一个简单的场景，需要sql连接两个字段显示。</p>
+<p>语法是这样的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT CONCAT_WS(&#x27; &#x27;,snh.userneeds, snh.beizhu) AS connect_info  ,snh.createTime, lmu.createTime as regTime</span><br><span class="line">FROM  `supplier_needs_history` as snh</span><br><span class="line">LEFT JOIN member_user as mu</span><br><span class="line">ON snh.userId = mu.id</span><br><span class="line">LEFT JOIN login_member_user as lmu</span><br><span class="line">on mu.companyCode  = lmu.companyCode</span><br><span class="line">WHERE mu.companyName =&#x27;诚润建工集团有限公司&#x27;</span><br><span class="line">ORDER BY snh.createTime DESC</span><br><span class="line">LIMIT 3;</span><br></pre></td></tr></table></figure>
+
+<p>一开始用的是CONCA函数，但是当时出现了一个奇怪的情况，后来查询才知道，当我连接的两个字段里面其中一个为null的时候，拼接后的结果也是null</p>
+<p>在查询之后使用了CONCAT_WS函数</p>
+<ol>
+<li><p><code>CONCAT()</code>: <code>CONCAT()</code> 函数用于拼接两个或多个字符串。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> CONCAT(first_name, <span class="string">&#x27; &#x27;</span>, last_name) <span class="keyword">AS</span> full_name <span class="keyword">FROM</span> employees;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>CONCAT_WS()</code>: <code>CONCAT_WS()</code> 函数用于拼接字符串，并在每个字符串之间插入指定的分隔符。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> CONCAT_WS(<span class="string">&#x27;, &#x27;</span>, last_name, first_name) <span class="keyword">AS</span> full_name <span class="keyword">FROM</span> employees;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>CONCAT_NULL_YIELDS_NULL</code>: 这是 MySQL 的系统变量，用于控制拼接操作的行为。如果设置为 <code>ON</code>（默认值），当任何一个操作数为 <code>NULL</code> 时，拼接结果将为 <code>NULL</code>。如果设置为 <code>OFF</code>，则不会将 <code>NULL</code> 视为 <code>NULL</code>。</p>
+</li>
+<li><p>字符串运算符 (<code>||</code>): MySQL 支持标准 SQL 中的字符串拼接运算符 <code>||</code>。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> first_name <span class="operator">||</span> <span class="string">&#x27; &#x27;</span> <span class="operator">||</span> last_name <span class="keyword">AS</span> full_name <span class="keyword">FROM</span> employees;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>这些函数和运算符允许您在 SQL 查询中执行字符串拼接操作。您可以根据自己的需求选择适当的函数或运算符。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>今天遇到了一个简单的场景，需要sql连接两个字段显示。</p>
 <p>语法是这样的</p>
@@ -295,6 +328,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -313,6 +347,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -337,7 +379,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -347,7 +389,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

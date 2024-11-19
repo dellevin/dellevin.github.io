@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">爱一个人真的好难</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:44:44
@@ -204,6 +210,17 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>当我经历了一份全身心都投入的失败感情后，突然间发现，我好像失去了爱一个人的能力。或许是哀莫大于心死，我生活的一切都伴随着我的心变得枯燥乏味。我像一个机器人一样的活着，每天执行着三点一线的指令。胖了，丑了，似乎活着的意义只剩下了让自己开心 。以前我是为她而活，昂扬向上，努力刻苦。现在为自己而活，我好像好像失去了动力一样。</p>
+<p>我不断的努力去尝试爱一个人，喜欢一个人，可是到头来却发现，我喜欢的只是她们的外表。从未触及她们的灵魂，我是卑鄙的，挺喜欢的名义坠入声色犬马的世界。</p>
+<p>好想爱一个人，去灵魂的触碰，去心与心的相拥，想去试试那种奋不顾身的感觉，粉身碎骨也无所谓了。。。可是，我又怎么该劝自己呢？</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>当我经历了一份全身心都投入的失败感情后，突然间发现，我好像失去了爱一个人的能力。或许是哀莫大于心死，我生活的一切都伴随着我的心变得枯燥乏味。我像一个机器人一样的活着，每天执行着三点一线的指令。胖了，丑了，似乎活着的意义只剩下了让自己开心 。以前我是为她而活，昂扬向上，努力刻苦。现在为自己而活，我好像好像失去了动力一样。</p>
 <p>我不断的努力去尝试爱一个人，喜欢一个人，可是到头来却发现，我喜欢的只是她们的外表。从未触及她们的灵魂，我是卑鄙的，挺喜欢的名义坠入声色犬马的世界。</p>
@@ -267,6 +284,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -285,6 +303,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -309,7 +335,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -319,7 +345,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

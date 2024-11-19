@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">vue3无关系组件之间的方法调用</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:52:39
@@ -196,20 +202,54 @@
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
-                    #技术笔记
+                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                    #前端
                   </a>
                 </span>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
-                    #前端
+                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    #技术笔记
                   </a>
                 </span>
                 
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>要实现在第一个页面中的方法 <code>onClick</code> 调用第二个页面中的 <code>updateBankToUser</code> 方法，我们可以使用事件总线来实现跨组件通信。在Vue 3中，我们可以使用 <code>mitt</code> 库来创建事件总线。</p>
+<p>首先，安装 <code>mitt</code> 库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install mitt</span><br></pre></td></tr></table></figure>
+
+<p>然后，我们可以创建一个全局的事件总线，并在第二个页面中将 <code>updateBankToUser</code> 方法注册为一个事件处理程序，然后在第一个页面的 <code>onClick</code> 方法中触发这个事件，从而调用第二个页面中的方法。</p>
+<p>以下是示例代码：</p>
+<p><strong>创建全局事件总线 bus.ts：</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bus.ts</span></span><br><span class="line"><span class="keyword">import</span> mitt <span class="keyword">from</span> <span class="string">&#x27;mitt&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> bus = <span class="title function_">mitt</span>();</span><br></pre></td></tr></table></figure>
+
+<p><strong>第二个页面 user.vue：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;!-- ...其他代码... --&gt;</span><br><span class="line">    &lt;el-button @click=&quot;updateBankToUser&quot;&gt;更新银行的用户&lt;/el-button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; bus &#125; from &#x27;./bus&#x27;;</span><br><span class="line"></span><br><span class="line">const updateBankToUser = async () =&gt; &#123;</span><br><span class="line">  console.log(&#x27;更新银行的用户&#x27;);</span><br><span class="line">  // 在这里执行您的业务逻辑</span><br><span class="line">&#125;</span><br><span class="line">bus.on(&#x27;callUpdateBankToUser&#x27;, updateBankToUser);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>第一个页面 parent.vue：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;el-button @click=&quot;onClick&quot;&gt;点击调用第二个页面的方法&lt;/el-button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; bus &#125; from &#x27;./bus&#x27;;</span><br><span class="line"></span><br><span class="line">const onClick = () =&gt; &#123;</span><br><span class="line">  console.log(&#x27;调用第二个页面的方法&#x27;);</span><br><span class="line">  // 在这里执行您的业务逻辑</span><br><span class="line">  bus.emit(&#x27;callUpdateBankToUser&#x27;);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在这个示例中，我们在 bus.ts 中创建了一个全局事件总线 <code>bus</code>。然后在第二个页面 user.vue 中，我们将 <code>updateBankToUser</code> 方法注册为名为 ‘callUpdateBankToUser’ 的事件处理程序。在第一个页面 parent.vue 中的 <code>onClick</code> 方法中，我们使用 <code>bus.emit</code> 触发了 ‘callUpdateBankToUser’ 事件，从而调用了第二个页面中的 <code>updateBankToUser</code> 方法。</p>
+<p>通过这种方式，您可以在不直接引用第二个页面的情况下，实现跨组件调用其中的方法。</p>
+<h2 id="什么是全局事件总线bus-ts-import-mitt-from-‘mitt’-export-const-bus-mitt-两行的作用是啥"><a href="#什么是全局事件总线bus-ts-import-mitt-from-‘mitt’-export-const-bus-mitt-两行的作用是啥" class="headerlink" title="什么是全局事件总线bus.ts import mitt from ‘mitt’; export const bus &#x3D; mitt(); 两行的作用是啥"></a>什么是全局事件总线bus.ts import mitt from ‘mitt’; export const bus &#x3D; mitt(); 两行的作用是啥</h2><p>在这里，<code>bus.ts</code> 文件中的两行代码用来创建全局事件总线。全局事件总线是一个简单的事件管理器，它可以用于在应用程序中实现组件之间的通信，特别是当组件之间没有直接父子关系时。</p>
+<p>具体来说，这两行代码的作用是：</p>
+<ol>
+<li><p><code>import mitt from &#39;mitt&#39;;</code>: 这里我们导入了 <code>mitt</code> 库，它是一个简单、小巧的 JavaScript 事件库。<code>mitt</code> 库允许我们创建事件总线，以便在应用程序的任何地方都可以访问该事件总线。</p>
+</li>
+<li><p><code>export const bus = mitt();</code>: 在这里，我们创建了一个全局的事件总线 <code>bus</code> 并将其导出。通过 <code>mitt()</code> 调用，我们创建了一个新的事件总线实例，可以用来管理事件的注册、触发和取消。</p>
+</li>
+</ol>
+<p>总结起来，<code>bus.ts</code> 文件中的这两行代码的目的是创建一个全局的事件总线，以便在应用程序的任何地方都可以使用它进行组件之间的通信。通过这个全局事件总线，我们可以在不直接引用其他组件的情况下，实现组件之间的方法调用和数据传递。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>要实现在第一个页面中的方法 <code>onClick</code> 调用第二个页面中的 <code>updateBankToUser</code> 方法，我们可以使用事件总线来实现跨组件通信。在Vue 3中，我们可以使用 <code>mitt</code> 库来创建事件总线。</p>
 <p>首先，安装 <code>mitt</code> 库：</p>
@@ -270,14 +310,14 @@
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
-                        #技术笔记
+                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                        #前端
                       </a>
                     </span>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
-                        #前端
+                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        #技术笔记
                       </a>
                     </span>
                     
@@ -319,6 +359,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -337,6 +378,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -361,7 +410,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -371,7 +420,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

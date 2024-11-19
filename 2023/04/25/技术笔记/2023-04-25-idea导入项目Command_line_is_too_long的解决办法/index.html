@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">idea导入项目Command line is too long的解决办法</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:08:50
@@ -204,6 +210,25 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>报错：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error running AdminApplication.Command line is too <span class="type">long</span>. Shorten the command line via JAR manifest or via a classpath file and rerun.</span><br></pre></td></tr></table></figure>
+
+<p>昨天刚在新公司入职，准备接手项目的时候在导入过程中突然出现了这个错误。大概意思就是命令行太长了，你需要短一点。</p>
+<p>因为自己还是哥小菜鸡，所以只剩下百度了。</p>
+<p><strong>修改.idea下面的workspace.xml文件</strong></p>
+<p>在&#96;&#96;<component name="PropertiesComponent">&#96; 这个标签里面添加一行，因为我的idea是2022.3.2所以这个文件里面的内容是json格式的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;dynamic.classpath&quot;</span>: <span class="string">&quot;true&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>老版本的idea则是添加</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dynamic.classpath&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>报错：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error running AdminApplication.Command line is too <span class="type">long</span>. Shorten the command line via JAR manifest or via a classpath file and rerun.</span><br></pre></td></tr></table></figure>
@@ -275,6 +300,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -293,6 +319,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -317,7 +351,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -327,7 +361,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

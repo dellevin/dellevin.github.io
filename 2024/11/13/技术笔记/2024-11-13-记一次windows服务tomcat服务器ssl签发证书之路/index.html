@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">记一次windows服务tomcat服务器ssl签发证书之路</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-13 14:00:56
@@ -210,6 +216,29 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<h2 id="操作记录："><a href="#操作记录：" class="headerlink" title="操作记录："></a>操作记录：</h2><p>certbot，用于申请ssl证书和自动续期<br>网站：<a target="_blank" rel="noopener" href="https://certbot.eff.org/">https://certbot.eff.org</a></p>
+<p>openssl，用于pem证书类型的转换<br>网站：<a target="_blank" rel="noopener" href="https://slproweb.com/products/Win32OpenSSL.html">https://slproweb.com/products/Win32OpenSSL.html</a></p>
+<h3 id="使用certbot申请ssl证书"><a href="#使用certbot申请ssl证书" class="headerlink" title="使用certbot申请ssl证书"></a><strong>使用certbot申请ssl证书</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certbot certonly --webroot -w D:\apache-tomcat-8.5.94\webapps\ROOT -d www.xxxx.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="生成路径："><a href="#生成路径：" class="headerlink" title="生成路径："></a><strong>生成路径：</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Saving debug <span class="built_in">log</span> to C:\Certbot\<span class="built_in">log</span>\letsencrypt.log</span><br><span class="line">Requesting a certificate <span class="keyword">for</span> www.xxxx.com</span><br><span class="line"></span><br><span class="line">Successfully received certificate.</span><br><span class="line">Certificate is saved at: C:\Certbot\live\www.xxxx.com-0002\fullchain.pem</span><br><span class="line">Key is saved at:         C:\Certbot\live\www.xxxx.com-0002\privkey.pem</span><br><span class="line">This certificate expires on 2025-02-11.</span><br><span class="line">These files will be updated when the certificate renews.</span><br><span class="line">Certbot has <span class="built_in">set</span> up a scheduled task to automatically renew this certificate <span class="keyword">in</span> the background.</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">If you like Certbot, please consider supporting our work by:</span><br><span class="line"></span><br><span class="line">* Donating to ISRG / Let<span class="string">&#x27;s Encrypt:   https://letsencrypt.org/donate</span></span><br><span class="line"><span class="string">* Donating to EFF:                    https://eff.org/donate-le</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="证书转换并导出到相应路径"><a href="#证书转换并导出到相应路径" class="headerlink" title="证书转换并导出到相应路径"></a><strong>证书转换并导出到相应路径</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -<span class="built_in">export</span> -out D:\apache-tomcat-8.5.94\conf\cert\www.xxxx.com.pfx  -inkey C:\Certbot\live\www.xxxx.com-0002\privkey.pem -<span class="keyword">in</span> C:\Certbot\live\www.xxxx.com-0002\fullchain.pem -name tomcat</span><br></pre></td></tr></table></figure>
+
+<p>设置密码(默认使用原密码)：xxxx</p>
+<h3 id="重启tomcat"><a href="#重启tomcat" class="headerlink" title="重启tomcat"></a><strong>重启tomcat</strong></h3><p>D:\apache-tomcat-8.5.94\bin 路径内<br>关闭<code>shutdown.bat</code></p>
+<p>打开<code>startup.bat</code></p>
+<p><strong>注意：</strong> 这里有个小tips，运行这俩bat的时候必须去那个bin路径下面运行，别整花活，什么快捷方式和命令行，这样会无法检查到那些东西的。。。这玩意只会检查当前运行目录下的东西。</p>
+<h2 id="自动续订脚本"><a href="#自动续订脚本" class="headerlink" title="自动续订脚本"></a>自动续订脚本</h2><h3 id="创建文件renew-certificates-bat"><a href="#创建文件renew-certificates-bat" class="headerlink" title="创建文件renew_certificates.bat"></a><strong>创建文件renew_certificates.bat</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">cd</span> C:\Certbot</span><br><span class="line">certbot renew &gt;&gt; C:\Users\Administrator\Desktop\续订日志.<span class="built_in">log</span> 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置windows任务"><a href="#配置windows任务" class="headerlink" title="配置windows任务"></a><strong>配置windows任务</strong></h3><p>win+r输入taskschd.msc，打开任务并设置添加ssl自动续订的任务，在每月的1号检查并续订ssl</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <h2 id="操作记录："><a href="#操作记录：" class="headerlink" title="操作记录："></a>操作记录：</h2><p>certbot，用于申请ssl证书和自动续期<br>网站：<a target="_blank" rel="noopener" href="https://certbot.eff.org/">https://certbot.eff.org</a></p>
 <p>openssl，用于pem证书类型的转换<br>网站：<a target="_blank" rel="noopener" href="https://slproweb.com/products/Win32OpenSSL.html">https://slproweb.com/products/Win32OpenSSL.html</a></p>
@@ -303,6 +332,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -321,6 +351,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -345,7 +383,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -355,7 +393,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

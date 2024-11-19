@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">for循环的优化</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:19:57
@@ -204,6 +210,69 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<h2 id="for循环的优化"><a href="#for循环的优化" class="headerlink" title="for循环的优化"></a>for循环的优化</h2><p>2022年11月12日17点52分</p>
+<p>今天使用wincc oa的时候遍历excel表的时候，五千多行，慢的要死，最后还是归结自己的定义变量的随便。以至于自己写的程序拖慢了速度。<br>以下是几条优化for循环的方式</p>
+<h2 id="方法一：消除循环终止判断时的方法调用"><a href="#方法一：消除循环终止判断时的方法调用" class="headerlink" title="方法一：消除循环终止判断时的方法调用"></a>方法一：消除循环终止判断时的方法调用</h2><p>优化前：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">	System.out.println(list.get(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优点：较常见，易于理解<br>缺点：每次都要计算list.size()</p>
+<p>优化一：<br>将计算list长度提取出来</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> list.size();</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">      System.out.println(list.get(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优点：将list长度提取出来，不必每次都计算<br>缺点：</p>
+<ol>
+<li>m的作用域不够小，违反了最小作用域原则</li>
+<li>不能在for循环中操作list的大小，比如除去或新加一个元素</li>
+</ol>
+<p>分析：<br>list.size()每次循环都会被执行一次，这无疑会影响程序的性能，所以应该将其放到循环外面，用一个变量来代替，优化前后的对比也很明显。</p>
+<p>优化二：<br>将计算list长度提取出来</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, n = list.size(); i &lt; n; i++) &#123;</span><br><span class="line">      System.out.println(list.get(i));</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>优点：不必每次都计算 ，变量的作用域遵循最小范围原则</p>
+<p>优化三：<br>采用倒序的写法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> list.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">      System.out.println(list.get(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优点：不必每次都计算 ，变量的作用域遵循最小范围原则<br>缺点：</p>
+<ol>
+<li>结果的顺序会反</li>
+<li>看起来不习惯，不易读懂</li>
+</ol>
+<p>适用场合：与显示结果顺序无关的地方：比如保存之前数据的校验</p>
+<h2 id="方法二：Iterator-遍历"><a href="#方法二：Iterator-遍历" class="headerlink" title="方法二：Iterator 遍历"></a>方法二：Iterator 遍历</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Iterator&lt;String&gt; it = list.iterator(); it.hasNext();) &#123;</span><br><span class="line">      System.out.println(it.next());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优点：简洁</p>
+<h2 id="方法三：jdk1-5新写法"><a href="#方法三：jdk1-5新写法" class="headerlink" title="方法三：jdk1.5新写法"></a>方法三：jdk1.5新写法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Object o : list) &#123;</span><br><span class="line">     System.out.println(o);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优点：简洁结合泛型使用更简洁<br>缺点：jdk1.4向下不兼容</p>
+<h2 id="方法四：循环嵌套外小内大原则（从外至里，循环对象size要从小到大）"><a href="#方法四：循环嵌套外小内大原则（从外至里，循环对象size要从小到大）" class="headerlink" title="方法四：循环嵌套外小内大原则（从外至里，循环对象size要从小到大）"></a>方法四：循环嵌套外小内大原则（从外至里，循环对象size要从小到大）</h2><p>优化前：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">         &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>优化后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">100000</span>; j++) &#123;</span><br><span class="line">         &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>理解：这就好比你复制很多个小文件和复制几个大文件的区别。</p>
+<h2 id="方法五：循环嵌套提取不需要循环的逻辑"><a href="#方法五：循环嵌套提取不需要循环的逻辑" class="headerlink" title="方法五：循环嵌套提取不需要循环的逻辑"></a>方法五：循环嵌套提取不需要循环的逻辑</h2><p>优化前：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>, b = <span class="number">11</span>;</span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">              i = i * a * b;</span><br><span class="line">  &#125; </span><br></pre></td></tr></table></figure>
+
+<p>优化后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> a * b;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        i = i * c;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>分析：代码中a*b与我们的循环无关，所以为避免重复计算，应该把它放到外面。优化后性能会提升好几个数量级，这些是不容忽视的。</p>
+<h2 id="方法六：异常处理写在循环外面"><a href="#方法六：异常处理写在循环外面" class="headerlink" title="方法六：异常处理写在循环外面"></a>方法六：异常处理写在循环外面</h2><p>优化前：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"> </span><br><span class="line">            &#125; <span class="keyword">catch</span> (<span class="built_in">Exception</span> e) &#123;</span><br><span class="line"> </span><br><span class="line">            &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>优化后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">                &#125;</span><br><span class="line">     &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line"> </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>分析：捕获异常是很耗资源的，所以不能将try catch放到循环内部，优化后同样有好几个数量级的提升</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <h2 id="for循环的优化"><a href="#for循环的优化" class="headerlink" title="for循环的优化"></a>for循环的优化</h2><p>2022年11月12日17点52分</p>
 <p>今天使用wincc oa的时候遍历excel表的时候，五千多行，慢的要死，最后还是归结自己的定义变量的随便。以至于自己写的程序拖慢了速度。<br>以下是几条优化for循环的方式</p>
@@ -336,6 +405,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -354,6 +424,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -378,7 +456,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -388,7 +466,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">意义</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:33:24
@@ -204,6 +210,28 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<br>
+<br>
+<div style="text-align:center;">
+<iframe src="//player.bilibili.com/player.html?aid=552315351&bvid=BV1Ki4y1y7HC&cid=550103819&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"  height=398 width=610> </iframe>
+</div>
+
+<p>夜半回家，拖着疲惫的身体，在这2022年的末期，似乎一切都显得那么无奈。看着刚到的油盐酱醋，和同学出门买了三个土豆，一棵葱以及十个馒头。在微弱的交流中一锅炒土豆，草草的完成了。</p>
+<p>十月一来到的济南，半个月了，从这锅炒土豆丝开始，生活渐渐的有了烟火的气息。找工作，面试的疲惫让身心劳累不堪。今天面试，一切都很好，看着面试官，看着外面高楼层起，车如流水，有那么一瞬间自己好像明白了什么。我好像知道了这次面试的结局，我开始了自由发挥，侃侃而谈着自己的一切。也许他们需要的不是我。</p>
+<p>我自命清高，却难以摆脱世俗。父母一直告诉我诚以待人，可是我慢慢的发现，生活的回馈却不是真诚。我在水泥浇筑的世界里妄求人生的意义，到现在我才发现我找到的那些意义都是虚无。</p>
+<p>我焦急的准备着另一场面试，脑中不断复现我之前和面试官的提问的所有问题。我很庆幸他们没有选择我，因为他们让我认识到我又太多的不足。我在这一次次的打击中变得愈加的强大，我给自己披上了一套盔甲，任凭风吹雨打，岿然不动。面试很愉快，出乎意料的没有问道技术的问题，原因是技术去忙碌了。他们也愿意接受我。我心存感激的同时，也有些怅然若失的落寞。我怕达不到他们真正的需求。一切随缘，但愿一切安好。</p>
+<p>只有夜晚才是真正属于自己的。悲伤，喜悦在这时显得万分的珍贵。渴望夜晚的时间再长一些，渴望入眠的时间再快一些，渴望梦境再美一些。</p>
+<p>我再大学花了很长一段时间寻求人生的意义。现如今的我回首望去，可怜而又可笑。难怪听到老师，学长说“大学是你人生中最美的一段时间了。”现在，我又操着这种口吻对我的学弟去说。真的是好有意思。买入社会的那一刻起，我的坚持像漫头飞舞的纸片，被雨水打落，支离破碎。所以说人生的意义到底是什么呢？我没有过答案。</p>
+<p>我们常常否认很多人生的意义，但又不断追问它到底是什么。生活的本质是不甘心的，所以我们会虚构很多情调，让自己变得有趣开心。但是这样无非是让自己远离那个让你没人能够回答的问题。</p>
+<p>人生的意义对于个人来说是什么我不知道，但至少不是让你无休止的去思考它。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <br>
 <br>
@@ -278,6 +306,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -296,6 +325,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -320,7 +357,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -330,7 +367,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

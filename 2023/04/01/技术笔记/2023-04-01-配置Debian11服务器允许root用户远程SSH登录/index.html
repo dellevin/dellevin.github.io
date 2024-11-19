@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">配置Debian11服务器允许root用户远程SSH登录</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:20:12
@@ -210,6 +216,27 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>全新安装系统后，默认情况下将禁用Debian Linux上的root登录。当您尝试以root用户身份登录Debian11 Linux服务器时，访问将被拒绝。要在Debian Linux系统上为root用户启用SSH登录，您需要首先配置SSH服务器。</p>
+<p><strong>0.首先安装SSH</strong><br>注意：如果使用的是WSL安装的ubuntu&#x2F;debian，那么你需要先卸载：<code>apt remove openssh-server</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install openssh-server</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=SSH&spm=1001.2101.3001.7020">SSH</a> 服务默认开启<br>手动启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start ssh.service</span><br></pre></td></tr></table></figure>
+
+<p><strong>1.安装vim</strong><br>首先由普通用户登录Debian服务器，su root切换到root用户，输入下面命令安装即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.利用vim打开并修改&#x2F;etc&#x2F;ssh&#x2F;sshd_config文件</strong><br>将PermitRootLogin 设置为yes,PasswordAuthentication设置为yes即可，:wq保存退出即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br><span class="line"></span><br><span class="line">PasswordAuthentication <span class="built_in">yes</span></span><br><span class="line">PermitRootLogin <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+<p><strong>3.输入下面命令，重新启动SSH服务器：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/ssh restart</span><br></pre></td></tr></table></figure>`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>全新安装系统后，默认情况下将禁用Debian Linux上的root登录。当您尝试以root用户身份登录Debian11 Linux服务器时，访问将被拒绝。要在Debian Linux系统上为root用户启用SSH登录，您需要首先配置SSH服务器。</p>
 <p><strong>0.首先安装SSH</strong><br>注意：如果使用的是WSL安装的ubuntu&#x2F;debian，那么你需要先卸载：<code>apt remove openssh-server</code></p>
@@ -230,7 +257,7 @@
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2023/03/31/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-03-31-%E7%94%A8%E6%88%B7%E5%90%8D%E4%B8%8D%E5%9C%A8_sudoers%E6%96%87%E4%BB%B6%E4%B8%AD/" target="_self">
+              <a href="/2023/04/01/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/2023-04-01-%E6%88%91%E4%BB%AC%E9%83%BD%E8%A6%81%E5%BE%80%E5%AF%B9%E6%96%B9%E9%82%A3%E9%87%8C%E8%BF%88%E6%AD%A5-2022%E5%B9%B46%E6%9C%882%E6%97%A5/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -289,6 +316,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -307,6 +335,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -331,7 +367,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -341,7 +377,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

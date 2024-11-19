@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">debian的samba搭建</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:20:22
@@ -210,6 +216,183 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<hr>
+<h2 id="date-created-2022-11-29-16-31"><a href="#date-created-2022-11-29-16-31" class="headerlink" title="date created: 2022-11-29 16:31"></a>date created: 2022-11-29 16:31</h2><p>心血来潮，任务是将debian搭建samba服务。虽然大学学过，但是已经忘得差不多了。。。</p>
+<p>最怕改配置文件了。。</p>
+<h2 id="下载samba"><a href="#下载samba" class="headerlink" title="下载samba"></a>下载samba</h2><p>这个很重要。但是这个步骤一直告诉我依赖库有问题，我很是好奇依赖库哪里有问题，已经换成国内的镜像源。还是有依赖库的问题。以致于总是安装不上。后来才明白，这种依赖的问题大多数是源有问题，可以尝试换个源试试的。</p>
+<p>再<code>/etc/apt</code>的<code>sources.list</code>文件，如果你不习惯使用linux的vim可以使用xshell的xftp进行文件更改。另外说一句，debian这系统和centos还不一样，需要有权限才能对文件进行操作我，我要更改系统文件的话必须加上sudo才可以。</p>
+<p>打开<code>sources.list</code>文件之后，进行更改，添加上源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#阿里云镜像源</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bullseye main non-free contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bullseye main non-free contrib</span><br><span class="line">deb https://mirrors.aliyun.com/debian-security/ bullseye-security main</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian-security/ bullseye-security main</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib</span><br></pre></td></tr></table></figure>
+
+<p>添加上之后，保存文件然后输入下面命令更新源</p>
+<p><code>sudo apt-get update</code></p>
+<p><code>sudo apt-get upgrade</code></p>
+<h4 id="Tips："><a href="#Tips：" class="headerlink" title="Tips："></a>Tips：</h4><p>sudo apt-get update<br>这个命令，会访问源列表里的每个网址，并读取软件列表，然后保存在本地电脑。我们在新立得软件包管理器里看到的软件列表，都是通过update命令更新的。</p>
+<p>update后，可能需要upgrade一下。</p>
+<p>sudo apt-get upgrade<br>这个命令，会把本地已安装的软件，与刚下载的软件列表里对应软件进行对比，如果发现已安装的软件版本太低，就会提示你更新。如果你的软件都是最新版本，会提示：</p>
+<p>升级了 0 个软件包，新安装了 0 个软件包，要卸载 0 个软件包，有 0 个软件包未被升级。</p>
+<h2 id="安装samba"><a href="#安装samba" class="headerlink" title="安装samba"></a>安装samba</h2><p>root用户下直接使用以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install samba</span><br></pre></td></tr></table></figure>
+
+<p>若是普通用户下使用以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install samba</span><br></pre></td></tr></table></figure>
+
+<p>安装好samba之后然后就是更改配置文件<code>/etc/samba</code>下面的<code>smb.conf</code>文件</p>
+<h2 id="更改samba配置文件"><a href="#更改samba配置文件" class="headerlink" title="更改samba配置文件"></a>更改samba配置文件</h2><p>我主要更改了home文件下面的配置文件，appshare是我自己写的配置，可以照着写一下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">workgroup = WORKGROUP</span><br><span class="line">   <span class="built_in">log</span> file = /var/log/samba/log.%m</span><br><span class="line">   max <span class="built_in">log</span> size = 1000</span><br><span class="line">   logging = file</span><br><span class="line">   panic action = /usr/share/samba/panic-action %d</span><br><span class="line">   server role = standalone server</span><br><span class="line">   obey pam restrictions = <span class="built_in">yes</span></span><br><span class="line">   unix password <span class="built_in">sync</span> = <span class="built_in">yes</span></span><br><span class="line">   map to guest = bad user <span class="comment">#设置是否可以匿名访问</span></span><br><span class="line">   usershare allow guests = <span class="built_in">yes</span></span><br><span class="line">[homes]</span><br><span class="line">   comment = Home Directories</span><br><span class="line">   browseable = <span class="built_in">yes</span></span><br><span class="line">   public = <span class="built_in">yes</span></span><br><span class="line">   guest ok = <span class="built_in">yes</span></span><br><span class="line">   <span class="built_in">read</span> only = no</span><br><span class="line">   writable = <span class="built_in">yes</span></span><br><span class="line">   create mask = 0777</span><br><span class="line">   directory mask = 0777</span><br><span class="line">   valid <span class="built_in">users</span> = %S</span><br><span class="line">[appshare]</span><br><span class="line">comment = WinccOA Share <span class="comment">#描述</span></span><br><span class="line">path = /home/uarto/app   <span class="comment">#路径</span></span><br><span class="line">browseable = <span class="built_in">yes</span>   <span class="comment">#是否可见</span></span><br><span class="line">writable = <span class="built_in">yes</span> <span class="comment">#可写</span></span><br><span class="line">available = <span class="built_in">yes</span></span><br><span class="line">public = <span class="built_in">yes</span> <span class="comment">#公共</span></span><br><span class="line"><span class="built_in">read</span> only = no <span class="comment">#只读，不能和上面的pulic =yes 冲突</span></span><br><span class="line">guest ok = <span class="built_in">yes</span></span><br><span class="line">browseable = <span class="built_in">yes</span></span><br><span class="line">create mask = 0777</span><br><span class="line">directory mask = 0777</span><br></pre></td></tr></table></figure>
+
+<p>再然后就是保存重启配置文件，重启samba服务就可以</p>
+<p><code>sudo systemctl  restart  smbd</code></p>
+<p><strong>如果出现文件夹无法访问的情况，有可能是没有给共享文件夹下赋予一定的权限，使用chmod更改文件夹权限就可以。</strong></p>
+<h2 id="Samba服务程序中的参数以及作用"><a href="#Samba服务程序中的参数以及作用" class="headerlink" title="Samba服务程序中的参数以及作用"></a>Samba服务程序中的参数以及作用</h2><table>
+<thead>
+<tr>
+<th>[global]</th>
+<th></th>
+<th>全局参数。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>workgroup &#x3D; MYGROUP</td>
+<td>工作组名称</td>
+</tr>
+<tr>
+<td></td>
+<td>server string &#x3D; Samba Server Version %v</td>
+<td>服务器介绍信息，参数%v为显示SMB版本号</td>
+</tr>
+<tr>
+<td></td>
+<td>log file &#x3D; &#x2F;var&#x2F;log&#x2F;samba&#x2F;log.%m</td>
+<td>定义日志文件的存放位置与名称，参数%m为来访的主机名</td>
+</tr>
+<tr>
+<td></td>
+<td>max log size &#x3D; 50</td>
+<td>定义日志文件的最大容量为50KB</td>
+</tr>
+<tr>
+<td></td>
+<td>security &#x3D; user</td>
+<td>安全验证的方式，总共有4种</td>
+</tr>
+<tr>
+<td></td>
+<td>share：来访主机无需验证口令；比较方便，但安全性很差</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>user：需验证来访主机提供的口令后才可以访问；提升了安全性</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>server：使用独立的远程主机验证来访主机提供的口令（集中管理账户）</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>domain：使用域控制器进行身份验证</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>passdb backend &#x3D; tdbsam</td>
+<td>定义用户后台的类型，共有3种</td>
+</tr>
+<tr>
+<td></td>
+<td>smbpasswd：使用smbpasswd命令为系统用户设置Samba服务程序的密码</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>tdbsam：创建数据库文件并使用pdbedit命令建立Samba服务程序的用户</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>ldapsam：基于LDAP服务进行账户验证</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>load printers &#x3D; yes</td>
+<td>设置在Samba服务启动时是否共享打印机设备</td>
+</tr>
+<tr>
+<td></td>
+<td>cups options &#x3D; raw</td>
+<td>打印机的选项</td>
+</tr>
+<tr>
+<td>[homes]</td>
+<td></td>
+<td>共享参数</td>
+</tr>
+<tr>
+<td></td>
+<td>comment &#x3D; Home Directories</td>
+<td>描述信息</td>
+</tr>
+<tr>
+<td></td>
+<td>browseable &#x3D; no</td>
+<td>指定共享信息是否在“网上邻居”中可见</td>
+</tr>
+<tr>
+<td></td>
+<td>writable &#x3D; yes</td>
+<td>定义是否可以执行写入操作，与“read only”相反</td>
+</tr>
+<tr>
+<td>[printers]</td>
+<td></td>
+<td>打印机共享参数</td>
+</tr>
+<tr>
+<td></td>
+<td>comment &#x3D; All Printers</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>path &#x3D; &#x2F;var&#x2F;spool&#x2F;samba</td>
+<td>共享文件的实际路径(重要)。</td>
+</tr>
+<tr>
+<td></td>
+<td>browseable &#x3D; no</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>guest ok &#x3D; no   等于 public &#x3D; no</td>
+<td>是否所有人可见，等同于”public”参数。</td>
+</tr>
+<tr>
+<td></td>
+<td>writable &#x3D; no    等于 read only &#x3D; yes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>printable &#x3D; yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>共享选项及说明，按照需求合理配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">[共享名称]: 共享中看到的共享目录名</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">comment = 共享的描述. </span><br><span class="line"></span><br><span class="line">path = 共享目录路径(可以用%u、%m这样的宏来代替路径如:/home/share/%u) </span><br><span class="line"></span><br><span class="line">browseable = <span class="built_in">yes</span>/no指定该共享是否在“网上邻居”中可见。</span><br><span class="line"></span><br><span class="line">writable = <span class="built_in">yes</span>/no指定该共享路径是否可写。</span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> only = <span class="built_in">yes</span>/no设置共享目录为只读(注意设置不要与writable有冲突) </span><br><span class="line"></span><br><span class="line">available = <span class="built_in">yes</span>/no指定该共享资源是否可用。</span><br><span class="line"></span><br><span class="line">admin <span class="built_in">users</span> = bobyuan，jane指定该共享的管理员,用户验证方式为“security=share”时，此项无效。 </span><br><span class="line"></span><br><span class="line">valid <span class="built_in">users</span> = bobyuan，jane允许访问该共享的用户或组-“@+组名” </span><br><span class="line"></span><br><span class="line">invalid <span class="built_in">users</span> = 禁止访问该共享的用户与组(同上) </span><br><span class="line"></span><br><span class="line">write list = 允许写入该共享的用户</span><br><span class="line"></span><br><span class="line">public = <span class="built_in">yes</span>/no共享是否允许guest账户访问。 </span><br><span class="line"></span><br><span class="line">guest ok = <span class="built_in">yes</span>/no意义同“public”。</span><br><span class="line"></span><br><span class="line">create mask = 0700指定用户通过Samba在该共享目录中创建文件的默认权限。0600代表创建文件的权限为rw-------</span><br><span class="line"></span><br><span class="line">directory mask = 0700指定用户通过Samba在该共享目录中创建目录的默认权限。0600代表创建目录的权限为rwx------ </span><br></pre></td></tr></table></figure>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <hr>
 <h2 id="date-created-2022-11-29-16-31"><a href="#date-created-2022-11-29-16-31" class="headerlink" title="date created: 2022-11-29 16:31"></a>date created: 2022-11-29 16:31</h2><p>心血来潮，任务是将debian搭建samba服务。虽然大学学过，但是已经忘得差不多了。。。</p>
@@ -462,6 +645,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -480,6 +664,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -504,7 +696,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -514,7 +706,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">为404界面加上一言api</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:33:50
@@ -204,6 +210,34 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>忽然发现这个博客的404界面有些简单，但是很喜欢这种极简的风格但总感觉少了些什么，想了想之前搞得一言的api。索性加上他，锦上添花一点。</p>
+<p>首先先选一言的api，因为之前这种东西挺火的，有很多大佬开发出来，了，放到服务器上面供咱这种菜鸡使用了。因为我喜欢古诗词，所以选的古诗词的api</p>
+<p>这个是人家的官网  <a target="_blank" rel="noopener" href="https://gushi.ci/">https://gushi.ci/</a></p>
+<p>其实官网上有很多的教程，就是看自己会不会用了。但我是在基础上微调的，就没用。这个是json格式的api，这里用的浏览器json解析插件是<strong>json-viewer</strong></p>
+<p><a target="_blank" rel="noopener" href="https://v1.jinrishici.com/all">https://v1.jinrishici.com/all</a></p>
+<p>首先先对这个简单分析一下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;冲波突出人齐譀，跃浪争先鸟退飞。&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;origin&quot;</span><span class="punctuation">:</span> <span class="string">&quot;竞渡诗 / 及第后江宁观竞渡寄袁州剌史成应元&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;卢肇&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;category&quot;</span><span class="punctuation">:</span> <span class="string">&quot;古诗文-节日-端午节&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>首先这里面有content、origin、author、category这几个数据，我们用到的就是前三个，很容易理解，这三个分别是诗句，来源以及作者。然后就开始着手写了。<br>先引入jquery</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入jQuery--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>再然后就开始对json文件进行解析，这里用的是ajax</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 异步ajax  古诗词</span></span></span><br><span class="line"><span class="language-javascript">    $.<span class="title function_">ajax</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">type</span>: <span class="string">&#x27;GET&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">url</span>: <span class="string">&#x27;https://v1.jinrishici.com/all&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">data</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            $(<span class="string">&quot;.text&quot;</span>).<span class="title function_">text</span>(data.<span class="property">content</span>);  <span class="comment">// 获取古诗词内容</span></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span> (data.<span class="property">author</span> || data.<span class="property">origin</span>)&#123;  <span class="comment">// 如果来源不为空 随便一个有就就进行显示</span></span></span><br><span class="line"><span class="language-javascript">                $(<span class="string">&quot;.author&quot;</span>).<span class="title function_">text</span>(data.<span class="property">author</span>);</span></span><br><span class="line"><span class="language-javascript">                $(<span class="string">&quot;.lai&quot;</span>).<span class="title function_">text</span>(<span class="string">&quot;《&quot;</span>+data.<span class="property">origin</span>+<span class="string">&quot;》&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">            &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                $(<span class="string">&quot;.author&quot;</span>).<span class="title function_">hide</span>();<span class="comment">// 隐藏来源</span></span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 淡入显示</span></span></span><br><span class="line"><span class="language-javascript">            $(<span class="string">&quot;.show-sentence&quot;</span>).<span class="title function_">fadeIn</span>(<span class="number">4000</span>)</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来是显示部分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配合css设置淡入的显示和字体以及其他的属性 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;show-sentence&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这里接受显示的古诗词 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;text&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 这里若是判断作者名或者有的话就会显示 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;source&quot;</span>&gt;</span></span><br><span class="line">          ———— <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;lai&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;author&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后的话，如果你想显示美观一下的话，采用哪个404的颜色，然后仿照一下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一言 */</span></span><br><span class="line">    <span class="selector-class">.text</span> &#123;</span><br><span class="line">      <span class="attribute">color</span>:<span class="number">#666</span>;</span><br><span class="line">      <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">      <span class="attribute">font-weight</span>: bold;</span><br><span class="line">      <span class="attribute">font-family</span>: STHeiti;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.source</span> &#123;</span><br><span class="line">      <span class="attribute">color</span>:<span class="number">#666</span>;</span><br><span class="line">      <span class="attribute">font-size</span>: <span class="number">15px</span>;</span><br><span class="line">      <span class="attribute">font-weight</span>: bold;</span><br><span class="line">      <span class="attribute">padding-left</span>: <span class="number">40%</span>;</span><br><span class="line">      <span class="attribute">font-family</span>: STHeiti;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.show-sentence</span> &#123;</span><br><span class="line">      <span class="attribute">margin-top</span> : <span class="number">130px</span>;</span><br><span class="line">      <span class="attribute">display</span>: none;    <span class="comment">/* 开始隐藏div */</span></span><br><span class="line">      <span class="attribute">text-align</span>: center;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>忽然发现这个博客的404界面有些简单，但是很喜欢这种极简的风格但总感觉少了些什么，想了想之前搞得一言的api。索性加上他，锦上添花一点。</p>
 <p>首先先选一言的api，因为之前这种东西挺火的，有很多大佬开发出来，了，放到服务器上面供咱这种菜鸡使用了。因为我喜欢古诗词，所以选的古诗词的api</p>
@@ -284,6 +318,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -302,6 +337,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -326,7 +369,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -336,7 +379,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

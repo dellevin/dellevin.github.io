@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">少年赠我红玫瑰</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:40:48
@@ -204,6 +210,19 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>人终将会被少年不可得之物困其一生。</p>
+<p>少年的我，喜欢电脑，奈何家里没有，便四处去有电脑的人家蹭，去同学家，去弟弟家，还好当时是小学，去网吧成了奢望。每次听着同班同学说玩了什么游戏，看了什么电视，我都装作毫不在意，其实竖耳倾听电脑世界的神奇。从那时起，便对电脑产生了浓厚的热情，可惜家境贫寒。这份热情甚至一度超过了父母，从那时起执念深深的埋在了小学。奈何家境贫寒。</p>
+<p>说起感情，我不知道自己为什么会对另一半的依恋很强。强到让人厌烦的地步。可是这个强依恋止步在了上一段感情之中。三番四次的背叛让我对感情彻底的失望。把自己困在一个只有纯真爱情的乌托邦。别人进不来，我也出不去。</p>
+<p>如今的我，有了三四台电脑，却没有当年的欢乐，没有人分享，我也不知道干什么。能激起我乐趣的，也就在网络上帮别人解决问题，发帖子带来的成就感让我提起兴趣。自己一个人单身了七八年，每时每刻都在告诉自己“喂！张昊洋！做一个拯救自己的英雄吧！”每当听到自己劝慰自己的话，我都想打了鸡血一样，从混乱中重生，从黎明中绽放。</p>
+<p>至于年少的我，早就死在了七年前六月十日的清晨。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>人终将会被少年不可得之物困其一生。</p>
 <p>少年的我，喜欢电脑，奈何家里没有，便四处去有电脑的人家蹭，去同学家，去弟弟家，还好当时是小学，去网吧成了奢望。每次听着同班同学说玩了什么游戏，看了什么电视，我都装作毫不在意，其实竖耳倾听电脑世界的神奇。从那时起，便对电脑产生了浓厚的热情，可惜家境贫寒。这份热情甚至一度超过了父母，从那时起执念深深的埋在了小学。奈何家境贫寒。</p>
@@ -269,6 +288,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -287,6 +307,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -311,7 +339,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -321,7 +349,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

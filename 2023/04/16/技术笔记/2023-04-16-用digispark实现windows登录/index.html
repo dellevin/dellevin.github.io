@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">用digispark实现windows登录</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:12:32
@@ -210,6 +216,36 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>昨晚上在家里搜搜，发现了这个小东西。之前是用来做badusb的。但是一直没有去真的实施（主要是胆小）。所以今天拿出来随便玩玩。其实这玩意可以实现很多操作，主要看自己怎么做了。</p>
+<p><strong>下载Arduino IDE</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.arduino.cc/en/software">https://www.arduino.cc/en/software</a></p>
+<p><strong>建议打开之后，第一件事就是挂代理，好多依赖都是需要代理才行的。</strong></p>
+<p>简单配置：</p>
+<p>File-&gt;Preferences-&gt;Settings</p>
+<p>在这里面找到Additional boards manaqer URLs</p>
+<p>然后在里面填入以下网址</p>
+<p><a target="_blank" rel="noopener" href="http://digistump.com/package_digistump_index.json">http://digistump.com/package_digistump_index.json</a></p>
+<p>点击类似文件的按钮进行安装</p>
+<p>然后就可以写了，有的时候一定要设置延迟，是给电脑的反应时间。。。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;DigiKeyboard.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">DigiKeyboard.<span class="built_in">sendKeyStroke</span>(<span class="number">0</span>);</span><br><span class="line">DigiKeyboard.<span class="built_in">delay</span>(<span class="number">50</span>);</span><br><span class="line">DigiKeyboard.<span class="built_in">sendKeyStroke</span>(KEY_ENTER);</span><br><span class="line">DigiKeyboard.<span class="built_in">delay</span>(<span class="number">2000</span>);</span><br><span class="line">DigiKeyboard.<span class="built_in">print</span>(<span class="string">&quot;qqqqq&quot;</span>);<span class="comment">//这里写开机密码的英文</span></span><br><span class="line">DigiKeyboard.<span class="built_in">print</span>(<span class="string">&quot;0000&quot;</span>);<span class="comment">//这里写开机密码的数字</span></span><br><span class="line">DigiKeyboard.<span class="built_in">delay</span>(<span class="number">1000</span>);</span><br><span class="line">DigiKeyboard.<span class="built_in">sendKeyStroke</span>(KEY_ENTER);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>英文和数字要分开写，测试过，好像英文和数字在一起只会有英文。</p>
+<p>另外一定要引用<code> &quot;DigiKeyboard.h&quot;</code>而不是<code>&quot;Keyboard.h&quot;</code>。再引用Keyboard.h之后，不知道为什么会编译失败一直提是HID.h找不到，网上找办法也找不到。难受得要死。</p>
+<p>另外<code>DigiKeyboard.h</code>无法实现<code>ctrl+del+alt</code>的组合键操作，这也是难受的一点。</p>
+<p>写完之后，点击左上角的对勾，看看有没有错。没有错的话，就可以点击对勾旁边的按钮进行编译 了。</p>
+<p>出现这个<code>plug in device now...</code>提示，是告诉你要再60s内插入disgispark的，要在一分钟之内不插入的话会提示你超时。插入之后，就开始识别编译了。最后出现如下的提示<code>Micronucleus done.Thank youl</code>，就说明编译成功了。</p>
+<p>另外，要下载Digispark的驱动才可以。下面的是驱动下载的地址，然后点击64那个安装就可以了。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/digistump/DigistumpArduino/releases">https://github.com/digistump/DigistumpArduino/releases</a></p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>昨晚上在家里搜搜，发现了这个小东西。之前是用来做badusb的。但是一直没有去真的实施（主要是胆小）。所以今天拿出来随便玩玩。其实这玩意可以实现很多操作，主要看自己怎么做了。</p>
 <p><strong>下载Arduino IDE</strong></p>
@@ -298,6 +334,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -316,6 +353,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -340,7 +385,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -350,7 +395,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

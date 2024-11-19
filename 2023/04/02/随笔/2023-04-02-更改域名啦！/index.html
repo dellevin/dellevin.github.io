@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">更改域名啦！</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:57:58
@@ -204,6 +210,18 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>花了几块钱，把自己域名更改了一，解析换了一下。解析完毕之后，我本以为会正常显示，结果半天了，啥还是不行。我本以为我操作的问题，心想着是域名解析啊，的确没错，看了一下浏览器的控制台，error404，域名还是指向原来的域名，好家伙，原来是我忘了清理浏览器的缓存了，之前的cookies还存着呢。</p>
+<p>这里不得不提到那个面试常问的问题了，cookies和session的区别了。</p>
+<p>cookie实际上是一小段的文本信息。客户端请求服务器，如果服务器需要记录该用户的状态，就使用response向客户端浏览器颁发一个cookie。客户端浏览器会把cookie保存起来。当浏览器再次请求该网站时，浏览器就会把请求地址和cookie一同给服务器。服务器检查该cookie，从而判断用户的状态。服务器还可以根据需要修改cookie的内容。<br>session是另一种记录客户状态的机制。不同的是cookie保存在客户端浏览器中，而session保存在服务器上。客户端浏览器访问服务器的时候，服务器把客户端信息以某种形式记录在服务器上，这就是session。客户端浏览器再次访问时只需要从该session中查找该客户的状态就可以了。<br>如果说cookie机制是通过检查客户身上的“通信证”，那么session机制就是通过检查服务器上的“客户明细表”来确认客户身份。</p>
+<p>前些日子，steam花了58大洋买了个鬼谷八荒，心痛的一批，但是真香。这种战斗模式，和游戏模式都是我前所未见的。虽说游戏出的久了。但是真的上手还是这些日子。虽说是个单机游戏，但是还是有很多地方值得深思的，比如这游戏退出的时候，会警告你退出不会保存游戏历史进度，只有你点击保存了历史进度退出进入才会保存历史进度。所以说，在游戏进行过程中他是在内存中不断整活的。跟我同学聊了起来，他说别的游戏也碰到过，想必是单机游戏都是如此吧。毕竟上来就直接往磁盘中读写，这是最要命的，再好的电脑也能被折腾废了。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>花了几块钱，把自己域名更改了一，解析换了一下。解析完毕之后，我本以为会正常显示，结果半天了，啥还是不行。我本以为我操作的问题，心想着是域名解析啊，的确没错，看了一下浏览器的控制台，error404，域名还是指向原来的域名，好家伙，原来是我忘了清理浏览器的缓存了，之前的cookies还存着呢。</p>
 <p>这里不得不提到那个面试常问的问题了，cookies和session的区别了。</p>
@@ -252,7 +270,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2023/04/02/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/2023-04-02-%E7%BE%8E%E6%BB%A1%E7%9A%84%E5%A9%9A%E5%A7%BB%E8%A6%81%E7%94%B1%E7%9E%8E%E5%AD%90%E5%A5%B3%E4%BA%BA%E5%92%8C%E8%81%8B%E5%AD%90%E7%94%B7%E4%BA%BA%E7%BC%94%E6%88%90/" target="_self">
+              <a href="/2023/04/03/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-04-03-Failed_to_start_bean_documentationPluginsBootstrapper/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
@@ -268,6 +286,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -286,6 +305,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -310,7 +337,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -320,7 +347,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">java项目引入resources下面的文件</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:39:33
@@ -210,6 +216,26 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>好久没写java，差点都忘了。。。</p>
+<p>起因是一个资源文件在resources目录下面，转换后的地址类型是string类型不是file，于是用类加载器获取文件资源路径</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">dbPath</span> <span class="operator">=</span> GetIpAddr.class.getClassLoader().getResource(<span class="string">&quot;ip2region/ip2region.xdb&quot;</span>).getPath();</span><br></pre></td></tr></table></figure>
+
+<p>但是这样在编译部署完毕后会报错</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Generating unique operation named: userInfoUsingGET_1</span><br><span class="line"><span class="number">2024</span>-09-<span class="number">26</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">40.345</span>  INFO <span class="number">3992</span> --- [nio-<span class="number">8081</span>-exec-<span class="number">1</span>] o.a.c.c.C.[.[localhost].[/sys_api]       : Initializing Spring DispatcherServlet <span class="string">&#x27;dispatcherServlet&#x27;</span></span><br><span class="line">failed to load vector index from file:/C:/Users/Administrator/Desktop/jar/api.jar!/BOOT-INF/classes!/ip2region/ip2region.xdb: java.io.FileNotFoundException: file:\C:\Users\Administrator\Desktop\jar\api.jar!\BOOT-INF\classes!\ip2region\ip2region.xdb (文件名、目录名或卷标语法不正确。)</span><br><span class="line"><span class="number">2024</span>-09-<span class="number">26</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">40.664</span> ERROR <span class="number">3992</span> --- [nio-<span class="number">8081</span>-exec-<span class="number">1</span>] i.d.exception.RenExceptionHandler        :</span><br><span class="line">### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too <span class="type">long</span> <span class="keyword">for</span> column <span class="string">&#x27;ip_addr&#x27;</span> at row <span class="number">1</span></span><br><span class="line">### The error may exist in URL [jar:file:/C:/Users/Administrator/Desktop/jar/api.jar!/BOOT-INF/classes!/mapper/MarkVisiter.xml]</span><br><span class="line">### The error may involve io.dellevin.dao.MarkVisiterDao.insertVisitRecord-Inline</span><br><span class="line">### The error occurred <span class="keyword">while</span> setting parameters</span><br><span class="line">### SQL: INSERT INTO <span class="title function_">mark_visiter</span>             <span class="params">( visit_url, ip, ip_addr, create_time)</span>         VALUES             (                  ?, ?, ?, NOW()             )</span><br><span class="line">### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too <span class="type">long</span> <span class="keyword">for</span> column <span class="string">&#x27;ip_addr&#x27;</span> at row <span class="number">1</span></span><br><span class="line">; Data truncation: Data too <span class="type">long</span> <span class="keyword">for</span> column <span class="string">&#x27;ip_addr&#x27;</span> at row <span class="number">1</span>; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too <span class="type">long</span> <span class="keyword">for</span> column <span class="string">&#x27;ip_addr&#x27;</span> at row <span class="number">1</span></span><br><span class="line"></span><br><span class="line">org.springframework.dao.DataIntegrityViolationException:</span><br></pre></td></tr></table></figure>
+
+<p>只能用流方式加载文件，于是采用如下方式：可以使用一个临时文件来处理这个问题。首先读取输入流，然后将其写入一个临时文件，最后将该临时文件的路径作为 <code>dbPath</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">dbPath</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1、从 dbPath 中预先加载 VectorIndex 缓存</span></span><br><span class="line">        <span class="keyword">try</span> (<span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> GetIpAddr.class.getClassLoader().getResourceAsStream(<span class="string">&quot;ip2region/ip2region.xdb&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (inputStream == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">FileNotFoundException</span>(<span class="string">&quot;Resource not found: ip2region/ip2region.xdb&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 创建临时文件</span></span><br><span class="line">            <span class="type">File</span> <span class="variable">tempFile</span> <span class="operator">=</span> Files.createTempFile(<span class="string">&quot;ip2region&quot;</span>, <span class="string">&quot;.xdb&quot;</span>).toFile();</span><br><span class="line">            <span class="keyword">try</span> (<span class="type">FileOutputStream</span> <span class="variable">outputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(tempFile)) &#123;</span><br><span class="line">                <span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">                <span class="type">int</span> bytesRead;</span><br><span class="line">                <span class="keyword">while</span> ((bytesRead = inputStream.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">                    outputStream.write(buffer, <span class="number">0</span>, bytesRead);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 获取临时文件路径</span></span><br><span class="line">            dbPath = tempFile.getAbsolutePath();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            System.out.printf(<span class="string">&quot;failed to load vector index: %s\n&quot;</span>, e);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;failed to load vector index: &quot;</span> + e + <span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>好久没写java，差点都忘了。。。</p>
 <p>起因是一个资源文件在resources目录下面，转换后的地址类型是string类型不是file，于是用类加载器获取文件资源路径</p>
@@ -288,6 +314,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -306,6 +333,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -330,7 +365,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -340,7 +375,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

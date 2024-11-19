@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">打醒自己</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:14:57
@@ -204,6 +210,26 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>离开学校，我第一件事情就应该是打醒自己，告诉自己已经进入社会，而不是沉溺于自己改变社会的幻想，而这种觉醒，却是在第一份工作辞职后，也就是毕业半年后。</p>
+<p><strong>解释性知识不能替代实践性知识。</strong></p>
+<p>随着行业分工的细化，整个社会也逐步的趋向于高内聚，低耦合。这种形式的发展下，“高内聚，低耦合”不仅成为了软件的评判标准，也渐渐的开始成为了个人，公司，职业的评判标准。实践性知识的重要性开始提高，但是它也开始被初入社会的年轻人忽略。</p>
+<p>自己带着知识的傲慢，觉得自己学到的知识就可以解释宇宙万物，社会百态，觉得可以凭借知识去兑换自己的红利。找工作不顺利，工作不顺心就去批判社会，批判资本家，诚然是应该批判这些的，但是自己是真的想批判社会和资本家吗？只不过是想通过批判社会来改善个人境遇，一种逃避现实的借口罢了。</p>
+<p>有些人也不创造价值，他们凭什么有那么好的工作。可是，寄生虫永远存在，所以社会的批判永不过时。但如果批判寄生虫的目的是为了自己当寄生虫，那的确是有些可悲了。</p>
+<p>一旦把个人生活过不好的责任，全部总结到社会的头上，就等于放弃了个人努力的志气。用阶级理论，给不如意的工作一个安慰。用性别理论，给不如意的情感一个安慰。这些大而化之的理论，可以解释所有的不如意，但却无法纠正任何一个微小的不如意。这些理论反而固化了人的认知，让人觉得“万方有罪，唯我无辜”。这表面上是对世界的指责，其实是对自己人生的放弃。</p>
+<p>奇怪人们为什么总用宏观客观理论解释微观主观实践？</p>
+<hr>
+<p>以下来自一位前辈的一句话</p>
+<blockquote>
+<p>用宏观上的不适当安慰微观上的不如意 但是随着互联网让人们感受到的阶级感越来越强 贫富差距越来越大 很多差距确实不是靠个人努力就可以弥补的。年轻人确实很累 也确实爱抱怨 但这也是他们一种自我保护的方式吧 毕竟现实生活中我们能改变的事情也很有限。所以年轻人爱抱怨固然不是一件好事 但也是一种方式 一种表达的方式。如果等哪天都懒得批判 懒得抱怨了 那真是快到头了</p>
+</blockquote>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>离开学校，我第一件事情就应该是打醒自己，告诉自己已经进入社会，而不是沉溺于自己改变社会的幻想，而这种觉醒，却是在第一份工作辞职后，也就是毕业半年后。</p>
 <p><strong>解释性知识不能替代实践性知识。</strong></p>
@@ -276,6 +302,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -294,6 +321,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -318,7 +353,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -328,7 +363,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

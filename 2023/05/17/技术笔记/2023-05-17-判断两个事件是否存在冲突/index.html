@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">判断两个事件是否存在冲突</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:02:59
@@ -210,6 +216,44 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>给你两个字符串数组 <code>event1</code> 和 <code>event2</code> ，表示发生在同一天的两个闭区间时间段事件，其中：</p>
+<ul>
+<li><code>event1 = [startTime1, endTime1]</code> </li>
+<li><code>event2 = [startTime2, endTime2]</code></li>
+</ul>
+<p>事件的时间为有效的 24 小时制且按 <code>HH:MM</code> 格式给出。</p>
+<p>当两个事件存在某个非空的交集时（即，某些时刻是两个事件都包含的），则认为出现 <strong>冲突</strong> 。</p>
+<p>如果两个事件之间存在冲突，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：event1 = [&quot;01:15&quot;,&quot;02:00&quot;], event2 = [&quot;02:00&quot;,&quot;03:00&quot;]</span><br><span class="line">输出：true</span><br><span class="line">解释：两个事件在 2:00 出现交集。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：event1 = [&quot;01:00&quot;,&quot;02:00&quot;], event2 = [&quot;01:20&quot;,&quot;03:00&quot;]</span><br><span class="line">输出：true</span><br><span class="line">解释：两个事件的交集从 01:20 开始，到 02:00 结束。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：event1 = [&quot;10:00&quot;,&quot;11:00&quot;], event2 = [&quot;14:00&quot;,&quot;15:00&quot;]</span><br><span class="line">输出：false</span><br><span class="line">解释：两个事件不存在交集。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>evnet1.length == event2.length == 2.</code></li>
+<li><code>event1[i].length == event2[i].length == 5</code></li>
+<li><code>startTime1 &lt;= endTime1</code></li>
+<li><code>startTime2 &lt;= endTime2</code></li>
+<li>所有事件的时间都按照 <code>HH:MM</code> 格式给出</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">haveConflict</span><span class="params">(String[] event1, String[] event2)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">event1StartTime</span> <span class="operator">=</span> strToIntTime(event1[<span class="number">0</span>]);</span><br><span class="line">        <span class="type">int</span> <span class="variable">event1EndTime</span>   <span class="operator">=</span> strToIntTime(event1[<span class="number">1</span>]);</span><br><span class="line">        <span class="type">int</span> <span class="variable">event2StartTime</span> <span class="operator">=</span> strToIntTime(event2[<span class="number">0</span>]);</span><br><span class="line">        <span class="type">int</span> <span class="variable">event2EndTime</span>   <span class="operator">=</span> strToIntTime(event2[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(event1EndTime &lt; event2StartTime || event2EndTime &lt;event1StartTime )&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">strToIntTime</span><span class="params">(String str)</span> &#123;</span><br><span class="line">        String[] ss = str.split(<span class="string">&quot;:&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">hours</span> <span class="operator">=</span> Integer.parseInt(ss[<span class="number">0</span>])*<span class="number">60</span>;</span><br><span class="line">        <span class="keyword">return</span>  hours+Integer.parseInt(ss[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>比对时间不在另一个区间内就可以了，但是string不能进行比较，只能使用int类型比较。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>给你两个字符串数组 <code>event1</code> 和 <code>event2</code> ，表示发生在同一天的两个闭区间时间段事件，其中：</p>
 <ul>
@@ -323,6 +367,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -341,6 +386,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -365,7 +418,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -375,7 +428,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

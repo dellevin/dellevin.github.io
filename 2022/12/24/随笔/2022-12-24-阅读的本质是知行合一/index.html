@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">阅读的本质是知行合一</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:32:23
@@ -204,6 +210,15 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>阅读是为了改变，知道了很多乱七八糟的道理却都是用作和人交谈时故作炫耀的资本，从来没有深刻践行我阅读到的知识，身边的人都误以为我头脑清醒，行动力强，只有自己才清楚我只是思想的巨人，行动的矮子，做了一点都要拿出来说，再把大道理一摆，再无行动，只在别人的称赞中迷失自己，但结局不会陪自己演戏，没通过的考试，考证失败都会一下把自己打回原形，再灰溜溜地逃跑和以前炫耀过的朋友再无联系，这种恶性循环真的让人郁结颓废，梦想没开始做就是空想，知道再多没有刻意反复实践都是0。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>阅读是为了改变，知道了很多乱七八糟的道理却都是用作和人交谈时故作炫耀的资本，从来没有深刻践行我阅读到的知识，身边的人都误以为我头脑清醒，行动力强，只有自己才清楚我只是思想的巨人，行动的矮子，做了一点都要拿出来说，再把大道理一摆，再无行动，只在别人的称赞中迷失自己，但结局不会陪自己演戏，没通过的考试，考证失败都会一下把自己打回原形，再灰溜溜地逃跑和以前炫耀过的朋友再无联系，这种恶性循环真的让人郁结颓废，梦想没开始做就是空想，知道再多没有刻意反复实践都是0。</p>
 
@@ -265,6 +280,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -283,6 +299,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -307,7 +331,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -317,7 +341,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

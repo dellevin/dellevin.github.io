@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">zabbix时区提示错误</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:38:06
@@ -204,6 +210,29 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>更改php.ini配置文件的设置，去掉date.timezone的注释，将时区改为Asia&#x2F;Shanghai</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/php.ini </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[Date]</span><br><span class="line"></span><br><span class="line">; Defines the default timezone used by the datefunctions</span><br><span class="line"></span><br><span class="line">; http://php.net/date.timezone</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">date.timezone=Asia/Shanghai </span><br></pre></td></tr></table></figure>
+
+<p>将最前面的分号去掉，上面时区改成亚洲上海。</p>
+<p>查看并修改&#x2F;etc&#x2F;httpd&#x2F;conf.d&#x2F;zabbix.conf配置文件的配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/httpd/conf.d/zabbix.conf </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Options FollowSymLinksAllowOverride None</span><br><span class="line"></span><br><span class="line">Order allow,deny</span><br><span class="line"></span><br><span class="line">Allow from all</span><br><span class="line"></span><br><span class="line">php_value max_execution_time 300</span><br><span class="line"></span><br><span class="line">php_value memory_limit 128M</span><br><span class="line"></span><br><span class="line">php_value post_max_size 16M</span><br><span class="line"></span><br><span class="line">php_value upload_max_filesize 2M</span><br><span class="line"></span><br><span class="line">php_value max_input_time 300</span><br><span class="line"></span><br><span class="line">php_value date.timezone Asia/Shanghai </span><br></pre></td></tr></table></figure>
+
+<p>重启httpd服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart httpd </span><br></pre></td></tr></table></figure>
+
+<p>重新刷新网页即可</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>更改php.ini配置文件的设置，去掉date.timezone的注释，将时区改为Asia&#x2F;Shanghai</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/php.ini </span><br></pre></td></tr></table></figure>
@@ -274,6 +303,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -292,6 +322,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -316,7 +354,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -326,7 +364,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

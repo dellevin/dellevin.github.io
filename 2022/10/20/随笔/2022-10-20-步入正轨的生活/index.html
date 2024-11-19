@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">步入正轨的生活</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:32:42
@@ -204,6 +210,18 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>入职第三天了，感觉生活慢慢的步入了正轨。这种感觉给了我一种不一样的味道。如果用来比喻的话，初中就像是甘蔗，高中是糖果，大学是掺杂着糖分的苦咖啡。现在给我的感觉有一种油盐的气息。</p>
+<p>今天发现生活并没有那么枯燥，也许是老板夸我了，也许是老板说我了，我觉得自己有用了。其实我很怕自己没有用，这样代表着不被需要，没人在乎你了。这样的生活也挺好。</p>
+<p>这是学习wincc oa的第三天。我好怕自己掉队，自己在学习中发现自己的无知，发现老板真的好厉害，啥都会。今天和我讲的时候听得我一阵懵逼。明天还有任务，希望一切顺利。工作中没有那么多的时间去学习，只有边做边使用。这几天使用这wincc oa下来发现，开发文档远远比那些视频清楚多了。主要是教学视频也没多少，几乎没有，搞不懂为什么？还是感觉自己学的太慢了。慢慢来吧，继续加油努力！！！</p>
+<p>这周六就要搬家了，终于要有一个长久居住的住所了，真的是好开心！！！步入正轨的生活，让人有着莫名的期待。。。。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>入职第三天了，感觉生活慢慢的步入了正轨。这种感觉给了我一种不一样的味道。如果用来比喻的话，初中就像是甘蔗，高中是糖果，大学是掺杂着糖分的苦咖啡。现在给我的感觉有一种油盐的气息。</p>
 <p>今天发现生活并没有那么枯燥，也许是老板夸我了，也许是老板说我了，我觉得自己有用了。其实我很怕自己没有用，这样代表着不被需要，没人在乎你了。这样的生活也挺好。</p>
@@ -268,6 +286,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -286,6 +305,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -310,7 +337,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -320,7 +347,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

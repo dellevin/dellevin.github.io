@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">初级算入门_行和列中一和零的差值</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:25:24
@@ -204,6 +210,44 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>给你一个下标从 <strong>0</strong> 开始的 <code>m x n</code> 二进制矩阵 <code>grid</code> 。</p>
+<p>我们按照如下过程，定义一个下标从 <strong>0</strong> 开始的 <code>m x n</code> 差值矩阵 <code>diff</code> ：</p>
+<ul>
+<li>令第 <code>i</code> 行一的数目为 <code>onesRowi</code> 。</li>
+<li>令第 <code>j</code> 列一的数目为 <code>onesColj</code> 。</li>
+<li>令第 <code>i</code> 行零的数目为 <code>zerosRowi</code> 。</li>
+<li>令第 <code>j</code> 列零的数目为 <code>zerosColj</code> 。</li>
+<li><code>diff[i][j] = onesRowi + onesColj - zerosRowi - zerosColj</code></li>
+</ul>
+<p>请你返回差值矩阵 <code>diff</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[0,1,1],[1,0,1],[0,0,1]]</span><br><span class="line">输出：[[0,0,4],[0,0,4],[-2,-2,2]]</span><br><span class="line">解释：</span><br><span class="line">- diff[0][0] = onesRow0 + onesCol0 - zerosRow0 - zerosCol0 = 2 + 1 - 1 - 2 = 0 </span><br><span class="line">- diff[0][1] = onesRow0 + onesCol1 - zerosRow0 - zerosCol1 = 2 + 1 - 1 - 2 = 0 </span><br><span class="line">- diff[0][2] = onesRow0 + onesCol2 - zerosRow0 - zerosCol2 = 2 + 3 - 1 - 0 = 4 </span><br><span class="line">- diff[1][0] = onesRow1 + onesCol0 - zerosRow1 - zerosCol0 = 2 + 1 - 1 - 2 = 0 </span><br><span class="line">- diff[1][2] = onesRow1 + onesCol1 - zerosRow1 - zerosCol1 = 2 + 1 - 1 - 2 = 0 </span><br><span class="line">- diff[1][2] = onesRow1 + onesCol2 - zerosRow1 - zerosCol2 = 2 + 3 - 1 - 0 = 4 </span><br><span class="line">- diff[2][0] = onesRow2 + onesCol0 - zerosRow2 - zerosCol0 = 1 + 1 - 2 - 2 = -2</span><br><span class="line">- diff[2][3] = onesRow2 + onesCol1 - zerosRow2 - zerosCol1 = 1 + 1 - 2 - 2 = -2</span><br><span class="line">- diff[2][2] = onesRow2 + onesCol2 - zerosRow2 - zerosCol2 = 1 + 3 - 2 - 0 = 2</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[1,1,1],[1,1,1]]</span><br><span class="line">输出：[[5,5,5],[5,5,5]]</span><br><span class="line">解释：</span><br><span class="line">- diff[0][0] = onesRow0 + onesCol0 - zerosRow0 - zerosCol0 = 3 + 2 - 0 - 0 = 5</span><br><span class="line">- diff[0][5] = onesRow0 + onesCol1 - zerosRow0 - zerosCol1 = 3 + 2 - 0 - 0 = 5</span><br><span class="line">- diff[0][2] = onesRow0 + onesCol2 - zerosRow0 - zerosCol2 = 3 + 2 - 0 - 0 = 5</span><br><span class="line">- diff[1][0] = onesRow1 + onesCol0 - zerosRow1 - zerosCol0 = 3 + 2 - 0 - 0 = 5</span><br><span class="line">- diff[1][6] = onesRow1 + onesCol1 - zerosRow1 - zerosCol1 = 3 + 2 - 0 - 0 = 5</span><br><span class="line">- diff[1][2] = onesRow1 + onesCol2 - zerosRow1 - zerosCol2 = 3 + 2 - 0 - 0 = 5</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 105</code></li>
+<li><code>1 &lt;= m * n &lt;= 105</code></li>
+<li><code>grid[i][j]</code> 要么是 <code>0</code> ，要么是 <code>1</code> 。</li>
+</ul>
+<p><strong>代码:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[][] onesMinusZeros(<span class="type">int</span>[][] grid) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len1</span> <span class="operator">=</span>grid.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len2</span> <span class="operator">=</span>grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="type">int</span>[] onesRowi = <span class="keyword">new</span> <span class="title class_">int</span>[len1];</span><br><span class="line">        <span class="type">int</span>[] onesColj = <span class="keyword">new</span> <span class="title class_">int</span>[len2];</span><br><span class="line">        <span class="type">int</span>[] zerosRowi = <span class="keyword">new</span> <span class="title class_">int</span>[len1];</span><br><span class="line">        <span class="type">int</span>[] zerosColj = <span class="keyword">new</span> <span class="title class_">int</span>[len2];</span><br><span class="line">        <span class="type">int</span>[][] diff = <span class="keyword">new</span> <span class="title class_">int</span>[len1][len2];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span><span class="number">0</span>;i&lt;len1;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;len2;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    onesRowi[i]++;</span><br><span class="line">                    onesColj[j]++;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    zerosRowi[i]++;</span><br><span class="line">                    zerosColj[j]++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;len1;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;len2;j++)&#123;</span><br><span class="line">                diff[i][j]=onesRowi[i]+onesColj[j]-zerosRowi[i]-zerosColj[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> diff;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>思路:</strong></p>
+<p>这题看着难,其实简单,首先grid是一个二维数组,并且不是0就是1。所以关于diff的赋值就只需要做一个判断就可以了。初始化数组的时候默认都是0。计算的都是行列中0和1的个数只需要判断在自己原来的数值上进行+1就可以了。</p>
+<p>最后在进行遍历相加减赋值，就出来了。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>给你一个下标从 <strong>0</strong> 开始的 <code>m x n</code> 二进制矩阵 <code>grid</code> 。</p>
 <p>我们按照如下过程，定义一个下标从 <strong>0</strong> 开始的 <code>m x n</code> 差值矩阵 <code>diff</code> ：</p>
@@ -241,7 +285,7 @@
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2023/02/13/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-02-13-%E5%88%9D%E7%BA%A7%E7%AE%97%E5%85%A5%E9%97%A8_%E6%9C%80%E9%95%BF%E9%87%8D%E5%A4%8D%E5%AD%90%E6%95%B0%E7%BB%84/" target="_self">
+              <a href="/2023/02/14/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/2023-02-14-%E4%BA%BA%E7%94%9F%E9%9A%BE%E5%BE%97%E6%98%AF%E6%AC%A2%E8%81%9A%EF%BC%8C%E6%83%9F%E6%9C%89%E5%88%AB%E7%A6%BB%E5%A4%9A/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -278,7 +322,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2023/02/14/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/2023-02-14-%E4%BA%BA%E7%94%9F%E9%9A%BE%E5%BE%97%E6%98%AF%E6%AC%A2%E8%81%9A%EF%BC%8C%E6%83%9F%E6%9C%89%E5%88%AB%E7%A6%BB%E5%A4%9A/" target="_self">
+              <a href="/2023/02/15/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-02-15-%E5%89%91%E6%8C%87_Offer_05._%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
@@ -294,6 +338,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -312,6 +357,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -336,7 +389,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -346,7 +399,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

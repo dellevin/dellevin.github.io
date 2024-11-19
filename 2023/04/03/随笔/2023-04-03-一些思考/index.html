@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">一些思考</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:57:12
@@ -204,6 +210,20 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>之前和我同学聊天聊到过阶级固化这种东西。未来的发展肯定是一种趋势。疫情也仅仅是加速了这种现象，很多人觉得那种专家的话语不舒服，其实这就是一种阶级分层的体现。在那些专家脑子中就已经把阶级划分出来，虽然他们可能会没有感觉，但是这种现象已经在他们话语和行为上体现出来了。</p>
+<p>伴随着人民只是水平的提升，和人文素养的不断提高。农村家庭的子女通过教育实现向上流动的成本越来越高，动力越来越小。但是富裕的家庭却在这方面不会受到影响，他们依旧可以拿着优待可以在自己本层次上上下浮动。</p>
+<p>不可不畏人性。歧视，贪婪这是造成阶级分化的主要原因。不是说我不信社会主义的终极形态是否可以出现。我可以肯定，在物质大于需求的情况出现之前，真正的社会主义是永远是人们空想的乌托邦。在物质大于需求之后，人们的思考方向应该是情感的摒弃，即摒弃歧视和贪婪诸多恶欲。如果不去摒弃，阶级分化必然会再次出现，压迫必然会出现。</p>
+<p>不是说人们之中不会存在真正道德高尚的人，但是雷锋同志，焦裕禄同志都是百年罕见的人才。有些时候，人们会把高尚的品德认为耻辱，因为这样是赚不到钱的。毕竟没有底线了，钱就有了，钱有了，地位就有了，底线就可以提高了。概念化的东西，尤其是道德，是人们给自己思想和行为的枷锁，这种枷锁带领着社会形态的提升与进化。一两个人不会有什么问题，但是人多了，这种东西对于社会形态的影响是致命的。</p>
+<p>再者就是贪污腐败，一切源于人们心中的私欲。有了一块钱你不会感觉什么，但是有了一百块钱，一千块钱，你会再想怎么能多出一百元，一千元。这就是贪欲。可以说反腐是国家和社会形态的胜利，是针对贫苦大众的胜利。但是胜利必然会牺牲，这种牺牲是对应着一些上层阶级和中产阶级。反的是上，动摇的是中产。让部分中产更加的中产，无法往上，让贫苦往中产的改变。等到中产累积到一定程度之后，再来一波的反腐，又是一波社会形态的提升，阶级的固化。可是这种固化能持续多久呢？也许是在某次战争之后，也许是在下次的反腐之后。不得不感叹那些人眼光的遥远，有的时候，他们看到的不是一个国家，他们看到的是一个人类的社会形态。</p>
+<p>局部战争是可以轻易打响的，世界级别的战争也是轻易的，他只是缺少一个导火索罢了。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>之前和我同学聊天聊到过阶级固化这种东西。未来的发展肯定是一种趋势。疫情也仅仅是加速了这种现象，很多人觉得那种专家的话语不舒服，其实这就是一种阶级分层的体现。在那些专家脑子中就已经把阶级划分出来，虽然他们可能会没有感觉，但是这种现象已经在他们话语和行为上体现出来了。</p>
 <p>伴随着人民只是水平的提升，和人文素养的不断提高。农村家庭的子女通过教育实现向上流动的成本越来越高，动力越来越小。但是富裕的家庭却在这方面不会受到影响，他们依旧可以拿着优待可以在自己本层次上上下浮动。</p>
@@ -270,6 +290,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -288,6 +309,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -312,7 +341,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -322,7 +351,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

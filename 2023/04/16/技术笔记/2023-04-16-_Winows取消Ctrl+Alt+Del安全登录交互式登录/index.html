@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">Winows取消Ctrl+Alt+Del安全登录交互式登录</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:14:37
@@ -210,6 +216,23 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>自己之前换的神州网信的windows系统，老是有这种安全登录，再烧录单片机的时候，用到了这个组合键，但是digispark这个死活没有delete的按键，所以退而求其次，只能取消这个东西了。</p>
+<ol>
+<li><p>按 Win + R 组合键打开运行，输入：gpedit.msc 命令，确定或回车，打开本地组策略编辑器</p>
+</li>
+<li><p>在本地组策略编辑器中，依次展开：计算机配置 - Windows 设置 - 安全设置 - 本地策略 - 安全选项，在右侧找到并双击打开交互式：无须按Ctrl+Alt+Del；</p>
+</li>
+<li><p>交互式登录：无须按Ctrl+Alt+Del属性创空中，选择已启用；</p>
+</li>
+</ol>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>自己之前换的神州网信的windows系统，老是有这种安全登录，再烧录单片机的时候，用到了这个组合键，但是digispark这个死活没有delete的按键，所以退而求其次，只能取消这个东西了。</p>
 <ol>
@@ -285,6 +308,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -303,6 +327,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -327,7 +359,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -337,7 +369,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">Window10 安装软件时报错：Called RunScript when not marked in progress</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:40:13
@@ -216,6 +222,28 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>Window10 安装软件时报错：Called RunScript when not marked in progress</p>
+<p><strong>解决办法：</strong></p>
+<ol>
+<li><p>进入 C:\Windows</p>
+</li>
+<li><p>找到”temp”文件夹  —- 右键“属性” — “高级”  — “更改”</p>
+</li>
+<li><p>然后点击 “高级”<br>输入电脑当前用户的姓名，进行搜索</p>
+</li>
+<li><p>勾选“替换子容器和对象所有者”</p>
+</li>
+<li><p>勾选“使用可从此对象继承的权限项目替换所有子对象的权限项目”</p>
+</li>
+</ol>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>Window10 安装软件时报错：Called RunScript when not marked in progress</p>
 <p><strong>解决办法：</strong></p>
@@ -302,6 +330,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -320,6 +349,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -344,7 +381,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -354,7 +391,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

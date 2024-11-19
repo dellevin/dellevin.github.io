@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">虚假的觉醒</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 23:31:22
@@ -204,6 +210,22 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>以我的角度去观社会，我发现现在年轻人所谓的觉醒就是个笑话。</p>
+<p>我上大学的时候，以为我只要努力，我只要有成就，我就有能力去改变社会，有能力去改变身边的一切。后来我发现，一切的腐朽并不是所谓的努力就去能改变的，它像根植于垂死病人的癌症，深入骨髓。后来我开始厌恶这种腐朽，觉得年轻的一代需要觉醒。</p>
+<p>当我有“觉醒”的想法出现的时候，我发现并不是只有我一个人这样，我身边的挚友，素未蒙面的网友，等等，都意识到了自己需要“觉醒”了。反抗“天价彩礼”、“不婚不育”、“及时行乐”、“不买房”、“反对田园女权”……等等，当我们看到出台了彩礼的相关政策、国家生育率下降、房价暴跌……事情发生后，我们觉得是我们的”觉醒”带来了这些。却忘了历史的必然性和人性。</p>
+<p>然而所谓的数据随便一个号称专业的机构捏造就可以出，随便一个营销号随便说说便有大把人相信。那一刻我明白了，社会之间的差距是人为制造出来的所谓的觉醒也是人为制造出来的，他们给了你想看到的一切，你以为自己获胜了，其只是变相的走向了另外一条被社会安排好的道路，然而这条新的道路是未知的是需要有人去吃螃蟹的。那一刻我仿佛看到了当年父亲严重的无奈，他当时是不是就是因为看到了社会的现实之后变得麻木呢？</p>
+<p>我和我的挚友谈起我高中毕业不上学的同学。当时我和挚友有着一样的理想，充满的热血，充满着对未来的幻想，那一次我们一起喝酒，那个提前步入社会的同学，看着我们的样子只是笑笑不说话，那种笑是很苦涩的笑，笑得很难，也很痛。</p>
+<p>后来，我在看视频的时候，改变了自己的思路，先看视频大概内容，再看该博主的总体内容朝向，最终再去看评论区舆论方向。很有幸，这种方式让我过滤掉很多煽动情绪的视频，煽动男女对立的视频，最后，这种方式，过滤掉的也有视频的本身……</p>
+<p>快节奏的生活，短视频成为了舆论的另一个阵地。相比于真枪实弹的战争，这种舆论战更能击垮一个民族的精气神，腐蚀一个国家的栋梁。但是我们又怎么能去改变呢，意识到自己平庸之后，告诉自己的只有四个字——和光同尘。</p>
+<p>落笔，早已是血泪盈襟。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>以我的角度去观社会，我发现现在年轻人所谓的觉醒就是个笑话。</p>
 <p>我上大学的时候，以为我只要努力，我只要有成就，我就有能力去改变社会，有能力去改变身边的一切。后来我发现，一切的腐朽并不是所谓的努力就去能改变的，它像根植于垂死病人的癌症，深入骨髓。后来我开始厌恶这种腐朽，觉得年轻的一代需要觉醒。</p>
@@ -272,6 +294,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -290,6 +313,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -314,7 +345,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -324,7 +355,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

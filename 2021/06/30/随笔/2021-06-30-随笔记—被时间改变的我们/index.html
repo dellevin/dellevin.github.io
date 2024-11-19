@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">随笔记—被时间改变的我们</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:35:22
@@ -204,6 +210,24 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>只记得那是个传奇的年份，我的高中三年，多如牛毛的软件从我们的视野中升起，像一颗冉冉升起的太阳，虽然不耀眼，但已经出具锋芒。</p>
+<p>这是2021年，大概在五年前，人们口中没有口口说的哔哩哔哩，也没有什么深夜网易云，那时候，知乎也是刚刚进入了我的视野。</p>
+<p>想必他们为了公关也费了很大的力气吧，精选留言，报纸宣传，几乎随处可以见到它的身影。我拿起一本《读者》，上面那些美言杂句有着知乎的身影。我看视频，上面有着人们说着的网易云。</p>
+<p>那些悲惋凄惨，烙印着许多文艺青年的过往。那些美妙绝伦的句子，也刺痛了许多人的内心。也罢，那个时候，多是高中的生活罢了，压力软绵而又无力，这些软件给了好多人一个心灵的寄托，也给了一个温柔的港湾。因为互不认识，可以吐露心声。因为互不认识，可以听歌掩面而泣他人不知。</p>
+<p>渐渐的，所有的一切都变了味道。广告，硬性植入，等等，把用户挤得没有了喘息的余地。那些真正热爱这个平台的用户们还在坚持着固有的阵地。</p>
+<p>人们肆意的谩骂，说什么变了味道，招了安。后来我渐渐的才发现，这几年来变得不止是那些所谓的软件，还有我们自己。我们变得越来越尖酸刻薄，眼里容不得别人的意思错误。我们变得越来越懒，懒到自己的失败堆积如山而不动。</p>
+<p>我们是长大了，也渐渐地远离了当年的自己，随着这个社会的大齿轮渐渐的打磨自己的形状，软件也是，毕竟他们的背后也是人，为人父母，养一个家并不容易。不招商，他们很快就会消失在我们的视野。是非成败，总归是那无形齿轮的驱使。</p>
+<p>毕竟，网络上人们的忘性大，可是，我仍旧记得那个庆阳市那个跳楼的女孩，我仍旧记得楼下人们说着“怎么还不跳啊”的无耻嘴脸，三观的扭曲把他们扭曲成一个个嗜血的野兽，在人类社会中放肆横行。</p>
+<p>一切的悲哀，源于人们自己的不自知不自觉。更悲哀的是，人们对自己的自知自觉而骄傲。</p>
+<p>无奈，可悲。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>只记得那是个传奇的年份，我的高中三年，多如牛毛的软件从我们的视野中升起，像一颗冉冉升起的太阳，虽然不耀眼，但已经出具锋芒。</p>
 <p>这是2021年，大概在五年前，人们口中没有口口说的哔哩哔哩，也没有什么深夜网易云，那时候，知乎也是刚刚进入了我的视野。</p>
@@ -274,6 +298,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -292,6 +317,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -316,7 +349,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -326,7 +359,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

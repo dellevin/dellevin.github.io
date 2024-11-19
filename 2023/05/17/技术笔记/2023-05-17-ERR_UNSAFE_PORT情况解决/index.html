@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">ERR_UNSAFE_PORT情况解决</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:04:59
@@ -210,6 +216,24 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>起因是，今天看到一个有趣的项目（<a target="_blank" rel="noopener" href="https://github.com/usememos/memos%EF%BC%89%E6%83%B3%E6%8B%89%E4%B8%8B%E6%9D%A5%E8%B7%91%E8%B7%91%E4%BD%93%E9%AA%8C%E4%B8%80%E4%B8%8B%E3%80%82%E7%BB%93%E6%9E%9C%E5%9C%A8docker%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%8C%87%E5%AE%9A%E5%A5%BD%E4%BA%86%E7%AB%AF%E5%8F%A3%EF%BC%8C%E6%89%93%E5%BC%80%E6%97%B6%E5%8D%B4%E6%8F%90%E7%A4%BA%E6%88%91%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E6%AD%A4%E9%93%BE%E6%8E%A5">https://github.com/usememos/memos）想拉下来跑跑体验一下。结果在docker之后，指定好了端口，打开时却提示我无法访问此链接</a></p>
+<p>再次确认后台程序在跑的时候，已经基本确定就是某些操作的问题，或许是被拦截了。<code>dcker ps -a</code>发现正在运行没有任何的报错</p>
+<p>但是在看到前端报错的时候发现他在告诉我这个情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERR_UNSAFE_PORT</span><br></pre></td></tr></table></figure>
+
+<p>仔细查询（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/383077079%EF%BC%89%E4%BA%86%E4%B9%8B%E5%90%8E%E6%89%8D%E5%8F%91%E7%8E%B0%E8%BF%99%E6%98%AF%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E5%AF%BC%E8%87%B4%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E3%80%82%E8%99%BD%E8%AF%B4%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%BC%BA%E5%88%B6%E6%89%93%E5%BC%80%EF%BC%8C%E4%BD%86%E6%98%AF%E8%BF%98%E6%98%AF%E6%8D%A2%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%AF%94%E8%BE%83%E7%A8%B3%E5%A6%A5%E3%80%82">https://zhuanlan.zhihu.com/p/383077079）了之后才发现这是浏览器的安全问题导致无法打开。虽说可以是强制打开，但是还是换个端口比较稳妥。</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">1,    // tcpmux</span><br><span class="line">7,    // <span class="built_in">echo</span></span><br><span class="line">9,    // discard</span><br><span class="line">11,   // systat</span><br><span class="line">13,   // daytime</span><br><span class="line">15,   // netstat</span><br><span class="line">17,   // qotd</span><br><span class="line">19,   // chargen</span><br><span class="line">20,   // ftp data</span><br><span class="line">21,   // ftp access</span><br><span class="line">22,   // ssh</span><br><span class="line">23,   // telnet</span><br><span class="line">25,   // smtp</span><br><span class="line">37,   // time</span><br><span class="line">42,   // name</span><br><span class="line">43,   // nicname</span><br><span class="line">53,   // domain</span><br><span class="line">77,   // priv-rjs</span><br><span class="line">79,   // finger</span><br><span class="line">87,   // ttylink</span><br><span class="line">95,   // supdup</span><br><span class="line">101,  // hostriame</span><br><span class="line">102,  // iso-tsap</span><br><span class="line">103,  // gppitnp</span><br><span class="line">104,  // acr-nema</span><br><span class="line">109,  // pop2</span><br><span class="line">110,  // pop3</span><br><span class="line">111,  // sunrpc</span><br><span class="line">113,  // auth</span><br><span class="line">115,  // sftp</span><br><span class="line">117,  // uucp-path</span><br><span class="line">119,  // nntp</span><br><span class="line">123,  // NTP</span><br><span class="line">135,  // loc-srv /epmap</span><br><span class="line">139,  // netbios</span><br><span class="line">143,  // imap2</span><br><span class="line">179,  // BGP</span><br><span class="line">389,  // ldap</span><br><span class="line">465,  // smtp+ssl</span><br><span class="line">512,  // <span class="built_in">print</span> / <span class="built_in">exec</span></span><br><span class="line">513,  // login</span><br><span class="line">514,  // shell</span><br><span class="line">515,  // printer</span><br><span class="line">526,  // tempo</span><br><span class="line">530,  // courier</span><br><span class="line">531,  // chat</span><br><span class="line">532,  // netnews</span><br><span class="line">540,  // uucp</span><br><span class="line">556,  // remotefs</span><br><span class="line">563,  // nntp+ssl</span><br><span class="line">587,  // stmp?</span><br><span class="line">601,  // ??</span><br><span class="line">636,  // ldap+ssl</span><br><span class="line">993,  // ldap+ssl</span><br><span class="line">995,  // pop3+ssl</span><br><span class="line">2049, // nfs</span><br><span class="line">3659, // apple-sasl / PasswordServer</span><br><span class="line">4045, // lockd</span><br><span class="line">6000, // X11</span><br><span class="line">6665, // Alternate IRC</span><br><span class="line">6666, // Alternate IRC</span><br><span class="line">6667, // Standard IRC</span><br><span class="line">6668, // Alternate IRC</span><br><span class="line">6669, // Alternate IRC</span><br></pre></td></tr></table></figure>
+
+
+
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>起因是，今天看到一个有趣的项目（<a target="_blank" rel="noopener" href="https://github.com/usememos/memos%EF%BC%89%E6%83%B3%E6%8B%89%E4%B8%8B%E6%9D%A5%E8%B7%91%E8%B7%91%E4%BD%93%E9%AA%8C%E4%B8%80%E4%B8%8B%E3%80%82%E7%BB%93%E6%9E%9C%E5%9C%A8docker%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%8C%87%E5%AE%9A%E5%A5%BD%E4%BA%86%E7%AB%AF%E5%8F%A3%EF%BC%8C%E6%89%93%E5%BC%80%E6%97%B6%E5%8D%B4%E6%8F%90%E7%A4%BA%E6%88%91%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E6%AD%A4%E9%93%BE%E6%8E%A5">https://github.com/usememos/memos）想拉下来跑跑体验一下。结果在docker之后，指定好了端口，打开时却提示我无法访问此链接</a></p>
 <p>再次确认后台程序在跑的时候，已经基本确定就是某些操作的问题，或许是被拦截了。<code>dcker ps -a</code>发现正在运行没有任何的报错</p>
@@ -270,7 +294,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2023/05/24/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-05-24-%E5%85%B3%E4%BA%8Evue%EF%BC%8Cts%EF%BC%8Cechart%E6%95%B4%E5%90%88%E6%98%BE%E7%A4%BA%E5%9C%B0%E5%9B%BE%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" target="_self">
+              <a href="/2023/05/24/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-05-24-%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E6%97%B6%E9%97%B4%E5%88%B7%E6%96%B0/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
@@ -286,6 +310,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -304,6 +329,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -328,7 +361,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -338,7 +371,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

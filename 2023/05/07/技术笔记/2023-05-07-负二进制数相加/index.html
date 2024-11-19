@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">负二进制数相加</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:53:46
@@ -196,14 +202,14 @@
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
-                    #技术笔记
+                  <a href="/tags/%E7%AE%97%E6%B3%95/" title="算法">
+                    #算法
                   </a>
                 </span>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E7%AE%97%E6%B3%95/" title="算法">
-                    #算法
+                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    #技术笔记
                   </a>
                 </span>
                 
@@ -216,6 +222,60 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>给出基数为 <strong>-2</strong> 的两个数 <code>arr1</code> 和 <code>arr2</code>，返回两数相加的结果。</p>
+<p>数字以 <em>数组形式</em> 给出：数组由若干 0 和 1 组成，按最高有效位到最低有效位的顺序排列。例如，<code>arr = [1,1,0,1]</code> 表示数字 <code>(-2)^3 + (-2)^2 + (-2)^0 = -3</code>。<em>数组形式</em> 中的数字 <code>arr</code> 也同样不含前导零：即 <code>arr == [0]</code> 或 <code>arr[0] == 1</code>。</p>
+<p>返回相同表示形式的 <code>arr1</code> 和 <code>arr2</code> 相加的结果。两数的表示形式为：不含前导零、由若干 0 和 1 组成的数组。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：arr1 = [1,1,1,1,1], arr2 = [1,0,1]</span><br><span class="line">输出：[1,0,0,0,0]</span><br><span class="line">解释：arr1 表示 11，arr2 表示 5，输出表示 16 。</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：arr1 = [0], arr2 = [0]</span><br><span class="line">输出：[0]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：arr1 = [0], arr2 = [1]</span><br><span class="line">输出：[1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= arr1.length, arr2.length &lt;= 1000</code></li>
+<li><code>arr1[i]</code> 和 <code>arr2[i]</code> 都是 <code>0</code> 或 <code>1</code></li>
+<li><code>arr1</code> 和 <code>arr2</code> 都没有前导0</li>
+</ul>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] addNegabinary(<span class="type">int</span>[] arr1, <span class="type">int</span>[] arr2) &#123;</span><br><span class="line">        <span class="comment">// 定义规则：0+1=1，进位向前边减一，够减则减，不够减则借位</span></span><br><span class="line">        <span class="type">int</span>[] outCome = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (arr1.length &gt; arr2.length) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= arr2.length; i++) &#123;</span><br><span class="line">                arr1[arr1.length - i] += arr2[arr2.length - i];</span><br><span class="line">            &#125;</span><br><span class="line">            outCome = arr1;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= arr1.length; i++) &#123;</span><br><span class="line">                arr2[arr2.length - i] += arr1[arr1.length - i];</span><br><span class="line">            &#125;</span><br><span class="line">            outCome = arr2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// System.out.println(Arrays.toString(outCome));</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">add</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> outCome.length - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (outCome[i] + add &gt;= <span class="number">2</span>) &#123;</span><br><span class="line">                add = -<span class="number">1</span>;</span><br><span class="line">                outCome[i] -= <span class="number">2</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (outCome[i] + add &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                outCome[i - <span class="number">1</span>] += <span class="number">1</span>;</span><br><span class="line">                outCome[i] = <span class="number">1</span>;</span><br><span class="line">                add = <span class="number">0</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                outCome[i] += add;</span><br><span class="line">                add = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        outCome[<span class="number">0</span>] += add;</span><br><span class="line">        <span class="comment">//System.out.println(Arrays.toString(outCome));</span></span><br><span class="line">        <span class="keyword">if</span> (outCome[<span class="number">0</span>] &gt;= <span class="number">2</span>) &#123;</span><br><span class="line">            outCome[<span class="number">0</span>] -= <span class="number">2</span>;</span><br><span class="line">            <span class="type">int</span>[] newOutCome = <span class="keyword">new</span> <span class="title class_">int</span>[outCome.length + <span class="number">2</span>];</span><br><span class="line">            newOutCome[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">            newOutCome[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; outCome.length; i++) &#123;</span><br><span class="line">                newOutCome[<span class="number">2</span> + i] = outCome[i];</span><br><span class="line">            &#125;</span><br><span class="line">            outCome = newOutCome;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// System.out.println(Arrays.toString(outCome));</span></span><br><span class="line">        <span class="keyword">if</span> (outCome[<span class="number">0</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">zlength</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (zlength &lt; outCome.length &amp;&amp; outCome[zlength] == <span class="number">0</span>) &#123;</span><br><span class="line">                zlength++;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(zlength);</span><br><span class="line">            <span class="keyword">if</span> (zlength == outCome.length) &#123;</span><br><span class="line">                outCome = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">1</span>];</span><br><span class="line">                outCome[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="type">int</span>[] newOutCome = <span class="keyword">new</span> <span class="title class_">int</span>[outCome.length - zlength];</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; newOutCome.length; i++) &#123;</span><br><span class="line">                    newOutCome[i] = outCome[zlength + i];</span><br><span class="line">                &#125;</span><br><span class="line">                outCome = newOutCome;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> outCome;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="错误的办法："><a href="#错误的办法：" class="headerlink" title="错误的办法："></a>错误的办法：</h2><p>这里主要错误的原因是因为忽略了数组之间的长度，因为长度是1000也就是最大的数是-2的1000次幂。远远的超出了bigint，int，以及long类型的计算长度。所以下面的办法是妥妥的不对的</p>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>所占位数</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td>32</td>
+<td>−231−231 ~ 2 ^{31} - 1</td>
+</tr>
+<tr>
+<td>long</td>
+<td>64</td>
+<td>−263−263 ~ 2 ^{63} - 1</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] addNegabinary(<span class="type">int</span>[] arr1, <span class="type">int</span>[] arr2) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">xx</span> <span class="operator">=</span> lowBinaryToInt(arr1) + lowBinaryToInt(arr2);</span><br><span class="line">        String ss= intToLowBinaryString(xx);</span><br><span class="line">        String[] ssArr = ss.split(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="type">int</span>[] res = <span class="keyword">new</span> <span class="title class_">int</span>[ss.length()];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;= ss.length()-<span class="number">1</span>; i++) &#123;</span><br><span class="line">            res[i] = Integer.parseInt(ssArr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">lowBinaryToInt</span><span class="params">(<span class="type">int</span>[] arr)</span> &#123;</span><br><span class="line">        <span class="type">double</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">xx</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> arr.length - <span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i] == <span class="number">1</span>) &#123;</span><br><span class="line">                res = res+Math.pow(-<span class="number">2</span>, xx);</span><br><span class="line">                xx++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                xx++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (<span class="type">int</span>)res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">intToLowBinaryString</span><span class="params">(<span class="type">int</span> N)</span> &#123;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        <span class="keyword">while</span> (N != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> N % -<span class="number">2</span>;</span><br><span class="line">            N = N / -<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (r &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                r = r + <span class="number">2</span>;</span><br><span class="line">                N = N+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            sb.append(r);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.length() &gt; <span class="number">0</span> ? sb.reverse().toString() : <span class="string">&quot;0&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>给出基数为 <strong>-2</strong> 的两个数 <code>arr1</code> 和 <code>arr2</code>，返回两数相加的结果。</p>
 <p>数字以 <em>数组形式</em> 给出：数组由若干 0 和 1 组成，按最高有效位到最低有效位的顺序排列。例如，<code>arr = [1,1,0,1]</code> 表示数字 <code>(-2)^3 + (-2)^2 + (-2)^0 = -3</code>。<em>数组形式</em> 中的数字 <code>arr</code> 也同样不含前导零：即 <code>arr == [0]</code> 或 <code>arr[0] == 1</code>。</p>
@@ -269,7 +329,7 @@
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2023/05/07/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-05-07-div%E5%86%85%E5%85%83%E7%B4%A0%E5%B1%85%E4%B8%AD/" target="_self">
+              <a href="/2023/05/07/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/2023-05-07-%E4%B8%80%E5%88%99%E5%B0%8F%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E5%AE%8C%E7%BE%8E%E7%9A%84%E7%89%B2%E5%8F%A3/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -296,14 +356,14 @@
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
-                        #技术笔记
+                      <a href="/tags/%E7%AE%97%E6%B3%95/" title="算法">
+                        #算法
                       </a>
                     </span>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E7%AE%97%E6%B3%95/" title="算法">
-                        #算法
+                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        #技术笔记
                       </a>
                     </span>
                     
@@ -318,7 +378,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2023/05/07/%E9%9A%8F%E7%AC%94/2023-05-07-%E5%87%8C%E6%99%A8%E9%9A%8F%E6%83%B3-23%E5%B9%B405.07%E9%9A%8F%E7%AC%94%E8%AE%B0/" target="_self">
+              <a href="/2023/05/07/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-05-07-div%E5%86%85%E5%85%83%E7%B4%A0%E5%B1%85%E4%B8%AD/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
@@ -351,6 +411,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -369,6 +430,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -393,7 +462,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -403,7 +472,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

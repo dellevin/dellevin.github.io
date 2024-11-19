@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">mysql中like的查询效率</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:00:44
@@ -210,6 +216,32 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>like %索引%和like   索引%的区别</p>
+<p>在 MySQL 中，当使用 <code>LIKE</code> 条件进行字符串匹配时，如果在索引列上使用 <code>LIKE %索引%</code> 和 <code>LIKE 索引%</code> 这两种形式，会有不同的查询性能和结果。</p>
+<ol>
+<li><p><code>LIKE %索引%</code>：<br>这种情况下，<code>%</code> 通配符位于搜索字符串的开头和结尾，表示可以匹配任意字符。例如，假设索引列是 <code>column_name</code>，我们执行以下查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> column_name <span class="keyword">LIKE</span> <span class="string">&#x27;%索引%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>这将查找 <code>column_name</code> 列中包含有 <code>索引</code> 子字符串的所有行。</p>
+</li>
+<li><p><code>LIKE 索引%</code>：<br>这种情况下，<code>%</code> 通配符仅位于搜索字符串的结尾，表示只匹配以指定字符串开头的值。例如，假设索引列仍然是 <code>column_name</code>，我们执行以下查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> column_name <span class="keyword">LIKE</span> <span class="string">&#x27;索引%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>这将查找 <code>column_name</code> 列中以 <code>索引</code> 开头的所有行。</p>
+</li>
+</ol>
+<p>区别：</p>
+<ul>
+<li><code>LIKE %索引%</code> 的查询可能会涉及全表扫描，因为通配符 <code>%</code> 出现在搜索字符串的开头和结尾，导致无法利用索引。</li>
+<li><code>LIKE 索引%</code> 的查询可以利用索引，因为通配符 <code>%</code> 仅出现在搜索字符串的结尾，允许数据库引擎使用索引的前缀部分进行匹配，从而提高查询性能。</li>
+</ul>
+<p>通常情况下，如果可能，应尽量避免使用 <code>LIKE %索引%</code> 这种形式，特别是对于大型数据表，因为它可能导致较慢的查询性能。如果只需要查找以某个字符串开头的值，应该使用 <code>LIKE 索引%</code> 形式，以便利用索引优化查询。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>like %索引%和like   索引%的区别</p>
 <p>在 MySQL 中，当使用 <code>LIKE</code> 条件进行字符串匹配时，如果在索引列上使用 <code>LIKE %索引%</code> 和 <code>LIKE 索引%</code> 这两种形式，会有不同的查询性能和结果。</p>
@@ -294,6 +326,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -312,6 +345,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -336,7 +377,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -346,7 +387,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

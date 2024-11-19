@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">git、npm、yarn常用设置和命令（查阅）</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:38:39
@@ -210,6 +216,320 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h3 id="创建仓库命令"><a href="#创建仓库命令" class="headerlink" title="创建仓库命令"></a>创建仓库命令</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git init</code></td>
+<td align="left">初始化仓库</td>
+</tr>
+<tr>
+<td align="left"><code>git clone</code></td>
+<td align="left">拷贝一份远程仓库，也就是下载一个项目。</td>
+</tr>
+</tbody></table>
+<h3 id="提交与修改"><a href="#提交与修改" class="headerlink" title="提交与修改"></a>提交与修改</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git add</code></td>
+<td align="left">添加文件到暂存区</td>
+</tr>
+<tr>
+<td align="left"><code>git status</code></td>
+<td align="left">查看仓库当前的状态，显示有变更的文件。</td>
+</tr>
+<tr>
+<td align="left"><code>git diff</code></td>
+<td align="left">比较文件的不同，即暂存区和工作区的差异。</td>
+</tr>
+<tr>
+<td align="left"><code>git difftool</code></td>
+<td align="left">使用外部差异工具查看和比较文件的更改。</td>
+</tr>
+<tr>
+<td align="left"><code>git range-diff</code></td>
+<td align="left">比较两个提交范围之间的差异。</td>
+</tr>
+<tr>
+<td align="left"><code>git commit</code></td>
+<td align="left">提交暂存区到本地仓库。</td>
+</tr>
+<tr>
+<td align="left"><code>git reset</code></td>
+<td align="left">回退版本。</td>
+</tr>
+<tr>
+<td align="left"><code>git rm</code></td>
+<td align="left">将文件从暂存区和工作区中删除。</td>
+</tr>
+<tr>
+<td align="left"><code>git mv</code></td>
+<td align="left">移动或重命名工作区文件。</td>
+</tr>
+<tr>
+<td align="left"><code>git notes</code></td>
+<td align="left">添加注释。</td>
+</tr>
+<tr>
+<td align="left"><code>git checkout</code></td>
+<td align="left">分支切换。</td>
+</tr>
+<tr>
+<td align="left"><code>git switch （Git 2.23 版本引入）</code></td>
+<td align="left">更清晰地切换分支。</td>
+</tr>
+<tr>
+<td align="left"><code>git restore （Git 2.23 版本引入）</code></td>
+<td align="left">恢复或撤销文件的更改。</td>
+</tr>
+<tr>
+<td align="left"><code>git show</code></td>
+<td align="left">显示 Git 对象的详细信息。</td>
+</tr>
+</tbody></table>
+<h3 id="远程操作"><a href="#远程操作" class="headerlink" title="远程操作"></a>远程操作</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git remote</code></td>
+<td align="left">远程仓库操作</td>
+</tr>
+<tr>
+<td align="left"><code>git fetch</code></td>
+<td align="left">从远程获取代码库</td>
+</tr>
+<tr>
+<td align="left"><code>git pull</code></td>
+<td align="left">下载远程代码并合并</td>
+</tr>
+<tr>
+<td align="left"><code>git push</code></td>
+<td align="left">上传远程代码并合并</td>
+</tr>
+<tr>
+<td align="left"><code>git submodule</code></td>
+<td align="left">管理包含其他 Git 仓库的项目</td>
+</tr>
+</tbody></table>
+<h3 id="git-代理设置"><a href="#git-代理设置" class="headerlink" title="git 代理设置"></a>git 代理设置</h3><p>设置</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global https.proxy 代理地址</span><br><span class="line">git config --global http.proxy 代理地址</span><br></pre></td></tr></table></figure>
+
+<p>查看</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global  --get https.proxy</span><br><span class="line">git config --global  --get https.proxy</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查询的时候没有打印任何东西证明没有设置代理</p>
+</blockquote>
+<p>取消</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
+
+<h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>npm install</code></td>
+<td align="left">安装新的包(全局范围内安装一个包，可以使用<code>-g</code>或<code>--global</code>标志)</td>
+</tr>
+<tr>
+<td align="left"><code>npm uninstall</code></td>
+<td align="left">从项目中移除依赖包。它会从<code>package.json</code>文件中删除指定的包，并卸载它</td>
+</tr>
+<tr>
+<td align="left"><code>npm update</code></td>
+<td align="left">用于更新项目中的依赖包。它可以更新所有依赖包，也可以指定更新某个特定的包</td>
+</tr>
+<tr>
+<td align="left"><code>npm cache</code></td>
+<td align="left">管理npm的缓存（npm cache clean –force）</td>
+</tr>
+<tr>
+<td align="left"><code>npm config</code></td>
+<td align="left">设置或查看npm的配置选项（查看配置：npm config list）</td>
+</tr>
+</tbody></table>
+<h3 id="NPM设置代理"><a href="#NPM设置代理" class="headerlink" title="NPM设置代理"></a>NPM设置代理</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> proxy http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">10808</span></span><br><span class="line">npm confit <span class="built_in">set</span> https-proxy http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">10809</span></span><br></pre></td></tr></table></figure>
+
+<p>取消代理</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config delete proxy</span><br><span class="line">npm config delete https-proxy</span><br></pre></td></tr></table></figure>
+
+<p>设置源（官方）</p>
+ <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmjs.org/</span><br></pre></td></tr></table></figure>
+
+<p>设置源（淘宝）</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmmirror.com/</span><br></pre></td></tr></table></figure>
+
+<p>查看源</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm get registry </span><br></pre></td></tr></table></figure>
+
+<p>删除源</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config delete registry</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="yarn"><a href="#yarn" class="headerlink" title="yarn"></a>yarn</h2><h3 id="常用命令-1"><a href="#常用命令-1" class="headerlink" title="常用命令"></a>常用命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>操作</th>
+<th>参数</th>
+<th>标签</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>yarn add</td>
+<td>添加依赖包</td>
+<td>包名</td>
+<td>–dev&#x2F;-D</td>
+</tr>
+<tr>
+<td>yarn bin</td>
+<td>显示yarn安装目录</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>yarn cache</td>
+<td>显示缓存</td>
+<td>列出缓存包：<code>ls</code>，打出缓存目录路径：<code>dir</code>，清除缓存：<code>clean</code></td>
+<td>无</td>
+</tr>
+<tr>
+<td>yarn check</td>
+<td>检查包</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn clean</td>
+<td>清理不需要的依赖文件</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn config</td>
+<td>配置</td>
+<td>设置：<code>set &lt;key&gt; &lt;value&gt;</code>， 删除：<code>delete</code>， 列出：<code>list</code></td>
+<td>[-g | –global]</td>
+</tr>
+<tr>
+<td>yarn generate-lock-entry</td>
+<td>生成锁定文件</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>yarn global</td>
+<td>全局安装依赖包</td>
+<td>yarn global &lt;add&#x2F;bin&#x2F;ls&#x2F;remove&#x2F;upgrade&gt; [–prefix]</td>
+<td>–prefix 包路径前缀</td>
+</tr>
+<tr>
+<td>yarn info</td>
+<td>显示依赖包的信息</td>
+<td>包名</td>
+<td>–json：json格式显示结果</td>
+</tr>
+<tr>
+<td>yarn init</td>
+<td>互动式创建&#x2F;更新package.json文件</td>
+<td>无</td>
+<td>–yes&#x2F;-y：以默认值生成package.json文件</td>
+</tr>
+<tr>
+<td>yarn install</td>
+<td>安装所有依赖包</td>
+<td></td>
+<td>–flat：只安装一个版本；–force：强制重新下载安装；–har：输出安装时网络性能日志；–no-lockfile：不生成yarn.lock文件；–production：生产模式安装（不安装devDependencies中的依赖）</td>
+</tr>
+<tr>
+<td>yarn list</td>
+<td>列出已安装依赖包</td>
+<td></td>
+<td>–depth&#x3D;0：列表深度，从0开始</td>
+</tr>
+<tr>
+<td>yarn outdated</td>
+<td>检查过时的依赖包</td>
+<td>包名</td>
+<td></td>
+</tr>
+<tr>
+<td>yarn pack</td>
+<td>给包的依赖打包</td>
+<td>–filename</td>
+<td></td>
+</tr>
+<tr>
+<td>yarn publish</td>
+<td>将包发布到npm</td>
+<td></td>
+<td>–tag：版本标签；–access：公开（public）还是限制的（restricted）</td>
+</tr>
+<tr>
+<td>yarn remove</td>
+<td>卸载包，更新package.json和yarn.lock</td>
+<td>包名</td>
+<td></td>
+</tr>
+<tr>
+<td>yarn upgrade</td>
+<td>升级依赖包</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yarn version</td>
+<td>管理当前项目的版本号</td>
+<td>–new-version ：直接记录版本号；–no-git-tag-version：不生成git标签</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="yarn设置代理"><a href="#yarn设置代理" class="headerlink" title="yarn设置代理"></a>yarn设置代理</h3><p>设置源（淘宝）</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn config <span class="built_in">set</span> registry https://registry.npmmirror.com/</span><br></pre></td></tr></table></figure>
+
+<p>设置源（官方）</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn config <span class="built_in">set</span> registry https://registry.yarnpkg.com</span><br></pre></td></tr></table></figure>
+
+<p>删除源</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn config delete registry</span><br></pre></td></tr></table></figure>
+
+<p>查看代理</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn config list</span><br></pre></td></tr></table></figure>
+
+<p>设置</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn config <span class="built_in">set</span> proxy  http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">10809</span></span><br><span class="line">yarn config <span class="built_in">set</span> https-proxy http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">10808</span></span><br></pre></td></tr></table></figure>
+
+<p>取消</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn config delete proxy</span><br><span class="line">yarn config delete https-proxy</span><br></pre></td></tr></table></figure>
+
+<h2 id="rimraf快速删除node-modules文件夹"><a href="#rimraf快速删除node-modules文件夹" class="headerlink" title="rimraf快速删除node_modules文件夹"></a>rimraf快速删除node_modules文件夹</h2><p>全局安装：<code>npm install -g rimraf</code></p>
+<p>进行删除：<code>rimraf node_modules</code></p>
+<h2 id="ESLint-自动修复"><a href="#ESLint-自动修复" class="headerlink" title="ESLint 自动修复"></a>ESLint 自动修复</h2><p><code>npm run lint -- --fix</code> 或者<code>yarn lint --fix</code></p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h3 id="创建仓库命令"><a href="#创建仓库命令" class="headerlink" title="创建仓库命令"></a>创建仓库命令</h3><table>
 <thead>
@@ -599,6 +919,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -617,6 +938,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -641,7 +970,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -651,7 +980,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

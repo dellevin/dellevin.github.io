@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">爱一个人是什么感觉呢？</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:40:32
@@ -204,6 +210,21 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>爱一个人是什么感觉呢？</p>
+<p>很久之前，我以为我对爱情看的很透彻，写过很多文字，姑且算是文字吧，说文章，真是对我自己的恭维了。在那些文字里面，充斥着对爱的不信任，对纯洁美好爱情的向往，还有觉得自以为是那种孤芳自赏的清高，最后总是用一句唏嘘作为收尾。</p>
+<p>现在看看，真的很好笑呀。</p>
+<p>爱一个人是什么感觉呢？怎么该描述呢？我也不知道。我会对她的一举一动细心观察。自己冷了觉得她也会冷，自己热了觉得她也会热，会把开心的不开心的汇报给她，会把自己的好都给她，给他展现出自己的好与坏，会为了她而改变。真的是很像一个小孩子呢。可是，这正是我需要的。</p>
+<p>很奇怪，我的控制欲是不是强的离谱，想和她时时刻刻在身边，想融为一体，想水乳交融。</p>
+<p>我好怕有一天她会离开我，之前的我信誓旦旦的说“世界上没有什么可以打动我了”，现在她的一句“早安‘我就感觉心要融化了。我又变成了那个患得患失，矫揉造作的我，我可是个男孩子啊。</p>
+<p>一定要小心翼翼的经营下去啊。即便懂得了再多，到她面前，一切理论都会崩溃。以前的自己真的好可笑呀。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>爱一个人是什么感觉呢？</p>
 <p>很久之前，我以为我对爱情看的很透彻，写过很多文字，姑且算是文字吧，说文章，真是对我自己的恭维了。在那些文字里面，充斥着对爱的不信任，对纯洁美好爱情的向往，还有觉得自以为是那种孤芳自赏的清高，最后总是用一句唏嘘作为收尾。</p>
@@ -271,6 +292,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -289,6 +311,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -313,7 +343,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -323,7 +353,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

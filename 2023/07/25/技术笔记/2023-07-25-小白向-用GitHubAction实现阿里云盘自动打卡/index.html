@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">小白向-用GitHubAction实现阿里云盘自动打卡</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:01:11
@@ -204,6 +210,70 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>开门见山，针对程序员来说，如果每天都手动签到岂不是很费力，昨天和我同学闲聊的时候，发现他在用py实现各种签到的打卡，看的我是狠狠的抽自己脸，怎么能手动打卡呢！！！尊严何在？</p>
+<p>因为上个月在吾爱上看见一个<a target="_blank" rel="noopener" href="https://www.52pojie.cn/home.php?mod=space&uid=1942406">zhuoxin99</a>大佬发了一个<a target="_blank" rel="noopener" href="https://www.52pojie.cn/forum.php?mod=viewthread&tid=1785892&extra=page=1&filter=typeid&typeid=388">某盘签到</a>的一个java项目，今天正好心血来潮准备改改修修补补的。因为对GitHub的Action没有什么了解，所以有点怵头。修修补补最终是弄好了</p>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/dellevin/ToDoTaskForGithubAction">https://github.com/dellevin/ToDoTaskForGithubAction</a></p>
+<p>下面针对像我这样的技术小白说一下几个技术要点：</p>
+<h2 id="创建工作流"><a href="#创建工作流" class="headerlink" title="创建工作流"></a>创建工作流</h2><p>在<code>./github/workflows</code> 的文件夹下面创建yml文件，文件名随便，后缀名一定是yml的格式</p>
+<h2 id="编写配置"><a href="#编写配置" class="headerlink" title="编写配置"></a>编写配置</h2><p>下面贴一下我的完整配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Java</span> <span class="string">CI</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">schedule:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">cron:</span> <span class="string">&quot;30 22 * * *&quot;</span>  <span class="comment"># 北京时间上午06:30</span></span><br><span class="line">  <span class="attr">workflow_dispatch:</span>   <span class="comment"># 添加 workflow_dispatch 触发器，用于手动运行</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="string">code</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Set</span> <span class="string">up</span> <span class="string">JDK</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/setup-java@v1</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">java-version:</span> <span class="string">&#x27;11&#x27;</span> <span class="comment"># 这里可以指定你需要的 Java 版本</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span> <span class="string">Maven</span> <span class="string">packages</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/cache@v2</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">path:</span> <span class="string">~/.m2</span></span><br><span class="line">        <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-m2-$&#123;&#123;</span> <span class="string">hashFiles(&#x27;**/pom.xml&#x27;)</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">restore-keys:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-m2</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span> <span class="string">with</span> <span class="string">Maven</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">mvn</span> <span class="string">-B</span> <span class="string">package</span> <span class="string">--file</span> <span class="string">pom.xml</span>   <span class="comment"># 使用 Maven 进行项目构建，可以根据你的项目需要修改命令</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">run</span> <span class="string">Java</span> <span class="string">Application</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        java -Djava.security.manager -Djava.security.policy==src/main/resources/policy.policy -jar  target/ToDoTask.jar</span></span><br><span class="line"><span class="string"></span>      <span class="comment"># 附带权限加载运行程序</span></span><br><span class="line">      <span class="attr">env:</span></span><br><span class="line">        <span class="attr">REFRESH_TOKEN:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.REFRESH_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>name: Java CI</code>表示我的工作流叫做Java CI</p>
+<p>on里面我就不写了，已经打注释了</p>
+<p>接下来是重头戏是job里面的东西们</p>
+<p><code>runs-on: ubuntu-latest</code>表示我在这个ubuntu的系统上运行的（一个linux系统）</p>
+<p><code>build</code>任务首先做checkout代码操作。</p>
+<p>接下来是构建步骤，</p>
+<p><code>- name</code> 表示我这个步骤叫什么名</p>
+<p>下面表示我是java11版本运行的</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">uses:</span> <span class="string">actions/setup-java@v1</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">java-version:</span> <span class="string">&#x27;11&#x27;</span> <span class="comment"># 这里可以指定你需要的 Java 版本</span></span><br></pre></td></tr></table></figure>
+
+<p>这一步表示 缓存Maven本地包,加速构建，避免了每次运行都要下载maven里面引入的包（ps：我是看别人写的copy过来的）</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span> <span class="string">Maven</span> <span class="string">packages</span></span><br><span class="line">  <span class="attr">uses:</span> <span class="string">actions/cache@v2</span></span><br><span class="line">  <span class="attr">with:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">~/.m2</span></span><br><span class="line">    <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-m2-$&#123;&#123;</span> <span class="string">hashFiles(&#x27;**/pom.xml&#x27;)</span> <span class="string">&#125;&#125;</span></span><br><span class="line">    <span class="attr">restore-keys:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-m2</span></span><br></pre></td></tr></table></figure>
+
+<p>使用Maven进行项目打包构建。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span> <span class="string">with</span> <span class="string">Maven</span></span><br><span class="line">  <span class="attr">run:</span> <span class="string">mvn</span> <span class="string">-B</span> <span class="string">package</span> <span class="string">--file</span> <span class="string">pom.xml</span>   <span class="comment"># 使用 Maven 进行项目构建，可以根据你的项目需要修改命令</span></span><br></pre></td></tr></table></figure>
+
+<p>最后调用Java命令运行打包生成的JAR文件</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">run</span> <span class="string">Java</span> <span class="string">Application</span></span><br><span class="line">  <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">    java -Djava.security.manager -Djava.security.policy==src/main/resources/policy.policy -jar  target/ToDoTask.jar</span></span><br><span class="line"><span class="string"></span>  <span class="comment"># 附带权限加载运行程序</span></span><br><span class="line">  <span class="attr">env:</span></span><br><span class="line">    <span class="attr">REFRESH_TOKEN:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.REFRESH_TOKEN</span> <span class="string">&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中<code>-Djava.security.manager -Djava.security.policy==src/main/resources/policy.policy</code>的作用是设置权限，让github设置的screct传入进来，也就是传入到ToDoTask类里面的<code>private static final String refresh_token = System.getenv(&quot;REFRESH_TOKEN&quot;);</code>里面，其中<code>System.getenv(&quot;REFRESH_TOKEN&quot;)</code>就是用来获取GitHub设置的screct的，通过yml配置文件里面的，</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">env:</span></span><br><span class="line">  <span class="attr">REFRESH_TOKEN:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.REFRESH_TOKEN</span> <span class="string">&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>进行传入，如果不加入<code>-Djava.security.manager -Djava.security.policy==src/main/resources/policy.policy</code>这句话的话refresh_token 获取的一直是null。。。。。</p>
+<p>因为我每次运行都是各种权限错误，运行一次加一次，最后索性在policy文件下面加了一个<code>permission java.security.AllPermission;</code>释放所有权限</p>
+<p>报错log（部分）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">----<span class="number">1</span></span><br><span class="line">Error: Exception in thread <span class="string">&quot;main&quot;</span> java.lang.IllegalStateException: java.security.AccessControlException: access <span class="title function_">denied</span> <span class="params">(<span class="string">&quot;java.lang.RuntimePermission&quot;</span> <span class="string">&quot;getProtectionDomain&quot;</span>)</span></span><br><span class="line">----<span class="number">2</span></span><br><span class="line">access <span class="title function_">denied</span> <span class="params">(<span class="string">&quot;java.lang.RuntimePermission&quot;</span> <span class="string">&quot;setFactory&quot;</span>)</span></span><br><span class="line">----<span class="number">3</span></span><br><span class="line">access <span class="title function_">denied</span> <span class="params">(<span class="string">&quot;java.util.PropertyPermission&quot;</span> <span class="string">&quot;java.protocol.handler.pkgs&quot;</span> <span class="string">&quot;read&quot;</span>)</span></span><br><span class="line">----<span class="number">4</span></span><br><span class="line">access <span class="title function_">denied</span> <span class="params">(<span class="string">&quot;java.util.PropertyPermission&quot;</span> <span class="string">&quot;java.protocol.handler.pkgs&quot;</span> <span class="string">&quot;write&quot;</span>)</span></span><br><span class="line">----<span class="number">5</span></span><br><span class="line">access <span class="title function_">denied</span> <span class="params">(<span class="string">&quot;java.lang.RuntimePermission&quot;</span> <span class="string">&quot;getProtectionDomain&quot;</span>)</span></span><br><span class="line">    </span><br><span class="line">然后好多权限报错问题，运行一次报一次。。。。。。</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="yml配置之-项目切忌class方式运行"><a href="#yml配置之-项目切忌class方式运行" class="headerlink" title="yml配置之 项目切忌class方式运行"></a>yml配置之 项目切忌class方式运行</h3><p>一开始我是懵的，创建的是springboot的项目，然后就要编写如何运行java文件的东西，一开始我选择的是采用直接编译java文件运行class类的方式。</p>
+<p>这种方式是大错特错的，因为是项目的原因，必须要引入这个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name: Build with Maven</span><br><span class="line">run: mvn -B package --file pom.xml </span><br></pre></td></tr></table></figure>
+
+<h3 id="pom配置之-一定要加bulid"><a href="#pom配置之-一定要加bulid" class="headerlink" title="pom配置之 一定要加bulid"></a>pom配置之 一定要加bulid</h3><p>也就是说一定要加入下面这段，finalName标签是必须要的，因为是打包成一个jar包运行的是一个jar包，你不加finalName人家都不知道运行啥，运行class文件吗，别搞笑了。</p>
+<p>另外plugins标签里面也一定要加上，因为该插件提供了打包和运行Spring Boot项目的能力。添加这个插件后可以直接使用mvn spring-boot:run来运行Spring Boot应用，我不加上无法运行jar包。。。。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--    打包后的文件名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>ToDoTask<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="java文件之获取传入进来的token"><a href="#java文件之获取传入进来的token" class="headerlink" title="java文件之获取传入进来的token"></a>java文件之获取传入进来的token</h3><p>我一直好奇的是<code>REFRESH_TOKEN: $&#123;&#123; secrets.REFRESH_TOKEN &#125;&#125;</code>这段是如何传入进来的，结果百度无果之后果断问了gpt，他告诉我用<code>System.getenv(&quot;REFRESH_TOKEN&quot;)</code>接收就好（ps：gpt真厉害）。在我运行工作流之后，发现token是null，很明显是没传入进来嘛，然后又去问，他告诉我要设置权限，也就是上面提到的哪些。。。。这样下来，最终是完成了这个</p>
+<p>其中</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">env:</span></span><br><span class="line">    <span class="attr">REFRESH_TOKEN:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.REFRESH_TOKEN</span> <span class="string">&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这一段你要放在外面就是全局变量，你要放在里面就是局部变量</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>Github Action对于公有仓库是免费的，对于私有仓库用户提供了一定的免费额度：</p>
+<ul>
+<li>对于运行在Linux上的作业，github提供了2000分钟的免费额度；</li>
+<li>Github提供了10G免费的缓存，并且会对7天内未被访问的key进行删除；</li>
+<li>以上的使用限额，会在每个月进行重置；</li>
+</ul>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>开门见山，针对程序员来说，如果每天都手动签到岂不是很费力，昨天和我同学闲聊的时候，发现他在用py实现各种签到的打卡，看的我是狠狠的抽自己脸，怎么能手动打卡呢！！！尊严何在？</p>
 <p>因为上个月在吾爱上看见一个<a target="_blank" rel="noopener" href="https://www.52pojie.cn/home.php?mod=space&uid=1942406">zhuoxin99</a>大佬发了一个<a target="_blank" rel="noopener" href="https://www.52pojie.cn/forum.php?mod=viewthread&tid=1785892&extra=page=1&filter=typeid&typeid=388">某盘签到</a>的一个java项目，今天正好心血来潮准备改改修修补补的。因为对GitHub的Action没有什么了解，所以有点怵头。修修补补最终是弄好了</p>
@@ -337,6 +407,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -355,6 +426,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -379,7 +458,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -389,7 +468,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

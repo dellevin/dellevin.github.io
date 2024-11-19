@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">NGINX-应用-误删nginx.pid</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:34:11
@@ -204,6 +210,29 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>2022年7月5日</p>
+<p>因为刚修改了nginx的配置文件,清理了一下logs的文件夹。一时手贱，使用了<br><code>rm -rf *</code><br>在重启nginx的时候直接报错了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">nginx: [error] open() <span class="string">&quot;/usr/local/nginx/logs/nginx.pid&quot;</span> failed (2: No such file or directory)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>提示打开失败，没有这个文件或者目录。简单分析来说就是没有nginx.pid这个文件。</p>
+<h5 id="修复方法"><a href="#修复方法" class="headerlink" title="修复方法"></a>修复方法</h5><p>1.我们可以杀死所有nginx进程，运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall nginx </span><br></pre></td></tr></table></figure>
+
+<p>2.如果报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-bash: killall: 未找到命令</span><br></pre></td></tr></table></figure>
+<p>运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install psmisc          </span><br></pre></td></tr></table></figure>
+
+<p>安装完毕后。然后重新运行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall nginx </span><br></pre></td></tr></table></figure>
+<p>3.这时在sbin目录下，重启nginx就可以正常运行了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nginx</span><br></pre></td></tr></table></figure>`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>2022年7月5日</p>
 <p>因为刚修改了nginx的配置文件,清理了一下logs的文件夹。一时手贱，使用了<br><code>rm -rf *</code><br>在重启nginx的时候直接报错了</p>
@@ -296,6 +325,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -314,6 +344,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -338,7 +376,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -348,7 +386,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

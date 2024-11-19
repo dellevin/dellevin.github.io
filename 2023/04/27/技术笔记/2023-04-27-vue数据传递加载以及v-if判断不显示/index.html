@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">vue数据传递加载以及v-if判断不显示</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:56:12
@@ -196,14 +202,14 @@
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
-                    #技术笔记
+                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                    #前端
                   </a>
                 </span>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
-                    #前端
+                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    #技术笔记
                   </a>
                 </span>
                 
@@ -216,6 +222,30 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>今天在尽心数据传递的时候，在点击的时候，发现数据第一次会为空，但是控制台get到的数据时正常的，也就是说，赋值的时候能赋值上去，当时到了v-if判断的时候出现了小问题。</p>
+<p>一开始时按照h5的逻辑来，我以为是script在标签后面，所以才后渲染，导致判断失误的。以为时vue渲染的时候先吧标签渲染，然后才开始渲染script，但是这样的情况时不合理的，如果后加载标签的话，那么显示的时候标签上的颜色标签应该是不上色的情况。所以这个思路时错误的。</p>
+<p>代码大致的结构是这样的，之前的代码删了，大致情况时这个样子。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-dialog v-model=&quot;visible&quot; :title=&quot;$t(&#x27;文件预览&#x27;)&quot; :close-on-click-modal=&quot;false&quot; :close-on-press-escape=&quot;false&quot;&gt;</span><br><span class="line">    &lt;div v-if=&quot;fileType == &#x27;jpg&#x27; ||</span><br><span class="line">      fileType == &#x27;png&#x27; ||</span><br><span class="line">      fileType == &#x27;ico&#x27; ||</span><br><span class="line">      fileType == &#x27;gif&#x27; ||</span><br><span class="line">      fileType == &#x27;webp&#x27; </span><br><span class="line">      &quot;&gt;</span><br><span class="line">      &lt;el-image style=&quot;width: 100%&quot; :src=&quot;getFilePath&quot;&gt; &lt;/el-image&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div v-else-if=&quot;fileType == &#x27;docx&#x27; || fileType == &#x27;doc&#x27;&quot;&gt;文档</span><br><span class="line">      &lt;embed :src=&quot;getFilePath&quot; style=&quot;width: 100%; height: 600px&quot; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div v-else-if=&quot;fileType == &#x27;xlsx&#x27; || fileType == &#x27;xls&#x27;&quot;&gt;表格</span><br><span class="line">      &lt;embed :src=&quot;getFilePath&quot; style=&quot;width: 100%; height: 600px&quot; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div v-else-if=&quot;fileType == &#x27;pdf&#x27;&quot;&gt;</span><br><span class="line">      &lt;embed :src=&quot;getFilePath&quot; style=&quot;width: 100%; height: 600px&quot; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div v-else&gt;</span><br><span class="line">      &lt;h2 style=&quot;text-align: center;color: brown; &quot;&gt;暂不支持该文件格式！&lt;/h2&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;template v-slot:footer&gt;</span><br><span class="line">      &lt;el-button @click=&quot;visible = false&quot;&gt;&#123;&#123; $t(&quot;退出预览&quot;) &#125;&#125;&lt;/el-button&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">  &lt;/el-dialog&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang=&quot;ts&quot; setup&gt;</span><br><span class="line">import &#123; reactive, ref &#125; from &quot;vue&quot;;</span><br><span class="line">import baseService from &quot;@/service/baseService&quot;;</span><br><span class="line">import &#123; ElMessage &#125; from &quot;element-plus&quot;;</span><br><span class="line"></span><br><span class="line">const visible = ref(false);</span><br><span class="line">const dataFormRef = ref();</span><br><span class="line">var getFilePath = &quot;&quot;;</span><br><span class="line">var fileType = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">const fileMessage = reactive(&#123;</span><br><span class="line">  getFilePath: &quot;&quot;,</span><br><span class="line">  fileType: &quot;&quot;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const dataForm = reactive(&#123;</span><br><span class="line">  uploadFileId: &quot;&quot;,</span><br><span class="line">  uploadCompanyName: &quot;&quot;,</span><br><span class="line">  uploadFileName: &quot;&quot;,</span><br><span class="line">  uploadFilePath: &quot;&quot;,</span><br><span class="line">  uploadUserName: &quot;&quot;,</span><br><span class="line">  uploadFileTime: &quot;&quot;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const init = (uploadFileId?: number) =&gt; &#123;</span><br><span class="line">  visible.value = true;</span><br><span class="line">  dataForm.uploadFileId = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">  //重置表单数据</span><br><span class="line">  if (dataFormRef.value) &#123;</span><br><span class="line">    dataFormRef.value.resetFields();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (uploadFileId) &#123;</span><br><span class="line">    getInfo(uploadFileId);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//var showType: string;</span><br><span class="line">// 获取信息</span><br><span class="line">const getInfo = (uploadFileId: number) =&gt; &#123;</span><br><span class="line">  baseService.get(&quot;/uploadFile/xyjqfileupload/&quot; + uploadFileId).then((res) =&gt; &#123;</span><br><span class="line">    Object.assign(dataForm, res.data);</span><br><span class="line">    if (dataForm.uploadFilePath != &quot;&quot;) &#123;</span><br><span class="line">      getFilePath = dataForm.uploadFilePath; //获取到图片的路径，写在这里面才管用，写在外面，第一次请求时候没有数据</span><br><span class="line">      //获取文件的类型，取文件后缀名判断</span><br><span class="line">      fileType = getFilePath.substring(getFilePath.lastIndexOf(&quot;.&quot;) + 1, getFilePath.length);</span><br><span class="line">      console.log(&quot;文件类型：&quot; + fileType);</span><br><span class="line">      console.log(getFilePath);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      ElMessage.error(&quot;链接地址为空，无法打开&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">defineExpose(&#123;</span><br><span class="line">  init</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>代码大致时这个情况，后来发现主要原因出现在这两个赋值传递值的阶段</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var filetype=&quot;&quot;;</span><br><span class="line">var getFilePath=&quot;&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>不知道是不是vue的结构还是html的结构问题，主要脚本语言时时typescript，需要const定义一下属性进行赋值，才可以在第一次传递数据和判断数据的时候生效，也就是说要改成下面的这个情况。而且在ts中，var的作用区间并不是和js一样，我想大概是因为这个情况吧，才学没多久，希望有人能指出这个bug来。。。。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const fileMessage = reactive(&#123;</span><br><span class="line">  getFilePath: &quot;&quot;,</span><br><span class="line">  fileType: &quot;&quot;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个是正确的结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-dialog v-model=&quot;visible&quot; :title=&quot;$t(&#x27;文件预览&#x27;)&quot; :close-on-click-modal=&quot;false&quot; :close-on-press-escape=&quot;false&quot;&gt;</span><br><span class="line">    &lt;div v-if=&quot;fileMessage.fileType == &#x27;jpg&#x27; ||</span><br><span class="line">      fileMessage.fileType == &#x27;png&#x27; ||</span><br><span class="line">      fileMessage.fileType == &#x27;ico&#x27; ||</span><br><span class="line">      fileMessage.fileType == &#x27;gif&#x27; ||</span><br><span class="line">      fileMessage.fileType == &#x27;webp&#x27; </span><br><span class="line">      &quot;&gt;</span><br><span class="line">      &lt;el-image style=&quot;width: 100%&quot; :src=&quot;fileMessage.getFilePath&quot;&gt; &lt;/el-image&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div v-else-if=&quot;fileMessage.fileType == &#x27;docx&#x27; || fileMessage.fileType == &#x27;doc&#x27;&quot;&gt;文档</span><br><span class="line">      &lt;embed :src=&quot;fileMessage.getFilePath&quot; style=&quot;width: 100%; height: 600px&quot; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div v-else-if=&quot;fileMessage.fileType == &#x27;xlsx&#x27; || fileMessage.fileType == &#x27;xls&#x27;&quot;&gt;表格</span><br><span class="line">      &lt;embed :src=&quot;fileMessage.getFilePath&quot; style=&quot;width: 100%; height: 600px&quot; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div v-else-if=&quot;fileMessage.fileType == &#x27;pdf&#x27;&quot;&gt;</span><br><span class="line">      &lt;embed :src=&quot;fileMessage.getFilePath&quot; style=&quot;width: 100%; height: 600px&quot; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div v-else&gt;</span><br><span class="line">      &lt;h2 style=&quot;text-align: center;color: brown; &quot;&gt;暂不支持该文件格式！&lt;/h2&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;template v-slot:footer&gt;</span><br><span class="line">      &lt;el-button @click=&quot;visible = false&quot;&gt;&#123;&#123; $t(&quot;退出预览&quot;) &#125;&#125;&lt;/el-button&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">  &lt;/el-dialog&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang=&quot;ts&quot; setup&gt;</span><br><span class="line">import &#123; reactive, ref &#125; from &quot;vue&quot;;</span><br><span class="line">import baseService from &quot;@/service/baseService&quot;;</span><br><span class="line">import &#123; ElMessage &#125; from &quot;element-plus&quot;;</span><br><span class="line"></span><br><span class="line">const visible = ref(false);</span><br><span class="line">const dataFormRef = ref();</span><br><span class="line"></span><br><span class="line">const fileMessage = reactive(&#123;</span><br><span class="line">  getFilePath: &quot;&quot;,</span><br><span class="line">  fileType: &quot;&quot;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const dataForm = reactive(&#123;</span><br><span class="line">  uploadFileId: &quot;&quot;,</span><br><span class="line">  uploadCompanyName: &quot;&quot;,</span><br><span class="line">  uploadFileName: &quot;&quot;,</span><br><span class="line">  uploadFilePath: &quot;&quot;,</span><br><span class="line">  uploadUserName: &quot;&quot;,</span><br><span class="line">  uploadFileTime: &quot;&quot;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const init = (uploadFileId?: number) =&gt; &#123;</span><br><span class="line">  visible.value = true;</span><br><span class="line">  dataForm.uploadFileId = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">  //重置表单数据</span><br><span class="line">  if (dataFormRef.value) &#123;</span><br><span class="line">    dataFormRef.value.resetFields();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (uploadFileId) &#123;</span><br><span class="line">    getInfo(uploadFileId);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">//var showType: string;</span><br><span class="line">// 获取信息</span><br><span class="line">const getInfo = (uploadFileId: number) =&gt; &#123;</span><br><span class="line">  baseService.get(&quot;/uploadFile/xyjqfileupload/&quot; + uploadFileId).then((res) =&gt; &#123;</span><br><span class="line">    Object.assign(dataForm, res.data);</span><br><span class="line">    if (dataForm.uploadFilePath != &quot;&quot;) &#123;</span><br><span class="line">      fileMessage.getFilePath = dataForm.uploadFilePath; //获取到图片的路径，卸载这里面才管用，写在外面，第一次请求时候没有数据</span><br><span class="line">      //console.log(getFilePath.substring(getFilePath.lastIndexOf(&quot;.&quot;) + 1, getFilePath.length));</span><br><span class="line">      //console.log(getFilePath);</span><br><span class="line">      fileMessage.fileType = fileMessage.getFilePath.substring(fileMessage.getFilePath.lastIndexOf(&quot;.&quot;) + 1, fileMessage.getFilePath.length);</span><br><span class="line">      //showType = fileType;</span><br><span class="line">      console.log(&quot;文件类型：&quot; + fileMessage.fileType);</span><br><span class="line">      console.log(fileMessage.getFilePath);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      ElMessage.error(&quot;链接地址为空，无法打开&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">defineExpose(&#123;</span><br><span class="line">  init</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>今天在尽心数据传递的时候，在点击的时候，发现数据第一次会为空，但是控制台get到的数据时正常的，也就是说，赋值的时候能赋值上去，当时到了v-if判断的时候出现了小问题。</p>
 <p>一开始时按照h5的逻辑来，我以为是script在标签后面，所以才后渲染，导致判断失误的。以为时vue渲染的时候先吧标签渲染，然后才开始渲染script，但是这样的情况时不合理的，如果后加载标签的话，那么显示的时候标签上的颜色标签应该是不上色的情况。所以这个思路时错误的。</p>
@@ -266,14 +296,14 @@
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
-                        #技术笔记
+                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                        #前端
                       </a>
                     </span>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
-                        #前端
+                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        #技术笔记
                       </a>
                     </span>
                     
@@ -304,6 +334,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -322,6 +353,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -346,7 +385,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -356,7 +395,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

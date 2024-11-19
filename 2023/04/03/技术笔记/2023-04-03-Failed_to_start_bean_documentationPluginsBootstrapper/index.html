@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">Failed to start bean documentationPluginsBootstrapper</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:05:09
@@ -202,20 +208,75 @@
                 </span>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/java/" title="java">
-                    #java
+                  <a href="/tags/%E6%95%85%E9%9A%9C/" title="故障">
+                    #故障
                   </a>
                 </span>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E6%95%85%E9%9A%9C/" title="故障">
-                    #故障
+                  <a href="/tags/java/" title="java">
+                    #java
                   </a>
                 </span>
                 
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>关于报错org.springframework.context.ApplicationContextException: Failed to start bean ‘documentationPluginsBootstrapper’</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Error starting ApplicationContext. To display the conditions report re-run your application with <span class="string">&#x27;debug&#x27;</span> enabled.</span><br><span class="line">2023-04-03 00:08:57.651 ERROR 15032 --- [           main] o.s.boot.SpringApplication               : Application run failed</span><br><span class="line"></span><br><span class="line">org.springframework.context.ApplicationContextException: Failed to start bean <span class="string">&#x27;documentationPluginsBootstrapper&#x27;</span>; nested exception is java.lang.NullPointerException</span><br><span class="line">	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:181) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at org.springframework.context.support.DefaultLifecycleProcessor.access<span class="variable">$200</span>(DefaultLifecycleProcessor.java:54) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at org.springframework.context.support.DefaultLifecycleProcessor<span class="variable">$LifecycleGroup</span>.start(DefaultLifecycleProcessor.java:356) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]</span><br><span class="line">	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.6.10.jar:2.6.10]</span><br><span class="line">	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:745) ~[spring-boot-2.6.10.jar:2.6.10]</span><br><span class="line">	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:420) ~[spring-boot-2.6.10.jar:2.6.10]</span><br><span class="line">	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307) ~[spring-boot-2.6.10.jar:2.6.10]</span><br><span class="line">	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1317) ~[spring-boot-2.6.10.jar:2.6.10]</span><br><span class="line">	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-2.6.10.jar:2.6.10]</span><br><span class="line">	at com.wonder.UselessToolsApplication.main(UselessToolsApplication.java:14) ~[classes/:na]</span><br><span class="line">Caused by: java.lang.NullPointerException: null</span><br><span class="line">	at springfox.documentation.spi.service.contexts.Orderings<span class="variable">$8</span>.compare(Orderings.java:112) ~[springfox-spi-2.9.2.jar:null]</span><br><span class="line">	at springfox.documentation.spi.service.contexts.Orderings<span class="variable">$8</span>.compare(Orderings.java:109) ~[springfox-spi-2.9.2.jar:null]</span><br><span class="line">	at com.google.common.collect.ComparatorOrdering.compare(ComparatorOrdering.java:37) ~[guava-20.0.jar:na]</span><br><span class="line">	at java.base/java.util.TimSort.countRunAndMakeAscending(TimSort.java:355) ~[na:na]</span><br><span class="line">	at java.base/java.util.TimSort.<span class="built_in">sort</span>(TimSort.java:220) ~[na:na]</span><br><span class="line">	at java.base/java.util.Arrays.<span class="built_in">sort</span>(Arrays.java:1441) ~[na:na]</span><br><span class="line">	at com.google.common.collect.Ordering.sortedCopy(Ordering.java:855) ~[guava-20.0.jar:na]</span><br><span class="line">	at springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider.requestHandlers(WebMvcRequestHandlerProvider.java:57) ~[springfox-spring-web-2.9.2.jar:null]</span><br><span class="line">	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper<span class="variable">$2</span>.apply(DocumentationPluginsBootstrapper.java:138) ~[springfox-spring-web-2.9.2.jar:null]</span><br><span class="line">	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper<span class="variable">$2</span>.apply(DocumentationPluginsBootstrapper.java:135) ~[springfox-spring-web-2.9.2.jar:null]</span><br><span class="line">	at com.google.common.collect.Iterators<span class="variable">$7</span>.transform(Iterators.java:750) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.TransformedIterator.next(TransformedIterator.java:47) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.TransformedIterator.next(TransformedIterator.java:47) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.MultitransformedIterator.hasNext(MultitransformedIterator.java:52) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.MultitransformedIterator.hasNext(MultitransformedIterator.java:50) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.ImmutableList.copyOf(ImmutableList.java:249) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.ImmutableList.copyOf(ImmutableList.java:209) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.FluentIterable.toList(FluentIterable.java:614) ~[guava-20.0.jar:na]</span><br><span class="line">	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.defaultContextBuilder(DocumentationPluginsBootstrapper.java:111) ~[springfox-spring-web-2.9.2.jar:null]</span><br><span class="line">	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.buildContext(DocumentationPluginsBootstrapper.java:96) ~[springfox-spring-web-2.9.2.jar:null]</span><br><span class="line">	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.start(DocumentationPluginsBootstrapper.java:167) ~[springfox-spring-web-2.9.2.jar:null]</span><br><span class="line">	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	... 14 common frames omitted</span><br></pre></td></tr></table></figure>
+
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><blockquote>
+<p>因为Springfox 使用的路径匹配是基于AntPathMatcher的，而Spring Boot 2.6.X使用的是PathPatternMatcher。</p>
+</blockquote>
+<h2 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h2><h3 id="修复方案一：降低Spring-Boot-版本到2-6-x以下版本"><a href="#修复方案一：降低Spring-Boot-版本到2-6-x以下版本" class="headerlink" title="修复方案一：降低Spring Boot 版本到2.6.x以下版本"></a>修复方案一：降低Spring Boot 版本到2.6.x以下版本</h3><p>比如下面版本组合是兼容的</p>
+<table>
+<thead>
+<tr>
+<th>Spring Boot版本</th>
+<th>Swagger 版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2.5.6</td>
+<td>2.9.2</td>
+</tr>
+</tbody></table>
+<h3 id="修复方案二-SpringBoot版本不降级解决方案"><a href="#修复方案二-SpringBoot版本不降级解决方案" class="headerlink" title="修复方案二: SpringBoot版本不降级解决方案"></a>修复方案二: SpringBoot版本不降级解决方案</h3><p>比如下面版本组合是兼容的</p>
+<table>
+<thead>
+<tr>
+<th>Spring Boot版本</th>
+<th>Swagger 版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2.6.5</td>
+<td>3.0.0</td>
+</tr>
+</tbody></table>
+<h3 id="修复方案三：设置application配置文件"><a href="#修复方案三：设置application配置文件" class="headerlink" title="修复方案三：设置application配置文件"></a>修复方案三：设置application配置文件</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">mvc:</span></span><br><span class="line">    <span class="attr">pathmatch:</span></span><br><span class="line">      <span class="attr">matching-strategy:</span> <span class="string">ant_path_matcher</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="修复方案四，修改spring源文件"><a href="#修复方案四，修改spring源文件" class="headerlink" title="修复方案四，修改spring源文件"></a>修复方案四，修改spring源文件</h3><p>我没找到这个java文件。。。。没试过，估计应该可以。。</p>
+<p>参考地址：<a target="_blank" rel="noopener" href="https://github.com/springfox/springfox/issues/3462">https://github.com/springfox/springfox/issues/3462</a></p>
+<ol>
+<li><p>revert matching strategy <code>spring.mvc.pathmatch.matching-strategy</code> to <code>ant-path-matcher</code></p>
+</li>
+<li><p>hack springfox <a target="_blank" rel="noopener" href="https://github.com/springfox/springfox/blob/master/springfox-spring-webmvc/src/main/java/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.java#L63">WebMvcRequestHandlerProvider</a> to filter out actuator controllers which don’t respect <code>spring.mvc.pathmatch.matching-strategy</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">WebMvcRequestHandlerProvider</span><span class="params">(Optional&lt;ServletContext&gt; servletContext, HandlerMethodResolver methodResolver,</span></span><br><span class="line"><span class="params">		List&lt;RequestMappingInfoHandlerMapping&gt; handlerMappings)</span> &#123;</span><br><span class="line">	<span class="built_in">this</span>.handlerMappings = handlerMappings.stream().filter(mapping -&gt; mapping.getPatternParser() == <span class="literal">null</span>)</span><br><span class="line">			.collect(Collectors.toList());</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="swagger配置类"><a href="#swagger配置类" class="headerlink" title="swagger配置类"></a>swagger配置类</h2><p>.apis(RequestHandlerSelectors.basePackage(“com.wonder.controller”)) </p>
+<p>这里填写扫描包，对应类添加@API</p>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.wonder.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.ApiInfoBuilder;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.PathSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.RequestHandlerSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.service.ApiInfo;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spi.DocumentationType;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spring.web.plugins.Docket;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContext;</span><br><span class="line"><span class="keyword">import</span> java.util.Optional;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span> <span class="comment">// 标明是配置类</span></span><br><span class="line"><span class="meta">@EnableSwagger2</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SwaggerConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Docket <span class="title function_">createRestApi</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Docket</span>(DocumentationType.SWAGGER_2)  <span class="comment">// DocumentationType.SWAGGER_2 固定的，代表swagger2</span></span><br><span class="line"><span class="comment">//                .groupName(&quot;分布式任务系统&quot;) // 如果配置多个文档的时候，那么需要配置groupName来分组标识</span></span><br><span class="line">                .apiInfo(apiInfo()) <span class="comment">// 用于生成API信息</span></span><br><span class="line">                .select() <span class="comment">// select()函数返回一个ApiSelectorBuilder实例,用来控制接口被swagger做成文档</span></span><br><span class="line">                .apis(RequestHandlerSelectors.basePackage(<span class="string">&quot;com.wonder.controller&quot;</span>)) <span class="comment">// 用于指定扫描哪个包下的接口</span></span><br><span class="line">                .paths(PathSelectors.any())<span class="comment">// 选择所有的API,如果你想只为部分API生成文档，可以配置这里</span></span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用于定义API主界面的信息，比如可以声明所有的API的总标题、描述、版本</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> ApiInfo <span class="title function_">apiInfo</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ApiInfoBuilder</span>()</span><br><span class="line">                .title(<span class="string">&quot;项目API&quot;</span>) <span class="comment">//  可以用来自定义API的主标题</span></span><br><span class="line">                .description(<span class="string">&quot;项目SwaggerAPI管理&quot;</span>) <span class="comment">// 可以用来描述整体的API</span></span><br><span class="line">                <span class="comment">//.termsOfServiceUrl(&quot;&quot;) // 用于定义服务的域名</span></span><br><span class="line">                .version(<span class="string">&quot;1.0&quot;</span>) <span class="comment">// 可以用来定义版本。</span></span><br><span class="line">                .build(); <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>   访问地址：<a target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a></p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>关于报错org.springframework.context.ApplicationContextException: Failed to start bean ‘documentationPluginsBootstrapper’</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Error starting ApplicationContext. To display the conditions report re-run your application with <span class="string">&#x27;debug&#x27;</span> enabled.</span><br><span class="line">2023-04-03 00:08:57.651 ERROR 15032 --- [           main] o.s.boot.SpringApplication               : Application run failed</span><br><span class="line"></span><br><span class="line">org.springframework.context.ApplicationContextException: Failed to start bean <span class="string">&#x27;documentationPluginsBootstrapper&#x27;</span>; nested exception is java.lang.NullPointerException</span><br><span class="line">	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:181) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at org.springframework.context.support.DefaultLifecycleProcessor.access<span class="variable">$200</span>(DefaultLifecycleProcessor.java:54) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at org.springframework.context.support.DefaultLifecycleProcessor<span class="variable">$LifecycleGroup</span>.start(DefaultLifecycleProcessor.java:356) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]</span><br><span class="line">	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.6.10.jar:2.6.10]</span><br><span class="line">	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:745) ~[spring-boot-2.6.10.jar:2.6.10]</span><br><span class="line">	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:420) ~[spring-boot-2.6.10.jar:2.6.10]</span><br><span class="line">	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307) ~[spring-boot-2.6.10.jar:2.6.10]</span><br><span class="line">	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1317) ~[spring-boot-2.6.10.jar:2.6.10]</span><br><span class="line">	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-2.6.10.jar:2.6.10]</span><br><span class="line">	at com.wonder.UselessToolsApplication.main(UselessToolsApplication.java:14) ~[classes/:na]</span><br><span class="line">Caused by: java.lang.NullPointerException: null</span><br><span class="line">	at springfox.documentation.spi.service.contexts.Orderings<span class="variable">$8</span>.compare(Orderings.java:112) ~[springfox-spi-2.9.2.jar:null]</span><br><span class="line">	at springfox.documentation.spi.service.contexts.Orderings<span class="variable">$8</span>.compare(Orderings.java:109) ~[springfox-spi-2.9.2.jar:null]</span><br><span class="line">	at com.google.common.collect.ComparatorOrdering.compare(ComparatorOrdering.java:37) ~[guava-20.0.jar:na]</span><br><span class="line">	at java.base/java.util.TimSort.countRunAndMakeAscending(TimSort.java:355) ~[na:na]</span><br><span class="line">	at java.base/java.util.TimSort.<span class="built_in">sort</span>(TimSort.java:220) ~[na:na]</span><br><span class="line">	at java.base/java.util.Arrays.<span class="built_in">sort</span>(Arrays.java:1441) ~[na:na]</span><br><span class="line">	at com.google.common.collect.Ordering.sortedCopy(Ordering.java:855) ~[guava-20.0.jar:na]</span><br><span class="line">	at springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider.requestHandlers(WebMvcRequestHandlerProvider.java:57) ~[springfox-spring-web-2.9.2.jar:null]</span><br><span class="line">	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper<span class="variable">$2</span>.apply(DocumentationPluginsBootstrapper.java:138) ~[springfox-spring-web-2.9.2.jar:null]</span><br><span class="line">	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper<span class="variable">$2</span>.apply(DocumentationPluginsBootstrapper.java:135) ~[springfox-spring-web-2.9.2.jar:null]</span><br><span class="line">	at com.google.common.collect.Iterators<span class="variable">$7</span>.transform(Iterators.java:750) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.TransformedIterator.next(TransformedIterator.java:47) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.TransformedIterator.next(TransformedIterator.java:47) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.MultitransformedIterator.hasNext(MultitransformedIterator.java:52) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.MultitransformedIterator.hasNext(MultitransformedIterator.java:50) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.ImmutableList.copyOf(ImmutableList.java:249) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.ImmutableList.copyOf(ImmutableList.java:209) ~[guava-20.0.jar:na]</span><br><span class="line">	at com.google.common.collect.FluentIterable.toList(FluentIterable.java:614) ~[guava-20.0.jar:na]</span><br><span class="line">	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.defaultContextBuilder(DocumentationPluginsBootstrapper.java:111) ~[springfox-spring-web-2.9.2.jar:null]</span><br><span class="line">	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.buildContext(DocumentationPluginsBootstrapper.java:96) ~[springfox-spring-web-2.9.2.jar:null]</span><br><span class="line">	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.start(DocumentationPluginsBootstrapper.java:167) ~[springfox-spring-web-2.9.2.jar:null]</span><br><span class="line">	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178) ~[spring-context-5.3.22.jar:5.3.22]</span><br><span class="line">	... 14 common frames omitted</span><br></pre></td></tr></table></figure>
@@ -270,7 +331,7 @@
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2023/04/02/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/2023-04-02-%E6%B2%A1%E6%9C%89%E5%AB%81%E7%BB%99%E4%BD%A0-%E5%BC%A0%E5%B0%8F%E5%A8%B4/" target="_self">
+              <a href="/2023/04/02/%E9%9A%8F%E7%AC%94/2023-04-02-%E6%9B%B4%E6%94%B9%E5%9F%9F%E5%90%8D%E5%95%A6%EF%BC%81/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -303,14 +364,14 @@
                     </span>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/java/" title="java">
-                        #java
+                      <a href="/tags/%E6%95%85%E9%9A%9C/" title="故障">
+                        #故障
                       </a>
                     </span>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E6%95%85%E9%9A%9C/" title="故障">
-                        #故障
+                      <a href="/tags/java/" title="java">
+                        #java
                       </a>
                     </span>
                     
@@ -352,6 +413,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -370,6 +432,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -394,7 +464,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -404,7 +474,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

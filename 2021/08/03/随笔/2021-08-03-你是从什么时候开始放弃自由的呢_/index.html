@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">你是从什么时候开始放弃自由的呢?</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:35:10
@@ -204,6 +210,26 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>因为疫情缘故，层层的封锁下，也是封锁住了自己的内心，但是尽管把限制自己的全都封锁，唯一不能封锁住我们的只剩下思想了。一觉醒来，便对自己提出了这个问题。</p>
+<p>如果针对这个问题非要较真的话，我们从来到这个世界上就已经放弃了自由。把自己困于自己的世界之中开始了牙牙学语。从这里便说明，这里的自由指的是意志自由而并非行动自由。</p>
+<p>但是，为什么非要那么较真呢，我们的目的是在问题探索的过程中寻找真正的自己，在思考问题的过程中认识到自己。如果当真的浑浑噩噩的度过这一天，那完完全全是没有任何意义的。学会提出问题也是一个很重要的很重要的能力。</p>
+<p>晚上洗脸的时候，我真真切切的感受到了一点。因为我有个习惯是洗完澡之后才洗脸，甚至，这都已经成为了一种习惯。我想了想，我完完全全可以不用洗脸的。同理，把这个问题换成与之相对的问题，答案或许显而易见“我们是从什么时候开始被束缚住呢？”</p>
+<p>当我想到的时候，答案也随着问题在我的脑中浮现出来。</p>
+<p>“在我们开始学会明辨是非的时候。”</p>
+<p>因为学会了明辨是非，我们开始知道了事物的对错，知道了什么事情该做什么事情不该做。我们从那一刻起就开始了犹豫，开始了怯懦。做得好会被人夸家，但一旦选错了甚至不作为就被会厌恶，乃至恶语相向。从明辨是非开始，即使知道这个是错的，但奈何于对方的实力，我们还是选择了人多的那一边。那一刻起，自由，就已经离我们而去了。</p>
+<p>如果我所有的意志是时间的积累，完全是由传统、文化、经验、限制、家庭背景、种族以及信仰所形成的，只能在已知领域中起作用，那又有什么自由可言呢？</p>
+<p>在《自由论》中，弗里特约夫·博格曼概述了他所谓的我们“对自由的矛盾看法”。这种看法的一个方面是一种常见的观点，即自由是美好的。正是自由赋予了人类高贵的地位，并把我们从自然界中分离出来，并且，每一个社会中的每一个成员都把自由视作理所当然的目标，即便他们不理解这个词，或从未思考过自由的含义。追求自由的冲动是无可置疑的，自由的价值是绝对的，甚至比生命还重要。</p>
+<p>但这种看法本身就已经导致了一种两难的处境：一方面，我们生来是自由的；另一方面，我们还渴望自由。因此，我们应当区分“内在自由”和“外在自由”。也就是说本身的自由和追求的自由，说到底还是意志的自由和行动的自由。</p>
+<p>你见过大海吗？有时候，大海风平浪静，空气似乎屏住了呼吸，海面上倒映着满天的繁星，一切都显得那么静谧，世界一片太平。然而，平静的海面之下却是暗流涌动。实际上，海洋如此辽阔，永远都不可能平静的。</p>
+<p>海水永远在涌动，从不停止，稍有动静就会打破海面的安宁、静谧。我们的心灵也是如此，永远不可能彻底平静。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>因为疫情缘故，层层的封锁下，也是封锁住了自己的内心，但是尽管把限制自己的全都封锁，唯一不能封锁住我们的只剩下思想了。一觉醒来，便对自己提出了这个问题。</p>
 <p>如果针对这个问题非要较真的话，我们从来到这个世界上就已经放弃了自由。把自己困于自己的世界之中开始了牙牙学语。从这里便说明，这里的自由指的是意志自由而并非行动自由。</p>
@@ -276,6 +302,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -294,6 +321,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -318,7 +353,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -328,7 +363,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

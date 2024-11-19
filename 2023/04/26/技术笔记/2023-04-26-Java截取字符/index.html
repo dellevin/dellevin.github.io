@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">Java截取字符</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:06:33
@@ -210,6 +216,30 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>今天脑子突然抽了，截取字符的时候</p>
+<p>想把</p>
+<p>[1651114259328487426]</p>
+<p>截取成</p>
+<p>1651114259328487426</p>
+<p>我知道是substring从1开始截取，但是为什么最后是length()-1呢，一开始-2我还很疑惑，看了一些文档才反应过来。</p>
+<ul>
+<li><p><strong>beginIndex</strong> – 起始索引（包括）, 索引从 0 开始。</p>
+</li>
+<li><p><strong>endIndex</strong> – 结束索引（不包括）。</p>
+</li>
+</ul>
+<p>原来是最后的索引是不包括的呀。。。自己真的蠢到家了，自己把自己蠢到了，说到底基础还是不扎实。</p>
+<p><strong>Java截取最后一个&#x2F;后面的所有字符</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">imgUrl</span> <span class="operator">=</span> <span class="string">&quot;http://127.0.0.1:8080/cms/ReadAddress/1479805098158.jpg&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">image</span> <span class="operator">=</span> imgUrl.substring(imgUrl.lastIndexOf(<span class="string">&quot;/&quot;</span>)+<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>今天脑子突然抽了，截取字符的时候</p>
 <p>想把</p>
@@ -292,6 +322,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -310,6 +341,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -334,7 +373,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -344,7 +383,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

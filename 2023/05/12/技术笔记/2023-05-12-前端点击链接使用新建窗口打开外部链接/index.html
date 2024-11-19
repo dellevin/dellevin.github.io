@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">前端点击链接使用新建窗口打开外部链接</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:03:38
@@ -196,20 +202,71 @@
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
-                    #技术笔记
+                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                    #前端
                   </a>
                 </span>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
-                    #前端
+                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    #技术笔记
                   </a>
                 </span>
                 
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p><strong>方法一：</strong></p>
+<p>我们可以使用a标签的属性来实现新建窗口跳转</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">&quot;item.sciUrl&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中<code>target</code>有以下几种属性</p>
+<table>
+<thead>
+<tr>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">_blank</td>
+<td align="left">在新窗口中打开被链接文档。</td>
+</tr>
+<tr>
+<td align="left">_self</td>
+<td align="left">默认。在相同的框架中打开被链接文档。</td>
+</tr>
+<tr>
+<td align="left">_parent</td>
+<td align="left">在父框架集中打开被链接文档。</td>
+</tr>
+<tr>
+<td align="left">_top</td>
+<td align="left">在整个窗口中打开被链接文档。</td>
+</tr>
+<tr>
+<td align="left"><em>framename</em></td>
+<td align="left">在指定的框架中打开被链接文档。</td>
+</tr>
+</tbody></table>
+<p><strong>方法二：</strong></p>
+<p>我们可以使用js脚本来配合跳转</p>
+<p>html部分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span @click=&quot;See(url)&quot;&gt;点击此处实现跳转&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+
+<p>js部分</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">See</span> (e) &#123;</span><br><span class="line">        <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span> = e</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中url也就是你的传入值。</p>
+<p>在这里面说明一下，你的链接在写的时候，必须带上<code>http://</code>或者<code>https://</code>如果不带的话，vue会自动识别为路由的</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p><strong>方法一：</strong></p>
 <p>我们可以使用a标签的属性来实现新建窗口跳转</p>
@@ -260,7 +317,7 @@
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2023/05/07/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/2023-05-07-%E4%B8%80%E5%88%99%E5%B0%8F%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E5%AE%8C%E7%BE%8E%E7%9A%84%E7%89%B2%E5%8F%A3/" target="_self">
+              <a href="/2023/05/07/%E9%9A%8F%E7%AC%94/2023-05-07-%E5%87%8C%E6%99%A8%E9%9A%8F%E6%83%B3-23%E5%B9%B405.07%E9%9A%8F%E7%AC%94%E8%AE%B0/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -287,14 +344,14 @@
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
-                        #技术笔记
+                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                        #前端
                       </a>
                     </span>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
-                        #前端
+                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        #技术笔记
                       </a>
                     </span>
                     
@@ -319,6 +376,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -337,6 +395,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -361,7 +427,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -371,7 +437,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

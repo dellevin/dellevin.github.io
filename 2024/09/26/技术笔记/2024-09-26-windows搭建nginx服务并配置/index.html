@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">windows搭建nginx服务并配置</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:39:15
@@ -210,6 +216,38 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>下载直接去官网 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/taiyonghai/p/nginx.org">nginx.org</a> ,选择windows版本进行下载</p>
+<p>下载完成后，放到服务器指定路径，并开启cmd窗口进行命令行格式的运行。</p>
+<p><strong>启动</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">start</span> nginx</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看任务进程是否存在</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist /fi &quot;imagename eq nginx.exe&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>重新加载</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p><strong>快速停止</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s stop</span><br></pre></td></tr></table></figure>
+
+<h2 id="简单配置："><a href="#简单配置：" class="headerlink" title="简单配置："></a>简单配置：</h2><p>首先正常启动是80端口，如果是阿里云服务器需要去安全组放行端口。</p>
+<p>再然后是443端口，这里如果需要用到多个的话，我建议是加一个 ‘&#x2F;’ 用来区分端口例如如下配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#user  nobody;</span><br><span class="line">worker_processes  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">#error_log  logs/error.<span class="property">log</span>;</span><br><span class="line">#error_log  logs/error.<span class="property">log</span>  notice;</span><br><span class="line">#error_log  logs/error.<span class="property">log</span>  info;</span><br><span class="line"></span><br><span class="line">#pid        logs/nginx.<span class="property">pid</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.<span class="property">types</span>;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  <span class="string">&#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span></span><br><span class="line">    #                  <span class="string">&#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span></span><br><span class="line">    #                  <span class="string">&#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.<span class="property">log</span>  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  <span class="number">0</span>;</span><br><span class="line">    keepalive_timeout  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       <span class="number">80</span>;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        #access_log  logs/host.<span class="property">access</span>.<span class="property">log</span>  main;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.<span class="property">html</span> index.<span class="property">htm</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #error_page  <span class="number">404</span>              /<span class="number">404.</span>html;</span><br><span class="line"></span><br><span class="line">        # redirect server error pages to the <span class="keyword">static</span> page /50x.<span class="property">html</span></span><br><span class="line">        #</span><br><span class="line">        error_page   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.<span class="property">html</span>;</span><br><span class="line">        location = /50x.<span class="property">html</span> &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    #server &#123;</span><br><span class="line">    #    listen       <span class="number">8000</span>;</span><br><span class="line">    #    listen       <span class="attr">somename</span>:<span class="number">8080</span>;</span><br><span class="line">    #    server_name  somename  alias  another.<span class="property">alias</span>;</span><br><span class="line"></span><br><span class="line">    #    location / &#123;</span><br><span class="line">    #        root   html;</span><br><span class="line">    #        index  index.<span class="property">html</span> index.<span class="property">htm</span>;</span><br><span class="line">    #    &#125;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">   server &#123;</span><br><span class="line">        listen       <span class="number">443</span> ssl;</span><br><span class="line">        server_name  <span class="number">47.121</span><span class="number">.199</span><span class="number">.144</span>;</span><br><span class="line"></span><br><span class="line">        ssl_certificate         <span class="attr">C</span>:<span class="regexp">/dev/</span>nginx/nginx-<span class="number">1.26</span><span class="number">.2</span>/nginx-<span class="number">1.26</span><span class="number">.2</span>/<span class="number">443</span>/certificate.<span class="property">crt</span>;</span><br><span class="line">        ssl_certificate_key     <span class="attr">C</span>:<span class="regexp">/dev/</span>nginx/nginx-<span class="number">1.26</span><span class="number">.2</span>/nginx-<span class="number">1.26</span><span class="number">.2</span>/<span class="number">443</span>/private.<span class="property">key</span>;</span><br><span class="line"></span><br><span class="line">        ssl_session_cache    <span class="attr">shared</span>:<span class="attr">SSL</span>:1m;</span><br><span class="line">        ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">        ssl_ciphers  <span class="attr">HIGH</span>:!<span class="attr">aNULL</span>:!<span class="title class_">MD5</span>;</span><br><span class="line">        ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">        location /<span class="number">8081</span>/ &#123;</span><br><span class="line">            proxy_pass <span class="attr">http</span>:<span class="comment">//47.121.199.144:8081/;</span></span><br><span class="line">            proxy_set_header <span class="title class_">Host</span> $host;</span><br><span class="line">            proxy_set_header X-<span class="title class_">Real</span>-<span class="variable constant_">IP</span> $remote_addr;</span><br><span class="line">            proxy_set_header X-<span class="title class_">Forwarded</span>-<span class="title class_">For</span> $proxy_add_x_forwarded_for;</span><br><span class="line">            proxy_set_header X-<span class="title class_">Forwarded</span>-<span class="title class_">Proto</span> $scheme;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>其中这里的意思就是</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location /<span class="number">8081</span>/ <span class="punctuation">&#123;</span></span><br><span class="line">           proxy_pass http<span class="punctuation">:</span><span class="comment">//47.121.199.144:8081/;</span></span><br><span class="line">           proxy_set_header Host $host;</span><br><span class="line">           proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">           proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">       <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>将<a target="_blank" rel="noopener" href="http://47.121.199.144:8081/%E8%BF%99%E4%B8%AA%E7%BD%91%E5%9D%80%E6%8C%87%E5%90%91https://47.121.199.144/8081/">http://47.121.199.144:8081/这个网址指向https://47.121.199.144/8081/</a></p>
+<h2 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h2><p>1.在这里需要注意<code>C:/dev/nginx/nginx-1.26.2/nginx-1.26.2/443/certificate.crt;</code>的&#x2F; 是向右的。路径使用双反斜杠（\）或正斜杠（&#x2F;）</p>
+<p>2.在与zerossl.com交互的时候，涉及到地址验证的问题，其中需要创建<code>.well-known</code>文件夹，如果是简单的windows环境是无法创建的，会提示你“必须键入文件名”，这时候需要mkdir创建了，即<code>mkdir .well-known</code></p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>下载直接去官网 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/taiyonghai/p/nginx.org">nginx.org</a> ,选择windows版本进行下载</p>
 <p>下载完成后，放到服务器指定路径，并开启cmd窗口进行命令行格式的运行。</p>
@@ -317,6 +355,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -335,6 +374,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -359,7 +406,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -369,7 +416,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">centos7 安装 Mysql 5.7.28</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:17:51
@@ -210,6 +216,67 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<h3 id="1-下载-MySQL的yum包"><a href="#1-下载-MySQL的yum包" class="headerlink" title="1. 下载 MySQL的yum包"></a>1. 下载 MySQL的yum包</h3><p>也可以自己从官方下载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="attr">http</span>:<span class="comment">//repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装MySQL源"><a href="#2-安装MySQL源" class="headerlink" title="2.安装MySQL源"></a>2.安装MySQL源</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -<span class="title class_">Uvh</span> mysql57-community-release-el7-<span class="number">10.</span>noarch.<span class="property">rpm</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-安装MySQL服务端-需要等待一些时间"><a href="#3-安装MySQL服务端-需要等待一些时间" class="headerlink" title="3.安装MySQL服务端,需要等待一些时间"></a>3.安装MySQL服务端,需要等待一些时间</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y mysql-community-server</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-启动MySQL"><a href="#4-启动MySQL" class="headerlink" title="4.启动MySQL"></a>4.启动MySQL</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld.<span class="property">service</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-检查是否启动成功"><a href="#5-检查是否启动成功" class="headerlink" title="5.检查是否启动成功"></a>5.检查是否启动成功</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status mysqld.<span class="property">service</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-获取临时密码，"><a href="#6-获取临时密码，" class="headerlink" title="6.获取临时密码，"></a>6.获取临时密码，</h3><p>MySQL5.7为root用户随机生成了一个密码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">&#x27;temporary password&#x27;</span> /<span class="keyword">var</span>/log/mysqld.<span class="property">log</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="7-通过临时密码登录"><a href="#7-通过临时密码登录" class="headerlink" title="7.通过临时密码登录"></a>7.通过临时密码登录</h3><p>通过临时密码登录MySQL，进行修改密码操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<p>使用临时密码登录后，不能进行其他的操作，否则会报错，这时候我们进行修改密码操作</p>
+<h3 id="8-设置mysql密码规则"><a href="#8-设置mysql密码规则" class="headerlink" title="8.设置mysql密码规则"></a>8.设置mysql密码规则</h3><p>因为MySQL的密码规则需要很复杂，我们一般自己设置的不会设置成这样，所以我们全局修改一下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set <span class="variable language_">global</span> validate_password_policy=<span class="number">0</span>;</span><br><span class="line">mysql&gt; set <span class="variable language_">global</span> validate_password_length=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这时候我们就可以自己设置想要的密码了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">ALTER</span> <span class="variable constant_">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> <span class="variable constant_">IDENTIFIED</span> <span class="variable constant_">BY</span> <span class="string">&#x27;yourpassword&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9-授权其他机器远程登录"><a href="#9-授权其他机器远程登录" class="headerlink" title="9.授权其他机器远程登录"></a>9.授权其他机器远程登录</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">GRANT</span> <span class="variable constant_">ALL</span> <span class="variable constant_">PRIVILEGES</span> <span class="variable constant_">ON</span> *.* <span class="variable constant_">TO</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> <span class="variable constant_">IDENTIFIED</span> <span class="variable constant_">BY</span> <span class="string">&#x27;yourpassword&#x27;</span> <span class="variable constant_">WITH</span> <span class="variable constant_">GRANT</span> <span class="variable constant_">OPTION</span>;</span><br><span class="line"> </span><br><span class="line"><span class="variable constant_">FLUSH</span> <span class="variable constant_">PRIVILEGES</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-开启开机自启动"><a href="#10-开启开机自启动" class="headerlink" title="10.开启开机自启动"></a>10.开启开机自启动</h3><p>先退出mysql命令行，然后输入以下命令</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable mysqld</span><br><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-设置MySQL的字符集为UTF-8，令其支持中文"><a href="#11-设置MySQL的字符集为UTF-8，令其支持中文" class="headerlink" title="11.设置MySQL的字符集为UTF-8，令其支持中文"></a>11.设置MySQL的字符集为UTF-8，令其支持中文</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.<span class="property">cnf</span></span><br></pre></td></tr></table></figure>
+
+<p>复制</p>
+<p>改成如下,然后保存</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># <span class="title class_">For</span> advice on how to change settings please see</span><br><span class="line"># <span class="attr">http</span>:<span class="comment">//dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html</span></span><br><span class="line"> </span><br><span class="line">[mysql]</span><br><span class="line"><span class="keyword">default</span>-character-set=utf8</span><br><span class="line"> </span><br><span class="line">[mysqld]</span><br><span class="line">datadir=<span class="regexp">/var/</span>lib/mysql</span><br><span class="line">socket=<span class="regexp">/var/</span>lib/mysql/mysql.<span class="property">sock</span></span><br><span class="line"><span class="keyword">default</span>-storage-engine=<span class="variable constant_">INNODB</span></span><br><span class="line">character_set_server=utf8</span><br><span class="line"> </span><br><span class="line">symbolic-links=<span class="number">0</span></span><br><span class="line"> </span><br><span class="line">log-error=<span class="regexp">/var/</span>log/mysqld.<span class="property">log</span></span><br><span class="line">pid-file=<span class="regexp">/var/</span>run/mysqld/mysqld.<span class="property">pid</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="12-重启一下MySQL-令配置生效"><a href="#12-重启一下MySQL-令配置生效" class="headerlink" title="12.重启一下MySQL,令配置生效"></a>12.重启一下MySQL,令配置生效</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-防火墙开放3306端口"><a href="#13-防火墙开放3306端口" class="headerlink" title="13.防火墙开放3306端口"></a>13.防火墙开放3306端口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">firewall-cmd --zone=public --add-port=<span class="number">3306</span>/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<h3 id="14-卸载MySQL仓库"><a href="#14-卸载MySQL仓库" class="headerlink" title="14.卸载MySQL仓库"></a>14.卸载MySQL仓库</h3><p>一开始的时候我们安装的yum，每次yum操作都会更新一次，耗费时间，我们把他卸载掉</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep mysql</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y remove mysql57-community-release-el7-<span class="number">10.</span>noarch</span><br></pre></td></tr></table></figure>
+
+<h3 id="15-数据库的操作"><a href="#15-数据库的操作" class="headerlink" title="15.数据库的操作"></a>15.数据库的操作</h3><p>（1）查看mysql是否启动：<code>service mysqld status</code></p>
+<p>启动mysql：<code>service mysqld start</code></p>
+<p>停止mysql：<code>service mysqld stop</code></p>
+<p>重启mysql：<code>service mysqld restart</code></p>
+<p>（2）查看临时密码：<code>grep password /var/log/mysqld.log</code></p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <h3 id="1-下载-MySQL的yum包"><a href="#1-下载-MySQL的yum包" class="headerlink" title="1. 下载 MySQL的yum包"></a>1. 下载 MySQL的yum包</h3><p>也可以自己从官方下载</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="attr">http</span>:<span class="comment">//repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm</span></span><br></pre></td></tr></table></figure>
@@ -270,7 +337,7 @@
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2023/04/02/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-04-02-office%E8%B4%A6%E5%8F%B7%E7%99%BB%E5%BD%95%E6%8F%90%E7%A4%BA0x80190001%E9%94%99%E8%AF%AF%E7%A0%81/" target="_self">
+              <a href="/2023/04/02/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-04-02-java%E8%8E%B7%E5%8F%96%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84ip%E5%9C%B0%E5%9D%80%E4%BB%A5%E5%8F%8A%E8%8E%B7%E5%8F%96%E4%BD%8D%E7%BD%AE/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -346,6 +413,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -364,6 +432,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -388,7 +464,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -398,7 +474,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

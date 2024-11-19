@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">Windows 上运行 Stanford CoreNLP 服务</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 14:40:01
@@ -210,6 +216,44 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p><strong><strong>在 Windows 上运行 Stanford CoreNLP 服务的</strong></strong></p>
+<p>在 Windows 上运行 Stanford CoreNLP 服务的步骤如下：</p>
+<h3 id="1-下载-Stanford-CoreNLP"><a href="#1-下载-Stanford-CoreNLP" class="headerlink" title="1. 下载 Stanford CoreNLP"></a>1. <strong>下载 Stanford CoreNLP</strong></h3><ul>
+<li>访问 Stanford CoreNLP 的下载页面。</li>
+<li>下载最新的 <code>stanford-corenlp-full</code> 压缩包文件。</li>
+<li>解压该文件到一个合适的目录，例如 <code>C:\stanford-corenlp-full-2023-06-18</code>。</li>
+</ul>
+<h3 id="2-启动-Stanford-CoreNLP-服务器"><a href="#2-启动-Stanford-CoreNLP-服务器" class="headerlink" title="2. 启动 Stanford CoreNLP 服务器"></a>2. <strong>启动 Stanford CoreNLP 服务器</strong></h3><p>你可以通过命令行启动 CoreNLP 服务器，确保你已经安装并配置好了 Java 环境。</p>
+<ul>
+<li><p>打开命令提示符（CMD），导航到解压的 CoreNLP 目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd C:\stanford-corenlp-full-2023-06-18</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务器：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -mx4g -cp &quot;*&quot; edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000</span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>-mx4g</code> 代表分配 4GB 内存给服务器，你可以根据实际需求调整此值。默认服务器会在 <code>http://localhost:9000</code> 运行。</p>
+</li>
+</ul>
+<h3 id="3-测试服务器"><a href="#3-测试服务器" class="headerlink" title="3. 测试服务器"></a>3. <strong>测试服务器</strong></h3><ul>
+<li>在浏览器中访问 <code>http://localhost:9000</code>，查看是否服务器已经启动并运行。</li>
+</ul>
+<p>或者你可以通过发送 HTTP 请求来测试，例如使用 <code>curl</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --data &#x27;The quick brown fox jumps over the lazy dog.&#x27; &#x27;http://localhost:9000/?properties=&#123;&quot;annotators&quot;:&quot;tokenize,ssplit,pos,lemma,ner,parse,depparse&quot;,&quot;outputFormat&quot;:&quot;json&quot;&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>成功后，服务器会返回 NLP 分析结果。</p>
+<h3 id="4-常见问题"><a href="#4-常见问题" class="headerlink" title="4. 常见问题"></a>4. <strong>常见问题</strong></h3><ul>
+<li>如果遇到内存不足错误，可以尝试增加 <code>-mx</code> 后的内存值，比如 <code>-mx8g</code>。</li>
+<li>服务器默认在 9000 端口运行。如果此端口被占用，你可以使用 <code>-port</code> 参数指定其他端口。</li>
+</ul>
+<p>这样，就可以在 Windows 环境下运行 Stanford CoreNLP 服务了。</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p><strong><strong>在 Windows 上运行 Stanford CoreNLP 服务的</strong></strong></p>
 <p>在 Windows 上运行 Stanford CoreNLP 服务的步骤如下：</p>
@@ -323,6 +367,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -341,6 +386,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -365,7 +418,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -375,7 +428,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

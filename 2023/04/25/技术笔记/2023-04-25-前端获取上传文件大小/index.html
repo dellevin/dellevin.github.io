@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">前端获取上传文件大小</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:07:11
@@ -196,20 +202,37 @@
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
-                    #技术笔记
+                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                    #前端
                   </a>
                 </span>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
-                    #前端
+                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    #技术笔记
                   </a>
                 </span>
                 
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>上传文件需要判别文件大小</p>
+<p>以这个为案例</p>
+<p><strong>显示部分</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;uploadFile&quot;</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;myPhoto&quot;</span>/&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btnConfirm&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;checkFile()&quot;</span>&gt;</span>确认上传<span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p><strong>JS部分</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">        <span class="keyword">function</span> <span class="title function_">checkFile</span>(<span class="params"></span>) &#123;</span><br><span class="line">          <span class="comment">//获取文件 </span></span><br><span class="line">          <span class="keyword">var</span> file = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;uploadFile&quot;</span>).<span class="property">files</span>[<span class="number">0</span>];</span><br><span class="line">          <span class="keyword">var</span> filesize=file.<span class="property">size</span>;<span class="comment">//文件的字节数</span></span><br><span class="line">          <span class="title function_">alert</span>(filesize)</span><br><span class="line">        &#125;; </span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过id获取文件来判断文件大小，这种方式是获取的文件字节数，也就是说是b如果要显示大小的话还需要除1024*1024</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>上传文件需要判别文件大小</p>
 <p>以这个为案例</p>
@@ -253,14 +276,14 @@
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
-                        #技术笔记
+                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                        #前端
                       </a>
                     </span>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
-                        #前端
+                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        #技术笔记
                       </a>
                     </span>
                     
@@ -285,6 +308,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -303,6 +327,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -327,7 +359,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -337,7 +369,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

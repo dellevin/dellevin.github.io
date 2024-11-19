@@ -33,7 +33,9 @@
 
   <!-- hexo site css -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
   <!-- 代码块风格 -->
   
     
@@ -176,6 +178,10 @@
     <div class="post-content">
       <div class="post-title">初级算法入门_删除排序数组中的重复项</div>
       <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2024-11-04 15:30:05
@@ -204,6 +210,37 @@
               </span>
           
       </div>
+      <script>
+        (function() {
+          const content = `<p>给你一个 升序排列 的数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。元素的 相对顺序 应该保持 一致 。</p>
+<p>由于在某些语言中不能改变数组的长度，所以必须将结果放在数组nums的第一部分。更规范地说，如果在删除重复项之后有 k 个元素，那么 nums 的前 k 个元素应该保存最终结果。</p>
+<p>将最终结果插入 nums 的前 k 个位置后返回 k 。</p>
+<p><strong>示例 1：</strong></p>
+<p>输入：nums &#x3D; [1,1,2]</p>
+<p>输出：2, nums &#x3D; [1,2,_]</p>
+<p>解释：函数应该返回新的长度 2 ，并且原数组 nums 的前两个元素被修改为 1, 2 。不需要考虑数组中超出新长度后面的元素。</p>
+<p><strong>示例 2：</strong></p>
+<p>输入：nums &#x3D; [0,0,1,1,1,2,2,3,3,4]</p>
+<p>输出：5, nums &#x3D; [0,1,2,3,4]</p>
+<p>解释：函数应该返回新的长度 5 ， 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4 。不需要考虑数组中超出新长度后面的元素。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findLonely</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">                <span class="type">int</span> x=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;nums.length ; i++) &#123;</span><br><span class="line">                             <span class="keyword">if</span>(nums[x]!=nums[i])&#123;</span><br><span class="line">                                x++;</span><br><span class="line">                                nums[x]=nums[i];</span><br><span class="line">                             &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> x+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>思路:</strong> 基本上从0开始查看是否有重复的，以示例2位例子</p>
+<p>下标0 值0 循环里面 下标1 值0 两者相等进下一次循环</p>
+<p>下标0 值0 循环里面 下标2 值1 两者不相等记录x+1 下标1 值1</p>
+<p>下标1  值1 循环里面 下标3 值1 两者相等进度下一次循环</p>
+<p>下标1  值1 循环里面 下标4 值1 两者相等进度下一次循环</p>
+<p>下标1  值1 循环里面 下标5 值2 两者不相等记录x+1 下标2 值2</p>
+<p>下标2 值2 循环里面 下标6 值2 两者相等进度下一次循环</p>
+<p>下标2 值2 循环里面 下标7 值3 两者不相等记录x+1 下标3 值3</p>
+<p>循环往复</p>
+<p>类似快慢指针，即可得出结果</p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
       <div class="markdown-body">
         <p>给你一个 升序排列 的数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。元素的 相对顺序 应该保持 一致 。</p>
 <p>由于在某些语言中不能改变数组的长度，所以必须将结果放在数组nums的第一部分。更规范地说，如果在删除重复项之后有 k 个元素，那么 nums 的前 k 个元素应该保存最终结果。</p>
@@ -234,7 +271,7 @@
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2023/02/04/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-02-04-%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" target="_self">
+              <a href="/2023/02/08/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-02-08-centos7%E5%AE%89%E8%A3%85Mysql/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -271,7 +308,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2023/02/08/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-02-08-centos7%E5%AE%89%E8%A3%85Mysql/" target="_self">
+              <a href="/2023/02/08/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/2023-02-08-centos7%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
@@ -287,6 +324,7 @@
 
 
         
+  
 <div class="footer">
   <div class="social">
     <ul>
@@ -305,6 +343,14 @@
               <i class="iconfont icon-envelope"></i>
             </a>
             
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
         </li>
         
         <li>
@@ -329,7 +375,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 - 2024 Del Levin</a>
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2024 Del Levin</a>
         
     </div>
   
@@ -339,7 +385,6 @@
         <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
-  
   
 </div>
 

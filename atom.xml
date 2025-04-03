@@ -70,6 +70,133 @@
   </entry>
   
   <entry>
+    <title>Centos7设置swap内存大小</title>
+    <link href="https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E8%AE%BE%E7%BD%AEswap%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F/"/>
+    <id>https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E8%AE%BE%E7%BD%AEswap%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F/</id>
+    <published>2024-12-27T03:03:00.000Z</published>
+    <updated>2025-04-03T08:19:27.819Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;创建和配置-2GB-Swap-文件&quot;&gt;&lt;a href=&quot;#创建和配置-2GB-Swap-文件&quot; class=&quot;headerlink&quot; title=&quot;创建和配置 2GB Swap 文件&quot;&gt;&lt;/a&gt;&lt;strong&gt;创建和配置 2GB Swap</summary>
+        
+      
+    
+    
+    
+    <category term="技术笔记" scheme="https://www.ittoolman.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="linux" scheme="https://www.ittoolman.top/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos7部署maven环境</title>
+    <link href="https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%83%A8%E7%BD%B2maven%E7%8E%AF%E5%A2%83/"/>
+    <id>https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%83%A8%E7%BD%B2maven%E7%8E%AF%E5%A2%83/</id>
+    <published>2024-12-27T03:01:00.000Z</published>
+    <updated>2025-04-03T08:17:15.460Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1、maven-官网下载安装包&quot;&gt;&lt;a href=&quot;#1、maven-官网下载安装包&quot; class=&quot;headerlink&quot; title=&quot;1、maven 官网下载安装包&quot;&gt;&lt;/a&gt;&lt;strong&gt;1、maven</summary>
+        
+      
+    
+    
+    
+    <category term="技术笔记" scheme="https://www.ittoolman.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="linux" scheme="https://www.ittoolman.top/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos7部署redis</title>
+    <link href="https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%83%A8%E7%BD%B2redis/"/>
+    <id>https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%83%A8%E7%BD%B2redis/</id>
+    <published>2024-12-27T03:01:00.000Z</published>
+    <updated>2025-04-03T08:16:12.183Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;下载Redis&quot;&gt;&lt;a href=&quot;#下载Redis&quot; class=&quot;headerlink&quot; title=&quot;下载Redis&quot;&gt;&lt;/a&gt;&lt;strong&gt;下载Redis&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;进入官网找到下载地址 &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="技术笔记" scheme="https://www.ittoolman.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="linux" scheme="https://www.ittoolman.top/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos7部署jenkins2.164安装</title>
+    <link href="https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%83%A8%E7%BD%B2jenkins2-164%E5%AE%89%E8%A3%85/"/>
+    <id>https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%83%A8%E7%BD%B2jenkins2-164%E5%AE%89%E8%A3%85/</id>
+    <published>2024-12-27T03:00:00.000Z</published>
+    <updated>2025-04-03T08:14:50.566Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;centos安装的是java8根据jenkins的提示，所以选择2.164&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;You will need to explicitly install a Java runtime environment, because Oracle’s Java</summary>
+        
+      
+    
+    
+    
+    <category term="技术笔记" scheme="https://www.ittoolman.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="linux" scheme="https://www.ittoolman.top/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos7配置java环境</title>
+    <link href="https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83/"/>
+    <id>https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83/</id>
+    <published>2024-12-27T02:59:00.000Z</published>
+    <updated>2025-04-03T08:18:06.616Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;下载：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="技术笔记" scheme="https://www.ittoolman.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="linux" scheme="https://www.ittoolman.top/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>超星网页字体解密</title>
     <link href="https://www.ittoolman.top/2024/11/30/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E5%89%8D%E7%AB%AF/%E8%B6%85%E6%98%9F%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E8%A7%A3%E5%AF%86/"/>
     <id>https://www.ittoolman.top/2024/11/30/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E5%89%8D%E7%AB%AF/%E8%B6%85%E6%98%9F%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E8%A7%A3%E5%AF%86/</id>
@@ -440,145 +567,6 @@
     <category term="技术笔记" scheme="https://www.ittoolman.top/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
     
     <category term="windows" scheme="https://www.ittoolman.top/tags/windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java项目引入resources下面的文件</title>
-    <link href="https://www.ittoolman.top/2024/09/26/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/java/2024-09-26-java%E9%A1%B9%E7%9B%AE%E5%BC%95%E5%85%A5resources%E4%B8%8B%E9%9D%A2%E7%9A%84%E6%96%87%E4%BB%B6/"/>
-    <id>https://www.ittoolman.top/2024/09/26/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/java/2024-09-26-java%E9%A1%B9%E7%9B%AE%E5%BC%95%E5%85%A5resources%E4%B8%8B%E9%9D%A2%E7%9A%84%E6%96%87%E4%BB%B6/</id>
-    <published>2024-09-26T15:57:00.000Z</published>
-    <updated>2024-11-04T06:39:33.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;好久没写java，差点都忘了。。。&lt;/p&gt;
-&lt;p&gt;起因是一个资源文件在resources目录下面，转换后的地址类型是string类型不是file，于是用类加载器获取文件资源路径&lt;/p&gt;
-&lt;figure class=&quot;highlight</summary>
-        
-      
-    
-    
-    
-    <category term="技术笔记" scheme="https://www.ittoolman.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="技术笔记" scheme="https://www.ittoolman.top/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="java" scheme="https://www.ittoolman.top/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DAIL-SQL开源sql转换调试模型-chatgpt改为百度ERNIE-Speed-128K模型</title>
-    <link href="https://www.ittoolman.top/2024/09/26/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95/2024-09-26-DAIL-SQL%E5%BC%80%E6%BA%90sql%E8%BD%AC%E6%8D%A2%E8%B0%83%E8%AF%95%E6%A8%A1%E5%9E%8B-chatgpt%E6%94%B9%E4%B8%BA%E7%99%BE%E5%BA%A6ERNIE-Speed-128K%E6%A8%A1%E5%9E%8B/"/>
-    <id>https://www.ittoolman.top/2024/09/26/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95/2024-09-26-DAIL-SQL%E5%BC%80%E6%BA%90sql%E8%BD%AC%E6%8D%A2%E8%B0%83%E8%AF%95%E6%A8%A1%E5%9E%8B-chatgpt%E6%94%B9%E4%B8%BA%E7%99%BE%E5%BA%A6ERNIE-Speed-128K%E6%A8%A1%E5%9E%8B/</id>
-    <published>2024-09-26T15:56:00.000Z</published>
-    <updated>2024-11-04T06:39:48.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;最近领导要求我带一带他手下的研究生，课题是关于&lt;code&gt;DAIL-SQL&lt;/code&gt;这个开源模型调试的。研究生说他已经完成了项目的搭建和gpt模型的调试。接下来要改成百度千帆的模型，却遇到了难题。&lt;/p&gt;
-&lt;p&gt;其实很简单，根据项目的框架走就可以了。正常部署环境过后（再</summary>
-        
-      
-    
-    
-    
-    <category term="技术笔记" scheme="https://www.ittoolman.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="技术笔记" scheme="https://www.ittoolman.top/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="python" scheme="https://www.ittoolman.top/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows 上运行 Stanford CoreNLP 服务</title>
-    <link href="https://www.ittoolman.top/2024/09/26/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C/2024-09-26-Windows_%E4%B8%8A%E8%BF%90%E8%A1%8C_Stanford_CoreNLP_%E6%9C%8D%E5%8A%A1/"/>
-    <id>https://www.ittoolman.top/2024/09/26/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C/2024-09-26-Windows_%E4%B8%8A%E8%BF%90%E8%A1%8C_Stanford_CoreNLP_%E6%9C%8D%E5%8A%A1/</id>
-    <published>2024-09-26T15:55:00.000Z</published>
-    <updated>2024-11-04T06:40:01.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;strong&gt;在 Windows 上运行 Stanford CoreNLP 服务的&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;在 Windows 上运行 Stanford CoreNLP 服务的步骤如下：&lt;/p&gt;
-&lt;h3</summary>
-        
-      
-    
-    
-    
-    <category term="技术笔记" scheme="https://www.ittoolman.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="技术笔记" scheme="https://www.ittoolman.top/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="windows" scheme="https://www.ittoolman.top/tags/windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IP申请ssl证书</title>
-    <link href="https://www.ittoolman.top/2024/09/26/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C/2024-09-26-IP%E7%94%B3%E8%AF%B7ssl%E8%AF%81%E4%B9%A6/"/>
-    <id>https://www.ittoolman.top/2024/09/26/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C/2024-09-26-IP%E7%94%B3%E8%AF%B7ssl%E8%AF%81%E4%B9%A6/</id>
-    <published>2024-09-25T16:00:00.000Z</published>
-    <updated>2024-11-04T06:38:58.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;实现方式是通过 &lt;a href=&quot;https://zerossl.com/&quot;&gt;https://zerossl.com&lt;/a&gt; 来申请免费的ssl证书的，有效期为90天，90天之后还需要自行申请&lt;/p&gt;
-&lt;p&gt;1.进入到ZeroSSL官网，注册一个账号，然后点击免费 SSL</summary>
-        
-      
-    
-    
-    
-    <category term="技术笔记" scheme="https://www.ittoolman.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="技术笔记" scheme="https://www.ittoolman.top/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>爱一个人是什么感觉呢？</title>
-    <link href="https://www.ittoolman.top/2024/09/13/%E9%9A%8F%E7%AC%94/2024-09-13-%E7%88%B1%E4%B8%80%E4%B8%AA%E4%BA%BA%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%9F%E8%A7%89%E5%91%A2%EF%BC%9F/"/>
-    <id>https://www.ittoolman.top/2024/09/13/%E9%9A%8F%E7%AC%94/2024-09-13-%E7%88%B1%E4%B8%80%E4%B8%AA%E4%BA%BA%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%9F%E8%A7%89%E5%91%A2%EF%BC%9F/</id>
-    <published>2024-09-13T15:53:00.000Z</published>
-    <updated>2024-11-04T06:40:32.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;爱一个人是什么感觉呢？&lt;/p&gt;
-&lt;p&gt;很久之前，我以为我对爱情看的很透彻，写过很多文字，姑且算是文字吧，说文章，真是对我自己的恭维了。在那些文字里面，充斥着对爱的不信任，对纯洁美好爱情的向往，还有觉得自以为是那种孤芳自赏的清高，最后总是用一句唏嘘作为收尾。&lt;/p&gt;
-&lt;p&gt;现</summary>
-        
-      
-    
-    
-    
-    <category term="随笔" scheme="https://www.ittoolman.top/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-    <category term="随笔" scheme="https://www.ittoolman.top/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   

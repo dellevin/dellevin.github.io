@@ -222,7 +222,7 @@
           const content = `<h2 id="for循环的优化"><a href="#for循环的优化" class="headerlink" title="for循环的优化"></a>for循环的优化</h2><p>2022年11月12日17点52分</p>
 <p>今天使用wincc oa的时候遍历excel表的时候，五千多行，慢的要死，最后还是归结自己的定义变量的随便。以至于自己写的程序拖慢了速度。<br>以下是几条优化for循环的方式</p>
 <h2 id="方法一：消除循环终止判断时的方法调用"><a href="#方法一：消除循环终止判断时的方法调用" class="headerlink" title="方法一：消除循环终止判断时的方法调用"></a>方法一：消除循环终止判断时的方法调用</h2><p>优化前：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">	System.out.println(list.get(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">  System.out.println(list.get(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>优点：较常见，易于理解<br>缺点：每次都要计算list.size()</p>
 <p>优化一：<br>将计算list长度提取出来</p>
@@ -284,7 +284,7 @@
         <h2 id="for循环的优化"><a href="#for循环的优化" class="headerlink" title="for循环的优化"></a>for循环的优化</h2><p>2022年11月12日17点52分</p>
 <p>今天使用wincc oa的时候遍历excel表的时候，五千多行，慢的要死，最后还是归结自己的定义变量的随便。以至于自己写的程序拖慢了速度。<br>以下是几条优化for循环的方式</p>
 <h2 id="方法一：消除循环终止判断时的方法调用"><a href="#方法一：消除循环终止判断时的方法调用" class="headerlink" title="方法一：消除循环终止判断时的方法调用"></a>方法一：消除循环终止判断时的方法调用</h2><p>优化前：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">	System.out.println(list.get(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">  System.out.println(list.get(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>优点：较常见，易于理解<br>缺点：每次都要计算list.size()</p>
 <p>优化一：<br>将计算list长度提取出来</p>

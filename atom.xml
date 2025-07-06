@@ -6,7 +6,7 @@
   <link href="https://www.ittoolman.top/atom.xml" rel="self"/>
   
   <link href="https://www.ittoolman.top/"/>
-  <updated>2025-04-02T06:21:06.000Z</updated>
+  <updated>2025-07-06T10:38:41.361Z</updated>
   <id>https://www.ittoolman.top/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>科技创新型企业爬虫与提醒导入</title>
+    <link href="https://www.ittoolman.top/2025/07/06/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/python/%E7%A7%91%E6%8A%80%E5%88%9B%E6%96%B0%E5%9E%8B%E4%BC%81%E4%B8%9A%E7%88%AC%E8%99%AB%E4%B8%8E%E6%8F%90%E9%86%92%E5%AF%BC%E5%85%A5/"/>
+    <id>https://www.ittoolman.top/2025/07/06/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/python/%E7%A7%91%E6%8A%80%E5%88%9B%E6%96%B0%E5%9E%8B%E4%BC%81%E4%B8%9A%E7%88%AC%E8%99%AB%E4%B8%8E%E6%8F%90%E9%86%92%E5%AF%BC%E5%85%A5/</id>
+    <published>2025-07-06T10:31:56.000Z</published>
+    <updated>2025-07-06T10:38:41.361Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;1.每日爬取数据后，将爬取的公告通知，同步到数据库&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.检索当日的公告信息，查看是否有科技创新企业，如果有则提醒通知（提醒未写，简单完善数据）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;取的关键词模糊搜索</summary>
+        
+      
+    
+    
+    
+    <category term="技术笔记" scheme="https://www.ittoolman.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="技术笔记" scheme="https://www.ittoolman.top/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="python" scheme="https://www.ittoolman.top/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>微信hook消息接收</title>
     <link href="https://www.ittoolman.top/2025/03/09/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C/%E5%BE%AE%E4%BF%A1hook%E6%B6%88%E6%81%AF%E6%8E%A5%E6%94%B6/"/>
     <id>https://www.ittoolman.top/2025/03/09/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C/%E5%BE%AE%E4%BF%A1hook%E6%B6%88%E6%81%AF%E6%8E%A5%E6%94%B6/</id>
     <published>2025-03-09T15:36:00.000Z</published>
-    <updated>2025-04-02T06:21:06.000Z</updated>
+    <updated>2025-07-06T09:32:15.455Z</updated>
     
     
       
@@ -48,7 +77,7 @@
     <link href="https://www.ittoolman.top/2025/01/29/%E9%9A%8F%E7%AC%94/%E7%81%AB%E9%94%85%E9%9A%8F%E8%AE%B0/"/>
     <id>https://www.ittoolman.top/2025/01/29/%E9%9A%8F%E7%AC%94/%E7%81%AB%E9%94%85%E9%9A%8F%E8%AE%B0/</id>
     <published>2025-01-28T17:06:00.000Z</published>
-    <updated>2025-04-02T06:17:25.000Z</updated>
+    <updated>2025-07-06T09:32:15.463Z</updated>
     
     
       
@@ -74,7 +103,7 @@
     <link href="https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E8%AE%BE%E7%BD%AEswap%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F/"/>
     <id>https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E8%AE%BE%E7%BD%AEswap%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F/</id>
     <published>2024-12-27T03:03:00.000Z</published>
-    <updated>2025-04-03T08:19:27.000Z</updated>
+    <updated>2025-07-06T09:32:15.440Z</updated>
     
     
       
@@ -99,7 +128,7 @@
     <link href="https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%83%A8%E7%BD%B2maven%E7%8E%AF%E5%A2%83/"/>
     <id>https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%83%A8%E7%BD%B2maven%E7%8E%AF%E5%A2%83/</id>
     <published>2024-12-27T03:01:00.000Z</published>
-    <updated>2025-04-03T08:17:15.000Z</updated>
+    <updated>2025-07-06T09:32:15.440Z</updated>
     
     
       
@@ -124,7 +153,7 @@
     <link href="https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%83%A8%E7%BD%B2redis/"/>
     <id>https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%83%A8%E7%BD%B2redis/</id>
     <published>2024-12-27T03:01:00.000Z</published>
-    <updated>2025-04-03T08:16:12.000Z</updated>
+    <updated>2025-07-06T09:32:15.440Z</updated>
     
     
       
@@ -149,7 +178,7 @@
     <link href="https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%83%A8%E7%BD%B2jenkins2-164%E5%AE%89%E8%A3%85/"/>
     <id>https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%83%A8%E7%BD%B2jenkins2-164%E5%AE%89%E8%A3%85/</id>
     <published>2024-12-27T03:00:00.000Z</published>
-    <updated>2025-04-03T08:14:50.000Z</updated>
+    <updated>2025-07-06T09:32:15.440Z</updated>
     
     
       
@@ -176,7 +205,7 @@
     <link href="https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83/"/>
     <id>https://www.ittoolman.top/2024/12/27/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/Centos7%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83/</id>
     <published>2024-12-27T02:59:00.000Z</published>
-    <updated>2025-04-03T08:18:06.000Z</updated>
+    <updated>2025-07-06T09:32:15.441Z</updated>
     
     
       
@@ -201,7 +230,7 @@
     <link href="https://www.ittoolman.top/2024/11/30/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E5%89%8D%E7%AB%AF/%E8%B6%85%E6%98%9F%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E8%A7%A3%E5%AF%86/"/>
     <id>https://www.ittoolman.top/2024/11/30/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E5%89%8D%E7%AB%AF/%E8%B6%85%E6%98%9F%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E8%A7%A3%E5%AF%86/</id>
     <published>2024-11-30T13:49:00.000Z</published>
-    <updated>2025-04-02T06:15:03.000Z</updated>
+    <updated>2025-07-06T09:32:15.447Z</updated>
     
     
       
@@ -233,7 +262,7 @@
     <link href="https://www.ittoolman.top/2024/11/19/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/python/python%E6%9F%A5%E6%89%BEmd%E6%96%87%E4%BB%B6%E4%B8%AD%E5%8C%85%E5%90%AB%E5%9B%BE%E7%89%87%E7%9A%84%E6%96%87%E4%BB%B6/"/>
     <id>https://www.ittoolman.top/2024/11/19/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/python/python%E6%9F%A5%E6%89%BEmd%E6%96%87%E4%BB%B6%E4%B8%AD%E5%8C%85%E5%90%AB%E5%9B%BE%E7%89%87%E7%9A%84%E6%96%87%E4%BB%B6/</id>
     <published>2024-11-19T15:56:30.000Z</published>
-    <updated>2024-11-19T16:06:49.803Z</updated>
+    <updated>2025-07-06T09:32:15.442Z</updated>
     
     
       
@@ -540,33 +569,6 @@
     <category term="技术笔记" scheme="https://www.ittoolman.top/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
     
     <category term="bash" scheme="https://www.ittoolman.top/tags/bash/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>windows搭建nginx服务并配置</title>
-    <link href="https://www.ittoolman.top/2024/09/26/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C/2024-09-26-windows%E6%90%AD%E5%BB%BAnginx%E6%9C%8D%E5%8A%A1%E5%B9%B6%E9%85%8D%E7%BD%AE/"/>
-    <id>https://www.ittoolman.top/2024/09/26/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C/2024-09-26-windows%E6%90%AD%E5%BB%BAnginx%E6%9C%8D%E5%8A%A1%E5%B9%B6%E9%85%8D%E7%BD%AE/</id>
-    <published>2024-09-26T15:58:00.000Z</published>
-    <updated>2024-11-04T06:39:15.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;下载直接去官网 &lt;a href=&quot;https://www.cnblogs.com/taiyonghai/p/nginx.org&quot;&gt;nginx.org&lt;/a&gt;</summary>
-        
-      
-    
-    
-    
-    <category term="技术笔记" scheme="https://www.ittoolman.top/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="技术笔记" scheme="https://www.ittoolman.top/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="windows" scheme="https://www.ittoolman.top/tags/windows/"/>
     
   </entry>
   

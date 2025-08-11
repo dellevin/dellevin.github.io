@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Del Levin" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  <meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。" />
+  
+  
+  
+  <title>
+    
+      windows搭建nginx服务并配置 
+      
+      
+      |
+    
+     Del Levin&#39;s Blog
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
+  <!-- 代码块风格 -->
+  
+    
+<link rel="stylesheet" href="/css/figcaption/mac-block.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6Z5DFKZBTD');
+    </script>
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+  <script async defer data-website-id="37957373-a470-49ec-a249-7e73f2c920dc" src="http://tongji.ittoolman.com/umami.js"></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Del Levin's Blog" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Del Levin</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          <a href="/categories/">Categories</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  
+
+
+
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">windows搭建nginx服务并配置</div>
+      <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2024-11-04 14:39:15
+        </span>
+        
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="分类"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    <b>#</b> 技术笔记
+                  </a>
+                </span>
+                
+              </span>
+          
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    #技术笔记
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/windows/" title="windows">
+                    #windows
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <script>
+        (function() {
+          const content = `<p>下载直接去官网 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/taiyonghai/p/nginx.org">nginx.org</a> ,选择windows版本进行下载</p>
+<p>下载完成后，放到服务器指定路径，并开启cmd窗口进行命令行格式的运行。</p>
+<p><strong>启动</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">start</span> nginx</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看任务进程是否存在</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist /fi &quot;imagename eq nginx.exe&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>重新加载</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p><strong>快速停止</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s stop</span><br></pre></td></tr></table></figure>
+
+<h2 id="简单配置："><a href="#简单配置：" class="headerlink" title="简单配置："></a>简单配置：</h2><p>首先正常启动是80端口，如果是阿里云服务器需要去安全组放行端口。</p>
+<p>再然后是443端口，这里如果需要用到多个的话，我建议是加一个 ‘&#x2F;’ 用来区分端口例如如下配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#user  nobody;</span><br><span class="line">worker_processes  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">#error_log  logs/error.<span class="property">log</span>;</span><br><span class="line">#error_log  logs/error.<span class="property">log</span>  notice;</span><br><span class="line">#error_log  logs/error.<span class="property">log</span>  info;</span><br><span class="line"></span><br><span class="line">#pid        logs/nginx.<span class="property">pid</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.<span class="property">types</span>;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  <span class="string">&#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span></span><br><span class="line">    #                  <span class="string">&#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span></span><br><span class="line">    #                  <span class="string">&#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.<span class="property">log</span>  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  <span class="number">0</span>;</span><br><span class="line">    keepalive_timeout  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       <span class="number">80</span>;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        #access_log  logs/host.<span class="property">access</span>.<span class="property">log</span>  main;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.<span class="property">html</span> index.<span class="property">htm</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #error_page  <span class="number">404</span>              /<span class="number">404.</span>html;</span><br><span class="line"></span><br><span class="line">        # redirect server error pages to the <span class="keyword">static</span> page /50x.<span class="property">html</span></span><br><span class="line">        #</span><br><span class="line">        error_page   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.<span class="property">html</span>;</span><br><span class="line">        location = /50x.<span class="property">html</span> &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    #server &#123;</span><br><span class="line">    #    listen       <span class="number">8000</span>;</span><br><span class="line">    #    listen       <span class="attr">somename</span>:<span class="number">8080</span>;</span><br><span class="line">    #    server_name  somename  alias  another.<span class="property">alias</span>;</span><br><span class="line"></span><br><span class="line">    #    location / &#123;</span><br><span class="line">    #        root   html;</span><br><span class="line">    #        index  index.<span class="property">html</span> index.<span class="property">htm</span>;</span><br><span class="line">    #    &#125;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">   server &#123;</span><br><span class="line">        listen       <span class="number">443</span> ssl;</span><br><span class="line">        server_name  <span class="number">47.121</span><span class="number">.199</span><span class="number">.144</span>;</span><br><span class="line"></span><br><span class="line">        ssl_certificate         <span class="attr">C</span>:<span class="regexp">/dev/</span>nginx/nginx-<span class="number">1.26</span><span class="number">.2</span>/nginx-<span class="number">1.26</span><span class="number">.2</span>/<span class="number">443</span>/certificate.<span class="property">crt</span>;</span><br><span class="line">        ssl_certificate_key     <span class="attr">C</span>:<span class="regexp">/dev/</span>nginx/nginx-<span class="number">1.26</span><span class="number">.2</span>/nginx-<span class="number">1.26</span><span class="number">.2</span>/<span class="number">443</span>/private.<span class="property">key</span>;</span><br><span class="line"></span><br><span class="line">        ssl_session_cache    <span class="attr">shared</span>:<span class="attr">SSL</span>:1m;</span><br><span class="line">        ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">        ssl_ciphers  <span class="attr">HIGH</span>:!<span class="attr">aNULL</span>:!<span class="title class_">MD5</span>;</span><br><span class="line">        ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">        location /<span class="number">8081</span>/ &#123;</span><br><span class="line">            proxy_pass <span class="attr">http</span>:<span class="comment">//47.121.199.144:8081/;</span></span><br><span class="line">            proxy_set_header <span class="title class_">Host</span> $host;</span><br><span class="line">            proxy_set_header X-<span class="title class_">Real</span>-<span class="variable constant_">IP</span> $remote_addr;</span><br><span class="line">            proxy_set_header X-<span class="title class_">Forwarded</span>-<span class="title class_">For</span> $proxy_add_x_forwarded_for;</span><br><span class="line">            proxy_set_header X-<span class="title class_">Forwarded</span>-<span class="title class_">Proto</span> $scheme;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>其中这里的意思就是</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location /<span class="number">8081</span>/ <span class="punctuation">&#123;</span></span><br><span class="line">           proxy_pass http<span class="punctuation">:</span><span class="comment">//47.121.199.144:8081/;</span></span><br><span class="line">           proxy_set_header Host $host;</span><br><span class="line">           proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">           proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">       <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>将<a target="_blank" rel="noopener" href="http://47.121.199.144:8081/%E8%BF%99%E4%B8%AA%E7%BD%91%E5%9D%80%E6%8C%87%E5%90%91https://47.121.199.144/8081/">http://47.121.199.144:8081/这个网址指向https://47.121.199.144/8081/</a></p>
+<h2 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h2><p>1.在这里需要注意<code>C:/dev/nginx/nginx-1.26.2/nginx-1.26.2/443/certificate.crt;</code>的&#x2F; 是向右的。路径使用双反斜杠（\）或正斜杠（&#x2F;）</p>
+<p>2.在与zerossl.com交互的时候，涉及到地址验证的问题，其中需要创建<code>.well-known</code>文件夹，如果是简单的windows环境是无法创建的，会提示你“必须键入文件名”，这时候需要mkdir创建了，即<code>mkdir .well-known</code></p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
+      <div class="markdown-body">
+        <p>下载直接去官网 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/taiyonghai/p/nginx.org">nginx.org</a> ,选择windows版本进行下载</p>
+<p>下载完成后，放到服务器指定路径，并开启cmd窗口进行命令行格式的运行。</p>
+<p><strong>启动</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">start</span> nginx</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看任务进程是否存在</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist /fi &quot;imagename eq nginx.exe&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>重新加载</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p><strong>快速停止</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s stop</span><br></pre></td></tr></table></figure>
+
+<h2 id="简单配置："><a href="#简单配置：" class="headerlink" title="简单配置："></a>简单配置：</h2><p>首先正常启动是80端口，如果是阿里云服务器需要去安全组放行端口。</p>
+<p>再然后是443端口，这里如果需要用到多个的话，我建议是加一个 ‘&#x2F;’ 用来区分端口例如如下配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#user  nobody;</span><br><span class="line">worker_processes  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">#error_log  logs/error.<span class="property">log</span>;</span><br><span class="line">#error_log  logs/error.<span class="property">log</span>  notice;</span><br><span class="line">#error_log  logs/error.<span class="property">log</span>  info;</span><br><span class="line"></span><br><span class="line">#pid        logs/nginx.<span class="property">pid</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.<span class="property">types</span>;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  <span class="string">&#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span></span><br><span class="line">    #                  <span class="string">&#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span></span><br><span class="line">    #                  <span class="string">&#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.<span class="property">log</span>  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  <span class="number">0</span>;</span><br><span class="line">    keepalive_timeout  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       <span class="number">80</span>;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        #access_log  logs/host.<span class="property">access</span>.<span class="property">log</span>  main;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.<span class="property">html</span> index.<span class="property">htm</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #error_page  <span class="number">404</span>              /<span class="number">404.</span>html;</span><br><span class="line"></span><br><span class="line">        # redirect server error pages to the <span class="keyword">static</span> page /50x.<span class="property">html</span></span><br><span class="line">        #</span><br><span class="line">        error_page   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.<span class="property">html</span>;</span><br><span class="line">        location = /50x.<span class="property">html</span> &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    #server &#123;</span><br><span class="line">    #    listen       <span class="number">8000</span>;</span><br><span class="line">    #    listen       <span class="attr">somename</span>:<span class="number">8080</span>;</span><br><span class="line">    #    server_name  somename  alias  another.<span class="property">alias</span>;</span><br><span class="line"></span><br><span class="line">    #    location / &#123;</span><br><span class="line">    #        root   html;</span><br><span class="line">    #        index  index.<span class="property">html</span> index.<span class="property">htm</span>;</span><br><span class="line">    #    &#125;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">   server &#123;</span><br><span class="line">        listen       <span class="number">443</span> ssl;</span><br><span class="line">        server_name  <span class="number">47.121</span><span class="number">.199</span><span class="number">.144</span>;</span><br><span class="line"></span><br><span class="line">        ssl_certificate         <span class="attr">C</span>:<span class="regexp">/dev/</span>nginx/nginx-<span class="number">1.26</span><span class="number">.2</span>/nginx-<span class="number">1.26</span><span class="number">.2</span>/<span class="number">443</span>/certificate.<span class="property">crt</span>;</span><br><span class="line">        ssl_certificate_key     <span class="attr">C</span>:<span class="regexp">/dev/</span>nginx/nginx-<span class="number">1.26</span><span class="number">.2</span>/nginx-<span class="number">1.26</span><span class="number">.2</span>/<span class="number">443</span>/private.<span class="property">key</span>;</span><br><span class="line"></span><br><span class="line">        ssl_session_cache    <span class="attr">shared</span>:<span class="attr">SSL</span>:1m;</span><br><span class="line">        ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">        ssl_ciphers  <span class="attr">HIGH</span>:!<span class="attr">aNULL</span>:!<span class="title class_">MD5</span>;</span><br><span class="line">        ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">        location /<span class="number">8081</span>/ &#123;</span><br><span class="line">            proxy_pass <span class="attr">http</span>:<span class="comment">//47.121.199.144:8081/;</span></span><br><span class="line">            proxy_set_header <span class="title class_">Host</span> $host;</span><br><span class="line">            proxy_set_header X-<span class="title class_">Real</span>-<span class="variable constant_">IP</span> $remote_addr;</span><br><span class="line">            proxy_set_header X-<span class="title class_">Forwarded</span>-<span class="title class_">For</span> $proxy_add_x_forwarded_for;</span><br><span class="line">            proxy_set_header X-<span class="title class_">Forwarded</span>-<span class="title class_">Proto</span> $scheme;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>其中这里的意思就是</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location /<span class="number">8081</span>/ <span class="punctuation">&#123;</span></span><br><span class="line">           proxy_pass http<span class="punctuation">:</span><span class="comment">//47.121.199.144:8081/;</span></span><br><span class="line">           proxy_set_header Host $host;</span><br><span class="line">           proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">           proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">       <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>将<a target="_blank" rel="noopener" href="http://47.121.199.144:8081/%E8%BF%99%E4%B8%AA%E7%BD%91%E5%9D%80%E6%8C%87%E5%90%91https://47.121.199.144/8081/">http://47.121.199.144:8081/这个网址指向https://47.121.199.144/8081/</a></p>
+<h2 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h2><p>1.在这里需要注意<code>C:/dev/nginx/nginx-1.26.2/nginx-1.26.2/443/certificate.crt;</code>的&#x2F; 是向右的。路径使用双反斜杠（\）或正斜杠（&#x2F;）</p>
+<p>2.在与zerossl.com交互的时候，涉及到地址验证的问题，其中需要创建<code>.well-known</code>文件夹，如果是简单的windows环境是无法创建的，会提示你“必须键入文件名”，这时候需要mkdir创建了，即<code>mkdir .well-known</code></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/09/26/%E5%B7%B2%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/java/2024-09-26-java%E9%A1%B9%E7%9B%AE%E5%BC%95%E5%85%A5resources%E4%B8%8B%E9%9D%A2%E7%9A%84%E6%96%87%E4%BB%B6/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2024-11-04 14:39:15
+            </span>
+            
+                  <span class="post-categories">
+                    <i class="iconfont icon-bookmark" title="分类"></i>
+                    
+                    <span class="span--category">
+                      <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        <b>#</b> 技术笔记
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        #技术笔记
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/windows/" title="windows">
+                        #windows
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2024/10/09/%E5%B7%B2%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C/2024-10-09-git%E3%80%81npm%E3%80%81yarn%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%91%BD%E4%BB%A4%EF%BC%88%E6%9F%A5%E9%98%85%EF%BC%89/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%EF%BC%9A"><span class="toc-text">简单配置：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="toc-text">注意：</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+  </div>
+
+
+        
+  
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/dellevin/dellevin.github.io">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+            <a title="email" href="mailto:dellevin99@gmail.com">
+              <i class="iconfont icon-envelope"></i>
+            </a>
+            
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+              <a title="weibo" target="_blank" rel="noopener" href="https://weibo.com/u/6094785105">
+                <i class="iconfont icon-weibo"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+              <a title="rss" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+              </a>
+              
+        </li>
+        
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2025 Del Levin</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + windows%E6%90%AD%E5%BB%BAnginx%E6%9C%8D%E5%8A%A1%E5%B9%B6%E9%85%8D%E7%BD%AE + '&url=' + https%3A%2F%2Fwww.ittoolman.top%2F2024%2F09%2F26%2F%25E5%25B7%25B2%25E5%258F%2591%25E5%25B8%2583%25E6%2596%2587%25E7%25AB%25A0%2F%25E6%258A%2580%25E6%259C%25AF%25E7%25AC%2594%25E8%25AE%25B0%2F%25E8%25AE%25A1%25E7%25AE%2597%25E6%259C%25BA%25E4%25B8%258E%25E7%25BD%2591%25E7%25BB%259C%2F2024-09-26-windows%25E6%2590%25AD%25E5%25BB%25BAnginx%25E6%259C%258D%25E5%258A%25A1%25E5%25B9%25B6%25E9%2585%258D%25E7%25BD%25AE%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://www.ittoolman.top/2024/09/26/%E5%B7%B2%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C/2024-09-26-windows%E6%90%AD%E5%BB%BAnginx%E6%9C%8D%E5%8A%A1%E5%B9%B6%E9%85%8D%E7%BD%AE/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

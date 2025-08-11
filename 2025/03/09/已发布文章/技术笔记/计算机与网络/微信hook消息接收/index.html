@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Del Levin" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  <meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。" />
+  
+  
+  
+  <title>
+    
+      微信hook消息接收 
+      
+      
+      |
+    
+     Del Levin&#39;s Blog
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
+  <!-- 代码块风格 -->
+  
+    
+<link rel="stylesheet" href="/css/figcaption/mac-block.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6Z5DFKZBTD');
+    </script>
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+  <script async defer data-website-id="37957373-a470-49ec-a249-7e73f2c920dc" src="http://tongji.ittoolman.com/umami.js"></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Del Levin's Blog" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Del Levin</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          <a href="/categories/">Categories</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  
+
+
+
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">微信hook消息接收</div>
+      <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2025-07-06 17:32:15
+        </span>
+        
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="分类"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    <b>#</b> 技术笔记
+                  </a>
+                </span>
+                
+              </span>
+          
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    #技术笔记
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E8%BD%AF%E4%BB%B6%E9%80%86%E5%90%91/" title="软件逆向">
+                    #软件逆向
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <script>
+        (function() {
+          const content = `<h1 id="微信hook消息接收"><a href="#微信hook消息接收" class="headerlink" title="微信hook消息接收"></a>微信hook消息接收</h1><p>微信版本：3.9.12.45</p>
+<p>账号：两个微信账号，大号用来发消息，小号用来测试</p>
+<p>工具：微信、CE修改器、x64dbg</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309003334045-1e0690b0565a4ac7.png" alt="微信版本"></p>
+<h2 id="定位消息地址"><a href="#定位消息地址" class="headerlink" title="定位消息地址"></a>定位消息地址</h2><p>选择微信进程</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309003531575-3171e299997e05f4.png" alt="选择微信进程"></p>
+<p>大号给小号发送消息，扫描类型选择字符串，数值填写消息内容</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309003620823-a13866681e4ccca7.png" alt="请输入图片描述"></p>
+<p>重复之上的步骤，不断重复，直到无法定位的时候（我这里有三个），一个个查看浏览器内存区域</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309003732156-eee67b615e97541b.png" alt="请输入图片描述"></p>
+<p>找到带着wxid和xml格式的就是内存地址</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309003822510-0b3f593cb2a5cf42.png" alt="请输入图片描述"></p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309003849742-ab262aba4d231bb3.png" alt="请输入图片描述"></p>
+<h2 id="x64dbg断点"><a href="#x64dbg断点" class="headerlink" title="x64dbg断点"></a>x64dbg断点</h2><p>记录一下当前的微信地址1B6555E11BD，关闭CE修改器，打开x64dbg，附加微信，按住alt+e选择wechatwin.dll</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309004019740-4301f41492653928.png" alt="请输入图片描述"></p>
+<p>点进去，再内存窗口搜索刚才记录的地址</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309004100009-66329857e390bcd6.png" alt="请输入图片描述"></p>
+<p>设置写入断点</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309004143152-eadc4cb88c8ab207.png" alt="请输入图片描述"></p>
+<p>此时微信大号给小号发送消息，查看堆栈信息</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309004234591-a3767d090afe3769.png" alt="请输入图片描述"></p>
+<p>找到有个db的那个（这一步骤是再写入微信数据库之前定位call）</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309004706481-eafbc57a883b57ab.png" alt="请输入图片描述"></p>
+<p>选择，右键“在反汇编中转到指定QWORD”</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309004725335-7a33d88a7336f02c.png" alt="请输入图片描述"></p>
+<p>跳转之后，先取消上一个断点</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309005220343-045264296ceac140.png" alt="请输入图片描述"></p>
+<p>然后针对跳转的位置，找到上一个call位置，在call处进行断点</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309005128733-21c091d7a313ed5c.png" alt="请输入图片描述"></p>
+<p>发送消息，断点到了，查看RDI</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309010931157-fab1462ef601f496.png" alt="请输入图片描述"></p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011204653-ea9d10ce34e3925f.png" alt="请输入图片描述"></p>
+<p>在地址栏的第一个双击一下</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011236859-9e03af3b54260e11.png" alt="请输入图片描述"></p>
+<p>这样我们可以得出</p>
+<p>0x48 是 微信id</p>
+<p>0x88 是 微信消息的内容</p>
+<h2 id="计算偏移"><a href="#计算偏移" class="headerlink" title="计算偏移"></a>计算偏移</h2><p>找到断点位置，复制文件偏移</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011722845-95d13f5bb63dc359.png" alt="请输入图片描述"></p>
+<p>然后打开计算器那个图标，用偏移地址+C00</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011752005-264a3cfd2ef4f65e.png" alt="请输入图片描述"></p>
+<p>得出结果250AEA7</p>
+<h2 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h2><p>找到断点位置，复制地址</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011838272-52a67f9b5aa08450.png" alt="请输入图片描述"></p>
+<p>然后按住ALT+E，找到复制wechatwin.dll的基址</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011932459-3970cea94ebdeb8e.png" alt="请输入图片描述"></p>
+<p>用计算器两者相减得出结果250AEA7</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011945192-39dd644fd5625635.png" alt="请输入图片描述"></p>
+<p>结果是对的，此时编写frida脚本</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wechatWin = <span class="title class_">Module</span>.<span class="title function_">findBaseAddress</span>(<span class="string">&quot;WeChatWin.dll&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (!wechatWin) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;WeChatWin.dll模块未找到！&quot;</span>);</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;模块未找到&quot;</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> hookAddress = wechatWin.<span class="title function_">add</span>(<span class="number">0x250AEA7</span>);</span><br><span class="line"><span class="title class_">Interceptor</span>.<span class="title function_">attach</span>(hookAddress, &#123;</span><br><span class="line">    <span class="attr">onEnter</span>: <span class="keyword">function</span> (<span class="params">args</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> timestamp = <span class="variable language_">this</span>.<span class="property">context</span>.<span class="property">rdi</span>.<span class="title function_">add</span>(<span class="number">0x44</span>).<span class="title function_">readInt</span>();</span><br><span class="line">        <span class="keyword">var</span> wxid = <span class="variable language_">this</span>.<span class="property">context</span>.<span class="property">rdi</span>.<span class="title function_">add</span>(<span class="number">0x48</span>).<span class="title function_">readPointer</span>().<span class="title function_">readUtf16String</span>();</span><br><span class="line">        <span class="keyword">var</span> msg  = <span class="variable language_">this</span>.<span class="property">context</span>.<span class="property">rdi</span>.<span class="title function_">add</span>(<span class="number">0x88</span>).<span class="title function_">readPointer</span>().<span class="title function_">readUtf16String</span>();</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[++++] &quot;</span>+ timestamp +<span class="string">&quot;    &quot;</span>+ wxid +<span class="string">&quot;  :  &quot;</span>+msg)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hook已安装，等待接收消息...&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>运行脚本</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309012259323-6d1b833fa6adea79.png" alt="请输入图片描述"></p>
+<p>发送消息测试</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309012350422-daf56983822c35d1.png" alt="请输入图片描述"></p>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
+      <div class="markdown-body">
+        <h1 id="微信hook消息接收"><a href="#微信hook消息接收" class="headerlink" title="微信hook消息接收"></a>微信hook消息接收</h1><p>微信版本：3.9.12.45</p>
+<p>账号：两个微信账号，大号用来发消息，小号用来测试</p>
+<p>工具：微信、CE修改器、x64dbg</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309003334045-1e0690b0565a4ac7.png" alt="微信版本"></p>
+<h2 id="定位消息地址"><a href="#定位消息地址" class="headerlink" title="定位消息地址"></a>定位消息地址</h2><p>选择微信进程</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309003531575-3171e299997e05f4.png" alt="选择微信进程"></p>
+<p>大号给小号发送消息，扫描类型选择字符串，数值填写消息内容</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309003620823-a13866681e4ccca7.png" alt="请输入图片描述"></p>
+<p>重复之上的步骤，不断重复，直到无法定位的时候（我这里有三个），一个个查看浏览器内存区域</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309003732156-eee67b615e97541b.png" alt="请输入图片描述"></p>
+<p>找到带着wxid和xml格式的就是内存地址</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309003822510-0b3f593cb2a5cf42.png" alt="请输入图片描述"></p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309003849742-ab262aba4d231bb3.png" alt="请输入图片描述"></p>
+<h2 id="x64dbg断点"><a href="#x64dbg断点" class="headerlink" title="x64dbg断点"></a>x64dbg断点</h2><p>记录一下当前的微信地址1B6555E11BD，关闭CE修改器，打开x64dbg，附加微信，按住alt+e选择wechatwin.dll</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309004019740-4301f41492653928.png" alt="请输入图片描述"></p>
+<p>点进去，再内存窗口搜索刚才记录的地址</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309004100009-66329857e390bcd6.png" alt="请输入图片描述"></p>
+<p>设置写入断点</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309004143152-eadc4cb88c8ab207.png" alt="请输入图片描述"></p>
+<p>此时微信大号给小号发送消息，查看堆栈信息</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309004234591-a3767d090afe3769.png" alt="请输入图片描述"></p>
+<p>找到有个db的那个（这一步骤是再写入微信数据库之前定位call）</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309004706481-eafbc57a883b57ab.png" alt="请输入图片描述"></p>
+<p>选择，右键“在反汇编中转到指定QWORD”</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309004725335-7a33d88a7336f02c.png" alt="请输入图片描述"></p>
+<p>跳转之后，先取消上一个断点</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309005220343-045264296ceac140.png" alt="请输入图片描述"></p>
+<p>然后针对跳转的位置，找到上一个call位置，在call处进行断点</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309005128733-21c091d7a313ed5c.png" alt="请输入图片描述"></p>
+<p>发送消息，断点到了，查看RDI</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309010931157-fab1462ef601f496.png" alt="请输入图片描述"></p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011204653-ea9d10ce34e3925f.png" alt="请输入图片描述"></p>
+<p>在地址栏的第一个双击一下</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011236859-9e03af3b54260e11.png" alt="请输入图片描述"></p>
+<p>这样我们可以得出</p>
+<p>0x48 是 微信id</p>
+<p>0x88 是 微信消息的内容</p>
+<h2 id="计算偏移"><a href="#计算偏移" class="headerlink" title="计算偏移"></a>计算偏移</h2><p>找到断点位置，复制文件偏移</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011722845-95d13f5bb63dc359.png" alt="请输入图片描述"></p>
+<p>然后打开计算器那个图标，用偏移地址+C00</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011752005-264a3cfd2ef4f65e.png" alt="请输入图片描述"></p>
+<p>得出结果250AEA7</p>
+<h2 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h2><p>找到断点位置，复制地址</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011838272-52a67f9b5aa08450.png" alt="请输入图片描述"></p>
+<p>然后按住ALT+E，找到复制wechatwin.dll的基址</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011932459-3970cea94ebdeb8e.png" alt="请输入图片描述"></p>
+<p>用计算器两者相减得出结果250AEA7</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309011945192-39dd644fd5625635.png" alt="请输入图片描述"></p>
+<p>结果是对的，此时编写frida脚本</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wechatWin = <span class="title class_">Module</span>.<span class="title function_">findBaseAddress</span>(<span class="string">&quot;WeChatWin.dll&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (!wechatWin) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;WeChatWin.dll模块未找到！&quot;</span>);</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;模块未找到&quot;</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> hookAddress = wechatWin.<span class="title function_">add</span>(<span class="number">0x250AEA7</span>);</span><br><span class="line"><span class="title class_">Interceptor</span>.<span class="title function_">attach</span>(hookAddress, &#123;</span><br><span class="line">    <span class="attr">onEnter</span>: <span class="keyword">function</span> (<span class="params">args</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> timestamp = <span class="variable language_">this</span>.<span class="property">context</span>.<span class="property">rdi</span>.<span class="title function_">add</span>(<span class="number">0x44</span>).<span class="title function_">readInt</span>();</span><br><span class="line">        <span class="keyword">var</span> wxid = <span class="variable language_">this</span>.<span class="property">context</span>.<span class="property">rdi</span>.<span class="title function_">add</span>(<span class="number">0x48</span>).<span class="title function_">readPointer</span>().<span class="title function_">readUtf16String</span>();</span><br><span class="line">        <span class="keyword">var</span> msg  = <span class="variable language_">this</span>.<span class="property">context</span>.<span class="property">rdi</span>.<span class="title function_">add</span>(<span class="number">0x88</span>).<span class="title function_">readPointer</span>().<span class="title function_">readUtf16String</span>();</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[++++] &quot;</span>+ timestamp +<span class="string">&quot;    &quot;</span>+ wxid +<span class="string">&quot;  :  &quot;</span>+msg)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hook已安装，等待接收消息...&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>运行脚本</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309012259323-6d1b833fa6adea79.png" alt="请输入图片描述"></p>
+<p>发送消息测试</p>
+<p><img src="https://img.ittoolman.com/2025/2025-03-09/image-20250309012350422-daf56983822c35d1.png" alt="请输入图片描述"></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2025/01/29/%E5%B7%B2%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/%E7%81%AB%E9%94%85%E9%9A%8F%E8%AE%B0/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2025-07-06 17:32:15
+            </span>
+            
+                  <span class="post-categories">
+                    <i class="iconfont icon-bookmark" title="分类"></i>
+                    
+                    <span class="span--category">
+                      <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        <b>#</b> 技术笔记
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        #技术笔记
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E8%BD%AF%E4%BB%B6%E9%80%86%E5%90%91/" title="软件逆向">
+                        #软件逆向
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2025/07/06/%E5%B7%B2%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/python/%E7%A7%91%E6%8A%80%E5%88%9B%E6%96%B0%E5%9E%8B%E4%BC%81%E4%B8%9A%E7%88%AC%E8%99%AB%E4%B8%8E%E6%8F%90%E9%86%92%E5%AF%BC%E5%85%A5/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1hook%E6%B6%88%E6%81%AF%E6%8E%A5%E6%94%B6"><span class="toc-text">微信hook消息接收</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E6%B6%88%E6%81%AF%E5%9C%B0%E5%9D%80"><span class="toc-text">定位消息地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x64dbg%E6%96%AD%E7%82%B9"><span class="toc-text">x64dbg断点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%81%8F%E7%A7%BB"><span class="toc-text">计算偏移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E7%BB%93%E6%9E%9C"><span class="toc-text">验证结果</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+  </div>
+
+
+        
+  
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/dellevin/dellevin.github.io">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+            <a title="email" href="mailto:dellevin99@gmail.com">
+              <i class="iconfont icon-envelope"></i>
+            </a>
+            
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+              <a title="weibo" target="_blank" rel="noopener" href="https://weibo.com/u/6094785105">
+                <i class="iconfont icon-weibo"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+              <a title="rss" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+              </a>
+              
+        </li>
+        
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2025 Del Levin</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%BE%AE%E4%BF%A1hook%E6%B6%88%E6%81%AF%E6%8E%A5%E6%94%B6 + '&url=' + https%3A%2F%2Fwww.ittoolman.top%2F2025%2F03%2F09%2F%25E5%25B7%25B2%25E5%258F%2591%25E5%25B8%2583%25E6%2596%2587%25E7%25AB%25A0%2F%25E6%258A%2580%25E6%259C%25AF%25E7%25AC%2594%25E8%25AE%25B0%2F%25E8%25AE%25A1%25E7%25AE%2597%25E6%259C%25BA%25E4%25B8%258E%25E7%25BD%2591%25E7%25BB%259C%2F%25E5%25BE%25AE%25E4%25BF%25A1hook%25E6%25B6%2588%25E6%2581%25AF%25E6%258E%25A5%25E6%2594%25B6%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://www.ittoolman.top/2025/03/09/%E5%B7%B2%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E7%BD%91%E7%BB%9C/%E5%BE%AE%E4%BF%A1hook%E6%B6%88%E6%81%AF%E6%8E%A5%E6%94%B6/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

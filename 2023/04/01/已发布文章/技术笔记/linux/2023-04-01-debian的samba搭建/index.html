@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Del Levin" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  <meta name="description" content="望山叹高，登愈艰。入世哀难，伤无泪。" />
+  
+  
+  
+  <title>
+    
+      debian的samba搭建 
+      
+      
+      |
+    
+     Del Levin&#39;s Blog
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/iconfont1/iconfont.css" />
+  <link rel="stylesheet" href="/css/iconfont2/iconfont.css" />
+  <!-- <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" /> -->
+  <!-- 代码块风格 -->
+  
+    
+<link rel="stylesheet" href="/css/figcaption/mac-block.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6Z5DFKZBTD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6Z5DFKZBTD');
+    </script>
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+  <script async defer data-website-id="37957373-a470-49ec-a249-7e73f2c920dc" src="http://tongji.ittoolman.com/umami.js"></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Del Levin's Blog" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Del Levin</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          <a href="/categories/">Categories</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  
+
+
+
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">debian的samba搭建</div>
+      <div class="post-attach">
+        <span class="post-num">
+          <i class="iconfont icon-edit mr-10" ></i>
+          <span id="word-count"></span>
+        </span>
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2024-11-04 15:20:22
+        </span>
+        
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="分类"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    <b>#</b> 技术笔记
+                  </a>
+                </span>
+                
+              </span>
+          
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/linux/" title="linux">
+                    #linux
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                    #技术笔记
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <script>
+        (function() {
+          const content = `<hr>
+<h2 id="date-created-2022-11-29-16-31"><a href="#date-created-2022-11-29-16-31" class="headerlink" title="date created: 2022-11-29 16:31"></a>date created: 2022-11-29 16:31</h2><p>心血来潮，任务是将debian搭建samba服务。虽然大学学过，但是已经忘得差不多了。。。</p>
+<p>最怕改配置文件了。。</p>
+<h2 id="下载samba"><a href="#下载samba" class="headerlink" title="下载samba"></a>下载samba</h2><p>这个很重要。但是这个步骤一直告诉我依赖库有问题，我很是好奇依赖库哪里有问题，已经换成国内的镜像源。还是有依赖库的问题。以致于总是安装不上。后来才明白，这种依赖的问题大多数是源有问题，可以尝试换个源试试的。</p>
+<p>再<code>/etc/apt</code>的<code>sources.list</code>文件，如果你不习惯使用linux的vim可以使用xshell的xftp进行文件更改。另外说一句，debian这系统和centos还不一样，需要有权限才能对文件进行操作我，我要更改系统文件的话必须加上sudo才可以。</p>
+<p>打开<code>sources.list</code>文件之后，进行更改，添加上源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#阿里云镜像源</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bullseye main non-free contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bullseye main non-free contrib</span><br><span class="line">deb https://mirrors.aliyun.com/debian-security/ bullseye-security main</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian-security/ bullseye-security main</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib</span><br></pre></td></tr></table></figure>
+
+<p>添加上之后，保存文件然后输入下面命令更新源</p>
+<p><code>sudo apt-get update</code></p>
+<p><code>sudo apt-get upgrade</code></p>
+<h4 id="Tips："><a href="#Tips：" class="headerlink" title="Tips："></a>Tips：</h4><p>sudo apt-get update<br>这个命令，会访问源列表里的每个网址，并读取软件列表，然后保存在本地电脑。我们在新立得软件包管理器里看到的软件列表，都是通过update命令更新的。</p>
+<p>update后，可能需要upgrade一下。</p>
+<p>sudo apt-get upgrade<br>这个命令，会把本地已安装的软件，与刚下载的软件列表里对应软件进行对比，如果发现已安装的软件版本太低，就会提示你更新。如果你的软件都是最新版本，会提示：</p>
+<p>升级了 0 个软件包，新安装了 0 个软件包，要卸载 0 个软件包，有 0 个软件包未被升级。</p>
+<h2 id="安装samba"><a href="#安装samba" class="headerlink" title="安装samba"></a>安装samba</h2><p>root用户下直接使用以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install samba</span><br></pre></td></tr></table></figure>
+
+<p>若是普通用户下使用以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install samba</span><br></pre></td></tr></table></figure>
+
+<p>安装好samba之后然后就是更改配置文件<code>/etc/samba</code>下面的<code>smb.conf</code>文件</p>
+<h2 id="更改samba配置文件"><a href="#更改samba配置文件" class="headerlink" title="更改samba配置文件"></a>更改samba配置文件</h2><p>我主要更改了home文件下面的配置文件，appshare是我自己写的配置，可以照着写一下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">workgroup = WORKGROUP</span><br><span class="line">   <span class="built_in">log</span> file = /var/log/samba/log.%m</span><br><span class="line">   max <span class="built_in">log</span> size = 1000</span><br><span class="line">   logging = file</span><br><span class="line">   panic action = /usr/share/samba/panic-action %d</span><br><span class="line">   server role = standalone server</span><br><span class="line">   obey pam restrictions = <span class="built_in">yes</span></span><br><span class="line">   unix password <span class="built_in">sync</span> = <span class="built_in">yes</span></span><br><span class="line">   map to guest = bad user <span class="comment">#设置是否可以匿名访问</span></span><br><span class="line">   usershare allow guests = <span class="built_in">yes</span></span><br><span class="line">[homes]</span><br><span class="line">   comment = Home Directories</span><br><span class="line">   browseable = <span class="built_in">yes</span></span><br><span class="line">   public = <span class="built_in">yes</span></span><br><span class="line">   guest ok = <span class="built_in">yes</span></span><br><span class="line">   <span class="built_in">read</span> only = no</span><br><span class="line">   writable = <span class="built_in">yes</span></span><br><span class="line">   create mask = 0777</span><br><span class="line">   directory mask = 0777</span><br><span class="line">   valid <span class="built_in">users</span> = %S</span><br><span class="line">[appshare]</span><br><span class="line">comment = WinccOA Share <span class="comment">#描述</span></span><br><span class="line">path = /home/uarto/app   <span class="comment">#路径</span></span><br><span class="line">browseable = <span class="built_in">yes</span>   <span class="comment">#是否可见</span></span><br><span class="line">writable = <span class="built_in">yes</span> <span class="comment">#可写</span></span><br><span class="line">available = <span class="built_in">yes</span></span><br><span class="line">public = <span class="built_in">yes</span> <span class="comment">#公共</span></span><br><span class="line"><span class="built_in">read</span> only = no <span class="comment">#只读，不能和上面的pulic =yes 冲突</span></span><br><span class="line">guest ok = <span class="built_in">yes</span></span><br><span class="line">browseable = <span class="built_in">yes</span></span><br><span class="line">create mask = 0777</span><br><span class="line">directory mask = 0777</span><br></pre></td></tr></table></figure>
+
+<p>再然后就是保存重启配置文件，重启samba服务就可以</p>
+<p><code>sudo systemctl  restart  smbd</code></p>
+<p><strong>如果出现文件夹无法访问的情况，有可能是没有给共享文件夹下赋予一定的权限，使用chmod更改文件夹权限就可以。</strong></p>
+<h2 id="Samba服务程序中的参数以及作用"><a href="#Samba服务程序中的参数以及作用" class="headerlink" title="Samba服务程序中的参数以及作用"></a>Samba服务程序中的参数以及作用</h2><table>
+<thead>
+<tr>
+<th>[global]</th>
+<th></th>
+<th>全局参数。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>workgroup &#x3D; MYGROUP</td>
+<td>工作组名称</td>
+</tr>
+<tr>
+<td></td>
+<td>server string &#x3D; Samba Server Version %v</td>
+<td>服务器介绍信息，参数%v为显示SMB版本号</td>
+</tr>
+<tr>
+<td></td>
+<td>log file &#x3D; &#x2F;var&#x2F;log&#x2F;samba&#x2F;log.%m</td>
+<td>定义日志文件的存放位置与名称，参数%m为来访的主机名</td>
+</tr>
+<tr>
+<td></td>
+<td>max log size &#x3D; 50</td>
+<td>定义日志文件的最大容量为50KB</td>
+</tr>
+<tr>
+<td></td>
+<td>security &#x3D; user</td>
+<td>安全验证的方式，总共有4种</td>
+</tr>
+<tr>
+<td></td>
+<td>share：来访主机无需验证口令；比较方便，但安全性很差</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>user：需验证来访主机提供的口令后才可以访问；提升了安全性</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>server：使用独立的远程主机验证来访主机提供的口令（集中管理账户）</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>domain：使用域控制器进行身份验证</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>passdb backend &#x3D; tdbsam</td>
+<td>定义用户后台的类型，共有3种</td>
+</tr>
+<tr>
+<td></td>
+<td>smbpasswd：使用smbpasswd命令为系统用户设置Samba服务程序的密码</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>tdbsam：创建数据库文件并使用pdbedit命令建立Samba服务程序的用户</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>ldapsam：基于LDAP服务进行账户验证</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>load printers &#x3D; yes</td>
+<td>设置在Samba服务启动时是否共享打印机设备</td>
+</tr>
+<tr>
+<td></td>
+<td>cups options &#x3D; raw</td>
+<td>打印机的选项</td>
+</tr>
+<tr>
+<td>[homes]</td>
+<td></td>
+<td>共享参数</td>
+</tr>
+<tr>
+<td></td>
+<td>comment &#x3D; Home Directories</td>
+<td>描述信息</td>
+</tr>
+<tr>
+<td></td>
+<td>browseable &#x3D; no</td>
+<td>指定共享信息是否在“网上邻居”中可见</td>
+</tr>
+<tr>
+<td></td>
+<td>writable &#x3D; yes</td>
+<td>定义是否可以执行写入操作，与“read only”相反</td>
+</tr>
+<tr>
+<td>[printers]</td>
+<td></td>
+<td>打印机共享参数</td>
+</tr>
+<tr>
+<td></td>
+<td>comment &#x3D; All Printers</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>path &#x3D; &#x2F;var&#x2F;spool&#x2F;samba</td>
+<td>共享文件的实际路径(重要)。</td>
+</tr>
+<tr>
+<td></td>
+<td>browseable &#x3D; no</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>guest ok &#x3D; no   等于 public &#x3D; no</td>
+<td>是否所有人可见，等同于”public”参数。</td>
+</tr>
+<tr>
+<td></td>
+<td>writable &#x3D; no    等于 read only &#x3D; yes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>printable &#x3D; yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>共享选项及说明，按照需求合理配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">[共享名称]: 共享中看到的共享目录名</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">comment = 共享的描述. </span><br><span class="line"></span><br><span class="line">path = 共享目录路径(可以用%u、%m这样的宏来代替路径如:/home/share/%u) </span><br><span class="line"></span><br><span class="line">browseable = <span class="built_in">yes</span>/no指定该共享是否在“网上邻居”中可见。</span><br><span class="line"></span><br><span class="line">writable = <span class="built_in">yes</span>/no指定该共享路径是否可写。</span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> only = <span class="built_in">yes</span>/no设置共享目录为只读(注意设置不要与writable有冲突) </span><br><span class="line"></span><br><span class="line">available = <span class="built_in">yes</span>/no指定该共享资源是否可用。</span><br><span class="line"></span><br><span class="line">admin <span class="built_in">users</span> = bobyuan，jane指定该共享的管理员,用户验证方式为“security=share”时，此项无效。 </span><br><span class="line"></span><br><span class="line">valid <span class="built_in">users</span> = bobyuan，jane允许访问该共享的用户或组-“@+组名” </span><br><span class="line"></span><br><span class="line">invalid <span class="built_in">users</span> = 禁止访问该共享的用户与组(同上) </span><br><span class="line"></span><br><span class="line">write list = 允许写入该共享的用户</span><br><span class="line"></span><br><span class="line">public = <span class="built_in">yes</span>/no共享是否允许guest账户访问。 </span><br><span class="line"></span><br><span class="line">guest ok = <span class="built_in">yes</span>/no意义同“public”。</span><br><span class="line"></span><br><span class="line">create mask = 0700指定用户通过Samba在该共享目录中创建文件的默认权限。0600代表创建文件的权限为rw-------</span><br><span class="line"></span><br><span class="line">directory mask = 0700指定用户通过Samba在该共享目录中创建目录的默认权限。0600代表创建目录的权限为rwx------ </span><br></pre></td></tr></table></figure>
+`;
+          const text = content.replace(/<\/?[^>]+(>|$)/g, "");
+          const wordCount = text.length;
+          document.getElementById("word-count").innerText = `${wordCount} 字`;
+        })();
+      </script>
+      <div class="markdown-body">
+        <hr>
+<h2 id="date-created-2022-11-29-16-31"><a href="#date-created-2022-11-29-16-31" class="headerlink" title="date created: 2022-11-29 16:31"></a>date created: 2022-11-29 16:31</h2><p>心血来潮，任务是将debian搭建samba服务。虽然大学学过，但是已经忘得差不多了。。。</p>
+<p>最怕改配置文件了。。</p>
+<h2 id="下载samba"><a href="#下载samba" class="headerlink" title="下载samba"></a>下载samba</h2><p>这个很重要。但是这个步骤一直告诉我依赖库有问题，我很是好奇依赖库哪里有问题，已经换成国内的镜像源。还是有依赖库的问题。以致于总是安装不上。后来才明白，这种依赖的问题大多数是源有问题，可以尝试换个源试试的。</p>
+<p>再<code>/etc/apt</code>的<code>sources.list</code>文件，如果你不习惯使用linux的vim可以使用xshell的xftp进行文件更改。另外说一句，debian这系统和centos还不一样，需要有权限才能对文件进行操作我，我要更改系统文件的话必须加上sudo才可以。</p>
+<p>打开<code>sources.list</code>文件之后，进行更改，添加上源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#阿里云镜像源</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bullseye main non-free contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bullseye main non-free contrib</span><br><span class="line">deb https://mirrors.aliyun.com/debian-security/ bullseye-security main</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian-security/ bullseye-security main</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib</span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib</span><br><span class="line">deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib</span><br></pre></td></tr></table></figure>
+
+<p>添加上之后，保存文件然后输入下面命令更新源</p>
+<p><code>sudo apt-get update</code></p>
+<p><code>sudo apt-get upgrade</code></p>
+<h4 id="Tips："><a href="#Tips：" class="headerlink" title="Tips："></a>Tips：</h4><p>sudo apt-get update<br>这个命令，会访问源列表里的每个网址，并读取软件列表，然后保存在本地电脑。我们在新立得软件包管理器里看到的软件列表，都是通过update命令更新的。</p>
+<p>update后，可能需要upgrade一下。</p>
+<p>sudo apt-get upgrade<br>这个命令，会把本地已安装的软件，与刚下载的软件列表里对应软件进行对比，如果发现已安装的软件版本太低，就会提示你更新。如果你的软件都是最新版本，会提示：</p>
+<p>升级了 0 个软件包，新安装了 0 个软件包，要卸载 0 个软件包，有 0 个软件包未被升级。</p>
+<h2 id="安装samba"><a href="#安装samba" class="headerlink" title="安装samba"></a>安装samba</h2><p>root用户下直接使用以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install samba</span><br></pre></td></tr></table></figure>
+
+<p>若是普通用户下使用以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install samba</span><br></pre></td></tr></table></figure>
+
+<p>安装好samba之后然后就是更改配置文件<code>/etc/samba</code>下面的<code>smb.conf</code>文件</p>
+<h2 id="更改samba配置文件"><a href="#更改samba配置文件" class="headerlink" title="更改samba配置文件"></a>更改samba配置文件</h2><p>我主要更改了home文件下面的配置文件，appshare是我自己写的配置，可以照着写一下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">workgroup = WORKGROUP</span><br><span class="line">   <span class="built_in">log</span> file = /var/log/samba/log.%m</span><br><span class="line">   max <span class="built_in">log</span> size = 1000</span><br><span class="line">   logging = file</span><br><span class="line">   panic action = /usr/share/samba/panic-action %d</span><br><span class="line">   server role = standalone server</span><br><span class="line">   obey pam restrictions = <span class="built_in">yes</span></span><br><span class="line">   unix password <span class="built_in">sync</span> = <span class="built_in">yes</span></span><br><span class="line">   map to guest = bad user <span class="comment">#设置是否可以匿名访问</span></span><br><span class="line">   usershare allow guests = <span class="built_in">yes</span></span><br><span class="line">[homes]</span><br><span class="line">   comment = Home Directories</span><br><span class="line">   browseable = <span class="built_in">yes</span></span><br><span class="line">   public = <span class="built_in">yes</span></span><br><span class="line">   guest ok = <span class="built_in">yes</span></span><br><span class="line">   <span class="built_in">read</span> only = no</span><br><span class="line">   writable = <span class="built_in">yes</span></span><br><span class="line">   create mask = 0777</span><br><span class="line">   directory mask = 0777</span><br><span class="line">   valid <span class="built_in">users</span> = %S</span><br><span class="line">[appshare]</span><br><span class="line">comment = WinccOA Share <span class="comment">#描述</span></span><br><span class="line">path = /home/uarto/app   <span class="comment">#路径</span></span><br><span class="line">browseable = <span class="built_in">yes</span>   <span class="comment">#是否可见</span></span><br><span class="line">writable = <span class="built_in">yes</span> <span class="comment">#可写</span></span><br><span class="line">available = <span class="built_in">yes</span></span><br><span class="line">public = <span class="built_in">yes</span> <span class="comment">#公共</span></span><br><span class="line"><span class="built_in">read</span> only = no <span class="comment">#只读，不能和上面的pulic =yes 冲突</span></span><br><span class="line">guest ok = <span class="built_in">yes</span></span><br><span class="line">browseable = <span class="built_in">yes</span></span><br><span class="line">create mask = 0777</span><br><span class="line">directory mask = 0777</span><br></pre></td></tr></table></figure>
+
+<p>再然后就是保存重启配置文件，重启samba服务就可以</p>
+<p><code>sudo systemctl  restart  smbd</code></p>
+<p><strong>如果出现文件夹无法访问的情况，有可能是没有给共享文件夹下赋予一定的权限，使用chmod更改文件夹权限就可以。</strong></p>
+<h2 id="Samba服务程序中的参数以及作用"><a href="#Samba服务程序中的参数以及作用" class="headerlink" title="Samba服务程序中的参数以及作用"></a>Samba服务程序中的参数以及作用</h2><table>
+<thead>
+<tr>
+<th>[global]</th>
+<th></th>
+<th>全局参数。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>workgroup &#x3D; MYGROUP</td>
+<td>工作组名称</td>
+</tr>
+<tr>
+<td></td>
+<td>server string &#x3D; Samba Server Version %v</td>
+<td>服务器介绍信息，参数%v为显示SMB版本号</td>
+</tr>
+<tr>
+<td></td>
+<td>log file &#x3D; &#x2F;var&#x2F;log&#x2F;samba&#x2F;log.%m</td>
+<td>定义日志文件的存放位置与名称，参数%m为来访的主机名</td>
+</tr>
+<tr>
+<td></td>
+<td>max log size &#x3D; 50</td>
+<td>定义日志文件的最大容量为50KB</td>
+</tr>
+<tr>
+<td></td>
+<td>security &#x3D; user</td>
+<td>安全验证的方式，总共有4种</td>
+</tr>
+<tr>
+<td></td>
+<td>share：来访主机无需验证口令；比较方便，但安全性很差</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>user：需验证来访主机提供的口令后才可以访问；提升了安全性</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>server：使用独立的远程主机验证来访主机提供的口令（集中管理账户）</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>domain：使用域控制器进行身份验证</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>passdb backend &#x3D; tdbsam</td>
+<td>定义用户后台的类型，共有3种</td>
+</tr>
+<tr>
+<td></td>
+<td>smbpasswd：使用smbpasswd命令为系统用户设置Samba服务程序的密码</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>tdbsam：创建数据库文件并使用pdbedit命令建立Samba服务程序的用户</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>ldapsam：基于LDAP服务进行账户验证</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>load printers &#x3D; yes</td>
+<td>设置在Samba服务启动时是否共享打印机设备</td>
+</tr>
+<tr>
+<td></td>
+<td>cups options &#x3D; raw</td>
+<td>打印机的选项</td>
+</tr>
+<tr>
+<td>[homes]</td>
+<td></td>
+<td>共享参数</td>
+</tr>
+<tr>
+<td></td>
+<td>comment &#x3D; Home Directories</td>
+<td>描述信息</td>
+</tr>
+<tr>
+<td></td>
+<td>browseable &#x3D; no</td>
+<td>指定共享信息是否在“网上邻居”中可见</td>
+</tr>
+<tr>
+<td></td>
+<td>writable &#x3D; yes</td>
+<td>定义是否可以执行写入操作，与“read only”相反</td>
+</tr>
+<tr>
+<td>[printers]</td>
+<td></td>
+<td>打印机共享参数</td>
+</tr>
+<tr>
+<td></td>
+<td>comment &#x3D; All Printers</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>path &#x3D; &#x2F;var&#x2F;spool&#x2F;samba</td>
+<td>共享文件的实际路径(重要)。</td>
+</tr>
+<tr>
+<td></td>
+<td>browseable &#x3D; no</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>guest ok &#x3D; no   等于 public &#x3D; no</td>
+<td>是否所有人可见，等同于”public”参数。</td>
+</tr>
+<tr>
+<td></td>
+<td>writable &#x3D; no    等于 read only &#x3D; yes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>printable &#x3D; yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>共享选项及说明，按照需求合理配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">[共享名称]: 共享中看到的共享目录名</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">comment = 共享的描述. </span><br><span class="line"></span><br><span class="line">path = 共享目录路径(可以用%u、%m这样的宏来代替路径如:/home/share/%u) </span><br><span class="line"></span><br><span class="line">browseable = <span class="built_in">yes</span>/no指定该共享是否在“网上邻居”中可见。</span><br><span class="line"></span><br><span class="line">writable = <span class="built_in">yes</span>/no指定该共享路径是否可写。</span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> only = <span class="built_in">yes</span>/no设置共享目录为只读(注意设置不要与writable有冲突) </span><br><span class="line"></span><br><span class="line">available = <span class="built_in">yes</span>/no指定该共享资源是否可用。</span><br><span class="line"></span><br><span class="line">admin <span class="built_in">users</span> = bobyuan，jane指定该共享的管理员,用户验证方式为“security=share”时，此项无效。 </span><br><span class="line"></span><br><span class="line">valid <span class="built_in">users</span> = bobyuan，jane允许访问该共享的用户或组-“@+组名” </span><br><span class="line"></span><br><span class="line">invalid <span class="built_in">users</span> = 禁止访问该共享的用户与组(同上) </span><br><span class="line"></span><br><span class="line">write list = 允许写入该共享的用户</span><br><span class="line"></span><br><span class="line">public = <span class="built_in">yes</span>/no共享是否允许guest账户访问。 </span><br><span class="line"></span><br><span class="line">guest ok = <span class="built_in">yes</span>/no意义同“public”。</span><br><span class="line"></span><br><span class="line">create mask = 0700指定用户通过Samba在该共享目录中创建文件的默认权限。0600代表创建文件的权限为rw-------</span><br><span class="line"></span><br><span class="line">directory mask = 0700指定用户通过Samba在该共享目录中创建目录的默认权限。0600代表创建目录的权限为rwx------ </span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2023/04/01/%E5%B7%B2%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/2023-04-01-%E9%85%8D%E7%BD%AEDebian11%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%81%E8%AE%B8root%E7%94%A8%E6%88%B7%E8%BF%9C%E7%A8%8BSSH%E7%99%BB%E5%BD%95/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2024-11-04 15:20:22
+            </span>
+            
+                  <span class="post-categories">
+                    <i class="iconfont icon-bookmark" title="分类"></i>
+                    
+                    <span class="span--category">
+                      <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        <b>#</b> 技术笔记
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/linux/" title="linux">
+                        #linux
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="技术笔记">
+                        #技术笔记
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2023/04/01/%E5%B7%B2%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/2023-04-01-%E6%88%91%E4%BB%AC%E9%83%BD%E8%A6%81%E5%BE%80%E5%AF%B9%E6%96%B9%E9%82%A3%E9%87%8C%E8%BF%88%E6%AD%A5-2022%E5%B9%B46%E6%9C%882%E6%97%A5/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#date-created-2022-11-29-16-31"><span class="toc-text">date created: 2022-11-29 16:31</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDsamba"><span class="toc-text">下载samba</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Tips%EF%BC%9A"><span class="toc-text">Tips：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85samba"><span class="toc-text">安装samba</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9samba%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">更改samba配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Samba%E6%9C%8D%E5%8A%A1%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0%E4%BB%A5%E5%8F%8A%E4%BD%9C%E7%94%A8"><span class="toc-text">Samba服务程序中的参数以及作用</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+  </div>
+
+
+        
+  
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/dellevin/dellevin.github.io">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+            <a title="email" href="mailto:dellevin99@gmail.com">
+              <i class="iconfont icon-envelope"></i>
+            </a>
+            
+        </li>
+        
+        <li>
+          
+              <a title="telegram" target="_blank" rel="noopener" href="https://t.me/levin092">
+                <i class="iconfont icon-telegram"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+              <a title="weibo" target="_blank" rel="noopener" href="https://weibo.com/u/6094785105">
+                <i class="iconfont icon-weibo"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+              <a title="rss" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+              </a>
+              
+        </li>
+        
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/dellevin">Copyright © 2020 ~ 2025 Del Levin</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + debian%E7%9A%84samba%E6%90%AD%E5%BB%BA + '&url=' + https%3A%2F%2Fwww.ittoolman.top%2F2023%2F04%2F01%2F%25E5%25B7%25B2%25E5%258F%2591%25E5%25B8%2583%25E6%2596%2587%25E7%25AB%25A0%2F%25E6%258A%2580%25E6%259C%25AF%25E7%25AC%2594%25E8%25AE%25B0%2Flinux%2F2023-04-01-debian%25E7%259A%2584samba%25E6%2590%25AD%25E5%25BB%25BA%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://www.ittoolman.top/2023/04/01/%E5%B7%B2%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/linux/2023-04-01-debian%E7%9A%84samba%E6%90%AD%E5%BB%BA/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>
